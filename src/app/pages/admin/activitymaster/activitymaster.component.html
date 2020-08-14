@@ -1,0 +1,190 @@
+
+    <div class="container">
+        <div class="col-md-12 bg-card shadow rounded overflow-hidden">
+            <div class="">
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>First name</th>
+                            <th>Last name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Abhilash</td>
+                            <td>Tiwari</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Abhilash</td>
+                            <td>Tiwari</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Abhilash</td>
+                            <td>Tiwari</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <ng-template #add let-modal>
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="dateOfBirth">Date of birth</label>
+                                <div class="input-group">
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark"
+                            (click)="modal.close('Save click')">Save</button>
+                    </div>
+                </ng-template>
+                <ng-template #edit let-modal>
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+                        <button type="button"  class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="dateOfBirth">Date of birth</label>
+                                <div class="input-group">
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark"
+                            (click)="modal.close('Save click')">Save</button>
+                    </div>
+                </ng-template>
+                <ng-template #status let-modal>
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="dateOfBirth">Date of birth</label>
+                                <div class="input-group">
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark"
+                            (click)="modal.close('Save click')">Save</button>
+                    </div>
+                </ng-template>
+                <button class="px-6 ml-3" mat-flat-button [color]="'primary'" (click)="open(add)">Launch demo modal</button>
+                <button class="px-6 ml-3" mat-flat-button [color]="'primary'" (click)="open(edit)">Launch demo modal</button>
+                <button class="px-6 ml-3" mat-flat-button [color]="'primary'" (click)="open(status)">Launch demo modal</button>
+            </div>
+        </div>
+    </div>
+<br>
+<div class="content-layout fullwidth-standard-normal-scroll">
+    <div class="header">
+        <div class="container row">
+            <div class="breadcrumb">
+                <span class="path">UI ELEMENTS</span>
+                <span class="separator">/</span>
+                <span class="path">FORMS</span>
+            </div>
+            <h1>Form Fields</h1>
+        </div>
+    </div>
+    <div class="main">
+        <div class="max-w-3xl">
+            <div class="rich-text">
+                <h2 class="mt-12">Appearance</h2>
+                <p>
+                    Here's a very simple form layout to showcase the form fields.
+                </p>
+            </div>
+            <form class="flex flex-col mt-12 p-8 pb-0 bg-card shadow rounded overflow-hidden">
+                <div class="flex flex-col gt-xs:flex-row">
+                    <mat-form-field class="flex-auto gt-xs:pr-3">
+                        <mat-label>First name</mat-label>
+                        <input matInput>
+                        <mat-icon matSuffix [svgIcon]="'account_circle'"></mat-icon>
+                    </mat-form-field>
+                    <mat-form-field class="flex-auto gt-xs:pl-3">
+                        <mat-label>Last name</mat-label>
+                        <input matInput>
+                        <mat-icon matSuffix [svgIcon]="'account_circle'"></mat-icon>
+                    </mat-form-field>
+                </div>
+
+                <div class="flex">
+                    <mat-form-field class="treo-mat-textarea flex-auto">
+                        <mat-label>Address</mat-label>
+                        <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="3"></textarea>
+                        <mat-icon matSuffix [svgIcon]="'room'"></mat-icon>
+                    </mat-form-field>
+                </div>
+
+                <div class="flex flex-col gt-md:flex-row">
+                    <mat-form-field class="flex-auto gt-md:pr-3">
+                        <mat-label>City</mat-label>
+                        <input matInput>
+                        <mat-icon matSuffix [svgIcon]="'landscape'"></mat-icon>
+                    </mat-form-field>
+                    <mat-form-field class="flex-auto gt-md:pl-3">
+                        <mat-label>State</mat-label>
+                        <input matInput>
+                        <mat-icon matSuffix [svgIcon]="'landscape'"></mat-icon>
+                    </mat-form-field>
+                </div>
+
+                <div class="flex">
+                    <mat-form-field class="flex-auto">
+                        <mat-label>Postal code</mat-label>
+                        <input matInput maxlength="5" #postalCode>
+                        <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
+                        <mat-icon matSuffix [svgIcon]="'mail'"></mat-icon>
+                    </mat-form-field>
+                </div>
+
+                <div
+                    class="flex items-center justify-end border-t -mx-8 mt-5 px-8 py-5 light:bg-cool-gray-50 dark:bg-cool-gray-700">
+                    <button mat-button>
+                        Cancel
+                    </button>
+                    <button class="px-6 ml-3" mat-flat-button [color]="'primary'">
+                        Save
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="main">
+        <div class="max-w-3xl">
+            <div class="rich-text">
+                <h2 class="mt-12">Appearance</h2>
+                <p>
+                    Here's a very simple form layout to showcase the form fields.
+                </p>
+            </div>
+           
+        </div>
+    </div>
+</div>

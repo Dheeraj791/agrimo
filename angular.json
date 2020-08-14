@@ -43,9 +43,13 @@
                             "src/styles/vendors.scss",
                             "src/@treo/styles/main.scss",
                             "src/styles/styles.scss",
-                            "src/styles/tailwind.scss"
+                            "src/styles/tailwind.scss",
+                            "node_modules/datatables.net-dt/css/jquery.dataTables.css"
                         ],
-                        "scripts": []
+                        "scripts": [
+                            "node_modules/jquery/dist/jquery.js",
+              "node_modules/datatables.net/js/jquery.dataTables.js"
+                        ]
                     },
                     "configurations": {
                         "production": {
