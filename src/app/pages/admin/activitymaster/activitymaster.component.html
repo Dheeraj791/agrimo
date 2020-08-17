@@ -1,30 +1,80 @@
 
+
+
+<div class="box_main">
     <div class="container">
         <div class="col-md-12 bg-card shadow rounded overflow-hidden">
+                    
+        <div class="header_top_btn mb-5">
+                <button class="btn" mat-flat-button [color]="'primary'" (click)="open(addnew)">Add New Activity</button>
+        </div>
             <div class="">
                 <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>First name</th>
-                            <th>Last name</th>
+                            <th>S.Id</th>
+                            <th>Activity Name</th>
+                            <th>Activity Type</th>
+                            <th>Delete</th>
+                            <th>Edit</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>1</td>
-                            <td>Abhilash</td>
-                            <td>Tiwari</td>
+                            <td>Blue Sticky Trap</td>
+                            <td>Materail Based Activity</td>
+                            <td class="delete_icons" (click)="statusModal(delete)"><mat-icon svgIcon="dripicons:trash"></mat-icon></td>
+                            <td  (click)="open(edit)" class="edit_icons"><mat-icon svgIcon="dripicons:pencil"></mat-icon></td>
                         </tr>
                         <tr>
-                            <td>1</td>
-                            <td>Abhilash</td>
-                            <td>Tiwari</td>
+                            <td>2</td>
+                            <td>Composting through Gudhai</td>
+                            <td>General AQctivity</td>
+                            <td class="delete_icons" (click)="statusModal(delete)"><mat-icon svgIcon="dripicons:trash"></mat-icon></td>
+                            <td (click)="open(edit)" class="edit_icons"><mat-icon svgIcon="dripicons:pencil"></mat-icon></td>
                         </tr>
                         <tr>
-                            <td>1</td>
-                            <td>Abhilash</td>
-                            <td>Tiwari</td>
+                            <td>3</td>
+                            <td>Drinching</td>
+                            <td>Materail Based Activity</td>
+                            <td class="delete_icons" (click)="statusModal(delete)"><mat-icon svgIcon="dripicons:trash"></mat-icon></td>
+                            <td (click)="open(edit)" class="edit_icons"><mat-icon svgIcon="dripicons:pencil"></mat-icon></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Foliar Spray</td>
+                            <td>Materail Based Activity</td>
+                            <td class="delete_icons" (click)="statusModal(delete)"><mat-icon svgIcon="dripicons:trash"></mat-icon></td>
+                            <td (click)="open(edit)" class="edit_icons"><mat-icon svgIcon="dripicons:pencil"></mat-icon></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Irrigation</td>
+                            <td>Materail Based Activity</td>
+                            <td class="delete_icons" (click)="statusModal(delete)"><mat-icon svgIcon="dripicons:trash"></mat-icon></td>
+                            <td (click)="open(edit)" class="edit_icons"><mat-icon svgIcon="dripicons:pencil"></mat-icon></td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>Pheromone Trap</td>
+                            <td>General AQctivity</td>
+                            <td class="delete_icons" (click)="statusModal(delete)"><mat-icon svgIcon="dripicons:trash"></mat-icon></td>
+                            <td (click)="open(edit)" class="edit_icons"><mat-icon svgIcon="dripicons:pencil"></mat-icon></td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Weeding</td>
+                            <td>General AQctivity</td>
+                            <td class="delete_icons" (click)="statusModal(delete)"><mat-icon svgIcon="dripicons:trash"></mat-icon></td>
+                            <td (click)="open(edit)" class="edit_icons"><mat-icon svgIcon="dripicons:pencil"></mat-icon></td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>Yellow Sticky Trap</td>
+                            <td>Materail Based Activity</td>
+                            <td class="delete_icons" (click)="statusModal(delete)"><mat-icon svgIcon="dripicons:trash"></mat-icon></td>
+                            <td (click)="open(edit)" class="edit_icons"><mat-icon svgIcon="dripicons:pencil"></mat-icon></td>
                         </tr>
                     </tbody>
                 </table>
@@ -52,20 +102,34 @@
                 </ng-template>
                 <ng-template #edit let-modal>
                     <div class="modal-header">
-                        <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+                        <h4 class="modal-title" id="modal-basic-title">Update Activity Name</h4>
                         <button type="button"  class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="dateOfBirth">Date of birth</label>
-                                <div class="input-group">
-
-                                </div>
-                            </div>
-                        </form>
+                            <form>
+                                    <div class="row">
+                                         <div class="col-md-6">
+                                             <div class="form-group">
+                                                     <label for="dateOfBirth">Activity Name</label>
+                                                     <input type="text" placeholder="Blue Sticky Trap" name="Blue Sticky Trap">
+                                                 </div>
+                                             </div>
+                                             <div class="col-md-6">
+                                                 <div class="form-group">
+                                                     <label for="dateOfBirth">Material Based Activity</label>
+                                                     <select class="form-control" name="Material Based Activity">
+                                                         <option value="mat">General Activity</option>
+                                                     </select>
+                                                 </div>
+                                             </div>
+                                    </div>
+                                     <div class="form-group">
+                                         <label for="dateOfBirth">Description</label>
+                                         <textarea name="" id="" cols="30" rows="6"></textarea>
+                                     </div>
+                                 </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-dark"
@@ -94,14 +158,85 @@
                             (click)="modal.close('Save click')">Save</button>
                     </div>
                 </ng-template>
+
+                <ng-template #addnew let-modal>
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="modal-basic-title">Add New Activity</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                               <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                                <label for="dateOfBirth">Activity Name</label>
+                                                <input type="text" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="dateOfBirth">Activity Type</label>
+                                                <select class="form-control" name="activity_type">
+                                                    <option>----CHOOSE ACTIVITY TYPE----</option>
+                                                    <option value="gen">General Activity</option>
+                                                    <option value="mat">Material Based Activity</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                               </div>
+                                <div class="form-group">
+                                    <label for="dateOfBirth">Description</label>
+                                    <textarea name="" id="" cols="30" rows="6"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-dark"
+                                (click)="modal.close('Save click')">Submit</button>
+                        </div>
+                    </ng-template>
+
+
+
+                <ng-template #delete let-modal class="delete_modal">
+                        <div class="modal-header">
+                        </div>
+                        
+                        <div class="modal-body">
+                                <button type="button" class="btn btn-outline-dark btn_delete" (click)="modal.close('Save click')">
+                                    Delete
+                                </button>    
+                                <button type="button" class=" btn btn-outline-dark close btn_close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                    cancel
+                                </button>
+                        </div>
+                        
+                        <div class="modal-footer">
+                               
+                        </div>
+                        <!-- <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="dateOfBirth">Date of birth</label>
+                                    <div class="input-group">
+    
+                                    </div>
+                                </div>
+                            </form>
+                        </div> -->
+                    </ng-template>
+
                 <button class="px-6 ml-3" mat-flat-button [color]="'primary'" (click)="open(add)">Launch demo modal</button>
                 <button class="px-6 ml-3" mat-flat-button [color]="'primary'" (click)="open(edit)">Launch demo modal</button>
                 <button class="px-6 ml-3" mat-flat-button [color]="'primary'" (click)="open(status)">Launch demo modal</button>
             </div>
         </div>
     </div>
+</div>
 <br>
-<div class="content-layout fullwidth-standard-normal-scroll">
+<div class="content-layout fullwidth-standard-normal-scroll field_form_sec">
     <div class="header">
         <div class="container row">
             <div class="breadcrumb">
@@ -115,7 +250,7 @@
     <div class="main">
         <div class="max-w-3xl">
             <div class="rich-text">
-                <h2 class="mt-12">Appearance</h2>
+                <h2>Appearance</h2>
                 <p>
                     Here's a very simple form layout to showcase the form fields.
                 </p>
@@ -188,3 +323,7 @@
         </div>
     </div>
 </div>
+
+
+
+

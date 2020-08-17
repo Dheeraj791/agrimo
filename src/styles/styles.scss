@@ -7,3 +7,66 @@
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
+
+
+
+
+.box_main {
+    width: 100%;
+}
+
+app-activitymaster {
+    flex-wrap: wrap;    
+    margin: 16px 0;
+}
+
+.box_main .bg-card.shadow {
+    padding: 15px;
+}
+
+.box_main .bg-card.shadow mat-icon {
+    color: red;
+    min-height: 17px !important;
+    height: 17px !important;
+    margin: 4px;
+}
+td.edit_icons mat-icon.mat-icon {
+    color: #5850ec !important;
+}
+
+.field_form_sec .header {
+    margin: 16px;
+}
+.field_form_sec .main {
+    padding: 0 !important;
+    margin: 16px !important;
+}
+
+.field_form_sec .main .max-w-3xl {
+    max-width: 100% !important;
+}
+.box_main select, .box_main input {
+    border: 1px solid #e2e8f0;
+    padding: 0 4px;
+}
+
+
+
+
+
+
+
+.paginate_button.previous, .paginate_button.next {
+    border: 1px solid #e5e5e5 !important;
+    padding: 3px 15px !important;
+    transition: all 0.5s;
+}
+
+.paginate_button.current {
+    padding: 3px  15px!important;
+    height: auto !important;
+    min-height: initial !important;
+    background-color: #5850ec !important;
+    background: #5850ec !important;
+    color: #fff !important;
+}
