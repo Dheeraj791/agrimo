@@ -43,6 +43,54 @@ export const defaultNavigation: TreoNavigationItem[] = [
                         title: 'Location Master',
                         type: 'basic',
                         link: '/locationmaster'
+                    },
+                    {
+                        id: 'pages.materialmaster',
+                        title: 'Material Master',
+                        type: 'basic',
+                        link: '/materialmaster'
+                    },
+                    {
+                        id: 'pages.mulchmaster',
+                        title: 'Mulch Master',
+                        type: 'basic',
+                        link: '/mulchmaster'
+                    },
+                    {
+                        id: 'pages.plantationmaster',
+                        title: 'Plantation Master',
+                        type: 'basic',
+                        link: '/plantationmaster'
+                    },
+                    {
+                        id: 'pages.preparationmaster',
+                        title: 'Preparation Master',
+                        type: 'basic',
+                        link: '/preparationmaster'
+                    },
+                    {
+                        id: 'pages.qamaster',
+                        title: 'QA Master',
+                        type: 'basic',
+                        link: '/qamaster'
+                    },
+                    {
+                        id: 'pages.seasonmaster',
+                        title: 'Season Master',
+                        type: 'basic',
+                        link: '/seasonmaster'
+                    },
+                    {
+                        id: 'pages.soilmaster',
+                        title: 'Soil Master',
+                        type: 'basic',
+                        link: '/soilmaster'
+                    },
+                    {
+                        id: 'pages.unitmeasurementmaster',
+                        title: 'Unit Measurement Master',
+                        type: 'basic',
+                        link: '/unitmeasurementmaster'
                     }
                 ]
             }

@@ -74,7 +74,15 @@ export const appRoutes: Route[] = [
             { path: 'irrigationmaster', loadChildren: () => import('app/pages/admin/irrigationmaster/irrigationmaster.module').then(m => m.IrrigationmasterModule) },
             { path: 'landmeasurement', loadChildren: () => import('app/pages/admin/landmeasurement/landmeasurement.module').then(m => m.LandmeasurementModule) },
             { path: 'locationmaster', loadChildren: () => import('app/pages/admin/locationmaster/locationmaster.module').then(m => m.LocationmasterModule) },
-
+            { path: 'materialmaster', loadChildren: () => import('app/pages/admin/materialmaster/materialmaster.module').then(m => m.MaterialmasterModule) },
+            { path: 'mulchmaster', loadChildren: () => import('app/pages/admin/mulchmaster/mulchmaster.module').then(m => m.MulchmasterModule) },
+            { path: 'plantationmaster', loadChildren: () => import('app/pages/admin/plantationmaster/plantationmaster.module').then(m => m.PlantationmasterModule) },
+            { path: 'preparationmaster', loadChildren: () => import('app/pages/admin/preparationmaster/preparationmaster.module').then(m => m.PreparationmasterModule) },
+            { path: 'qamaster', loadChildren: () => import('app/pages/admin/qamaster/qamaster.module').then(m => m.QamasterModule) },
+            { path: 'seasonmaster', loadChildren: () => import('app/pages/admin/seasonmaster/seasonmaster.module').then(m => m.SeasonmasterModule) },
+            { path: 'soilmaster', loadChildren: () => import('app/pages/admin/soilmaster/soilmaster.module').then(m => m.SoilmasterModule) },
+            { path: 'unitmeasurementmaster', loadChildren: () => import('app/pages/admin/unitmeasurementmaster/unitmeasurementmaster.module').then(m => m.UnitmeasurementmasterModule) },
+            
             // 404 & Catch all
             // {path: '404-not-found', pathMatch: 'full', loadChildren: () => import('app/modules/admin/pages/errors/error-404/error-404.module').then(m => m.Error404Module)},
             // {path: '**', redirectTo: '404-not-found'}
