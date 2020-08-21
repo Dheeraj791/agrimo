@@ -15,7 +15,8 @@
     width: 100%;
 }
 
-app-activitymaster, app-irrigationmaster,app-landmeasurement, app-locationmaster {
+app-activitymaster, app-irrigationmaster,app-landmeasurement, app-locationmaster, app-materialmaster, app-mulchmaster, app-plantationmaster, app-preparationmaster, app-qamaster, app-seasonmaster, app-soilmaster,
+app-unitmeasurementmaster {
     flex-wrap: wrap;    
     margin: 16px 0;
 }
