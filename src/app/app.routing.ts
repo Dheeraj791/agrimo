@@ -3,6 +3,7 @@ import { AuthGuard } from 'app/core/auth/guards/auth.guard';
 import { NoAuthGuard } from 'app/core/auth/guards/noAuth.guard';
 import { LayoutComponent } from 'app/layout/layout.component';
 import { InitialDataResolver } from 'app/app.resolvers';
+import { CropmasterModule } from './pages/admin/cropmaster/cropmaster.module';
 
 // @formatter:off
 // tslint:disable:max-line-length
@@ -82,7 +83,7 @@ export const appRoutes: Route[] = [
             { path: 'seasonmaster', loadChildren: () => import('app/pages/admin/seasonmaster/seasonmaster.module').then(m => m.SeasonmasterModule) },
             { path: 'soilmaster', loadChildren: () => import('app/pages/admin/soilmaster/soilmaster.module').then(m => m.SoilmasterModule) },
             { path: 'unitmeasurementmaster', loadChildren: () => import('app/pages/admin/unitmeasurementmaster/unitmeasurementmaster.module').then(m => m.UnitmeasurementmasterModule) },
-            
+            { path : 'crop', loadChildren:()=>import('app/pages/admin/cropmaster/cropmaster.module').then(m=>m.CropmasterModule)}
             // 404 & Catch all
             // {path: '404-not-found', pathMatch: 'full', loadChildren: () => import('app/modules/admin/pages/errors/error-404/error-404.module').then(m => m.Error404Module)},
             // {path: '**', redirectTo: '404-not-found'}

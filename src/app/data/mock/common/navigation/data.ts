@@ -12,9 +12,52 @@ export const defaultNavigation: TreoNavigationItem[] = [
     {
         id: 'pages',
         title: 'Master Records',
-        subtitle: 'Create master records',
+        subtitle: 'All Master Records',
         type: 'group',
         children: [
+            {
+                id: 'pages.cropmaster',
+                title: 'Crop Master Records',
+                type: 'collapsable',
+                icon: 'heroicons_outline:clipboard-list',
+                children: [
+                    {
+                        id: 'pages.crop.activity',
+                        title: 'Crop Activity Master',
+                        type: 'basic',
+                        link: '/crop/activity'
+                    },
+                    {
+                        id: 'pages.crop.category',
+                        title: 'Crop Category Master',
+                        type: 'basic',
+                        link: '/crop/category'
+                    },{
+                        id: 'pages.crop.family',
+                        title: 'Crop Family Master',
+                        type: 'basic',
+                        link: '/crop/family'
+                    },
+                    {
+                        id: 'pages.crop.crop',
+                        title: 'Crop Master',
+                        type: 'basic',
+                        link: '/crop/crop'
+                    },
+                    {
+                        id: 'pages.crop.stages',
+                        title: 'Crop Stages Master',
+                        type: 'basic',
+                        link: '/crop/stages'
+                    },
+                    {
+                        id: 'pages.crop.disease',
+                        title: 'Disease Master',
+                        type: 'basic',
+                        link: '/crop/disease'
+                    }
+                ]
+            },
             {
                 id: 'pages.masterrecords',
                 title: 'Master Records',
@@ -94,6 +137,7 @@ export const defaultNavigation: TreoNavigationItem[] = [
                     }
                 ]
             }
+           
         ]
     }
 ];
