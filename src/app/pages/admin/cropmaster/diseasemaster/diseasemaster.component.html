@@ -1,1 +1,747 @@
-<p>diseasemaster works!</p>
+<div class="box_main">
+        <div class="container">
+            <div class="col-md-12 bg-card shadow rounded overflow-hidden">
+                <div class="header_top_btn mb-5">
+                    <button class="btn" mat-flat-button [color]="'primary'" (click)="open(addnew)">Add New Disease</button>
+                </div>
+                <div class="">
+                    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+                        <thead>
+                            <tr>
+                                <th>S.Id</th>
+                                <th>Disease Name</th>
+                                <th>Symptoms</th>
+                                <th>Root Protection</th>
+                                <th>Shoot Protection</th>
+                                <th>Delete</th>
+                                <th>Edit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Bacterial wilt</td>
+                                <td>wilting of individual leaves on a single stem</td>
+                                <td></td>
+                                <td>Spray dashaparni spray tamra chhach</td>
+                                <td class="delete_icons" (click)="statusModal(delete)">
+                                    <mat-icon svgIcon="dripicons:trash"></mat-icon>
+                                </td>
+                                <td (click)="open(editone)" class="edit_icons">
+                                    <mat-icon svgIcon="dripicons:pencil"></mat-icon>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Downy mildew</td>
+                                <td>Downy mildew colonies often appear first on the underside of leaves, and they sometimes have a bluish tinge</td>
+                                <td></td>
+                                <td>1.Prune or stake plants and remove any weeds to improve air circulation.<br>
+                                    2.Water in the early morning hours, or use a soaker hose, to give the plants time to dry out during the day.</td>
+                                <td class="delete_icons" (click)="statusModal(delete)">
+                                    <mat-icon svgIcon="dripicons:trash"></mat-icon>
+                                </td>
+                                <td (click)="open(edittwo)" class="edit_icons">
+                                    <mat-icon svgIcon="dripicons:pencil"></mat-icon>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Early blight</td>
+                                <td>sudden and severeyellowing, browning, spotting, withering, or dying of leaves, flowers, fruit, stems, or the entire plant.</td>
+                                <td></td>
+                                <td>application of sulfur dust<br>foliar of tamra chhach</td>
+                                <td class="delete_icons" (click)="statusModal(delete)">
+                                    <mat-icon svgIcon="dripicons:trash"></mat-icon>
+                                </td>
+                                <td (click)="open(editthree)" class="edit_icons">
+                                    <mat-icon svgIcon="dripicons:pencil"></mat-icon>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Late blight</td>
+                                <td>Leaf lesions begin as small necrotic or water-soaked spots that enlarge to form brown lesions or blotches, eventually killing the leaf. The lesions may or may not have a yellow or chlorotic border.</td>
+                                <td></td>
+                                <td>need to cut off all the foliage and stems and either compost or burn it<br>spray tamra chhach</td>
+                                <td class="delete_icons" (click)="statusModal(delete)">
+                                    <mat-icon svgIcon="dripicons:trash"></mat-icon>
+                                </td>
+                                <td (click)="open(editfour)" class="edit_icons">
+                                    <mat-icon svgIcon="dripicons:pencil"></mat-icon>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>5</td>
+                                <td>Leaf miner</td>
+                                <td>it appears as yellow squiggly lines in the leaves<br>Leaf miner damage can also appear as spots or blotches.</td>
+                                <td></td>
+                                <td>spray dashaparni/neem oil</td>
+                                <td class="delete_icons" (click)="statusModal(delete)">
+                                    <mat-icon svgIcon="dripicons:trash"></mat-icon>
+                                </td>
+                                <td (click)="open(editfive)" class="edit_icons">
+                                    <mat-icon svgIcon="dripicons:pencil"></mat-icon>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>6</td>
+                                <td>Powdery mildew</td>
+                                <td>Appearing as white or grayish powder-like patches on the surface of leaves and stems, powdery mildew develops mostly on newer growths.
+                                    <br>the</td>
+                                <td></td>
+                                <td>spray liquid soap and baking soda mixed in water</td>
+                                <td class="delete_icons" (click)="statusModal(delete)">
+                                    <mat-icon svgIcon="dripicons:trash"></mat-icon>
+                                </td>
+                                <td (click)="open(editsix)" class="edit_icons">
+                                    <mat-icon svgIcon="dripicons:pencil"></mat-icon>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>Root knot nematode</td>
+                                <td>severe stunting, wilting, yellowing, and sometimes death</td>
+                                <td>Pull up all nematode-infested plants and destroy them after the season. Remove the plant material, particularly the roots, completely from the garden are</td>
+                                <td></td>
+                                <td class="delete_icons" (click)="statusModal(delete)">
+                                    <mat-icon svgIcon="dripicons:trash"></mat-icon>
+                                </td>
+                                <td (click)="open(editseven)" class="edit_icons">
+                                    <mat-icon svgIcon="dripicons:pencil"></mat-icon>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>Shoot borer</td>
+                                <td>white lines on the leaf</td>
+                                <td></td>
+                                <td>Spray dashaparni</td>
+                                <td class="delete_icons" (click)="statusModal(delete)">
+                                    <mat-icon svgIcon="dripicons:trash"></mat-icon>
+                                </td>
+                                <td (click)="open(editeight)" class="edit_icons">
+                                    <mat-icon svgIcon="dripicons:pencil"></mat-icon>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td>Virus</td>
+                                <td>Shrinking of leaves<br>Plant growth gets stuck/No more growth</td>
+                                <td></td>
+                                <td>Foliar of 0.5liter raw milk mixed with one teaspoon of turmeric powder and a pinch of hing for every 4th day. (dose for 1 acre)</td>
+                                <td class="delete_icons" (click)="statusModal(delete)">
+                                    <mat-icon svgIcon="dripicons:trash"></mat-icon>
+                                </td>
+                                <td (click)="open(editnine)" class="edit_icons">
+                                    <mat-icon svgIcon="dripicons:pencil"></mat-icon>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>White rot</td>
+                                <td>yellowing, leaf dieback, and wilting. Leaf decay begins at the base, with older leaves being the first to collapse. This results in a semi-watery decay</td>
+                                <td>drinch tamra chhach/trichoderma</td>
+                                <td></td>
+                                <td class="delete_icons" (click)="statusModal(delete)">
+                                    <mat-icon svgIcon="dripicons:trash"></mat-icon>
+                                </td>
+                                <td (click)="open(editten)" class="edit_icons">
+                                    <mat-icon svgIcon="dripicons:pencil"></mat-icon>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+    
+                    <ng-template #addnew let-modal>
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="modal-basic-title">Add New Disease</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Disease Name</label>
+                                            <input type="text" placeholder="Disease Name Here">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="dateOfBirth">Symptoms</label>
+                                    <ckeditor [editor]="Editor" data="<p></p>"></ckeditor>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="dateOfBirth">Root Protection</label>
+                                    <ckeditor [editor]="Editor" data="<p></p>"></ckeditor>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="dateOfBirth">Shoot Protection</label>
+                                    <ckeditor [editor]="Editor" data="<p></p>"></ckeditor>
+                                </div>
+
+                            </form>
+    
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-dark"
+                                (click)="modal.close('Save click')">insert</button>
+                        </div>
+                    </ng-template>
+    
+                    
+                    <ng-template #editone let-modal>
+                            <div class="modal-header">
+                                    <h4 class="modal-title" id="modal-basic-title">Add New Disease</h4>
+                                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="dateOfBirth">Disease Name</label>
+                                                    <input type="text" placeholder="Desices Name Here">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Symptoms</label>
+                                            <ckeditor [editor]="Editor" data="<p></p>">
+                                                <p>wilting of individual leaves on a single stem</p>
+                                            </ckeditor>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Root Protection</label>
+                                            <ckeditor [editor]="Editor" data="<p></p>"></ckeditor>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Shoot Protection</label>
+                                            <ckeditor [editor]="Editor" data="<p></p>">
+                                            <p>Spray dashaparni</p>
+                                            <p>spray tamra chhach</p></ckeditor>
+                                        </div>
+        
+                                    </form>
+            
+                                </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-dark"
+                                (click)="modal.close('Save click')">Update</button>
+                        </div>
+                    </ng-template>
+        
+                    <ng-template #edittwo let-modal>
+                            <div class="modal-header">
+                                    <h4 class="modal-title" id="modal-basic-title">Add New Disease</h4>
+                                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="dateOfBirth">Disease Name</label>
+                                                    <input type="text" placeholder="Downy mildew">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Symptoms</label>
+                                            <ckeditor [editor]="Editor" data="<p></p>">
+                                                <p>Downy mildew colonies often appear first on the underside of leaves, and they sometimes have a bluish tinge</p>
+                                            </ckeditor>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Root Protection</label>
+                                            <ckeditor [editor]="Editor" data="<p></p>"></ckeditor>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Shoot Protection</label>
+                                            <ckeditor [editor]="Editor" data="<p></p>">
+                                            <p>Prune or stake plants and remove any weeds to improve air circulation.</p>
+                                            <p>Water in the early morning hours, or use a soaker hose, to give the plants time to dry out during the day.</p>
+                                            <p>Keep the ground under infected plants clean during the fall and winter to prevent the disease from spreading.</p>
+                                            </ckeditor>
+                                        </div>
+        
+                                    </form>
+            
+                                </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-dark"
+                                    (click)="modal.close('Save click')">Update</button>
+                            </div>
+                    </ng-template>
+    
+                    <ng-template #editthree let-modal>
+                            <div class="modal-header">
+                                    <h4 class="modal-title" id="modal-basic-title">Add New Disease</h4>
+                                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="dateOfBirth">Disease Name</label>
+                                                    <input type="text" placeholder="Early blight">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Symptoms</label>
+                                            <ckeditor [editor]="Editor" data="<p></p>">
+                                                <p>sudden and severeyellowing, browning, spotting, withering, or dying of leaves, flowers, fruit, stems, or the entire plant.</p>
+                                            </ckeditor>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Root Protection</label>
+                                            <ckeditor [editor]="Editor" data="<p></p>"></ckeditor>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Shoot Protection</label>
+                                            <ckeditor [editor]="Editor" data="<p></p>">
+                                                <p>application of sulfur dust</p>
+                                                <p>foliar of tamra chhach</p>
+                                            </ckeditor>
+                                        </div>
+        
+                                    </form>
+            
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-dark"
+                                        (click)="modal.close('Save click')">Update</button>
+                                </div>
+                    </ng-template>
+    
+                    
+                    <ng-template #editfour let-modal>
+                            <div class="modal-header">
+                                    <h4 class="modal-title" id="modal-basic-title">Add New Disease</h4>
+                                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="dateOfBirth">Disease Name</label>
+                                                    <input type="text" placeholder="Late blight">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Symptoms</label>
+                                            <ckeditor [editor]="Editor" data="<p></p>">
+                                                <p>Leaf lesions begin as small necrotic or water-soaked spots that enlarge to form brown lesions or blotches, eventually killing the leaf. The lesions may or may not have a yellow or chlorotic border.</p>
+                                            </ckeditor>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Root Protection</label>
+                                            <ckeditor [editor]="Editor" data="<p></p>"></ckeditor>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Shoot Protection</label>
+                                            <ckeditor [editor]="Editor" data="<p></p>">
+                                                <p>need to cut off all the foliage and stems and either compost or burn it</p>
+                                                <p>spray tamra chhach</p>
+                                            </ckeditor>
+                                        </div>
+        
+                                    </form>
+            
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-dark"
+                                        (click)="modal.close('Save click')">Update</button>
+                                </div>
+                    </ng-template>
+
+                    <ng-template #editfive let-modal>
+                            <div class="modal-header">
+                                    <h4 class="modal-title" id="modal-basic-title">Add New Disease</h4>
+                                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="dateOfBirth">Disease Name</label>
+                                                    <input type="text" placeholder="Leaf miner">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Symptoms</label>
+                                            <ckeditor [editor]="Editor" data="<p></p>">
+                                                <p>it appears as yellow squiggly lines in the leaves</p>
+                                                <p>Leaf miner damage can also appear as spots or blotches.</p>
+                                            </ckeditor>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Root Protection</label>
+                                            <ckeditor [editor]="Editor" data="<p></p>"></ckeditor>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Shoot Protection</label>
+                                            <ckeditor [editor]="Editor" data="<p></p>">
+                                                <p>spray dashaparni/neem oil</p>
+                                            </ckeditor>
+                                        </div>
+        
+                                    </form>
+            
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-dark"
+                                        (click)="modal.close('Save click')">Update</button>
+                                </div>
+                    </ng-template>
+
+                    <ng-template #editsix let-modal>
+                            <div class="modal-header">
+                                    <h4 class="modal-title" id="modal-basic-title">Add New Disease</h4>
+                                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="dateOfBirth">Disease Name</label>
+                                                    <input type="text" placeholder="Powdery mildew">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Symptoms</label>
+                                            <ckeditor [editor]="Editor" data="<p></p>">
+                                                <p>Appearing as white or grayish powder-like patches on the surface of leaves and stems, powdery mildew develops mostly on newer growths.</p>
+                                                <p>the disease can also appear as blotchy, felt-like mats or cobweb-like formations.</p>
+                                            </ckeditor>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Root Protection</label>
+                                            <ckeditor [editor]="Editor" data="<p></p>"></ckeditor>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Shoot Protection</label>
+                                            <ckeditor [editor]="Editor" data="<p></p>">
+                                                <p>spray liquid soap and baking soda mixed in water</p>
+                                            </ckeditor>
+                                        </div>
+        
+                                    </form>
+            
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-dark"
+                                        (click)="modal.close('Save click')">Update</button>
+                                </div>
+                    </ng-template>
+
+
+                    
+                    <ng-template #editseven let-modal>
+                            <div class="modal-header">
+                                    <h4 class="modal-title" id="modal-basic-title">Add New Disease</h4>
+                                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="dateOfBirth">Disease Name</label>
+                                                    <input type="text" placeholder="Root knot nematode">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Symptoms</label>
+                                            <ckeditor [editor]="Editor" data="<p></p>">
+                                                <p>severe stunting, wilting, yellowing, and sometimes death</p>
+                                            </ckeditor>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Root Protection</label>
+                                            <ckeditor [editor]="Editor" data="<p></p>">
+                                            <p>Pull up all nematode-infested plants and destroy them after the season. Remove the plant material, particularly the roots, completely from the garden area. Till infested soil a few times during the winter months to expose nematodes and remaining plantroots to the cold weather.</p>
+                                            </ckeditor>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Shoot Protection</label>
+                                            <ckeditor [editor]="Editor" data="<p></p>"></ckeditor>
+                                        </div>
+        
+                                    </form>
+            
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-dark"
+                                        (click)="modal.close('Save click')">Update</button>
+                                </div>
+                    </ng-template>
+
+                    
+                    <ng-template #editeight let-modal>
+                            <div class="modal-header">
+                                    <h4 class="modal-title" id="modal-basic-title">Add New Disease</h4>
+                                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="dateOfBirth">Disease Name</label>
+                                                    <input type="text" placeholder="Shoot borer">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Symptoms</label>
+                                            <ckeditor [editor]="Editor" data="<p></p>">
+                                                <p>white lines on the leaf</p>
+                                            </ckeditor>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Root Protection</label>
+                                            <ckeditor [editor]="Editor" data="<p></p>"></ckeditor>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Shoot Protection</label>
+                                            <ckeditor [editor]="Editor" data="<p></p>">
+                                            <p>Spray dashaparni</p>
+                                        </ckeditor>
+                                        </div>
+        
+                                    </form>
+            
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-dark"
+                                        (click)="modal.close('Save click')">Update</button>
+                                </div>
+                    </ng-template>
+
+                    
+                    
+                    <ng-template #editnine let-modal>
+                            <div class="modal-header">
+                                    <h4 class="modal-title" id="modal-basic-title">Add New Disease</h4>
+                                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="dateOfBirth">Disease Name</label>
+                                                    <input type="text" placeholder="Virus">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Symptoms</label>
+                                            <ckeditor [editor]="Editor" data="<p></p>">
+                                                <p>Shrinking of leaves</p>
+                                                <p>Plant growth gets stuck/No more growth</p>
+                                            </ckeditor>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Root Protection</label>
+                                            <ckeditor [editor]="Editor" data="<p></p>"></ckeditor>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Shoot Protection</label>
+                                            <ckeditor [editor]="Editor" data="<p></p>">
+                                                <p>Foliar of 0.5liter raw milk mixed with one teaspoon of turmeric powder and a pinch of hing for every 4th day. (dose for 1 acre)</p>
+                                        </ckeditor>
+                                        </div>
+        
+                                    </form>
+            
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-dark"
+                                        (click)="modal.close('Save click')">Update</button>
+                                </div>
+                    </ng-template>
+
+                    
+                    <ng-template #editten let-modal>
+                            <div class="modal-header">
+                                    <h4 class="modal-title" id="modal-basic-title">Add New Disease</h4>
+                                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="dateOfBirth">Disease Name</label>
+                                                    <input type="text" placeholder="White rot">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Symptoms</label>
+                                            <ckeditor [editor]="Editor" data="<p></p>">
+                                                <p>yellowing, leaf dieback, and wilting. Leaf decay begins at the base, with older leaves being the first to collapse. This results in a semi-watery decay of the bulb scales.</p>
+                                            </ckeditor>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Root Protection</label>
+                                            <ckeditor [editor]="Editor" data="<p></p>">
+                                            <p>drinch tamra chhach/trichoderma</p>
+                                            </ckeditor>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Shoot Protection</label>
+                                            <ckeditor [editor]="Editor" data="<p></p>"></ckeditor>
+                                        </div>
+        
+                                    </form>
+            
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-dark"
+                                        (click)="modal.close('Save click')">Update</button>
+                                </div>
+                    </ng-template>
+
+
+    
+                    <ng-template #delete let-modal class="delete_modal">
+                        <div class="modal-header">
+                            Are you sure ?
+                        </div>
+    
+                        <div class="modal-body">
+                            <button type="button" class="btn btn-outline-dark btn_delete"
+                                (click)="modal.close('Save click')">
+                                Delete
+                            </button>
+                            <button type="button" class=" btn btn-outline-dark close btn_close" aria-label="Close"
+                                (click)="modal.dismiss('Cross click')">
+                                cancel
+                            </button>
+                        </div>
+    
+                        <div class="modal-footer">
+    
+                        </div>
+                        <!-- <div class="modal-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Date of birth</label>
+                                        <div class="input-group">
+        
+                                        </div>
+                                    </div>
+                                </form>
+                            </div> -->
+                    </ng-template>
+        
+        
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <br>
+    
+    <div class="content-layout fullwidth-standard-normal-scroll field_form_sec">
+        <div class="main">
+            <div class="max-w-3xl">
+                <div class="rich-text">
+                    <p>
+                        All Rights Reserved by Cyber Tatva. Designed and Developed by. <a href="#"> Cyber Tatva.</a>
+                    </p>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+        
+      
+      <script>
+        // Add the following code if you want the name of the file appear on select
+        $(".custom-file-input").on("change", function() {
+          var fileName = $(this).val().split("\\").pop();
+          $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+        </script>

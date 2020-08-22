@@ -16,7 +16,7 @@
 }
 
 app-activitymaster, app-irrigationmaster,app-landmeasurement, app-locationmaster, app-materialmaster, app-mulchmaster, app-plantationmaster, app-preparationmaster, app-qamaster, app-seasonmaster, app-soilmaster,
-app-unitmeasurementmaster {
+app-unitmeasurementmaster, app-cropactivitymaster, app-cropcategorymaster, app-Cropfamilymaster, app-Cropmaster, app-Cropstagesmaster, app-Diseasemaster {
     flex-wrap: wrap;    
     margin: 16px 0;
 }
@@ -65,3 +65,6 @@ td.edit_icons mat-icon.mat-icon {
     color: #fff !important;
 }
 
+table.dataTable tbody tr {
+    vertical-align: top;
+}
