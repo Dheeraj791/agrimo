@@ -32,7 +32,8 @@ export class UserComponent implements OnInit, OnDestroy
     constructor(
         private _changeDetectorRef: ChangeDetectorRef,
         private _router: Router,
-        private _userService: UserService
+        private _userService: UserService,
+        public route : Router
     )
     {
         // Set the private defaults
@@ -91,6 +92,10 @@ export class UserComponent implements OnInit, OnDestroy
         // Unsubscribe from all subscriptions
         this._unsubscribeAll.next();
         this._unsubscribeAll.complete();
+    }
+
+    openPage(){
+        this.route.navigate(['/setting'])
     }
 
     // -----------------------------------------------------------------------------------------------------
