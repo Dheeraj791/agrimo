@@ -46,7 +46,8 @@ export class SignInComponent implements OnInit {
         this.signInForm = this._formBuilder.group({
             email     : ['abhilash@agrieasy.com'],
             password  : ['admin'],
-            rememberMe: ['']
+            rememberMe: [''],
+            type : ['user']
         });
     }
 
