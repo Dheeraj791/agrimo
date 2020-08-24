@@ -16,6 +16,20 @@ export const defaultNavigation: TreoNavigationItem[] = [
         type: 'group',
         children: [
             {
+                id: 'pages.masterselect',
+                title: 'Master Records (option one)',
+                type: 'basic',
+                icon: 'apps',
+                link: '/masterselect'
+            },
+            {
+                id: 'pages.mastertabs',
+                title: 'Master Records (option two)',
+                type: 'basic',
+                icon: 'apps',
+                link: '/mastertabs'
+            },
+            {
                 id: 'pages.cropmaster',
                 title: 'Crop Master Records',
                 type: 'collapsable',
@@ -68,76 +82,109 @@ export const defaultNavigation: TreoNavigationItem[] = [
                         id: 'pages.activitymaster',
                         title: 'Activities Master',
                         type: 'basic',
-                        link: '/activitymaster'
+                        link: '/master/activity'
                     },
                     {
                         id: 'pages.activitymaster',
                         title: 'Irrigation Master',
                         type: 'basic',
-                        link: '/irrigationmaster'
+                        link: '/master/irrigation'
                     },{
                         id: 'pages.activitymaster',
                         title: 'Land Measurement Master',
                         type: 'basic',
-                        link: '/landmeasurement'
+                        link: '/master/landmeasurement'
                     },
                     {
                         id: 'pages.activitymaster',
                         title: 'Location Master',
                         type: 'basic',
-                        link: '/locationmaster'
+                        link: '/master/location'
                     },
                     {
                         id: 'pages.materialmaster',
                         title: 'Material Master',
                         type: 'basic',
-                        link: '/materialmaster'
+                        link: '/master/material'
                     },
                     {
                         id: 'pages.mulchmaster',
                         title: 'Mulch Master',
                         type: 'basic',
-                        link: '/mulchmaster'
+                        link: '/master/mulch'
                     },
                     {
                         id: 'pages.plantationmaster',
                         title: 'Plantation Master',
                         type: 'basic',
-                        link: '/plantationmaster'
+                        link: '/master/plantation'
                     },
                     {
                         id: 'pages.preparationmaster',
                         title: 'Preparation Master',
                         type: 'basic',
-                        link: '/preparationmaster'
+                        link: '/master/preparation'
                     },
                     {
                         id: 'pages.qamaster',
                         title: 'QA Master',
                         type: 'basic',
-                        link: '/qamaster'
+                        link: '/master/qa'
                     },
                     {
                         id: 'pages.seasonmaster',
                         title: 'Season Master',
                         type: 'basic',
-                        link: '/seasonmaster'
+                        link: '/master/season'
                     },
                     {
                         id: 'pages.soilmaster',
                         title: 'Soil Master',
                         type: 'basic',
-                        link: '/soilmaster'
+                        link: '/master/soil'
                     },
                     {
                         id: 'pages.unitmeasurementmaster',
                         title: 'Unit Measurement Master',
                         type: 'basic',
-                        link: '/unitmeasurementmaster'
+                        link: '/master/unitmeasurement'
                     }
                 ]
             }
            
+        ]
+    },
+    {
+        id: 'pages',
+        title: 'User Management',
+        subtitle: 'Registration & installations',
+        type: 'group',
+        children: [
+            {
+                id: 'pages.registration',
+                title: 'FPO & Users',
+                type: 'collapsable',
+                icon: 'heroicons_outline:clipboard-list',
+                children : [
+                    {
+                        id: 'pages.users.users',
+                        title: 'Registered Users',
+                        type: 'basic',
+                        link: '/users/users'
+                    },
+                    {
+                        id: 'pages.users.fpos',
+                        title: 'Installed FPOs',
+                        type: 'basic',
+                        link: '/users/fpos'
+                    }, {
+                        id: 'pages.users.vendors',
+                        title: 'Registered Vendors',
+                        type: 'basic',
+                        link: '/users/vendors'
+                    }
+                ]
+            }
         ]
     }
 ];

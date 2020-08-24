@@ -71,19 +71,13 @@ export const appRoutes: Route[] = [
         },
         children: [
             { path: 'dashboard', loadChildren: () => import('app/pages/dashboard/home/home.module').then(m => m.HomeModule) },
-            { path: 'activitymaster', loadChildren: () => import('app/pages/admin/activitymaster/activitymaster.module').then(m => m.ActivitymasterModule) },
-            { path: 'irrigationmaster', loadChildren: () => import('app/pages/admin/irrigationmaster/irrigationmaster.module').then(m => m.IrrigationmasterModule) },
-            { path: 'landmeasurement', loadChildren: () => import('app/pages/admin/landmeasurement/landmeasurement.module').then(m => m.LandmeasurementModule) },
-            { path: 'locationmaster', loadChildren: () => import('app/pages/admin/locationmaster/locationmaster.module').then(m => m.LocationmasterModule) },
-            { path: 'materialmaster', loadChildren: () => import('app/pages/admin/materialmaster/materialmaster.module').then(m => m.MaterialmasterModule) },
-            { path: 'mulchmaster', loadChildren: () => import('app/pages/admin/mulchmaster/mulchmaster.module').then(m => m.MulchmasterModule) },
-            { path: 'plantationmaster', loadChildren: () => import('app/pages/admin/plantationmaster/plantationmaster.module').then(m => m.PlantationmasterModule) },
-            { path: 'preparationmaster', loadChildren: () => import('app/pages/admin/preparationmaster/preparationmaster.module').then(m => m.PreparationmasterModule) },
-            { path: 'qamaster', loadChildren: () => import('app/pages/admin/qamaster/qamaster.module').then(m => m.QamasterModule) },
-            { path: 'seasonmaster', loadChildren: () => import('app/pages/admin/seasonmaster/seasonmaster.module').then(m => m.SeasonmasterModule) },
-            { path: 'soilmaster', loadChildren: () => import('app/pages/admin/soilmaster/soilmaster.module').then(m => m.SoilmasterModule) },
-            { path: 'unitmeasurementmaster', loadChildren: () => import('app/pages/admin/unitmeasurementmaster/unitmeasurementmaster.module').then(m => m.UnitmeasurementmasterModule) },
-            { path : 'crop', loadChildren:()=>import('app/pages/admin/cropmaster/cropmaster.module').then(m=>m.CropmasterModule)}
+            { path: 'master', loadChildren: () => import('app/pages/admin/masterrecords/masterrecords.module').then(m => m.MasterrecordsModule) },
+            { path : 'crop', loadChildren:()=>import('app/pages/admin/cropmaster/cropmaster.module').then(m=>m.CropmasterModule)},
+            { path : 'profile', loadChildren:()=>import('app/pages/auth/profile/profile.module').then(m=>m.ProfileModule)},
+            { path : 'session', loadChildren:()=>import('app/pages/auth/session/session.module').then(m=>m.SessionModule)},
+            { path : 'users', loadChildren:()=>import('app/pages/admin/registration/registration.module').then(m=>m.RegistrationModule)},
+            { path : 'mastertabs', loadChildren:()=>import('app/pages/admin/other/tabview/tabview.module').then(m=>m.TabviewModule)},
+            { path : 'masterselect', loadChildren:()=>import('app/pages/admin/other/selectview/selectview.module').then(m=>m.SelectviewModule)},
             // 404 & Catch all
             // {path: '404-not-found', pathMatch: 'full', loadChildren: () => import('app/modules/admin/pages/errors/error-404/error-404.module').then(m => m.Error404Module)},
             // {path: '**', redirectTo: '404-not-found'}

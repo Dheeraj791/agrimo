@@ -9,14 +9,18 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
-import { ProfileComponent } from '../profile/profile.component';
-import { profileRoute } from '../profile/profile.routing';
+import { registrationRouting } from '../registration/registration.routing';
+import { InstallfpoComponent } from '../registration/installfpo/installfpo.component';
+import { RegisteredusersComponent } from '../registration/registeredusers/registeredusers.component';
+import { MarketvendorsComponent } from '../registration/marketvendors/marketvendors.component';
 @NgModule({
   declarations: [
-    ProfileComponent
-  ],
-  imports: [
-    RouterModule.forChild(profileRoute),
+    InstallfpoComponent,
+    MarketvendorsComponent,
+    RegisteredusersComponent
+],
+imports     : [
+    RouterModule.forChild(registrationRouting),
     SharedModule,
     DataTablesModule,
     MatButtonModule,
@@ -26,7 +30,6 @@ import { profileRoute } from '../profile/profile.routing';
         MatInputModule,
         MatMenuModule,
         CKEditorModule
-  ]
+]
 })
-export class ProfileModule { }
-
+export class RegistrationModule { }

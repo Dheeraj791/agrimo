@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from 'app/shared/shared.module';
@@ -9,14 +10,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
-import { ProfileComponent } from '../profile/profile.component';
-import { profileRoute } from '../profile/profile.routing';
+import { selectviewRouting } from '../selectview/select.routing';
+import { SelectviewComponent } from '../selectview/selectview.component';
 @NgModule({
   declarations: [
-    ProfileComponent
-  ],
-  imports: [
-    RouterModule.forChild(profileRoute),
+    SelectviewComponent
+],
+imports     : [
+    RouterModule.forChild(selectviewRouting),
     SharedModule,
     DataTablesModule,
     MatButtonModule,
@@ -26,7 +27,6 @@ import { profileRoute } from '../profile/profile.routing';
         MatInputModule,
         MatMenuModule,
         CKEditorModule
-  ]
+]
 })
-export class ProfileModule { }
-
+export class SelectviewModule { }
