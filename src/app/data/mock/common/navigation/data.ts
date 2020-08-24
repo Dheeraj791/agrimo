@@ -11,6 +11,39 @@ export const defaultNavigation: TreoNavigationItem[] = [
     },
     {
         id: 'pages',
+        title: 'User Management',
+        subtitle: 'Registration & installations',
+        type: 'group',
+        children: [
+            {
+                id: 'pages.registration',
+                title: 'FPO & Users',
+                type: 'collapsable',
+                icon: 'heroicons_outline:clipboard-list',
+                children : [
+                    {
+                        id: 'pages.users.users',
+                        title: 'Registered Users',
+                        type: 'basic',
+                        link: '/users/users'
+                    },
+                    {
+                        id: 'pages.users.fpos',
+                        title: 'Installed FPOs',
+                        type: 'basic',
+                        link: '/users/fpos'
+                    }, {
+                        id: 'pages.users.vendors',
+                        title: 'Registered Vendors',
+                        type: 'basic',
+                        link: '/users/vendors'
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        id: 'pages',
         title: 'Master Records',
         subtitle: 'All Master Records',
         type: 'group',
@@ -156,34 +189,30 @@ export const defaultNavigation: TreoNavigationItem[] = [
     },
     {
         id: 'pages',
-        title: 'User Management',
-        subtitle: 'Registration & installations',
+        title: 'Notification & Support',
+        subtitle: 'Check queries, generate notification, update settings',
         type: 'group',
         children: [
             {
-                id: 'pages.registration',
-                title: 'FPO & Users',
-                type: 'collapsable',
-                icon: 'heroicons_outline:clipboard-list',
-                children : [
-                    {
-                        id: 'pages.users.users',
-                        title: 'Registered Users',
-                        type: 'basic',
-                        link: '/users/users'
-                    },
-                    {
-                        id: 'pages.users.fpos',
-                        title: 'Installed FPOs',
-                        type: 'basic',
-                        link: '/users/fpos'
-                    }, {
-                        id: 'pages.users.vendors',
-                        title: 'Registered Vendors',
-                        type: 'basic',
-                        link: '/users/vendors'
-                    }
-                ]
+                id: 'pages.masterselect',
+                title: 'Tickets',
+                type: 'basic',
+                icon: 'playlist_add_check',
+                link: '/support/tickets'
+            },
+            {
+                id: 'pages.masterselect',
+                title: 'Notification',
+                type: 'basic',
+                icon: 'help_outline',
+                link: '/support/notification'
+            },
+            {
+                id: 'pages.masterselect',
+                title: 'Setting',
+                type: 'basic',
+                icon: 'settings',
+                link: '/setting'
             }
         ]
     }

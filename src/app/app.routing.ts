@@ -73,11 +73,13 @@ export const appRoutes: Route[] = [
             { path: 'dashboard', loadChildren: () => import('app/pages/dashboard/home/home.module').then(m => m.HomeModule) },
             { path: 'master', loadChildren: () => import('app/pages/admin/masterrecords/masterrecords.module').then(m => m.MasterrecordsModule) },
             { path : 'crop', loadChildren:()=>import('app/pages/admin/cropmaster/cropmaster.module').then(m=>m.CropmasterModule)},
-            { path : 'profile', loadChildren:()=>import('app/pages/auth/profile/profile.module').then(m=>m.ProfileModule)},
+            { path : 'setting', loadChildren:()=>import('app/pages/auth/profile/profile.module').then(m=>m.ProfileModule)},
             { path : 'session', loadChildren:()=>import('app/pages/auth/session/session.module').then(m=>m.SessionModule)},
             { path : 'users', loadChildren:()=>import('app/pages/admin/registration/registration.module').then(m=>m.RegistrationModule)},
             { path : 'mastertabs', loadChildren:()=>import('app/pages/admin/other/tabview/tabview.module').then(m=>m.TabviewModule)},
             { path : 'masterselect', loadChildren:()=>import('app/pages/admin/other/selectview/selectview.module').then(m=>m.SelectviewModule)},
+            { path : 'support', loadChildren:()=>import('app/pages/admin/support/support.module').then(m=>m.SupportModule)},
+            
             // 404 & Catch all
             // {path: '404-not-found', pathMatch: 'full', loadChildren: () => import('app/modules/admin/pages/errors/error-404/error-404.module').then(m => m.Error404Module)},
             // {path: '**', redirectTo: '404-not-found'}
