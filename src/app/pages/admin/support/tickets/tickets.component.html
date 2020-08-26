@@ -1,1 +1,140 @@
-<p>tickets works!</p>
+<div class="box_main">
+    <div class="container">
+        <div class="col-md-12 bg-card shadow rounded overflow-hidden">
+            <div class="header_top_btn mb-5">
+                <button class="btn" mat-flat-button [color]="'primary'" (click)="open(addnew)">Add New User</button>
+            </div>
+            <div class="">
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Ticket Id</th>
+                            <th>User Name</th>
+                            <th>Massage</th>
+                            <th>Delete</th>
+                            <th>Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>FP000004</td>
+                            <td>gng</td>
+                            <td>Greens And Grains</td>
+                            <td class="delete_icons" (click)="statusModal(delete)">
+                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
+                            </td>
+                            <td (click)="open(editone)" class="edit_icons">
+                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                  <ng-template #addnew let-modal>
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Ticket confirm</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Ticket Type</label>
+                                        <select class="form-control" name="activity_type">
+                                            <option value="employee">Pending</option>
+                                            <option value="fpo">resolve</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark"
+                            (click)="modal.close('Save click')">SIGNUP</button>
+                    </div>
+                </ng-template>
+
+                
+                <ng-template #editone let-modal>
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="modal-basic-title"></h4>
+                            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Ticket Type</label>
+                                            <select class="form-control" name="activity_type">
+                                                <option value="employee">Pending</option>
+                                                <option value="fpo">resolve</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-dark"
+                                (click)="modal.close('Save click')">Generate Notification</button>
+                        </div>
+                    </ng-template>
+
+                
+                 <ng-template #delete let-modal class="delete_modal">
+                    <div class="modal-header">
+                        Are you sure ?
+                    </div>
+
+                    <div class="modal-body">
+                        <button type="button" class="btn btn-outline-dark btn_delete"
+                            (click)="modal.close('Save click')">
+                            Delete
+                        </button>
+                        <button type="button" class=" btn btn-outline-dark close btn_close" aria-label="Close"
+                            (click)="modal.dismiss('Cross click')">
+                            cancel
+                        </button>
+                    </div>
+
+                    <div class="modal-footer">
+
+                    </div>
+                </ng-template>
+
+            
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div class="content-layout fullwidth-standard-normal-scroll field_form_sec">
+    <div class="main">
+        <div class="max-w-3xl">
+            <div class="rich-text">
+                <p>
+                    All Rights Reserved by Cyber Tatva. Designed and Developed by. <a href="#"> Cyber Tatva.</a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+  
+  <script>
+  // Add the following code if you want the name of the file appear on select
+  $(".custom-file-input").on("change", function() {
+    var fileName = $(this).val().split("\\").pop();
+    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+  });
+  </script>
