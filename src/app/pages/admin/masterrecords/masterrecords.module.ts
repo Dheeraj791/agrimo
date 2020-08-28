@@ -24,6 +24,7 @@ import { SeasonmasterComponent } from '../masterrecords/seasonmaster/seasonmaste
 import { SoilmasterComponent } from '../masterrecords/soilmaster/soilmaster.component';
 import { UnitmeasurementmasterComponent } from '../masterrecords/unitmeasurementmaster/unitmeasurementmaster.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatSelectModule } from '@angular/material/select';
 @NgModule({
   declarations: [
     ActivitymasterComponent,
@@ -52,6 +53,7 @@ imports     : [
         MatMenuModule,
         CKEditorModule,
         MatTabsModule,
+        MatSelectModule
         
 ]
 })

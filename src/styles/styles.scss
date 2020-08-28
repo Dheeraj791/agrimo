@@ -16,10 +16,21 @@
 }
 
 app-activitymaster, app-irrigationmaster,app-landmeasurement, app-locationmaster, app-materialmaster, app-mulchmaster, app-plantationmaster, app-preparationmaster, app-qamaster, app-seasonmaster, app-soilmaster,
-app-unitmeasurementmaster,app-tabview,app-selectview, app-cropactivitymaster, app-cropcategorymaster, app-Cropfamilymaster, app-Cropmaster, app-Cropstagesmaster, app-Diseasemaster {
+app-unitmeasurementmaster,app-tabview,app-cropactivitymaster, app-cropcategorymaster, app-Cropfamilymaster, app-Cropmaster, app-Cropstagesmaster, app-Diseasemaster, app-unitmeasurement, app-generatenotification, 
+app-registeredusers, app-marketvendors, app-installfpo, app-tickets, app-profile{
     flex-wrap: wrap;    
     margin: 16px 0;
 }
+
+app-selectview{
+    flex-wrap: wrap;
+}
+
+
+app-selectview .container{
+    margin: 16px 16px;
+}
+
 
 .box_main .bg-card.shadow {
     padding: 15px;
@@ -67,4 +78,107 @@ td.edit_icons mat-icon.mat-icon {
 
 table.dataTable tbody tr {
     vertical-align: top;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.header_top_btn {
+    margin-bottom: 15px;
+}
+
+app-selectview .table_sec {
+    width: 100%;
+    // display: flex;
+    // flex-wrap: wrap;
+    box-shadow: 0 0 5px #000;
+}
+
+app-selectview .box_main .bg-card, app-tabview .box_main .bg-card{
+    background-color: #f1f5f9;
+}
+
+app-selectview .box_main .bg-card .header_top_btn, app-tabview .box_main .bg-card .header_top_btn{
+    background-color: #fff;
+    margin: -15px;
+    padding: 25px 25px;
+    box-shadow: 0 0 5px #a5a5a5;
+}
+
+app-selectview .box_main .bg-card .header_top_btn p.crop_master, app-tabview .box_main .bg-card .header_top_btn p.crop_master{
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+app-selectview .box_main .bg-card .heading_master, app-tabview .box_main .bg-card .heading_master{
+    background-color: #fff !important;
+    padding: 25px;
+    box-shadow: 0 1px 5px #a5a5a5;
+    margin-top: 0 !important;
+    border-radius: 6px;
+    margin-bottom: 1.5rem !important;
+}
+
+app-selectview .box_main .bg-card .heading_master .row, app-tabview .box_main .bg-card .heading_master .row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+app-selectview .box_main .bg-card .heading_master .row button.btn, app-tabview .box_main .bg-card .heading_master .row button.btn{
+    width: 100%;
+    min-height: 48px;
+    margin: 31px 0 0 !important;
+    font-weight: 700;
+    text-transform: uppercase;
+    background-color: #5850ec !important;
+}
+
+app-selectview .box_main .bg-card .heading_master .row .form-group, app-tabview .box_main .bg-card .heading_master .row .form-group{
+    margin-bottom: 0;
+}
+
+.box_main .bg-card.shadow .table_sec {
+    background-color: #fff !important;
+    padding: 15px 10px;
+    border-radius: 5px;
+    box-shadow: 0 1px 5px #a5a5a5;
+}
+
+// app-selectview .box_main .bg-card.shadow .table_sec div {
+//     width: 100% !important;
+// }
+
+app-tabview {
+    margin-top: 0;
 }

@@ -1,0 +1,850 @@
+<div class="box_main">
+    <div class="container">
+        <div class="col-md-12 bg-card shadow rounded overflow-hidden">
+            <div class="header_top_btn mb-5">
+                <button class="btn" mat-flat-button [color]="'primary'" (click)="open(addnew)">Add New Record</button>
+            </div>
+            <div class="">
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+                    <thead>
+                        <tr>
+                            <th>S.Id</th>
+                            <th>Plantation Name</th>
+                            <th>Delete</th>
+                            <th>Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Single Line/3 feet</td>
+                            <td class="delete_icons" (click)="statusModal(delete)">
+                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
+                            </td>
+                            <td (click)="open(editone)" class="edit_icons">
+                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Single Line/1 feet 6 inches</td>
+                            <td class="delete_icons" (click)="statusModal(delete)">
+                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
+                            </td>
+                            <td (click)="open(edittwo)" class="edit_icons">
+                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Double Line/1'6"</td>
+                            <td class="delete_icons" (click)="statusModal(delete)">
+                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
+                            </td>
+                            <td (click)="open(editthree)" class="edit_icons">
+                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Double Line/3</td>
+                            <td class="delete_icons" (click)="statusModal(delete)">
+                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
+                            </td>
+                            <td (click)="open(editfour)" class="edit_icons">
+                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Wide bed/Leafy Vegetables</td>
+                            <td class="delete_icons" (click)="statusModal(delete)">
+                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
+                            </td>
+                            <td (click)="open(editfive)" class="edit_icons">
+                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <ng-template #addnew let-modal>
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Name Of Plantation Design</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="dateOfBirth">Bed Prepration</label>
+                                <ckeditor [editor]="Editor" data="<p></p>"></ckeditor>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Image</label>
+                                         <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                          </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Audio</label>
+                                         <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Video (Youtube Video Link)</label>
+                                        <input type="text" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="dateOfBirth">Crop Support</label>
+                                <ckeditor [editor]="Editor" data="<p></p>"></ckeditor>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Image</label>
+                                         <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                          </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Audio</label>
+                                         <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Video (Youtube Video Link)</label>
+                                        <input type="text" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark"
+                            (click)="modal.close('Save click')">Submit</button>
+                    </div>
+                </ng-template>
+
+                
+                <ng-template #editone let-modal>
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Edit Plantation Design</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Plantation Name :</label>
+                                        <input type="text" placeholder="Single Line/3 feet">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="dateOfBirth">Bed Prepration</label>
+                                <ckeditor [editor]="Editor" data="<p></p>"></ckeditor>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Image</label>
+                                         <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                          </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Audio</label>
+                                         <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Video (Youtube Video Link)</label>
+                                        <input type="text" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="dateOfBirth">Crop Support</label>
+                                <ckeditor [editor]="Editor" data="<p></p>"></ckeditor>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Image</label>
+                                         <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                          </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Audio</label>
+                                         <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Video (Youtube Video Link)</label>
+                                        <input type="text" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="dateOfBirth">Design Details</label>
+                                <ckeditor [editor]="Editor" data="<p></p>"></ckeditor>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Image</label>
+                                         <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                          </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Audio</label>
+                                         <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Video (Youtube Video Link)</label>
+                                        <input type="text" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark"
+                            (click)="modal.close('Save click')">Update</button>
+                    </div>
+                </ng-template>
+             
+                <ng-template #edittwo let-modal>
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Edit Plantation Design</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    
+                    <div class="modal-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Plantation Name :</label>
+                                        <input type="text" placeholder="Single Line/1 feet 6 inches">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="dateOfBirth">Bed Prepration</label>
+                                <ckeditor [editor]="Editor" data="<p></p>"></ckeditor>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Image</label>
+                                         <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                          </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Audio</label>
+                                         <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Video (Youtube Video Link)</label>
+                                        <input type="text" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="dateOfBirth">Crop Support</label>
+                                <ckeditor [editor]="Editor" data="<p></p>"></ckeditor>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Image</label>
+                                         <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                          </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Audio</label>
+                                         <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Video (Youtube Video Link)</label>
+                                        <input type="text" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="dateOfBirth">Design Details</label>
+                                <ckeditor [editor]="Editor" data="<p></p>"></ckeditor>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Image</label>
+                                         <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                          </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Audio</label>
+                                         <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Video (Youtube Video Link)</label>
+                                        <input type="text" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark"
+                            (click)="modal.close('Save click')">Update</button>
+                    </div>
+                </ng-template>
+
+                <ng-template #editthree let-modal>
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Edit Plantation Design</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    
+                    <div class="modal-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Plantation Name :</label>
+                                        <input type="text" placeholder=" Double Line/1'6">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="dateOfBirth">Bed Prepration</label>
+                                <ckeditor [editor]="Editor" data="<p></p>"></ckeditor>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Image</label>
+                                         <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                          </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Audio</label>
+                                         <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Video (Youtube Video Link)</label>
+                                        <input type="text" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="dateOfBirth">Crop Support</label>
+                                <ckeditor [editor]="Editor" data="<p></p>"></ckeditor>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Image</label>
+                                         <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                          </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Audio</label>
+                                         <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Video (Youtube Video Link)</label>
+                                        <input type="text" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="dateOfBirth">Design Details</label>
+                                <ckeditor [editor]="Editor" data="<p></p>"></ckeditor>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Image</label>
+                                         <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                          </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Audio</label>
+                                         <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Video (Youtube Video Link)</label>
+                                        <input type="text" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark"
+                            (click)="modal.close('Save click')">Update</button>
+                    </div>
+                </ng-template>
+
+                <ng-template #editfour let-modal>
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Edit Plantation Design</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    
+                    <div class="modal-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Plantation Name :</label>
+                                        <input type="text" placeholder="Double Line/3'">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="dateOfBirth">Bed Prepration</label>
+                                <ckeditor [editor]="Editor" data="<p></p>"></ckeditor>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Image</label>
+                                         <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                          </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Audio</label>
+                                         <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Video (Youtube Video Link)</label>
+                                        <input type="text" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="dateOfBirth">Crop Support</label>
+                                <ckeditor [editor]="Editor" data="<p></p>"></ckeditor>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Image</label>
+                                         <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                          </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Audio</label>
+                                         <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Video (Youtube Video Link)</label>
+                                        <input type="text" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="dateOfBirth">Design Details</label>
+                                <ckeditor [editor]="Editor" data="<p></p>"></ckeditor>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Image</label>
+                                         <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                          </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Audio</label>
+                                         <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Video (Youtube Video Link)</label>
+                                        <input type="text" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark"
+                            (click)="modal.close('Save click')">Update</button>
+                    </div>
+                </ng-template>
+
+                <ng-template #editfive let-modal>
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Edit Plantation Design</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    
+                    <div class="modal-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Plantation Name :</label>
+                                        <input type="text" placeholder=" Wide bed/Leafy Vegetables">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="dateOfBirth">Bed Prepration</label>
+                                <ckeditor [editor]="Editor" data="<p></p>"></ckeditor>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Image</label>
+                                         <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                          </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Audio</label>
+                                         <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Video (Youtube Video Link)</label>
+                                        <input type="text" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="dateOfBirth">Crop Support</label>
+                                <ckeditor [editor]="Editor" data="<p></p>"></ckeditor>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Image</label>
+                                         <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                          </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Audio</label>
+                                         <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Video (Youtube Video Link)</label>
+                                        <input type="text" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="dateOfBirth">Design Details</label>
+                                <ckeditor [editor]="Editor" data="<p></p>"></ckeditor>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Image</label>
+                                         <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                          </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Audio</label>
+                                         <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Video (Youtube Video Link)</label>
+                                        <input type="text" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark"
+                            (click)="modal.close('Save click')">Update</button>
+                    </div>
+                </ng-template>
+             
+                <ng-template #delete let-modal class="delete_modal">
+                    <div class="modal-header">
+                        Are you sure ?
+                    </div>
+
+                    <div class="modal-body">
+                        <button type="button" class="btn btn-outline-dark btn_delete"
+                            (click)="modal.close('Save click')">
+                            Delete
+                        </button>
+                        <button type="button" class=" btn btn-outline-dark close btn_close" aria-label="Close"
+                            (click)="modal.dismiss('Cross click')">
+                            cancel
+                        </button>
+                    </div>
+
+                    <div class="modal-footer">
+
+                    </div>
+                    <!-- <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="dateOfBirth">Date of birth</label>
+                                    <div class="input-group">
+    
+                                    </div>
+                                </div>
+                            </form>
+                        </div> -->
+                </ng-template>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div class="content-layout fullwidth-standard-normal-scroll field_form_sec">
+    <div class="main">
+        <div class="max-w-3xl">
+            <div class="rich-text">
+                <p>
+                    All Rights Reserved by Cyber Tatva. Designed and Developed by. <a href="#"> Cyber Tatva.</a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+  
+  <script>
+  // Add the following code if you want the name of the file appear on select
+  $(".custom-file-input").on("change", function() {
+    var fileName = $(this).val().split("\\").pop();
+    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+  });
+  </script>

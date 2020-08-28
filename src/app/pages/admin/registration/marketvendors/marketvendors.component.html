@@ -1,1 +1,418 @@
-<p>marketvendors works!</p>
+<div class="box_main">
+    <div class="container">
+        <div class="col-md-12 bg-card shadow rounded overflow-hidden">
+            <div class="header_top_btn mb-5">
+                <button class="btn" mat-flat-button [color]="'primary'" (click)="open(addnew)">Add New User</button>
+            </div>
+            <div class="">
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>User Id</th>
+                            <th>User Name</th>
+                            <th>Full Name</th>
+                            <th>Delete</th>
+                            <th>Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>FP000004</td>
+                            <td>gng</td>
+                            <td>Greens And Grains</td>
+                            <td class="delete_icons" (click)="statusModal(delete)">
+                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
+                            </td>
+                            <td (click)="open(editone)" class="edit_icons">
+                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                  <ng-template #addnew let-modal>
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Register New User</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">User Type</label>
+                                        <select class="form-control" name="activity_type">
+                                            <option value="">----SELECT USER TYPE----</option>
+                                            <option value="farmer">Farmer</option>
+                                            <option value="admin">Admin</option>
+                                            <option value="employee">Employee</option>
+                                            <option value="fpo">FPO</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Language</label>
+                                        <select class="form-control" name="activity_type">
+                                            <option value="">----CHOOSE LANGUAGE----</option>
+                                            <option value="hindi">Hindi</option>
+                                            <option value="english">English</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Username</label>
+                                        <select class="form-control" name="activity_type">
+                                            <option value="">tathagat</option>
+                                            <option value="farmer">*****</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Full Name</label>
+                                        <input type="text" placeholder="Full Name">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Father Name</label>
+                                        <input type="text" placeholder="Username Here">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Gender</label>
+                                        <select class="form-control" name="activity_type">
+                                            <option>----CHOOSE GENDER----</option>
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                            <option value="unisex">Unisex</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Email</label>
+                                        <input type="email" placeholder="Enter Email  Here">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Mobile</label>
+                                        <input type="number" placeholder="9876543210">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Password</label>
+                                        <input type="password" placeholder="********">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Confirm Password</label>
+                                        <input type="password" placeholder="Confirm Password">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <p><strong>Address</strong></p>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Country</label>
+                                        <select class="form-control" name="activity_type">
+                                            <option value="">Select</option>
+                                            <option value="1">India</option> 
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">State</label>
+                                        <select class="form-control" name="activity_type">
+                                            <option value="">Select State</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">District</label>
+                                        <select class="form-control" name="activity_type">
+                                            <option value="">Select District</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Tehsil</label>
+                                        <select class="form-control" name="activity_type">
+                                            <option value="">Select Tehsil</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Village</label>
+                                            <select class="form-control" name="activity_type">
+                                                <option value="">Select village</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Pincode</label>
+                                            <select class="form-control" name="activity_type">
+                                                <option value="">452020</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Address</label>
+                                            <textarea name="" id="" cols="30" rows="10">
+                                            </textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Upload Photo</label>
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="customFile">
+                                                <label class="custom-file-label" for="customFile">Choose file</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark"
+                            (click)="modal.close('Save click')">SIGNUP</button>
+                    </div>
+                </ng-template>
+
+                
+                <ng-template #editone let-modal>
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="modal-basic-title"></h4>
+                            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">User Type</label>
+                                            <input type="text" placeholder="fpo">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Language</label>
+                                            <select class="form-control" name="activity_type">
+                                                <option value="english">english</option>
+                                                <option value="english">English</option>
+                                                <option value="hindi">Hindi</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Username</label>
+                                            <input type="text" placeholder="gng">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Full Name</label>
+                                            <input type="text" placeholder="Greens And Grains">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Email</label>
+                                            <input type="email" placeholder="ankit.m@cybertatva.com">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Mobile</label>
+                                            <input type="number" placeholder="7415587271">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <p><strong>Contact Info</strong></p>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Country</label>
+                                            <select class="form-control" name="activity_type">
+                                                <option value="">Select</option>
+                                                <option value="1">India</option> 
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">State</label>
+                                            <select class="form-control" name="activity_type">
+                                                <option value="">Select State</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">District</label>
+                                            <select class="form-control" name="activity_type">
+                                                <option value="">Select District</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Tehsil</label>
+                                            <select class="form-control" name="activity_type">
+                                                <option value="">Select Tehsil</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="dateOfBirth">Village</label>
+                                                <select class="form-control" name="activity_type">
+                                                    <option value="">Select village</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="dateOfBirth">Pincode</label>
+                                                <select class="form-control" name="activity_type">
+                                                    <option value="">452020</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="dateOfBirth">Address</label>
+                                                <textarea name="" id="" cols="30" rows="10">
+
+                                                </textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="dateOfBirth">Upload Photo</label>
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="customFile">
+                                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-dark"
+                                (click)="modal.close('Save click')">Generate Notification</button>
+                        </div>
+                    </ng-template>
+
+                
+                 <ng-template #delete let-modal class="delete_modal">
+                    <div class="modal-header">
+                        Are you sure ?
+                    </div>
+
+                    <div class="modal-body">
+                        <button type="button" class="btn btn-outline-dark btn_delete"
+                            (click)="modal.close('Save click')">
+                            Delete
+                        </button>
+                        <button type="button" class=" btn btn-outline-dark close btn_close" aria-label="Close"
+                            (click)="modal.dismiss('Cross click')">
+                            cancel
+                        </button>
+                    </div>
+
+                    <div class="modal-footer">
+
+                    </div>
+                </ng-template>
+
+            
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div class="content-layout fullwidth-standard-normal-scroll field_form_sec">
+    <div class="main">
+        <div class="max-w-3xl">
+            <div class="rich-text">
+                <p>
+                    All Rights Reserved by Cyber Tatva. Designed and Developed by. <a href="#"> Cyber Tatva.</a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+  
+  <script>
+  // Add the following code if you want the name of the file appear on select
+  $(".custom-file-input").on("change", function() {
+    var fileName = $(this).val().split("\\").pop();
+    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+  });
+  </script>

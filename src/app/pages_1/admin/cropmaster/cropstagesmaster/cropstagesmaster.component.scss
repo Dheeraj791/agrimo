@@ -1,0 +1,224 @@
+
+@import 'treo';
+
+Cropstagesmaster{}
+
+// -----------------------------------------------------------------------------------------------------
+// @ Theming
+// -----------------------------------------------------------------------------------------------------
+@include treo-theme {
+
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+    $is-dark: map-get($theme, is-dark);
+
+}
+
+.myCustomModalClass .modal-dialog {
+    //any change in overall modal
+    .modal-header {
+        background-color: #5850ec !important;
+        color: #fff !important;
+    }
+
+    //  .form_group_main {
+    // display: flex !important;
+    // flex-wrap: wrap !important;
+    // margin: 0 -8px !important;
+    //     .form-group {
+    //         width: calc(50% - 16px) !important;
+    //         margin: 8px !important;
+    //     }
+    // }
+        
+    //         span {
+    //             color: #fff !important;
+    //             opacity: 1 !important;
+    //             border-color: #fff !important;
+    //         }
+
+    //         button {
+    //             opacity: 1 !important;
+    //         }
+    // }
+
+
+  }
+
+
+
+
+
+.btn:focus{
+outline: none;
+}
+.btn_delete {
+    background-color: red;
+    color: #fff;
+    font-weight: 700;
+    border: none;
+    padding: 7px 25px;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
+.btn_close {
+    background-color: #0048cc !important;
+    color: #fff;
+    font-weight: 700;
+    border: none !important;
+    padding: 7px 25px !important;
+    text-transform: uppercase;
+    font-size: 16px;
+    margin: 0 !important;
+    opacity: 1;
+    text-shadow: none !important;
+    line-height: 1.6 !important;
+    
+}
+
+
+
+
+.form-group label {
+    width: 100%;
+    display: block;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+    border: 1px solid #c7c7c7;
+    width: 100%;
+    padding: 6px;
+    min-height: 38px;
+    border-radius: 7px;
+}
+
+.modal-footer button.btn {
+    background-color: #5850ec;
+    color: #fff;
+    padding: 8px 28px;
+    border: none;
+    transition: all 0.5s;
+}
+
+.modal-footer button.btn:hover {
+    background-color: black;
+}
+@import 'treo';
+
+// -----------------------------------------------------------------------------------------------------
+// @ Theming
+// -----------------------------------------------------------------------------------------------------
+@include treo-theme {
+
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+    $is-dark: map-get($theme, is-dark);
+}
+
+
+
+
+.btn:focus{
+    outline: none !important;
+    box-shadow: none !important;
+}
+.btn_delete {
+    background-color: red;
+    color: #fff;
+    font-weight: 700;
+    border: none;
+    padding: 7px 25px;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
+.btn_close {
+    background-color: #0048cc !important;
+    color: #fff;
+    font-weight: 700;
+    border: none !important;
+    padding: 7px 25px !important;
+    text-transform: uppercase;
+    font-size: 16px;
+    margin: 0 !important;
+    opacity: 1;
+    text-shadow: none !important;
+    line-height: 1.6 !important;
+    
+}
+
+
+
+
+.form-group label {
+    width: 100%;
+    display: block;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+    position: relative;
+    display: flex;
+    min-height: 48px;
+    border-radius: 6px;
+    padding: 0 16px;
+    border-width: 1px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.modal-footer button.btn {
+    background-color: #5850ec;
+    color: #fff;
+    padding: 8px 28px;
+    border: none;
+    transition: all 0.5s;
+}
+
+.modal-footer button.btn:hover {
+    background-color: black;
+}
+
+
+input:-moz-placeholder{
+    color: #495057;
+}
+input::-webkit-input-placeholder{
+    color: #495057;
+}
+input:-ms-input-placeholder{
+    color: #495057;
+}
+input::placeholder{
+    color: #495057;
+}
+
+
+
+.modal-header {
+    display: flex;
+    background-color: #5850ec;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: .8rem .8rem;
+    border-bottom: 1px solid #ffffff;
+    border-top-left-radius: calc(0.3rem - 1px);
+    border-top-right-radius: calc(0.3rem - 1px);
+    color: white;
+}
+.modal-header .close {
+    padding: 1rem 1rem;
+    margin: -1rem -1rem -1rem auto;
+    color: white;
+}
+.modal-title {
+    margin-bottom: 0;
+    line-height: 1.5;
+    font-size: 24px;
+    font-weight: 400;
+}

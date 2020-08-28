@@ -12,6 +12,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { selectviewRouting } from '../selectview/select.routing';
 import { SelectviewComponent } from '../selectview/selectview.component';
+import { MatSelectModule } from '@angular/material/select';
 @NgModule({
   declarations: [
     SelectviewComponent
@@ -26,6 +27,7 @@ imports     : [
         MatIconModule,
         MatInputModule,
         MatMenuModule,
+        MatSelectModule,
         CKEditorModule
 ]
 })

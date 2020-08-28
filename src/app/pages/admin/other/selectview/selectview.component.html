@@ -1,41 +1,38 @@
 <div class="box_main">
-    <div class="container">
-        <div class="col-md-12 bg-card shadow rounded overflow-hidden">
-            <div class="header_top_btn mb-5">
-                <p class="crop_master">
-                    CROP MASTER
-                </p>
-                <p>
-                    <button type="button" class="btn btn_new">Add New Button</button>
-                </p>
-            </div>
-            <div class="heading_master">
-                <div class="row">
-                    <div class="col-md-5">
-                        <div class="form-group">
-                            <label for="dateOfBirth">Select Record</label>
-                            <select class="form-control" name="Material Based Activity">
-                                <option value="">Master Record</option>
-                                <option value="">Crop Record</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-5">
-                        <div class="form-group">
-                            <label for="dateOfBirth">Select Record Type</label>
-                            <select class="form-control" name="Material Based Activity">
-                                <option value="">Activity Master</option>
-                                <option value="">Irrigation Master</option>
-                                <option value="">Location Master</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <button class="btn btn-info btn-sm">Get Record</button>
-                    </div>
+    <div class="col-md-12 bg-card shadow rounded overflow-hidden">
+        <div class="header_top_btn_new mb-5">
+            <div class="row">
+                <div class="col-md-8 custom-col-8">
+                    <div class="breadcrumb"><span class="path">Master Records</span><span
+                            class="separator">/</span><span class="path">Activity Master</span></div>
+                    <h1 class="master-heading">Master Records</h1>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="flex-auto">
+                        <mat-select [placeholder]="'Select Record Here'">
+                            <mat-option value="country-1">Activity Master</mat-option>
+                            <mat-option value="country-2">Irrigation Master</mat-option>
+                            <mat-option value="country-3">Location Master</mat-option>
+                        </mat-select>
+                        <mat-icon matPrefix [svgIcon]="'arrow_right_alt'"></mat-icon>
+                    </mat-form-field>
                 </div>
             </div>
+        </div>
+        <div class="table_sec">
             <div class="">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h1 class="master-heading-small">Activity Master</h1>
+                    </div>
+                    <div class="col-md-6 pull-right">
+                        <!-- <button type="button" class="btn btn_new pull-right" (click)="open(addnew)">Add New Button</button> -->
+                        <button (click)="open(addnew)" class="px-6 ml-3 addbtn" mat-flat-button [color]="'primary'">
+                            Save
+                        </button>
+                    </div>
+                </div>
+
                 <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
                     <thead>
                         <tr>
@@ -190,20 +187,20 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="dateOfBirth">Image</label>
-                                         <div class="custom-file">
+                                        <div class="custom-file">
                                             <input type="file" class="custom-file-input" id="customFile">
                                             <label class="custom-file-label" for="customFile">Choose file</label>
-                                          </div>
+                                        </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="dateOfBirth">Audio</label>
-                                         <div class="custom-file">
+                                        <div class="custom-file">
                                             <input type="file" class="custom-file-input" id="customFile">
                                             <label class="custom-file-label" for="customFile">Choose file</label>
-                                          </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -223,230 +220,230 @@
                     </div>
                 </ng-template>
 
-                
+
                 <ng-template #editone let-modal>
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="modal-basic-title">Edit Irrigation Details</h4>
-                            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">Irrigation Type Name</label>
-                                            <input type="text" placeholder="Drip">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Edit Irrigation Details</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Irrigation Type Name</label>
+                                        <input type="text" placeholder="Drip">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Irrigation Image</label>
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">Irrigation Image</label>
-                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="customFile">
-                                                <label class="custom-file-label" for="customFile">Choose file</label>
-                                              </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">Change Audio</label>
-                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="customFile">
-                                                <label class="custom-file-label" for="customFile">Choose file</label>
-                                              </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Change Audio</label>
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">Video Url (Youtube Embed Video Link Only)</label>
-                                            <input type="text" placeholder="">
-                                        </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Video Url (Youtube Embed Video Link Only)</label>
+                                        <input type="text" placeholder="">
                                     </div>
                                 </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-dark"
-                                (click)="modal.close('Save click')">Submit</button>
-                        </div>
-                    </ng-template>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark"
+                            (click)="modal.close('Save click')">Submit</button>
+                    </div>
+                </ng-template>
 
 
 
                 <ng-template #edittwo let-modal>
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="modal-basic-title">Edit Irrigation Details</h4>
-                            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">Irrigation Type Name</label>
-                                            <input type="text" placeholder="Flood">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Edit Irrigation Details</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Irrigation Type Name</label>
+                                        <input type="text" placeholder="Flood">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Change Image</label>
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">Change Image</label>
-                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="customFile">
-                                                <label class="custom-file-label" for="customFile">Choose file</label>
-                                              </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">Change Audio</label>
-                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="customFile">
-                                                <label class="custom-file-label" for="customFile">Choose file</label>
-                                              </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Change Audio</label>
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">Video Url (Youtube Embed Video Link Only)</label>
-                                            <input type="text" placeholder="">
-                                        </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Video Url (Youtube Embed Video Link Only)</label>
+                                        <input type="text" placeholder="">
                                     </div>
                                 </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-dark"
-                                (click)="modal.close('Save click')">Submit</button>
-                        </div>
-                    </ng-template>
-    
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark"
+                            (click)="modal.close('Save click')">Submit</button>
+                    </div>
+                </ng-template>
+
 
 
                 <ng-template #editthree let-modal>
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="modal-basic-title">Edit Irrigation Details</h4>
-                            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">Irrigation Type Name</label>
-                                            <input type="text" placeholder="Large Sprinkler">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Edit Irrigation Details</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Irrigation Type Name</label>
+                                        <input type="text" placeholder="Large Sprinkler">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Change Image</label>
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">Change Image</label>
-                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="customFile">
-                                                <label class="custom-file-label" for="customFile">Choose file</label>
-                                              </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">Change Audio</label>
-                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="customFile">
-                                                <label class="custom-file-label" for="customFile">Choose file</label>
-                                              </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Change Audio</label>
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">Video Url (Youtube Embed Video Link Only)</label>
-                                            <input type="text" placeholder="">
-                                        </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Video Url (Youtube Embed Video Link Only)</label>
+                                        <input type="text" placeholder="">
                                     </div>
                                 </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-dark"
-                                (click)="modal.close('Save click')">Submit</button>
-                        </div>
-                    </ng-template>
-    
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark"
+                            (click)="modal.close('Save click')">Submit</button>
+                    </div>
+                </ng-template>
 
 
 
-                
+
+
                 <ng-template #editfour let-modal>
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="modal-basic-title">Edit Irrigation Details</h4>
-                            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">Irrigation Type Name</label>
-                                            <input type="text" placeholder="Mini Sprinkler">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Edit Irrigation Details</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Irrigation Type Name</label>
+                                        <input type="text" placeholder="Mini Sprinkler">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Change Image</label>
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">Change Image</label>
-                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="customFile">
-                                                <label class="custom-file-label" for="customFile">Choose file</label>
-                                              </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">Change Audio</label>
-                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="customFile">
-                                                <label class="custom-file-label" for="customFile">Choose file</label>
-                                              </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Change Audio</label>
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">Video Url (Youtube Embed Video Link Only)</label>
-                                            <input type="text" placeholder="">
-                                        </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="dateOfBirth">Video Url (Youtube Embed Video Link Only)</label>
+                                        <input type="text" placeholder="">
                                     </div>
                                 </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-dark"
-                                (click)="modal.close('Save click')">Submit</button>
-                        </div>
-                    </ng-template>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark"
+                            (click)="modal.close('Save click')">Submit</button>
+                    </div>
+                </ng-template>
 
 
 
@@ -503,11 +500,11 @@
     </div>
 </div>
 
-  
-  <script>
-  // Add the following code if you want the name of the file appear on select
-  $(".custom-file-input").on("change", function() {
-    var fileName = $(this).val().split("\\").pop();
-    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-  });
-  </script>
+
+<script>
+    // Add the following code if you want the name of the file appear on select
+    $(".custom-file-input").on("change", function () {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+</script>
