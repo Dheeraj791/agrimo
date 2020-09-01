@@ -9,9 +9,20 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
+
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { tabviewRouting } from '../tabview/tabview.routing';
 import { TabviewComponent } from '../tabview/tabview.component';
+
+
+
+
+
+
 @NgModule({
   declarations: [
     TabviewComponent
@@ -26,7 +37,10 @@ imports     : [
         MatIconModule,
         MatInputModule,
         MatMenuModule,
-        CKEditorModule
+        CKEditorModule,
+        MatRadioModule,
+        MatCheckboxModule,
+        MatSelectModule
 ]
 })
 export class TabviewModule { }

@@ -239,7 +239,7 @@ input::placeholder{
 .heading_master .button_box {
     box-shadow: 0px 1px 6px #cacaca;
     border-radius: 8px;
-    padding: 8px 15px 8px;
+    padding: 8px 6px 8px;
 }
 
 .heading_master .button_box .top_button {
@@ -249,18 +249,18 @@ input::placeholder{
     justify-content: space-between;
 }
 
-.heading_master .button_box .top_button .img_box {
-    padding: 15px;
-}
+// .heading_master .button_box .top_button .img_box {
+//     padding: 15px;
+// }
 
 .heading_master .button_box .top_button .img_box img {
     position: absolute;
-    width: 60px;
-    height: 60px;
+    width: 45px;
+    height: 45px;
     left: 0;
     top: -22px;
     background-color: red;
-    padding: 15px;
+    padding: 8px;
     box-shadow: 0 0 5px #c7c7c7;
     border-radius: 3px;
 }
@@ -276,7 +276,7 @@ input::placeholder{
 }
 
 .heading_master .button_box .top_button .text_box span.text_sub_heading {
-    font-size: 23px;
+    font-size: 19px;
     font-weight: 600;
 }
 
@@ -305,6 +305,13 @@ input::placeholder{
     background-image: linear-gradient(to right, #22c3d6, #10afc3);
 }
 
+.button_box.five_box .img_box img {
+    background-image: linear-gradient(to right, #931efd , #7c36bb);
+}
+
+.button_box.six_box .img_box img {
+    background-image: linear-gradient(to right, #f10c0c , #d00606);
+}
 
 
 .first_box.active .bottom_button {
@@ -322,10 +329,12 @@ input::placeholder{
 .fourth_box.active .bottom_button {
     color: #15b1c5;
 }
-
-
-
-
+.five_box.active .bottom_button {
+    color: #931efd;
+}
+.six_box.active .bottom_button {
+    color: #f10c0c;
+}
 
 
 .button_box.first_box.active {
@@ -344,7 +353,12 @@ input::placeholder{
 .button_box.fourth_box.active {
     border: 2px solid #1fc0d3;
 }
-
+.button_box.fourth_box.active {
+    border: 2px solid #931efd;
+}
+.button_box.fourth_box.active {
+    border: 2px solid #f10c0c;
+}
 
 // .header_top_btn {
 //     display: flex;
@@ -376,4 +390,38 @@ input::placeholder{
 p button {
     background-color: #5850ec;
     color: #fff !important;
+}
+.box_com_div {
+    display: flex;
+    flex-wrap: wrap;
+}
+.box_com_div .box_border {
+    width: calc(16.66% - 12px);
+    margin: 0 6px;
+}
+// app-tabview .heading_master {
+//     padding: 35px 6px!important;
+// }
+
+
+
+
+// @media screen and (max-width: 1400px) and (min-width: 767) {
+
+.box_com_div {
+    width: 1038px;
+    padding: 46px 4px 16px;
+}
+
+.heading_master {
+    width: 100%;
+    max-width: 1100px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+
+.heading_master::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
 }

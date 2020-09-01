@@ -139,14 +139,19 @@ app-selectview .box_main .bg-card .header_top_btn p.crop_master, app-tabview .bo
     font-size: 20px;
     font-weight: 600;
 }
-
+app-selectview .box_main .bg-card .heading_master{
+    padding: 25px;
+}
 app-selectview .box_main .bg-card .heading_master, app-tabview .box_main .bg-card .heading_master{
     background-color: #fff !important;
-    padding: 25px;
     box-shadow: 0 1px 5px #a5a5a5;
     margin-top: 0 !important;
     border-radius: 6px;
     margin-bottom: 1.5rem !important;
+}
+
+app-tabview .box_main .bg-card .heading_master{
+    padding: 20px 6px 12!important;
 }
 
 app-selectview .box_main .bg-card .heading_master .row, app-tabview .box_main .bg-card .heading_master .row {

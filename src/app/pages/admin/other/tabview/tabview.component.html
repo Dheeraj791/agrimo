@@ -6,8 +6,8 @@
                 </p>
             </div>
             <div class="heading_master">
-                <div class="row">
-                    <div class="col-md-3">
+                <div class="box_com_div">
+                    <div class="box_border">
                         <div class="button_box first_box active">
                             <div class="top_button">
                                 <div class="img_box">
@@ -23,7 +23,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="box_border">
                         <div class="button_box second_box">
                             <div class="top_button">
                                 <div class="img_box">
@@ -39,7 +39,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="box_border">
                         <div class="button_box third_box">
                             <div class="top_button">
                                 <div class="img_box">
@@ -55,7 +55,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="box_border">
                         <div class="button_box fourth_box">
                             <div class="top_button">
                                 <div class="img_box">
@@ -71,6 +71,38 @@
                             </div>
                         </div>
                     </div>
+                    <div class="box_border">
+                        <div class="button_box five_box">
+                            <div class="top_button">
+                                <div class="img_box">
+                                    <img src="assets/crop_05.png" alt="">
+                                </div>
+                                <div class="text_box">
+                                    <span class="heading">Disease</span>
+                                    <span class="text_sub_heading">05</span>
+                                </div>
+                            </div>
+                            <div class="bottom_button">
+                                <span>Disease</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box_border">
+                        <div class="button_box six_box">
+                            <div class="top_button">
+                                <div class="img_box">
+                                    <img src="assets/frame.png" alt="">
+                                </div>
+                                <div class="text_box">
+                                    <span class="heading">Crop category</span>
+                                    <span class="text_sub_heading">06</span>
+                                </div>
+                            </div>
+                            <div class="bottom_button">
+                                <span>Crop category</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -78,7 +110,7 @@
             <div class="">
 
                     <p>
-                        <button type="button" class="btn btn_new">Add New Button</button>
+                        <button type="button" class="btn btn_new" (click)="statusModal(addnew)">Add New Button</button>
                     </p>
 
                 <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
@@ -155,7 +187,97 @@
                             (click)="modal.close('Save click')">Save</button>
                     </div>
                 </ng-template> -->
-                <ng-template #edit let-modal>
+                <ng-template #addnew let-modal class="shadow rounded overflow-hidden">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="flex flex-col bg-card">
+                                <div class="flex">
+                                    <mat-form-field class="flex-auto">
+                                        <input matInput
+                                               [placeholder]="'Email Address'">
+                                        <mat-icon matPrefix
+                                                  [svgIcon]="'mail'"></mat-icon>
+                                    </mat-form-field>
+                                </div>
+                                <div class="flex flex-col gt-xs:flex-row">
+                                    <mat-form-field class="flex-auto gt-xs:pr-3 treo-mat-dense ">
+                                        <mat-select [placeholder]="'Country / Region'">
+                                            <mat-option value="country-1">Country 1</mat-option>
+                                            <mat-option value="country-2">Country 2</mat-option>
+                                            <mat-option value="country-3">Country 3</mat-option>
+                                        </mat-select>
+                                        <mat-icon matPrefix
+                                                  [svgIcon]="'room'"></mat-icon>
+                                    </mat-form-field>
+                                    <mat-form-field class="flex-auto gt-xs:pl-3 treo-mat-dense " >
+                                        <mat-select [placeholder]="'Language'">
+                                                <mat-option value="language-1">Language 1</mat-option>
+                                                <mat-option value="language-2">Language 2</mat-option>
+                                                <mat-option value="language-3">Language 3</mat-option>
+                                        </mat-select>
+                                        <mat-icon matPrefix
+                                                  [svgIcon]="'language'"></mat-icon>
+                                    </mat-form-field>
+                                </div>
+                
+                                <!-- <mat-divider class="mt-6 mb-10"></mat-divider> -->
+            
+                                <div class="flex flex-col gt-xs:flex-row">
+                                    <mat-form-field class="flex-auto gt-xs:pr-3">
+                                        <input matInput
+                                               [placeholder]="'First name'">
+                                        <mat-icon matPrefix
+                                                  [svgIcon]="'account_circle'"></mat-icon>
+                                    </mat-form-field>
+                                    <mat-form-field class="flex-auto gt-xs:pl-3">
+                                        <input matInput
+                                               [placeholder]="'Last name'">
+                                        <mat-icon matPrefix
+                                                  [svgIcon]="'account_circle'"></mat-icon>
+                                    </mat-form-field>
+                                </div>
+                                <div class="flex">
+                                    <mat-form-field class="flex-auto">
+                                        <input matInput
+                                               [placeholder]="'Username'">
+                                        <span matPrefix>www.example.com/</span>
+                                    </mat-form-field>
+                                </div>
+                                <div class="flex">
+                                    <mat-form-field class="treo-mat-textarea flex-auto">
+                                        <textarea matInput
+                                                  [placeholder]="'About'"
+                                                  [rows]="3"></textarea>
+                                        <mat-icon matPrefix
+                                                  [svgIcon]="'notes'"></mat-icon>
+                                    </mat-form-field>
+                                </div>
+                            </form>
+                        </div>
+
+                            <div class="modal-footer">
+                                <div class="flex items-center">
+                                    <button mat-button>
+                                        Cancel
+                                    </button>
+                                    <button class="px-6 ml-3"
+                                            mat-flat-button
+                                            [color]="'primary'">
+                                        Save
+                                    </button>
+                                </div>
+                            </div>
+
+
+
+<!-- 
+
+
                     <div class="modal-header">
                         <h4 class="modal-title" id="modal-basic-title">Update Activity Name</h4>
                         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -189,7 +311,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-dark"
                             (click)="modal.close('Save click')">Save</button>
-                    </div>
+                    </div> -->
                 </ng-template>
                 <ng-template #status let-modal>
                     <div class="modal-header">
@@ -213,7 +335,7 @@
                             (click)="modal.close('Save click')">Save</button>
                     </div>
                 </ng-template>
-
+<!-- 
                 <ng-template #addnew let-modal>
                     <div class="modal-header">
                         <h4 class="modal-title" id="modal-basic-title">Add New Irrigation Type</h4>
@@ -266,7 +388,7 @@
                         <button type="button" class="btn btn-outline-dark"
                             (click)="modal.close('Save click')">Submit</button>
                     </div>
-                </ng-template>
+                </ng-template> -->
 
                 
                 <ng-template #editone let-modal>
@@ -535,6 +657,10 @@
     </div>
 </div>
 <br>
+
+
+
+
 <div class="content-layout fullwidth-standard-normal-scroll field_form_sec">
     <div class="main">
         <div class="max-w-3xl">
