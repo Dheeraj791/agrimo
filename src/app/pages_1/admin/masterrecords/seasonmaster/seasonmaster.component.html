@@ -1,0 +1,765 @@
+<div class="box_main">
+        <div class="container">
+            <div class="col-md-12 bg-card shadow rounded overflow-hidden">
+                <div class="header_top_btn mb-5">
+                    <button class="btn" mat-flat-button [color]="'primary'" (click)="open(addnew)">Add New Season</button>
+                </div>
+                <div class="">
+                    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+                        <thead>
+                            <tr>
+                                <th>S.Id</th>
+                                <th>Season Name</th>
+                                <th>Season Type</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Delete</th>
+                                <th>Edit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Monsoon</td>
+                                    <td>starting</td>
+                                    <td>25-06-2019</td>
+                                    <td>15-07-2019</td>
+                                    <td class="delete_icons" (click)="statusModal(delete)">
+                                        <mat-icon svgIcon="dripicons:trash"></mat-icon>
+                                    </td>
+                                    <td (click)="open(editone)" class="edit_icons">
+                                        <mat-icon svgIcon="dripicons:pencil"></mat-icon>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Monsoon</td>
+                                    <td>peak</td>
+                                    <td>16-07-2019</td>
+                                    <td>31-08-2019</td>
+                                    <td class="delete_icons" (click)="statusModal(delete)">
+                                        <mat-icon svgIcon="dripicons:trash"></mat-icon>
+                                    </td>
+                                    <td (click)="open(edittwo)" class="edit_icons">
+                                        <mat-icon svgIcon="dripicons:pencil"></mat-icon>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Monsoon</td>
+                                    <td>closing</td>
+                                    <td>01-09-2019</td>
+                                    <td>30-09-2019</td>
+                                    <td class="delete_icons" (click)="statusModal(delete)">
+                                        <mat-icon svgIcon="dripicons:trash"></mat-icon>
+                                    </td>
+                                    <td (click)="open(editthree)" class="edit_icons">
+                                        <mat-icon svgIcon="dripicons:pencil"></mat-icon>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Spring</td>
+                                    <td>starting</td>
+                                    <td>11-02-2020</td>
+                                    <td>25-02-2020</td>
+                                    <td class="delete_icons" (click)="statusModal(delete)">
+                                        <mat-icon svgIcon="dripicons:trash"></mat-icon>
+                                    </td>
+                                    <td (click)="open(editfour)" class="edit_icons">
+                                        <mat-icon svgIcon="dripicons:pencil"></mat-icon>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Spring</td>
+                                    <td>peak</td>
+                                    <td>26-02-2020</td>
+                                    <td>15-03-2020</td>
+                                    <td class="delete_icons" (click)="statusModal(delete)">
+                                        <mat-icon svgIcon="dripicons:trash"></mat-icon>
+                                    </td>
+                                    <td (click)="open(editfive)" class="edit_icons">
+                                        <mat-icon svgIcon="dripicons:pencil"></mat-icon>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>Spring</td>
+                                    <td>closing</td>
+                                    <td>16-03-2020</td>
+                                    <td>31-03-2020</td>
+                                    <td class="delete_icons" (click)="statusModal(delete)">
+                                        <mat-icon svgIcon="dripicons:trash"></mat-icon>
+                                    </td>
+                                    <td (click)="open(editsix)" class="edit_icons">
+                                        <mat-icon svgIcon="dripicons:pencil"></mat-icon>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>Summer</td>
+                                    <td>starting</td>
+                                    <td>01-04-2020</td>
+                                    <td>30-04-2020</td>
+                                    <td class="delete_icons" (click)="statusModal(delete)">
+                                        <mat-icon svgIcon="dripicons:trash"></mat-icon>
+                                    </td>
+                                    <td (click)="open(editseven)" class="edit_icons">
+                                        <mat-icon svgIcon="dripicons:pencil"></mat-icon>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td>Summer</td>
+                                    <td>peak</td>
+                                    <td>01-05-2019</td>
+                                    <td>10-06-2019</td>
+                                    <td class="delete_icons" (click)="statusModal(delete)">
+                                        <mat-icon svgIcon="dripicons:trash"></mat-icon>
+                                    </td>
+                                    <td (click)="open(editeight)" class="edit_icons">
+                                        <mat-icon svgIcon="dripicons:pencil"></mat-icon>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td>Summer</td>
+                                    <td>closing</td>
+                                    <td>11-06-2020</td>
+                                    <td>24-06-2020</td>
+                                    <td class="delete_icons" (click)="statusModal(delete)">
+                                        <mat-icon svgIcon="dripicons:trash"></mat-icon>
+                                    </td>
+                                    <td (click)="open(editnine)" class="edit_icons">
+                                        <mat-icon svgIcon="dripicons:pencil"></mat-icon>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td>Winter</td>
+                                    <td>starting</td>
+                                    <td>01-10-2019</td>
+                                    <td>30-11-2019</td>
+                                    <td class="delete_icons" (click)="statusModal(delete)">
+                                        <mat-icon svgIcon="dripicons:trash"></mat-icon>
+                                    </td>
+                                    <td (click)="open(editten)" class="edit_icons">
+                                        <mat-icon svgIcon="dripicons:pencil"></mat-icon>
+                                    </td>
+                                </tr>
+                        </tbody>
+                    </table>
+    
+                    <ng-template #addnew let-modal>
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="modal-basic-title">Season Master</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="dateOfBirth">Season Name</label>
+                                                <input type="text" placeholder="Insert Question From Here ">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="dateOfBirth">Season Type</label>
+                                                <select class="form-control" name="activity_type">
+                                                    <option>----SELECT SEASON TYPE----</option>
+                                                    <option>Starting</option>
+                                                    <option>Peak Season</option>
+                                                    <option>Closing</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="dateOfBirth">Start Date</label>
+                                                <input placeholder="Choose From Date" type="date" id="example" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="dateOfBirth">End Date</label>
+                                                <input placeholder="Choose to Date" type="date" id="example" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-dark"
+                                (click)="modal.close('Save click')">Submit</button>
+                        </div>
+                    </ng-template>
+
+                    
+                <ng-template #editone let-modal>
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Update Season</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Season Name</label>
+                                            <input type="text" placeholder="Monsoon">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Season Type</label>
+                                            <select class="form-control" name="activity_type">
+                                                <option>starting</option>
+                                                <option>peak</option>
+                                                <option>closing</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Start Date</label>
+                                            <input placeholder="Choose From Date" type="date" id="example" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">End Date</label>
+                                            <input placeholder="Choose to Date" type="date" id="example" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark"
+                            (click)="modal.close('Save click')">Update</button>
+                    </div>
+                </ng-template>
+             
+                <ng-template #edittwo let-modal>
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Update Season</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Season Name</label>
+                                            <input type="text" placeholder="Monsoon">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Season Type</label>
+                                            <select class="form-control" name="activity_type">
+                                                <option>peak</option>
+                                                <option>starting</option>
+                                                <option>closing</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Start Date</label>
+                                            <input placeholder="Choose From Date" type="date" id="example" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">End Date</label>
+                                            <input placeholder="Choose to Date" type="date" id="example" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark"
+                            (click)="modal.close('Save click')">Update</button>
+                    </div>
+                </ng-template>
+
+                <ng-template #editthree let-modal>
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Update Season</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Season Name</label>
+                                            <input type="text" placeholder="Monsoon">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Season Type</label>
+                                            <select class="form-control" name="activity_type">
+                                                <option>closing </option>
+                                                <option>peak</option>
+                                                <option>starting</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Start Date</label>
+                                            <input placeholder="Choose From Date" type="date" id="example" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">End Date</label>
+                                            <input placeholder="Choose to Date" type="date" id="example" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark"
+                            (click)="modal.close('Save click')">Update</button>
+                    </div>
+                </ng-template>
+
+                <ng-template #editfour let-modal>
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Update Season</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Season Name</label>
+                                            <input type="text" placeholder="Spring">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Season Type</label>
+                                            <select class="form-control" name="activity_type">
+                                                <option>starting</option>
+                                                <option>peak</option>
+                                                <option>closing</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Start Date</label>
+                                            <input placeholder="Choose From Date" type="date" id="example" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">End Date</label>
+                                            <input placeholder="Choose to Date" type="date" id="example" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark"
+                            (click)="modal.close('Save click')">Update</button>
+                    </div>
+                </ng-template>
+
+                <ng-template #editfive let-modal>
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Update Season</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Season Name</label>
+                                            <input type="text" placeholder="Spring">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Season Type</label>
+                                            <select class="form-control" name="activity_type">
+                                                <option>peak</option>
+                                                <option>starting</option>
+                                                <option>closing</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Start Date</label>
+                                            <input placeholder="Choose From Date" type="date" id="example" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">End Date</label>
+                                            <input placeholder="Choose to Date" type="date" id="example" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark"
+                            (click)="modal.close('Save click')">Update</button>
+                    </div>
+                </ng-template>
+                
+                <ng-template #editsix let-modal>
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Update Season</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Season Name</label>
+                                            <input type="text" placeholder="Spring">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Season Type</label>
+                                            <select class="form-control" name="activity_type">
+                                                <option>closing </option>
+                                                <option>starting</option>
+                                                <option>peak</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Start Date</label>
+                                            <input placeholder="Choose From Date" type="date" id="example" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">End Date</label>
+                                            <input placeholder="Choose to Date" type="date" id="example" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark"
+                            (click)="modal.close('Save click')">Update</button>
+                    </div>
+                </ng-template>
+
+                
+                <ng-template #editseven let-modal>
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Update Season</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Season Name</label>
+                                            <input type="text" placeholder="Summer">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Season Type</label>
+                                            <select class="form-control" name="activity_type">
+                                                <option>starting </option>
+                                                <option>peak</option>
+                                                <option>closing</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Start Date</label>
+                                            <input placeholder="Choose From Date" type="date" id="example" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">End Date</label>
+                                            <input placeholder="Choose to Date" type="date" id="example" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark"
+                            (click)="modal.close('Save click')">Update</button>
+                    </div>
+                </ng-template>
+
+                
+                <ng-template #editeight let-modal>
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Update Season</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Season Name</label>
+                                            <input type="text" placeholder="Summer">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Season Type</label>
+                                            <select class="form-control" name="activity_type">
+                                                <option>peak</option>
+                                                <option>starting</option>
+                                                <option>closing</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Start Date</label>
+                                            <input placeholder="Choose From Date" type="date" id="example" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">End Date</label>
+                                            <input placeholder="Choose to Date" type="date" id="example" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark"
+                            (click)="modal.close('Save click')">Update</button>
+                    </div>
+                </ng-template>
+
+                
+                <ng-template #editnine let-modal>
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Update Season</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Season Name</label>
+                                            <input type="text" placeholder="Summer">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Season Type</label>
+                                            <select class="form-control" name="activity_type">
+                                                <option>closing </option>
+                                                <option>starting</option>
+                                                <option>peak</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Start Date</label>
+                                            <input placeholder="Choose From Date" type="date" id="example" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">End Date</label>
+                                            <input placeholder="Choose to Date" type="date" id="example" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark"
+                            (click)="modal.close('Save click')">Update</button>
+                    </div>
+                </ng-template>
+
+                
+                <ng-template #editten let-modal>
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Update Season</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Season Name</label>
+                                            <input type="text" placeholder="Winter">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Season Type</label>
+                                            <select class="form-control" name="activity_type">
+                                                <option>starting </option>
+                                                <option>peak</option>
+                                                <option>closing</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Start Date</label>
+                                            <input placeholder="Choose From Date" type="date" id="example" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">End Date</label>
+                                            <input placeholder="Choose to Date" type="date" id="example" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark"
+                            (click)="modal.close('Save click')">Update</button>
+                    </div>
+                </ng-template>
+             
+                <ng-template #delete let-modal class="delete_modal">
+                    <div class="modal-header">
+                        Are you sure ?
+                    </div>
+
+                    <div class="modal-body">
+                        <button type="button" class="btn btn-outline-dark btn_delete"
+                            (click)="modal.close('Save click')">
+                            Delete
+                        </button>
+                        <button type="button" class=" btn btn-outline-dark close btn_close" aria-label="Close"
+                            (click)="modal.dismiss('Cross click')">
+                            cancel
+                        </button>
+                    </div>
+
+                    <div class="modal-footer">
+
+                    </div>
+                    <!-- <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="dateOfBirth">Date of birth</label>
+                                    <div class="input-group">
+    
+                                    </div>
+                                </div>
+                            </form>
+                        </div> -->
+                </ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="content-layout fullwidth-standard-normal-scroll field_form_sec">
+        <div class="main">
+            <div class="max-w-3xl">
+                <div class="rich-text">
+                    <p>
+                        All Rights Reserved by Cyber Tatva. Designed and Developed by. <a href="#"> Cyber Tatva.</a>
+                    </p>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+    
+      
+      <script>
+      // Add the following code if you want the name of the file appear on select
+      $(".custom-file-input").on("change", function() {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+      });
+      </script>
+
+      

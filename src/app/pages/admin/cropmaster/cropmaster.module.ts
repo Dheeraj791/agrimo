@@ -16,6 +16,7 @@ import { CropmasterComponent } from '../cropmaster/cropmaster/cropmaster.compone
 import { CropstagesmasterComponent } from '../cropmaster/cropstagesmaster/cropstagesmaster.component';
 import { DiseasemasterComponent } from '../cropmaster/diseasemaster/diseasemaster.component';
 import { CropactivitymasterComponent } from '../cropmaster/cropactivitymaster/cropactivitymaster.component';
+import { MatSelectModule } from '@angular/material/select';
 @NgModule({
   declarations: [
     CropactivitymasterComponent,
@@ -36,7 +37,8 @@ imports     : [
         MatIconModule,
         MatInputModule,
         MatMenuModule,
-        CKEditorModule
+        CKEditorModule,
+        MatSelectModule
 ]
 })
 export class CropmasterModule { }

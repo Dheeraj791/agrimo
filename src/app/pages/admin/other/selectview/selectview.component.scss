@@ -1,227 +1,121 @@
 @import 'treo';
-
-selectview{}
+selectview {}
 
 // -----------------------------------------------------------------------------------------------------
 // @ Theming
 // -----------------------------------------------------------------------------------------------------
 @include treo-theme {
-
-    $background: map-get($theme, background);
-    $foreground: map-get($theme, foreground);
-    $primary: map-get($theme, primary);
-    $accent: map-get($theme, accent);
-    $warn: map-get($theme, warn);
-    $is-dark: map-get($theme, is-dark);
-
+	$background: map-get($theme, background);
+	$foreground: map-get($theme, foreground);
+	$primary: map-get($theme, primary);
+	$accent: map-get($theme, accent);
+	$warn: map-get($theme, warn);
+	$is-dark: map-get($theme, is-dark);
 }
 
 .myCustomModalClass .modal-dialog {
-    //any change in overall modal
-    .modal-header {
-        background-color: #5850ec !important;
-        color: #fff !important;
-    }
-
-
-  }
-
-
-
-
-
-.btn:focus{
-outline: none;
+	//any change in overall modal
+	.modal-header {
+		background-color: #5850ec !important;
+		color: #fff !important;
+	}
 }
+
+.btn:focus {
+	outline: none;
+}
+
 .btn_delete {
-    background-color: red;
-    color: #fff;
-    font-weight: 700;
-    border: none;
-    padding: 7px 25px;
-    text-transform: uppercase;
-    font-size: 16px;
+	background-color: red;
+	color: #fff;
+	font-weight: 700;
+	border: none;
+	padding: 7px 25px;
+	text-transform: uppercase;
+	font-size: 16px;
 }
 
 .btn_close {
-    background-color: #0048cc !important;
-    color: #fff;
-    font-weight: 700;
-    border: none !important;
-    padding: 7px 25px !important;
-    text-transform: uppercase;
-    font-size: 16px;
-    margin: 0 !important;
-    opacity: 1;
-    text-shadow: none !important;
-    line-height: 1.6 !important;
-    
+	background-color: #0048cc !important;
+	color: #fff;
+	font-weight: 700;
+	border: none !important;
+	padding: 7px 25px !important;
+	text-transform: uppercase;
+	font-size: 16px;
+	margin: 0 !important;
+	opacity: 1;
+	text-shadow: none !important;
+	line-height: 1.6 !important;
 }
-
-
-
 
 .form-group label {
-    width: 100%;
-    display: block;
+	width: 100%;
+	display: block;
 }
 
-.form-group input, .form-group select, .form-group textarea {
-    border: 1px solid #c7c7c7;
-    width: 100%;
-    padding: 6px;
-    min-height: 38px;
-    border-radius: 7px;
+.form-group input,
+.form-group select,
+.form-group textarea {
+	border: 1px solid #c7c7c7;
+	width: 100%;
+	padding: 6px;
+	min-height: 38px;
+	border-radius: 7px;
 }
 
 .modal-footer button.btn {
-    background-color: #5850ec;
-    color: #fff;
-    padding: 8px 28px;
-    border: none;
-    transition: all 0.5s;
+	background-color: #5850ec;
+	color: #fff;
+	padding: 8px 28px;
+	border: none;
+	transition: all 0.5s;
 }
 
 .modal-footer button.btn:hover {
-    background-color: black;
-}
-@import 'treo';
-
-// -----------------------------------------------------------------------------------------------------
-// @ Theming
-// -----------------------------------------------------------------------------------------------------
-@include treo-theme {
-
-    $background: map-get($theme, background);
-    $foreground: map-get($theme, foreground);
-    $primary: map-get($theme, primary);
-    $accent: map-get($theme, accent);
-    $warn: map-get($theme, warn);
-    $is-dark: map-get($theme, is-dark);
+	background-color: black;
 }
 
-
-
-
-.btn:focus{
-    outline: none !important;
-    box-shadow: none !important;
-}
-.btn_delete {
-    background-color: red;
-    color: #fff;
-    font-weight: 700;
-    border: none;
-    padding: 7px 25px;
-    text-transform: uppercase;
-    font-size: 16px;
+input:-moz-placeholder {
+	color: #495057;
 }
 
-.btn_close {
-    background-color: #0048cc !important;
-    color: #fff;
-    font-weight: 700;
-    border: none !important;
-    padding: 7px 25px !important;
-    text-transform: uppercase;
-    font-size: 16px;
-    margin: 0 !important;
-    opacity: 1;
-    text-shadow: none !important;
-    line-height: 1.6 !important;
-    
+input::-webkit-input-placeholder {
+	color: #495057;
 }
 
-
-
-
-.form-group label {
-    width: 100%;
-    display: block;
+input:-ms-input-placeholder {
+	color: #495057;
 }
 
-.form-group input, .form-group select, .form-group textarea {
-    position: relative;
-    display: flex;
-    min-height: 48px;
-    border-radius: 6px;
-    padding: 0 16px;
-    border-width: 1px;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+input::placeholder {
+	color: #495057;
 }
-
-.modal-footer button.btn {
-    background-color: #5850ec;
-    color: #fff;
-    padding: 8px 28px;
-    border: none;
-    transition: all 0.5s;
-}
-
-.modal-footer button.btn:hover {
-    background-color: black;
-}
-
-
-input:-moz-placeholder{
-    color: #495057;
-}
-input::-webkit-input-placeholder{
-    color: #495057;
-}
-input:-ms-input-placeholder{
-    color: #495057;
-}
-input::placeholder{
-    color: #495057;
-}
-
-
 
 .modal-header {
-    display: flex;
-    background-color: #5850ec;
-    align-items: flex-start;
-    justify-content: space-between;
-    padding: .8rem .8rem;
-    border-bottom: 1px solid #ffffff;
-    border-top-left-radius: calc(0.3rem - 1px);
-    border-top-right-radius: calc(0.3rem - 1px);
-    color: white;
+	display: flex;
+	background-color: #5850ec;
+	align-items: flex-start;
+	justify-content: space-between;
+	padding: .8rem .8rem;
+	border-bottom: 1px solid #ffffff;
+	border-top-left-radius: calc(0.3rem - 1px);
+	border-top-right-radius: calc(0.3rem - 1px);
+	color: white;
 }
+
 .modal-header .close {
-    padding: 1rem 1rem;
-    margin: -1rem -1rem -1rem auto;
-    color: white;
+	padding: 1rem 1rem;
+	margin: -1rem -1rem -1rem auto;
+	color: white;
 }
+
 .modal-title {
-    margin-bottom: 0;
-    line-height: 1.5;
-    font-size: 24px;
-    font-weight: 400;
+	margin-bottom: 0;
+	line-height: 1.5;
+	font-size: 24px;
+	font-weight: 400;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // .crop_master {
 //     width: 100%;
@@ -230,121 +124,112 @@ input::placeholder{
 //     width: 103%;
 //     padding: 15px;
 // }
-
 .heading_master {
-    margin-bottom: 30px;
-    margin-top: 48px;
+	margin-bottom: 30px;
+	margin-top: 48px;
 }
 
 .heading_master .button_box {
-    box-shadow: 0px 1px 6px #cacaca;
-    border-radius: 8px;
-    padding: 8px 15px 8px;
+	box-shadow: 0px 1px 6px #cacaca;
+	border-radius: 8px;
+	padding: 8px 15px 8px;
 }
 
 .heading_master .button_box .top_button {
-    display: flex;
-    flex-wrap: wrap;
-    position: relative;
-    justify-content: space-between;
+	display: flex;
+	flex-wrap: wrap;
+	position: relative;
+	justify-content: space-between;
 }
 
 .heading_master .button_box .top_button .img_box {
-    padding: 15px;
+	padding: 15px;
 }
 
 .heading_master .button_box .top_button .img_box img {
-    position: absolute;
-    width: 60px;
-    height: 60px;
-    left: 0;
-    top: -22px;
-    background-color: red;
-    padding: 15px;
-    box-shadow: 0 0 5px #c7c7c7;
-    border-radius: 3px;
+	position: absolute;
+	width: 60px;
+	height: 60px;
+	left: 0;
+	top: -22px;
+	background-color: red;
+	padding: 15px;
+	box-shadow: 0 0 5px #c7c7c7;
+	border-radius: 3px;
 }
 
 .heading_master .button_box .top_button .text_box span {
-    display: block;
-    text-align: right;
+	display: block;
+	text-align: right;
 }
 
 .heading_master .button_box .top_button .text_box span.heading {
-    font-size: 13px;
-    font-weight: 500;
+	font-size: 13px;
+	font-weight: 500;
 }
 
 .heading_master .button_box .top_button .text_box span.text_sub_heading {
-    font-size: 23px;
-    font-weight: 600;
+	font-size: 23px;
+	font-weight: 600;
 }
 
 .heading_master .button_box .bottom_button {
-    border-top: 2px solid #f2f2f2;
-    padding: 5px 0 0;
-    margin-top: 5px;
-    font-size: 11px;
-    text-transform: capitalize;
-    font-weight: 600;
+	border-top: 2px solid #f2f2f2;
+	padding: 5px 0 0;
+	margin-top: 5px;
+	font-size: 11px;
+	text-transform: capitalize;
+	font-weight: 600;
 }
 
 .button_box.first_box .img_box img {
-    background-image: linear-gradient(to right, #fda21e , #ec8c01);
+	background-image: linear-gradient(to right, #fda21e, #ec8c01);
 }
 
 .button_box.second_box .img_box img {
-    background-image: linear-gradient(to right, #5db460 , #51a455);
+	background-image: linear-gradient(to right, #5db460, #51a455);
 }
 
 .button_box.third_box .img_box img {
-    background-image: linear-gradient(to right, #ed4f4b , #e6413f);
+	background-image: linear-gradient(to right, #ed4f4b, #e6413f);
 }
 
 .button_box.fourth_box .img_box img {
-    background-image: linear-gradient(to right, #22c3d6, #10afc3);
+	background-image: linear-gradient(to right, #22c3d6, #10afc3);
 }
 
-
-
 .first_box.active .bottom_button {
-    color: #fa9f1a;
+	color: #fa9f1a;
 }
 
 .second_box.active .bottom_button {
-    color: #53a557;
+	color: #53a557;
 }
 
 .third_box.active .bottom_button {
-    color: #e64846;
+	color: #e64846;
 }
 
 .fourth_box.active .bottom_button {
-    color: #15b1c5;
+	color: #15b1c5;
 }
 
-
-
-
-
-
 .button_box.first_box.active {
-    border: 2px solid #fba01b;
-    /* border-style: inset; */
+	border: 2px solid #fba01b;
+	/* border-style: inset; */
 }
 
 .button_box.second_box.active {
-    border: 2px solid #52a656;
+	border: 2px solid #52a656;
 }
 
 .button_box.third_box.active {
-    border: 2px solid #eb4c48;
+	border: 2px solid #eb4c48;
 }
 
 .button_box.fourth_box.active {
-    border: 2px solid #1fc0d3;
+	border: 2px solid #1fc0d3;
 }
-
 
 // .header_top_btn {
 //     display: flex;
@@ -356,25 +241,67 @@ input::placeholder{
 //     padding: 9px 15px;
 //     align-items: center;
 // }
-
 // .header_top_btn p {
 //     width: 50%;
 //     margin: 0 !important;
 //     padding: 0 !important;
 // }
-
 // .header_top_btn p:last-child {
 //     float: right;
 //     text-align: right;
 // }
-
- p button {
-    background-color: #5850ec;
-    color: #fff !important;
+p button {
+	background-color: #5850ec;
+	color: #fff !important;
 }
 
 // button.btn.btn-info.btn-sm {
 //     margin-top: 30px !important;
 //     padding: 13px !important;
 // }
+button.btn.btn-info.btn-sm {
+	margin-top: 37px;
+}
 
+.flex-auto {
+	width: 100%;
+}
+
+.header_top_btn_new {
+	background-color: #fff;
+	margin: -15px;
+	box-shadow: 0 0 5px #a5a5a5;
+	padding: 0;
+	padding: 20px 20px 10px 20px;
+}
+
+.master-heading {
+	margin: 0;
+	font-size: 1.8rem;
+	margin: 0;
+}
+
+.breadcrumb {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 0rem 2px;
+	margin-bottom: 0rem;
+	list-style: none;
+	background-color: transparent;
+	border-radius: 0.25rem;
+	margin-bottom: 2px;
+	margin-top: 0px;
+	font-size: 10px;
+}
+
+.master-heading-small {
+	font-size: 1.2rem;
+	color: #668bb1;
+	margin-left: 10px;
+	margin-bottom: 15px;
+}
+
+.addbtn {
+	float: right;
+	margin-bottom: 10px;
+}

@@ -1,0 +1,86 @@
+<div class="box_main">
+    <div class="container">
+        <div class="col-md-12 bg-card shadow rounded overflow-hidden">
+            <div class="header_top_btn mb-5">
+                <button class="btn" mat-flat-button [color]="'primary'" (click)="open(addnew)">ADD NEW QUETION</button>
+            </div>
+            <div class="">
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+                    <thead>
+                        <p>All Questions & Answer</p>
+                        <tr>
+                            <th>S.Id</th>
+                            <th>Subject</th>
+                            <th>Question</th>
+                            <th>Answer</th>
+                            <th>Delete</th>
+                            <th>Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <ng-template #addnew let-modal>
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">ADD QUESTION AND ANSWER FROM HERE..!!!</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">----CHOOSE SUBJECT----</label>
+                                            <select class="form-control" name="activity_type">
+                                                <option>----CHOOSE SUBJECT----</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Inorganic Name</label>
+                                            <input type="text" placeholder="Insert Question From Here ">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <ckeditor [editor]="Editor" data="<p></p>"></ckeditor>
+                                </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark"
+                            (click)="modal.close('Save click')">Submit</button>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div class="content-layout fullwidth-standard-normal-scroll field_form_sec">
+    <div class="main">
+        <div class="max-w-3xl">
+            <div class="rich-text">
+                <p>
+                    All Rights Reserved by Cyber Tatva. Designed and Developed by. <a href="#"> Cyber Tatva.</a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+  
+  <script>
+  // Add the following code if you want the name of the file appear on select
+  $(".custom-file-input").on("change", function() {
+    var fileName = $(this).val().split("\\").pop();
+    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+  });
+  </script>

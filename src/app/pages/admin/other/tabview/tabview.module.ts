@@ -43,4 +43,6 @@ imports     : [
         MatSelectModule
 ]
 })
-export class TabviewModule { }
+export class TabviewModule {
+    
+ }

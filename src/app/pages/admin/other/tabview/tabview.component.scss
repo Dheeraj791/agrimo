@@ -1,227 +1,192 @@
 @import 'treo';
-
-tabview{}
+tabview {}
 
 // -----------------------------------------------------------------------------------------------------
 // @ Theming
 // -----------------------------------------------------------------------------------------------------
 @include treo-theme {
-
-    $background: map-get($theme, background);
-    $foreground: map-get($theme, foreground);
-    $primary: map-get($theme, primary);
-    $accent: map-get($theme, accent);
-    $warn: map-get($theme, warn);
-    $is-dark: map-get($theme, is-dark);
-
+	$background: map-get($theme, background);
+	$foreground: map-get($theme, foreground);
+	$primary: map-get($theme, primary);
+	$accent: map-get($theme, accent);
+	$warn: map-get($theme, warn);
+	$is-dark: map-get($theme, is-dark);
 }
 
 .myCustomModalClass .modal-dialog {
-    //any change in overall modal
-    .modal-header {
-        background-color: #5850ec !important;
-        color: #fff !important;
-    }
-
-
-  }
-
-
-
-
-
-.btn:focus{
-outline: none;
+	//any change in overall modal
+	.modal-header {
+		background-color: #5850ec !important;
+		color: #fff !important;
+	}
 }
+
+.btn:focus {
+	outline: none;
+}
+
 .btn_delete {
-    background-color: red;
-    color: #fff;
-    font-weight: 700;
-    border: none;
-    padding: 7px 25px;
-    text-transform: uppercase;
-    font-size: 16px;
+	background-color: red;
+	color: #fff;
+	font-weight: 700;
+	border: none;
+	padding: 7px 25px;
+	text-transform: uppercase;
+	font-size: 16px;
 }
 
 .btn_close {
-    background-color: #0048cc !important;
-    color: #fff;
-    font-weight: 700;
-    border: none !important;
-    padding: 7px 25px !important;
-    text-transform: uppercase;
-    font-size: 16px;
-    margin: 0 !important;
-    opacity: 1;
-    text-shadow: none !important;
-    line-height: 1.6 !important;
-    
+	background-color: #0048cc !important;
+	color: #fff;
+	font-weight: 700;
+	border: none !important;
+	padding: 7px 25px !important;
+	text-transform: uppercase;
+	font-size: 16px;
+	margin: 0 !important;
+	opacity: 1;
+	text-shadow: none !important;
+	line-height: 1.6 !important;
 }
-
-
-
 
 .form-group label {
-    width: 100%;
-    display: block;
+	width: 100%;
+	display: block;
 }
 
-.form-group input, .form-group select, .form-group textarea {
-    border: 1px solid #c7c7c7;
-    width: 100%;
-    padding: 6px;
-    min-height: 38px;
-    border-radius: 7px;
+.form-group input,
+.form-group select,
+.form-group textarea {
+	border: 1px solid #c7c7c7;
+	width: 100%;
+	padding: 6px;
+	min-height: 38px;
+	border-radius: 7px;
 }
 
 .modal-footer button.btn {
-    background-color: #5850ec;
-    color: #fff;
-    padding: 8px 28px;
-    border: none;
-    transition: all 0.5s;
+	background-color: #5850ec;
+	color: #fff;
+	padding: 8px 28px;
+	border: none;
+	transition: all 0.5s;
 }
 
 .modal-footer button.btn:hover {
-    background-color: black;
+	background-color: black;
 }
-@import 'treo';
 
+@import 'treo';
 // -----------------------------------------------------------------------------------------------------
 // @ Theming
 // -----------------------------------------------------------------------------------------------------
 @include treo-theme {
-
-    $background: map-get($theme, background);
-    $foreground: map-get($theme, foreground);
-    $primary: map-get($theme, primary);
-    $accent: map-get($theme, accent);
-    $warn: map-get($theme, warn);
-    $is-dark: map-get($theme, is-dark);
+	$background: map-get($theme, background);
+	$foreground: map-get($theme, foreground);
+	$primary: map-get($theme, primary);
+	$accent: map-get($theme, accent);
+	$warn: map-get($theme, warn);
+	$is-dark: map-get($theme, is-dark);
 }
 
-
-
-
-.btn:focus{
-    outline: none !important;
-    box-shadow: none !important;
+.btn:focus {
+	outline: none !important;
+	box-shadow: none !important;
 }
+
 .btn_delete {
-    background-color: red;
-    color: #fff;
-    font-weight: 700;
-    border: none;
-    padding: 7px 25px;
-    text-transform: uppercase;
-    font-size: 16px;
+	background-color: red;
+	color: #fff;
+	font-weight: 700;
+	border: none;
+	padding: 7px 25px;
+	text-transform: uppercase;
+	font-size: 16px;
 }
 
 .btn_close {
-    background-color: #0048cc !important;
-    color: #fff;
-    font-weight: 700;
-    border: none !important;
-    padding: 7px 25px !important;
-    text-transform: uppercase;
-    font-size: 16px;
-    margin: 0 !important;
-    opacity: 1;
-    text-shadow: none !important;
-    line-height: 1.6 !important;
-    
+	background-color: #0048cc !important;
+	color: #fff;
+	font-weight: 700;
+	border: none !important;
+	padding: 7px 25px !important;
+	text-transform: uppercase;
+	font-size: 16px;
+	margin: 0 !important;
+	opacity: 1;
+	text-shadow: none !important;
+	line-height: 1.6 !important;
 }
-
-
-
 
 .form-group label {
-    width: 100%;
-    display: block;
+	width: 100%;
+	display: block;
 }
 
-.form-group input, .form-group select, .form-group textarea {
-    position: relative;
-    display: flex;
-    min-height: 48px;
-    border-radius: 6px;
-    padding: 0 16px;
-    border-width: 1px;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+.form-group input,
+.form-group select,
+.form-group textarea {
+	position: relative;
+	display: flex;
+	min-height: 48px;
+	border-radius: 6px;
+	padding: 0 16px;
+	border-width: 1px;
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
 
 .modal-footer button.btn {
-    background-color: #5850ec;
-    color: #fff;
-    padding: 8px 28px;
-    border: none;
-    transition: all 0.5s;
+	background-color: #5850ec;
+	color: #fff;
+	padding: 8px 28px;
+	border: none;
+	transition: all 0.5s;
 }
 
 .modal-footer button.btn:hover {
-    background-color: black;
+	background-color: black;
 }
 
-
-input:-moz-placeholder{
-    color: #495057;
-}
-input::-webkit-input-placeholder{
-    color: #495057;
-}
-input:-ms-input-placeholder{
-    color: #495057;
-}
-input::placeholder{
-    color: #495057;
+input:-moz-placeholder {
+	color: #495057;
 }
 
+input::-webkit-input-placeholder {
+	color: #495057;
+}
 
+input:-ms-input-placeholder {
+	color: #495057;
+}
+
+input::placeholder {
+	color: #495057;
+}
 
 .modal-header {
-    display: flex;
-    background-color: #5850ec;
-    align-items: flex-start;
-    justify-content: space-between;
-    padding: .8rem .8rem;
-    border-bottom: 1px solid #ffffff;
-    border-top-left-radius: calc(0.3rem - 1px);
-    border-top-right-radius: calc(0.3rem - 1px);
-    color: white;
+	display: flex;
+	background-color: #5850ec;
+	align-items: flex-start;
+	justify-content: space-between;
+	padding: .8rem .8rem;
+	border-bottom: 1px solid #ffffff;
+	border-top-left-radius: calc(0.3rem - 1px);
+	border-top-right-radius: calc(0.3rem - 1px);
+	color: white;
 }
+
 .modal-header .close {
-    padding: 1rem 1rem;
-    margin: -1rem -1rem -1rem auto;
-    color: white;
+	padding: 1rem 1rem;
+	margin: -1rem -1rem -1rem auto;
+	color: white;
 }
+
 .modal-title {
-    margin-bottom: 0;
-    line-height: 1.5;
-    font-size: 24px;
-    font-weight: 400;
+	margin-bottom: 0;
+	line-height: 1.5;
+	font-size: 24px;
+	font-weight: 400;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // .crop_master {
 //     width: 100%;
@@ -230,134 +195,134 @@ input::placeholder{
 //     width: 103%;
 //     padding: 15px;
 // }
-
 .heading_master {
-    margin-bottom: 30px;
-    margin-top: 48px;
+	margin-bottom: 30px;
+	margin-top: 48px;
 }
 
 .heading_master .button_box {
-    box-shadow: 0px 1px 6px #cacaca;
-    border-radius: 8px;
-    padding: 8px 6px 8px;
+	box-shadow: 0px 1px 6px #cacaca;
+	border-radius: 8px;
+	padding: 8px 6px 8px;
 }
 
 .heading_master .button_box .top_button {
-    display: flex;
-    flex-wrap: wrap;
-    position: relative;
-    justify-content: space-between;
+	display: flex;
+	flex-wrap: wrap;
+	position: relative;
+	justify-content: space-between;
 }
 
 // .heading_master .button_box .top_button .img_box {
 //     padding: 15px;
 // }
-
 .heading_master .button_box .top_button .img_box img {
-    position: absolute;
-    width: 45px;
-    height: 45px;
-    left: 0;
-    top: -22px;
-    background-color: red;
-    padding: 8px;
-    box-shadow: 0 0 5px #c7c7c7;
-    border-radius: 3px;
+	position: absolute;
+	width: 45px;
+	height: 45px;
+	left: 0;
+	top: -22px;
+	background-color: red;
+	padding: 8px;
+	box-shadow: 0 0 5px #c7c7c7;
+	border-radius: 3px;
 }
 
 .heading_master .button_box .top_button .text_box span {
-    display: block;
-    text-align: right;
+	display: block;
+	text-align: right;
 }
 
 .heading_master .button_box .top_button .text_box span.heading {
-    font-size: 13px;
-    font-weight: 500;
+	font-size: 13px;
+	font-weight: 500;
 }
 
 .heading_master .button_box .top_button .text_box span.text_sub_heading {
-    font-size: 19px;
-    font-weight: 600;
+	font-size: 19px;
+	font-weight: 600;
 }
 
 .heading_master .button_box .bottom_button {
-    border-top: 2px solid #f2f2f2;
-    padding: 5px 0 0;
-    margin-top: 5px;
-    font-size: 11px;
-    text-transform: capitalize;
-    font-weight: 600;
+	border-top: 2px solid #f2f2f2;
+	padding: 5px 0 0;
+	margin-top: 5px;
+	font-size: 11px;
+	text-transform: capitalize;
+	font-weight: 600;
 }
 
 .button_box.first_box .img_box img {
-    background-image: linear-gradient(to right, #fda21e , #ec8c01);
+	background-image: linear-gradient(to right, #fda21e, #ec8c01);
 }
 
 .button_box.second_box .img_box img {
-    background-image: linear-gradient(to right, #5db460 , #51a455);
+	background-image: linear-gradient(to right, #5db460, #51a455);
 }
 
 .button_box.third_box .img_box img {
-    background-image: linear-gradient(to right, #ed4f4b , #e6413f);
+	background-image: linear-gradient(to right, #ed4f4b, #e6413f);
 }
 
 .button_box.fourth_box .img_box img {
-    background-image: linear-gradient(to right, #22c3d6, #10afc3);
+	background-image: linear-gradient(to right, #22c3d6, #10afc3);
 }
 
 .button_box.five_box .img_box img {
-    background-image: linear-gradient(to right, #931efd , #7c36bb);
+	background-image: linear-gradient(to right, #931efd, #7c36bb);
 }
 
 .button_box.six_box .img_box img {
-    background-image: linear-gradient(to right, #f10c0c , #d00606);
+	background-image: linear-gradient(to right, #f10c0c, #d00606);
 }
 
-
 .first_box.active .bottom_button {
-    color: #fa9f1a;
+	color: #fa9f1a;
 }
 
 .second_box.active .bottom_button {
-    color: #53a557;
+	color: #53a557;
 }
 
 .third_box.active .bottom_button {
-    color: #e64846;
+	color: #e64846;
 }
 
 .fourth_box.active .bottom_button {
-    color: #15b1c5;
-}
-.five_box.active .bottom_button {
-    color: #931efd;
-}
-.six_box.active .bottom_button {
-    color: #f10c0c;
+	color: #15b1c5;
 }
 
+.five_box.active .bottom_button {
+	color: #931efd;
+}
+
+.six_box.active .bottom_button {
+	color: #f10c0c;
+}
 
 .button_box.first_box.active {
-    border: 2px solid #fba01b;
-    /* border-style: inset; */
+	border: 2px solid #fba01b;
+	/* border-style: inset; */
 }
 
 .button_box.second_box.active {
-    border: 2px solid #52a656;
+	border: 2px solid #52a656;
 }
 
 .button_box.third_box.active {
-    border: 2px solid #eb4c48;
+	border: 2px solid #eb4c48;
 }
 
 .button_box.fourth_box.active {
-    border: 2px solid #1fc0d3;
+	border: 2px solid #1fc0d3;
 }
+
 .button_box.fourth_box.active {
-    border: 2px solid #931efd;
+	border: 2px solid #931efd;
 }
+
 .button_box.fourth_box.active {
-    border: 2px solid #f10c0c;
+	border: 2px solid #f10c0c;
 }
 
 // .header_top_btn {
@@ -370,58 +335,52 @@ input::placeholder{
 //     padding: 9px 15px;
 //     align-items: center;
 // }
-
 // .header_top_btn p {
 //     width: 50%;
 //     margin: 0 !important;
 //     padding: 0 !important;
 // }
-
 // .header_top_btn p:last-child {
 //     float: right;
 //     text-align: right;
 // }
-
 // .header_top_btn p button {
 //     background-color: #5850ec;
 //     color: #fff !important;
 // }
-
 p button {
-    background-color: #5850ec;
-    color: #fff !important;
+	background-color: #5850ec;
+	color: #fff !important;
 }
+
 .box_com_div {
-    display: flex;
-    flex-wrap: wrap;
+	display: flex;
+	flex-wrap: wrap;
 }
+
 .box_com_div .box_border {
-    width: calc(16.66% - 12px);
-    margin: 0 6px;
+	width: calc(16.66% - 12px);
+	margin: 0 6px;
 }
+
 // app-tabview .heading_master {
 //     padding: 35px 6px!important;
 // }
-
-
-
-
 // @media screen and (max-width: 1400px) and (min-width: 767) {
-
 .box_com_div {
-    width: 1038px;
-    padding: 46px 4px 16px;
+	width: 1038px;
+	padding: 46px 4px 16px;
 }
 
 .heading_master {
-    width: 100%;
-    max-width: 1100px;
-    overflow-x: scroll;
-    overflow-y: hidden;
+	width: 100%;
+	max-width: 1100px;
+	overflow-x: scroll;
+	overflow-y: hidden;
 }
 
-
 .heading_master::-webkit-scrollbar {
-    width: 0px;
-    background: transparent; /* make scrollbar transparent */
+	width: 0px;
+	background: transparent;
+	/* make scrollbar transparent */
 }

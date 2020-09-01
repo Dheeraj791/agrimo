@@ -1,0 +1,44 @@
+@import 'treo';
+
+auth-sign-in {
+
+    .content-layout {
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+// -----------------------------------------------------------------------------------------------------
+// @ Theming
+// -----------------------------------------------------------------------------------------------------
+@include treo-theme {
+
+}
+treo-card.auth-card .content-container .content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    max-width: 480px;
+    width: 100%;
+    margin: 64px;
+    justify-content: center;
+    align-items: center;
+}
+treo-card.auth-card .content-container .content .title span {
+    font-size: 80px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+.bottom-line {
+    font-size: 23px !important;
+    margin-top: 7px;
+    font-family: cursive;
+    color: #fffa6c;
+}
+
+
+
+
+
+
+
