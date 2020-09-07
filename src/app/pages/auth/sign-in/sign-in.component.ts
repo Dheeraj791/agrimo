@@ -67,7 +67,10 @@ export class SignInComponent implements OnInit {
         this.message = null;
 
         // Get the credentials
-        const credentials = this.signInForm.value;
+        const credentials = {
+            user_id: this.signInForm.value.email,
+            password: this.signInForm.value.password
+        };
 
         // Sign in
         this._authService.signIn(credentials)

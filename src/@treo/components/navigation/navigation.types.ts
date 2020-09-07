@@ -1,6 +1,7 @@
 export interface TreoNavigationItem
 {
     id?: string;
+    role?: string;
     title?: string;
     subtitle?: string;
     type: 'aside' | 'basic' | 'collapsable' | 'divider' | 'group' | 'spacer';
