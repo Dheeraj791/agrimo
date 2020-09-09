@@ -53,14 +53,14 @@ export const defaultNavigation: TreoNavigationItem[] = [
         children: [
             {
                 id: 'pages.masterselect',
-                title: 'Master Records (option one)',
+                title: 'Master Records',
                 type: 'basic',
                 icon: 'apps',
                 link: '/masterselect'
             },
             {
                 id: 'pages.mastertabs',
-                title: 'Master Records (option two)',
+                title: 'Crop Master Records',
                 type: 'basic',
                 icon: 'apps',
                 link: '/mastertabs'

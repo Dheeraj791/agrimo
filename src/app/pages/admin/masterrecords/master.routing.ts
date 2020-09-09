@@ -15,6 +15,11 @@ import { UnitmeasurementmasterComponent } from '../masterrecords/unitmeasurement
 
 export const masterRecordsRouting: Route[] = [
     {
+        path: '', 
+        redirectTo: 'activity',
+        pathMatch: 'full'
+    },
+    {
         path     : 'activity',
         component: ActivitymasterComponent
     },{

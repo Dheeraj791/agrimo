@@ -25,6 +25,9 @@ import { SoilmasterComponent } from '../masterrecords/soilmaster/soilmaster.comp
 import { UnitmeasurementmasterComponent } from '../masterrecords/unitmeasurementmaster/unitmeasurementmaster.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSelectModule } from '@angular/material/select';
+
+import {MasterRecordService} from '../masterrecords/master-record.service';
+
 @NgModule({
   declarations: [
     ActivitymasterComponent,
@@ -55,6 +58,7 @@ imports     : [
         MatTabsModule,
         MatSelectModule
         
-]
+],
+providers: [MasterRecordService]
 })
 export class MasterrecordsModule { }
