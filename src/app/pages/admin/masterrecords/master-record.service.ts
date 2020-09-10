@@ -17,4 +17,8 @@ export class MasterRecordService {
     return this.http.get('assets/master-record-list.json');
   }
 
+  getCropMasterRecordLists(): Observable<any> {
+    return this.http.get('assets/crop-master-record-list.json');
+  }
+
 }

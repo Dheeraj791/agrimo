@@ -1,0 +1,50 @@
+[
+    {
+        "id": "01",
+        "name": "Crop Master",
+        "type": "Crop Master",
+        "img_icon": "assets/crop.png",
+        "count": "04",
+        "class": "button_box first_box active"
+    },
+    {
+        "id": "02",
+        "name": "Crop Activity",
+        "type": "Crop Master",
+        "img_icon": "assets/ratio.png",
+        "count": "01",
+        "class": "button_box second_box"
+    },
+    {
+        "id": "03",
+        "name": "Crop Category",
+        "type": "Crop Master",
+        "img_icon": "assets/frame.png",
+        "count": "02",
+        "class": "button_box six_box"
+    },
+    {
+        "id": "04",
+        "name": "Crop Family",
+        "type": "Crop Master",
+        "img_icon": "assets/crop_family.png",
+        "count": "03",
+        "class": "button_box third_box"
+    },
+    {
+        "id": "05",
+        "name": "Crop Stages",
+        "type": "Crop Master",
+        "img_icon": "assets/progress.png",
+        "count": "05",
+        "class": "button_box fourth_box"
+    },
+    {
+        "id": "06",
+        "name": "Crop Disease",
+        "type": "Crop Master",
+        "img_icon": "assets/crop_05.png",
+        "count": "06",
+        "class": "button_box five_box"
+    }
+]

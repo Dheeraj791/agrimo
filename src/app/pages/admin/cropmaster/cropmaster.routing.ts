@@ -17,7 +17,7 @@ export const cropmasterRoute: Route[] = [
         path     : 'family',
         component: CropfamilymasterComponent
     },{
-        path     : 'crop',
+        path     : 'master',
         component: CropmasterComponent
     },{
         path     : 'stages',

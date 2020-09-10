@@ -9,7 +9,7 @@
                 </div>
                 <div class="col-md-4">
                     <mat-form-field class="flex-auto">
-                        <mat-select [placeholder]="'Select Record Here'"  (selectionChange)="onMasterRecordListChange($event)">
+                        <mat-select [(ngModel)]="selectedMaster" (selectionChange)="onMasterRecordListChange($event)">
                             <mat-option *ngFor="let list of masterRecordList" value="{{list.name}}">{{list.name}}</mat-option>
                             <!-- <mat-option value="country-2">Irrigation Master</mat-option>
                             <mat-option value="country-3">Location Master</mat-option> -->
