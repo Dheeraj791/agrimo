@@ -6,9 +6,13 @@ import { AuthUtils } from 'app/core/auth/auth.utils';
 
 @Injectable()
 export class AuthService
+
 {
     // Private
     private _authenticated: boolean;
+
+    // API base url
+    private _baseUrl = 'http://teczire.com:65530/api/v1/';
 
     /**
      * Constructor
@@ -49,19 +53,23 @@ export class AuthService
      *
      * @param credentials
      */
-    signIn(credentials: { email: string, password: string }): Observable<any>
+    signIn(credentials): Observable<any>
     {
+        console.log(credentials);
         // Throw error, if the user is already logged in
         if ( this._authenticated )
         {
             return throwError('User is already logged in.');
         }
 
-        return this._httpClient.post('api/auth/sign-in', credentials).pipe(
+        return this._httpClient.post(this._baseUrl + 'user_login', credentials).pipe(
             switchMap((response: any) => {
 
                 // Store the access token in the local storage
-                this.accessToken = response.access_token;
+                this.accessToken = response.token;
+
+                // Store the basic user data in local storage
+                window.localStorage.setItem('user_data', JSON.stringify(response.data));
 
                 // Set the authenticated flag to true
                 this._authenticated = true;
@@ -78,26 +86,26 @@ export class AuthService
     signInUsingToken(): Observable<any>
     {
         // Renew token
-        return this._httpClient.post('api/auth/refresh-access-token', {
-            access_token: this.accessToken
-        }).pipe(
-            catchError(() => {
+        // return this._httpClient.post('api/auth/refresh-access-token', {
+        //     access_token: this.accessToken
+        // }).pipe(
+        //     catchError(() => {
 
-                // Return false
-                return of(false);
-            }),
-            switchMap((response: any) => {
+        //         // Return false
+        //         return of(false);
+        //     }),
+        //     switchMap((response: any) => {
 
                 // Store the access token in the local storage
-                this.accessToken = response.access_token;
+                this.accessToken = window.localStorage.getItem('access_token');
 
                 // Set the authenticated flag to true
                 this._authenticated = true;
 
                 // Return true
                 return of(true);
-            })
-        );
+            // })
+        // );
     }
 
     /**

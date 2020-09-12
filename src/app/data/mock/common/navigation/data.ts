@@ -4,6 +4,7 @@ import { TreoNavigationItem } from '@treo/components/navigation';
 export const defaultNavigation: TreoNavigationItem[] = [
     {
         id: 'pages',
+        role: 'Super Admin',
         title: 'Dashboard',
         type: 'basic',
         icon: 'apps',
@@ -11,6 +12,7 @@ export const defaultNavigation: TreoNavigationItem[] = [
     },
     {
         id: 'pages',
+        role: 'Super Admin',
         title: 'User Management',
         subtitle: 'Registration & installations',
         type: 'group',
@@ -44,20 +46,21 @@ export const defaultNavigation: TreoNavigationItem[] = [
     },
     {
         id: 'pages',
-        title: 'Master Records',
+        title: 'Master Record',
+        role: 'Super Admin',
         subtitle: 'All Master Records',
         type: 'group',
         children: [
             {
                 id: 'pages.masterselect',
-                title: 'Master Records (option one)',
+                title: 'Master Records',
                 type: 'basic',
                 icon: 'apps',
                 link: '/masterselect'
             },
             {
                 id: 'pages.mastertabs',
-                title: 'Master Records (option two)',
+                title: 'Crop Master Records',
                 type: 'basic',
                 icon: 'apps',
                 link: '/mastertabs'
@@ -189,6 +192,7 @@ export const defaultNavigation: TreoNavigationItem[] = [
     },
     {
         id: 'pages',
+        role: 'Super Admin',
         title: 'Notification & Support',
         subtitle: 'Check queries, generate notification, update settings',
         type: 'group',

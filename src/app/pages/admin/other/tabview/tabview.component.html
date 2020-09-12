@@ -1,29 +1,27 @@
 <div class="box_main">
-        <div class="col-md-12 bg-card shadow rounded overflow-hidden">
-            <div class="header_top_btn mb-5">
-                <p class="crop_master">
-                    CROP MASTER
-                </p>
+  <div class="col-md-12 bg-card shadow rounded overflow-hidden">
+    <div class="header_top_btn mb-5">
+      <p class="crop_master">CROP MASTER</p>
+    </div>
+    <div class="heading_master">
+      <div class="box_com_div">
+        <div class="box_border" *ngFor="let list of cropMasterRecordList" (click)= "ontabClick(list.name)">
+          <div [class]="list.class">
+            <div class="top_button">
+              <div class="img_box">
+                <img src="{{ list.img_icon }}" alt="" />
+              </div>
+              <div class="text_box">
+                <span class="heading">{{ list.name }}</span>
+                <span class="text_sub_heading">01</span>
+              </div>
             </div>
-            <div class="heading_master">
-                <div class="box_com_div">
-                    <div class="box_border">
-                        <div class="button_box first_box active">
-                            <div class="top_button">
-                                <div class="img_box">
-                                    <img src="assets/crop.png" alt="">
-                                </div>
-                                <div class="text_box">
-                                    <span class="heading">Crop Master</span>
-                                    <span class="text_sub_heading">01</span>
-                                </div>
-                            </div>
-                            <div class="bottom_button">
-                                <span>crop master</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="box_border">
+            <div class="bottom_button">
+              <span>{{ list.name }}</span>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="box_border">
                         <div class="button_box second_box">
                             <div class="top_button">
                                 <div class="img_box">
@@ -102,18 +100,18 @@
                                 <span>Crop category</span>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
+                    </div> -->
+      </div>
+    </div>
 
     <div class="table_sec">
-            <div class="">
-
-                    <p>
+      <div class="">
+          <router-outlet></router-outlet>
+        <!-- <p>
                         <button type="button" class="btn btn_new" (click)="open(addnew)">Add New Button</button>
-                    </p>
+                    </p> -->
 
-                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+        <!-- <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
                     <thead>
                         <tr>
                             <th>S.Id</th>
@@ -164,8 +162,8 @@
                             </td>
                         </tr>
                     </tbody>
-                </table>
-                <!-- <ng-template #add let-modal>
+                </table> -->
+        <!-- <ng-template #add let-modal>
                     <div class="modal-header">
                         <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
                         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -187,7 +185,7 @@
                             (click)="modal.close('Save click')">Save</button>
                     </div>
                 </ng-template> -->
-                <ng-template #addnew let-modal class="shadow rounded overflow-hidden">
+        <!-- <ng-template #addnew let-modal class="shadow rounded overflow-hidden">
                     <div class="modal-header">
                         <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
                         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -225,7 +223,7 @@
                                     </mat-form-field>
                                 </div>
                 
-                                <!-- <mat-divider class="mt-6 mb-10"></mat-divider> -->
+                                <mat-divider class="mt-6 mb-10"></mat-divider>
             
                                 <div class="flex flex-col gt-xs:flex-row">
                                     <mat-form-field class="flex-auto gt-xs:pr-3">
@@ -275,7 +273,7 @@
 
 
 
-<!-- 
+
 
 
                     <div class="modal-header">
@@ -311,9 +309,9 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-dark"
                             (click)="modal.close('Save click')">Save</button>
-                    </div> -->
-                </ng-template>
-                <ng-template #status let-modal>
+                    </div>
+                </ng-template> -->
+        <!-- <ng-template #status let-modal>
                     <div class="modal-header">
                         <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
                         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -334,9 +332,9 @@
                         <button type="button" class="btn btn-outline-dark"
                             (click)="modal.close('Save click')">Save</button>
                     </div>
-                </ng-template>
-<!-- 
-                <ng-template #addnew let-modal>
+                </ng-template> -->
+
+        <!-- <ng-template #addnew let-modal>
                     <div class="modal-header">
                         <h4 class="modal-title" id="modal-basic-title">Add New Irrigation Type</h4>
                         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -390,8 +388,7 @@
                     </div>
                 </ng-template> -->
 
-                
-                <ng-template #editone let-modal>
+        <!-- <ng-template #editone let-modal>
                         <div class="modal-header">
                             <h4 class="modal-title" id="modal-basic-title">Edit Irrigation Details</h4>
                             <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -443,11 +440,9 @@
                             <button type="button" class="btn btn-outline-dark"
                                 (click)="modal.close('Save click')">Submit</button>
                         </div>
-                    </ng-template>
+                    </ng-template> -->
 
-
-
-                <ng-template #edittwo let-modal>
+        <!-- <ng-template #edittwo let-modal>
                         <div class="modal-header">
                             <h4 class="modal-title" id="modal-basic-title">Edit Irrigation Details</h4>
                             <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -500,10 +495,9 @@
                                 (click)="modal.close('Save click')">Submit</button>
                         </div>
                     </ng-template>
-    
+     -->
 
-
-                <ng-template #editthree let-modal>
+        <!-- <ng-template #editthree let-modal>
                         <div class="modal-header">
                             <h4 class="modal-title" id="modal-basic-title">Edit Irrigation Details</h4>
                             <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -556,12 +550,9 @@
                                 (click)="modal.close('Save click')">Submit</button>
                         </div>
                     </ng-template>
-    
+     -->
 
-
-
-                
-                <ng-template #editfour let-modal>
+        <!-- <ng-template #editfour let-modal>
                         <div class="modal-header">
                             <h4 class="modal-title" id="modal-basic-title">Edit Irrigation Details</h4>
                             <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -613,14 +604,9 @@
                             <button type="button" class="btn btn-outline-dark"
                                 (click)="modal.close('Save click')">Submit</button>
                         </div>
-                    </ng-template>
+                    </ng-template> -->
 
-
-
-
-
-
-                <ng-template #delete let-modal class="delete_modal">
+        <!-- <ng-template #delete let-modal class="delete_modal">
                     <div class="modal-header">
                         Are you sure ?
                     </div>
@@ -639,7 +625,7 @@
                     <div class="modal-footer">
 
                     </div>
-                    <!-- <div class="modal-body">
+                    <div class="modal-body">
                             <form>
                                 <div class="form-group">
                                     <label for="dateOfBirth">Date of birth</label>
@@ -648,37 +634,31 @@
                                     </div>
                                 </div>
                             </form>
-                        </div> -->
-                </ng-template>
-
-
-            </div>
-        </div>
+                        </div>
+                </ng-template> -->
+      </div>
     </div>
+  </div>
 </div>
-<br>
+<br />
 
-
-
-
-<div class="content-layout fullwidth-standard-normal-scroll field_form_sec">
-    <div class="main">
-        <div class="max-w-3xl">
-            <div class="rich-text">
-                <p>
-                    All Rights Reserved by Cyber Tatva. Designed and Developed by. <a href="#"> Cyber Tatva.</a>
-                </p>
-            </div>
-
-        </div>
+<!-- <div class="content-layout fullwidth-standard-normal-scroll field_form_sec">
+  <div class="main">
+    <div class="max-w-3xl">
+      <div class="rich-text">
+        <p>
+          All Rights Reserved by Cyber Tatva. Designed and Developed by.
+          <a href="#"> Cyber Tatva.</a>
+        </p>
+      </div>
     </div>
-</div>
+  </div>
+</div> -->
 
-  
-  <script>
+<script>
   // Add the following code if you want the name of the file appear on select
-  $(".custom-file-input").on("change", function() {
+  $(".custom-file-input").on("change", function () {
     var fileName = $(this).val().split("\\").pop();
     $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
   });
-  </script>
+</script>

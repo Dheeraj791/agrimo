@@ -4,15 +4,15 @@
             <div class="row">
                 <div class="col-md-8 custom-col-8">
                     <div class="breadcrumb"><span class="path">Master Records</span><span
-                            class="separator">/</span><span class="path">Activity Master</span></div>
+                            class="separator">/</span><span class="path">{{selectedMaster}}</span></div>
                     <h1 class="master-heading">Master Records</h1>
                 </div>
                 <div class="col-md-4">
                     <mat-form-field class="flex-auto">
-                        <mat-select [placeholder]="'Select Record Here'">
-                            <mat-option value="country-1">Activity Master</mat-option>
-                            <mat-option value="country-2">Irrigation Master</mat-option>
-                            <mat-option value="country-3">Location Master</mat-option>
+                        <mat-select [(ngModel)]="selectedMaster" (selectionChange)="onMasterRecordListChange($event)">
+                            <mat-option *ngFor="let list of masterRecordList" value="{{list.name}}">{{list.name}}</mat-option>
+                            <!-- <mat-option value="country-2">Irrigation Master</mat-option>
+                            <mat-option value="country-3">Location Master</mat-option> -->
                         </mat-select>
                         <mat-icon matPrefix [svgIcon]="'arrow_right_alt'"></mat-icon>
                     </mat-form-field>
@@ -22,18 +22,23 @@
         <div class="table_sec">
             <div class="">
                 <div class="row">
-                    <div class="col-md-6">
-                        <h1 class="master-heading-small">Activity Master</h1>
+                    <div class="col-md-12">
+                        <h1 class="master-heading-small">{{selectedMaster}}</h1>
                     </div>
-                    <div class="col-md-6 pull-right">
-                        <!-- <button type="button" class="btn btn_new pull-right" (click)="open(addnew)">Add New Button</button> -->
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <router-outlet></router-outlet>
+                    </div>
+                    <!-- <div class="col-md-6 pull-right">
+                        <button type="button" class="btn btn_new pull-right" (click)="open(addnew)">Add New Button</button>
                         <button (click)="open(addnew)" class="px-6 ml-3 addbtn" mat-flat-button [color]="'primary'">
                             Save
                         </button>
-                    </div>
+                    </div> -->
                 </div>
 
-                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+                <!-- <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
                     <thead>
                         <tr>
                             <th>S.Id</th>
@@ -84,7 +89,7 @@
                             </td>
                         </tr>
                     </tbody>
-                </table>
+                </table> -->
                 <!-- <ng-template #add let-modal>
                     <div class="modal-header">
                         <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
@@ -107,7 +112,7 @@
                             (click)="modal.close('Save click')">Save</button>
                     </div>
                 </ng-template> -->
-                <ng-template #edit let-modal>
+                <!-- <ng-template #edit let-modal>
                     <div class="modal-header">
                         <h4 class="modal-title" id="modal-basic-title">Update Activity Name</h4>
                         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -218,10 +223,10 @@
                         <button type="button" class="btn btn-outline-dark"
                             (click)="modal.close('Save click')">Submit</button>
                     </div>
-                </ng-template>
+                </ng-template> -->
 
 
-                <ng-template #editone let-modal>
+                <!-- <ng-template #editone let-modal>
                     <div class="modal-header">
                         <h4 class="modal-title" id="modal-basic-title">Edit Irrigation Details</h4>
                         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -469,7 +474,7 @@
                     <div class="modal-footer">
 
                     </div>
-                    <!-- <div class="modal-body">
+                    <div class="modal-body">
                             <form>
                                 <div class="form-group">
                                     <label for="dateOfBirth">Date of birth</label>
@@ -478,15 +483,18 @@
                                     </div>
                                 </div>
                             </form>
-                        </div> -->
-                </ng-template>
+                        </div>
+                </ng-template> -->
 
 
             </div>
         </div>
     </div>
 </div>
-<br>
+
+<!-- <router-outlet></router-outlet> -->
+
+<!-- <br>
 <div class="content-layout fullwidth-standard-normal-scroll field_form_sec">
     <div class="main">
         <div class="max-w-3xl">
@@ -498,7 +506,7 @@
 
         </div>
     </div>
-</div>
+</div> -->
 
 
 <script>

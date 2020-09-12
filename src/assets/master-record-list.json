@@ -1,0 +1,62 @@
+[
+    {
+        "type": "master",
+        "id": 1,
+        "name": "Activity Master"
+    },
+    {
+        "type": "master",
+        "id": 2,
+        "name": "Irrigation Master"
+    },
+    {
+        "type": "master",
+        "id": 3,
+        "name": "Land Measurement Master"
+    },
+    {
+        "type": "master",
+        "id": 4,
+        "name": "Location Master"
+    },
+    {
+        "type": "master",
+        "id": 5,
+        "name": "Material Master"
+    },
+    {
+        "type": "master",
+        "id": 6,
+        "name": "Mulch Master"
+    },
+    {
+        "type": "master",
+        "id": 7,
+        "name": "Plantation Master"
+    },
+    {
+        "type": "master",
+        "id": 7,
+        "name": "Preparation Master"
+    },
+    {
+        "type": "master",
+        "id": 7,
+        "name": "QA Master"
+    },
+    {
+        "type": "master",
+        "id": 7,
+        "name": "Season Master"
+    },
+    {
+        "type": "master",
+        "id": 7,
+        "name": "Soil Master"
+    },
+    {
+        "type": "master",
+        "id": 7,
+        "name": "Unit Measurement Master"
+    }
+]
