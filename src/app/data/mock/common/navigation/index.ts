@@ -46,15 +46,15 @@ export class NavigationMockApi implements TreoMockApi {
    * Register
    */
   register(): void {
-    // get user role from local storage
-    const userData = JSON.parse(window.localStorage.getItem('user_data'));
-    if (userData != null) {
-      this.userRole = userData[0].user_type_name;
-    }
     // -----------------------------------------------------------------------------------------------------
     // @ Navigation - GET
     // -----------------------------------------------------------------------------------------------------
     this._treoMockApiService.onGet('api/common/navigation').reply(() => {
+      // get user role from local storage
+      const userData = JSON.parse(window.localStorage.getItem('user_data'));
+      if (userData != null) {
+        this.userRole = userData[0].user_type_name;
+      }
       // Logic for showing nav menus based on role
       this.defaultNav = [];
       this._defaultNavigation.filter((nav) => {
