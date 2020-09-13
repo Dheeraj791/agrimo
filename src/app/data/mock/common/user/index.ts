@@ -21,6 +21,10 @@ export class UserMockApi implements TreoMockApi
         private _treoMockApiService: TreoMockApiService
     )
     {
+        const userInfo = JSON.parse(localStorage.getItem('user_data'));
+        console.log(userInfo);
+        userData.name = userInfo[0].user_name;
+        userData.email = userInfo[0].user_email;
         // Set the data
         this._user = userData;
 
