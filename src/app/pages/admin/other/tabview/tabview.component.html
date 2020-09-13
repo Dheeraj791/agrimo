@@ -1,12 +1,18 @@
 <div class="box_main">
   <div class="col-md-12 bg-card shadow rounded overflow-hidden">
-    <div class="header_top_btn mb-5">
-      <p class="crop_master">CROP MASTER</p>
+    <div class="header_top_btn_new mb-5">
+        <div class="row">
+            <div class="col-md-8 custom-col-8 ">
+                <div class="breadcrumb"><span class="path">Crop Master</span><span
+                        class="separator">/</span><span class="path">{{selectedMaster}}</span></div>
+                <h1 class="master-heading" style="margin-bottom: 5px;">Crop Records</h1>
+            </div>
+        </div>
     </div>
-    <div class="heading_master">
-      <div class="box_com_div">
+    <div class="heading_master ">
+      <div class="box_com_div" style="padding: 14px 0px 0px;">
         <div class="box_border" *ngFor="let list of cropMasterRecordList" (click)= "ontabClick(list.name)">
-          <div [class]="list.class">
+          <div [class]="list.class" class="active_first_box">
             <div class="top_button">
               <div class="img_box">
                 <img src="{{ list.img_icon }}" alt="" />
@@ -105,8 +111,11 @@
     </div>
 
     <div class="table_sec">
-      <div class="">
-          <router-outlet></router-outlet>
+      <div class="row">
+          <div class="col-md-12" class="col-md-12" style="padding: 0 !important;">
+            <router-outlet></router-outlet>
+        </div>
+          
         <!-- <p>
                         <button type="button" class="btn btn_new" (click)="open(addnew)">Add New Button</button>
                     </p> -->

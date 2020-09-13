@@ -14,6 +14,7 @@ export class LocationmasterComponent implements OnInit {
   dtTrigger: any;
   closeResult = '';
   public Editor = ClassicEditor;
+  tab_name = "Country";
   constructor(private modalService: NgbModal) { }
 
   ngOnInit(): void {
@@ -32,7 +33,21 @@ export class LocationmasterComponent implements OnInit {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
-
+  tabChange(event){
+    console.log(event.index)
+    
+    if(event.index==0){
+      this.tab_name = "Country";
+    }else if(event.index==1){
+      this.tab_name = "State";
+    }else if(event.index==2){
+      this.tab_name = "District";
+    }else if(event.index==3){
+      this.tab_name = "Tehsil";
+    }else if(event.index==4){
+      this.tab_name = "City/Village";
+    }
+  }
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
