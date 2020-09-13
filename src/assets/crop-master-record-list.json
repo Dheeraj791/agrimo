@@ -5,7 +5,7 @@
         "type": "Crop Master",
         "img_icon": "assets/crop.png",
         "count": "04",
-        "class": "button_box first_box active"
+        "class": "button_box first_box"
     },
     {
         "id": "02",

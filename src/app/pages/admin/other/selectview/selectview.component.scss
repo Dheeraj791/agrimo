@@ -294,14 +294,18 @@ button.btn.btn-info.btn-sm {
 	font-size: 10px;
 }
 
-.master-heading-small {
-	font-size: 1.2rem;
-	color: #668bb1;
-	margin-left: 10px;
-	margin-bottom: 15px;
-}
+
 
 .addbtn {
 	float: right;
 	margin-bottom: 10px;
+}
+.box_main .bg-card.shadow .table_sec {
+    background-color: #fff !important;
+    padding: 0px 0px;
+    border-radius: 5px;
+    box-shadow: 0 0px 0px #a5a5a5;
+}
+.container {
+    margin: 0px 0px !important;
 }

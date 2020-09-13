@@ -17,6 +17,7 @@ export class TabviewComponent implements OnInit {
   closeResult = '';
   public Editor = ClassicEditor;
    cropMasterRecordList: any;
+   selectedMaster :any;
   constructor(private modalService: NgbModal, private masterRecordSevice: MasterRecordService
     ,         private router: Router, private route: ActivatedRoute) { }
 
@@ -27,6 +28,7 @@ export class TabviewComponent implements OnInit {
         this.cropMasterRecordList = res;
         const defaultValue = this.cropMasterRecordList[0].name.split(' ')[1].replace(/ /g, '').toLowerCase();
         console.log(defaultValue);
+        this.selectedMaster = defaultValue
         this.router.navigate(['crop-master', defaultValue], {relativeTo: this.route});
       }
     );
@@ -35,6 +37,7 @@ export class TabviewComponent implements OnInit {
   ontabClick(value) {
     console.log(value);
     value = value.split(' ')[1].replace(/ /g, '').toLowerCase();
+    this.selectedMaster = value;
     this.router.navigate(['crop-master', value], {relativeTo: this.route});
   }
 

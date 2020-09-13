@@ -1,77 +1,60 @@
-<div class="content-layout" [ngClass]="'fullwidth-tabs'">
-
-    <!-- Header -->
-    <div class="header">
-
-        <div class="left">
-
-            <div class="breadcrumb">
-                <span class="path">CONTENT LAYOUTS</span>
-                <span class="separator">/</span>
-                <span class="path">FULLWIDTH</span>
+<div class="box_main">
+    <div class="container" style="margin: 0px 0px !important;">
+        <div class="col-md-12 bg-card shadow rounded overflow-hidden" style="background-color: white;">
+            <div class="header_top_btn mb-5">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h1 class="master-heading-small">Location Master</h1>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="addbtn" mat-flat-button [color]="'primary'">Add New {{tab_name}}</button>
+                    </div>
+                </div>
             </div>
-
-            <h1>Fullwidth tabs</h1>
-
+            <div class="content-layout" [ngClass]="'fullwidth-tabs'">
+                <!-- Main -->
+                <div class="main">
+                    <!-- Tabs -->
+                    <mat-tab-group (selectedTabChange)="tabChange($event)">
+            
+                        <mat-tab label="Country (1)">
+            
+                            <!-- Demo content -->
+            
+            
+                        </mat-tab>
+            
+                        <mat-tab label="States (1)">
+            
+                            <!-- Demo content -->
+            
+            
+                        </mat-tab>
+            
+                        <mat-tab label="District (2)">
+            
+                            <!-- Demo content -->
+            
+            
+                        </mat-tab>
+            
+                        <mat-tab label="Tehsil (2)">
+            
+                            <!-- Demo content -->
+            
+            
+                        </mat-tab>
+            
+                        <mat-tab label="City or Village (2)">
+            
+                            <!-- Demo content -->
+            
+            
+                        </mat-tab>
+                    </mat-tab-group>
+                </div>
+            </div>
         </div>
-
-        <div class="right">
-
-
-        </div>
-
     </div>
-
-    <!-- Main -->
-    <div class="main">
-
-        <!-- Tabs -->
-        <mat-tab-group>
-
-            <mat-tab label="First Tab">
-
-                <!-- Demo content -->
-
-
-            </mat-tab>
-
-            <mat-tab label="Second Tab">
-
-                <!-- Demo content -->
-
-
-            </mat-tab>
-
-            <mat-tab label="Third Tab">
-
-                <!-- Demo content -->
-
-
-            </mat-tab>
-
-            <mat-tab label="Fourth Tab">
-
-                <!-- Demo content -->
-
-
-            </mat-tab>
-
-            <mat-tab label="Fifth Tab">
-
-                <!-- Demo content -->
-
-
-            </mat-tab>
-
-            <mat-tab label="Sixth Tab">
-
-                <!-- Demo content -->
-
-
-            </mat-tab>
-
-        </mat-tab-group>
-
-    </div>
-
 </div>
+
