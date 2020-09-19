@@ -1,13 +1,18 @@
-import { Component, OnInit, ViewEncapsulation } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
-import { TreoAnimations } from "@treo/animations";
-import { AuthService } from "app/core/auth/auth.service";
-import { ActivatedRoute, Router } from "@angular/router";
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { TreoAnimations } from '@treo/animations';
+import { AuthService } from 'app/core/auth/auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: "app-sign-in",
-  templateUrl: "./sign-in.component.html",
-  styleUrls: ["./sign-in.component.scss"],
+  selector: 'app-sign-in',
+  templateUrl: './sign-in.component.html',
+  styleUrls: ['./sign-in.component.scss'],
 })
 export class SignInComponent implements OnInit {
   signInForm: FormGroup;
@@ -40,11 +45,15 @@ export class SignInComponent implements OnInit {
    */
   ngOnInit(): void {
     // Create the form
-    this.signInForm = this._formBuilder.group({
-      email: ["abhilash@agrieasy.com"],
-      password: ["admin"],
-      rememberMe: [""],
-      type: ["user"],
+    this.signInForm = new FormGroup({
+      userName: new FormControl(null, {
+        updateOn: 'blur',
+        validators: [Validators.required],
+      }),
+      password: new FormControl(null, {
+        updateOn: 'blur',
+        validators: [Validators.required],
+      }),
     });
   }
 
@@ -56,6 +65,17 @@ export class SignInComponent implements OnInit {
    * Sign in
    */
   signIn(): void {
+    if (this.signInForm.invalid) {
+      this.signInForm.enable();
+      this.message = {
+        appearance: 'outline',
+        content: 'Please enter User name and password',
+        shake: true,
+        showIcon: false,
+        type: 'error',
+      };
+      return;
+    }
     // Disable the form
     this.signInForm.disable();
 
@@ -64,7 +84,7 @@ export class SignInComponent implements OnInit {
 
     // Get the credentials
     const credentials = {
-      user_id: this.signInForm.value.email,
+      user_id: this.signInForm.value.userName,
       password: this.signInForm.value.password,
     };
 
@@ -72,15 +92,15 @@ export class SignInComponent implements OnInit {
     this._authService.signIn(credentials).subscribe(
       (response) => {
         // Check if status is success or not
-        if (response.hasOwnProperty("status")) {
+        if (response.hasOwnProperty('status')) {
           if (!response.status) {
             this.signInForm.enable();
             this.message = {
-              appearance: "outline",
+              appearance: 'outline',
               content: response.message,
               shake: true,
               showIcon: false,
-              type: "error",
+              type: 'error',
             };
             return;
           }
@@ -90,8 +110,8 @@ export class SignInComponent implements OnInit {
         // to the correct page after a successful sign in. This way, that url can be set via
         // routing file and we don't have to touch here.
         const redirectURL =
-          this._activatedRoute.snapshot.queryParamMap.get("redirectURL") ||
-          "/signed-in-redirect";
+          this._activatedRoute.snapshot.queryParamMap.get('redirectURL') ||
+          '/signed-in-redirect';
 
         // Navigate to the redirect url
         this._router.navigateByUrl(redirectURL);
@@ -102,11 +122,11 @@ export class SignInComponent implements OnInit {
 
         // Show the error message
         this.message = {
-          appearance: "outline",
+          appearance: 'outline',
           content: response.error,
           shake: true,
           showIcon: false,
-          type: "error",
+          type: 'error',
         };
       }
     );
