@@ -51,7 +51,7 @@
             </tr>
           </tbody>
         </table>
-        <ng-template #add let-modal>
+        <!-- <ng-template #add let-modal>
           <div class="modal-header">
             <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
             <button
@@ -80,12 +80,12 @@
               Save
             </button>
           </div>
-        </ng-template>
+        </ng-template> -->
         <ng-template #edit let-modal>
           <form
-            name="form"
-            (ngSubmit)="updateActivity.form.valid && onSubmit(updateActivity)"
-            #updateActivity="ngForm"
+          #updateActivity="ngForm"
+            (ngSubmit)="onUpdateActivity(updateActivity)"
+            
           >
             <div class="modal-header">
               <h4 class="modal-title" id="modal-basic-title">
@@ -103,49 +103,43 @@
             <div class="modal-body">
               <div class="row">
                 <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="dateOfBirth">Activity Name</label>
-                    <input
-                      type="text"
-                      name="activity_name"
-                      [(ngModel)]="singleActivity.mr_activity_name"
-                      #activity_name="ngModel"
-                      required
-                    />
-                  </div>
-                  <div
-                    *ngIf="updateActivity.submitted && activity_name.invalid"
-                    class="invalid-feedback"
-                  >
-                    <div *ngIf="activity_name.errors.required">
-                      Activity name is required
-                    </div>
-                  </div>
+                  <mat-form-field class="flex-auto">
+                    <mat-label>Activity name</mat-label>
+                    <input matInput type="text" [(ngModel)]="singleActivity.mr_activity_name" name="singleActivity.mr_activity_name" required />
+                    <mat-icon matSuffix [svgIcon]="'account_circle'"></mat-icon>
+                  </mat-form-field>
                 </div>
                 <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="dateOfBirth">Activity Type</label>
+                  <mat-form-field class="flex-auto">
+                    <mat-label>Activity type</mat-label>
                     <select
-                      class="form-control"
+                      matNativeControl
+                      [(ngModel)]="singleActivity.mr_activity_type"
+                      name="singleActivity.mr_activity_type"
                       required
-                      name="activity_type"
-                      [(ngModel)]="singleActivity.mr_activity_desc"
-                      #activity_type="ngModel"
                     >
-                      <option value="{{ singleActivity.mr_activity_desc }}">
-                        {{ singleActivity.mr_activity_desc }}
-                      </option>
+                      <option value="{{ singleActivity.mr_activity_type }}">{{singleActivity.mr_activity_type}}</option>
+                      <!-- <option value="Material Based Activity">Material Based Activity</option> -->
                     </select>
-                  </div>
+                    <!-- <mat-icon
+                      matPrefix
+                      [svgIcon]="'arrow_right_alt'"
+                    ></mat-icon> -->
+                  </mat-form-field>
                 </div>
               </div>
               <div class="form-group">
-                <label for="dateOfBirth">Description</label>
-                <textarea name="" id="" cols="30" rows="6" required></textarea>
+                <mat-label class="cutom-label">Description</mat-label>
+                <ckeditor [editor]="Editor" [data]="addDescription" [(ngModel)]="addDescription" name="addDesc"></ckeditor>
               </div>
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn btn-outline-dark">Save</button>
+              <button
+                type="submit"
+                class="btn btn-outline-dark"
+              >
+                Submit
+              </button>
             </div>
           </form>
         </ng-template>
@@ -209,10 +203,10 @@
                       matNativeControl
                       [(ngModel)]="selectedActivityType"
                       name="activityType"
+                      (change) = "onActivityTypeChange($event)"
                       required
                     >
-                      <option value="General Activity">General Activity</option>
-                      <option value="Material Based Activity">Material Based Activity</option>
+                      <option *ngFor="let type of activityType" value="{{type.id}}">{{type.name}}</option>
                     </select>
                     <!-- <mat-icon
                       matPrefix
@@ -223,7 +217,7 @@
               </div>
               <div class="form-group">
                 <mat-label class="cutom-label">Description</mat-label>
-                <ckeditor [editor]="Editor" [data]="description" [(ngModel)]="description" name="desc"></ckeditor>
+                <ckeditor [editor]="updateEditor" [data]="description" [(ngModel)]="description" name="desc"></ckeditor>
               </div>
 
               <div class="modal-footer">
@@ -243,7 +237,7 @@
             <button
               type="button"
               class="btn btn-outline-dark btn_delete"
-              (click)="modal.close('Save click')"
+              (click)="onChangeStatus()"
             >
               Delete
             </button>

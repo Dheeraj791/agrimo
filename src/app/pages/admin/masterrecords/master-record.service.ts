@@ -10,13 +10,7 @@ export class MasterRecordService {
   httpOptions: any;
 
   constructor(private http: HttpClient) {
-    this.httpOptions = new HttpHeaders();
-    this.httpOptions.append('Accept', 'application/json');
-    this.httpOptions.append('Content-Type', 'application/json');
-    this.httpOptions.append('Access-Control-Allow-Origin', '*');
-    this.httpOptions.append('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS, POST, PUT');
-    this.httpOptions.append('Access-Control-Allow-Headers' , 'Content-Type', 'Authorization');
-   }
+  }
 
   /* get master record list
   * As of now using dummy json to get data. 
@@ -31,7 +25,6 @@ export class MasterRecordService {
   }
 
   fetchActivityMasterRecord(data): Observable<any> {
-    console.log(this.httpOptions);
     return this.http.post('http://teczire.com:65530/api/v1/fetch_records', data, this.httpOptions);
   }
 
@@ -52,6 +45,10 @@ export class MasterRecordService {
   }
 
   updateRecordStatus(data): Observable<any> {
+    return this.http.post('http://teczire.com:65530/api/v1/change_record_status', data, this.httpOptions);
+  }
+
+  updateRecord(data): Observable<any> {
     return this.http.post('http://teczire.com:65530/api/v1/change_record_status', data, this.httpOptions);
   }
 
