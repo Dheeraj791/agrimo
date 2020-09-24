@@ -62,7 +62,6 @@ export class NavigationMockApi implements TreoMockApi {
           this.defaultNav.push(nav);
         }
       });
-      console.log(this.defaultNav);
 
       // Fill compact navigation children using the default navigation
       this._compactNavigation.forEach((compactNavItem) => {

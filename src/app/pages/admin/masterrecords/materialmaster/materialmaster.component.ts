@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { MasterRecordService } from '../master-record.service';
 @Component({
   selector: 'app-materialmaster',
   templateUrl: './materialmaster.component.html',
@@ -13,9 +14,21 @@ export class MaterialmasterComponent implements OnInit {
   dtTrigger: any;
   closeResult = '';
   public Editor = ClassicEditor;
-  constructor(private modalService: NgbModal) { }
+  activityType = 'materialmaster';
+  materialMasterRecords: any;
+  constructor(private modalService: NgbModal, private backendService: MasterRecordService) { }
 
   ngOnInit(): void {
+    const data = {
+      record_type: this.activityType,
+      admin_id: '1',
+    };
+    this.backendService.fetchActivityMasterRecord(data).subscribe((res) => {
+      if (res.status === true) {
+        this.materialMasterRecords = res.result;
+        console.log(this.materialMasterRecords);
+      }
+    });
   }
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title',windowClass : "myCustomModalClass", size:'lg'}).result.then((result) => {

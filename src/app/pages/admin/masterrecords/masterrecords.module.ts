@@ -1,4 +1,3 @@
-
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from 'app/shared/shared.module';
@@ -26,7 +25,8 @@ import { UnitmeasurementmasterComponent } from '../masterrecords/unitmeasurement
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSelectModule } from '@angular/material/select';
 
-import {MasterRecordService} from '../masterrecords/master-record.service';
+import { MasterRecordService } from '../masterrecords/master-record.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -42,23 +42,22 @@ import {MasterRecordService} from '../masterrecords/master-record.service';
     SeasonmasterComponent,
     SoilmasterComponent,
     UnitmeasurementmasterComponent,
-   
-],
-imports     : [
+  ],
+  imports: [
     RouterModule.forChild(masterRecordsRouting),
     SharedModule,
+    FormsModule,
     DataTablesModule,
     MatButtonModule,
-        MatDividerModule,
-        MatFormFieldModule,
-        MatIconModule,
-        MatInputModule,
-        MatMenuModule,
-        CKEditorModule,
-        MatTabsModule,
-        MatSelectModule
-        
-],
-providers: [MasterRecordService]
+    MatDividerModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatMenuModule,
+    CKEditorModule,
+    MatTabsModule,
+    MatSelectModule,
+  ],
+  providers: [MasterRecordService],
 })
-export class MasterrecordsModule { }
+export class MasterrecordsModule {}

@@ -1,130 +1,55 @@
 <div class="box_main">
-    <div class="container" style="margin: 0px 0px !important;">
-        <div class="col-md-12 bg-card shadow rounded overflow-hidden" style="background-color: white;">
-            <div class="header_top_btn mb-5">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h1 class="master-heading-small">Land Measurement Master</h1>
-                    </div>
-                    <div class="col-md-6">
-                        <button class="addbtn" mat-flat-button [color]="'primary'" (click)="open(addnew)">Add New Measurement</button>
-                    </div>
-                </div>
-            </div>
-            <div class="">
-                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
-                    <thead>
-                        <tr>
-                            <th>S.Id</th>
-                            <th>Land Measurement Name</th>
-                            <th>Delete</th>
-                            <th>Edit</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>ACRE</td>
-                            <td class="delete_icons" (click)="statusModal(delete)">
-                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
-                            </td>
-                            <td (click)="open(editone)" class="edit_icons">
-                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Hectare</td>
-                            <td class="delete_icons" (click)="statusModal(delete)">
-                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
-                            </td>
-                            <td (click)="open(edittwo)" class="edit_icons">
-                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Per 15 ltr Pump</td>
-                            <td class="delete_icons" (click)="statusModal(delete)">
-                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
-                            </td>
-                            <td (click)="open(editthree)" class="edit_icons">
-                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Per 25 ltr pump</td>
-                            <td class="delete_icons" (click)="statusModal(delete)">
-                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
-                            </td>
-                            <td (click)="open(editfour)" class="edit_icons">
-                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Square Centimeters</td>
-                            <td class="delete_icons" (click)="statusModal(delete)">
-                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
-                            </td>
-                            <td (click)="open(editfive)" class="edit_icons">
-                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>Square Feet (sq ft)</td>
-                            <td class="delete_icons" (click)="statusModal(delete)">
-                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
-                            </td>
-                            <td (click)="open(editsix)" class="edit_icons">
-                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>Square Inch</td>
-                            <td class="delete_icons" (click)="statusModal(delete)">
-                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
-                            </td>
-                            <td (click)="open(editseven)" class="edit_icons">
-                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>8</td>
-                            <td>Square Kilometer (sq km)</td>
-                            <td class="delete_icons" (click)="statusModal(delete)">
-                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
-                            </td>
-                            <td (click)="open(editeight)" class="edit_icons">
-                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>9</td>
-                            <td>Square Meter (sq m)</td>
-                            <td class="delete_icons" (click)="statusModal(delete)">
-                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
-                            </td>
-                            <td (click)="open(editnine)" class="edit_icons">
-                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td>Square Mile</td>
-                            <td class="delete_icons" (click)="statusModal(delete)">
-                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
-                            </td>
-                            <td (click)="open(editten)" class="edit_icons">
-                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <!-- <ng-template #add let-modal>
+  <div class="container" style="margin: 0px 0px !important">
+    <div
+      class="col-md-12 bg-card shadow rounded overflow-hidden"
+      style="background-color: white"
+    >
+      <div class="header_top_btn mb-5">
+        <div class="row">
+          <div class="col-md-6">
+            <h1 class="master-heading-small">Land Measurement Master</h1>
+          </div>
+          <div class="col-md-6">
+            <button
+              class="addbtn"
+              mat-flat-button
+              [color]="'primary'"
+              (click)="open(addnew, '')"
+            >
+              Add New Measurement
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="">
+        <table
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+          class="row-border hover"
+        >
+          <thead>
+            <tr>
+              <th>S.Id</th>
+              <th>Land Measurement Name</th>
+              <th>Status</th>
+              <th>Edit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let record of landMeasurementRecords">
+              <td>{{ record.mr_com_id }}</td>
+              <td>{{ record.mr_com_name }}</td>
+              <td class="delete_icons" (click)="statusModal(delete)">
+                <mat-icon svgIcon="dripicons:trash"></mat-icon>
+              </td>
+              <td (click)="open(editone, record)" class="edit_icons">
+                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- <ng-template #add let-modal>
                     <div class="modal-header">
                         <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
                         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -147,306 +72,458 @@
                     </div>
                 </ng-template> -->
 
-                <ng-template #addnew let-modal>
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="modal-basic-title">Add New Land Measurement</h4>
-                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
+        <ng-template #addnew let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">
+              Add New Land Measurement
+            </h4>
+            <button
+              type="button"
+              class="close"
+              aria-label="Close"
+              (click)="modal.dismiss('Cross click')"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form
+              #addLandMeasurement="ngForm"
+              (ngSubmit)="onAddLandMeasurement(addLandMeasurement)"
+            >
+              <div class="row">
+                <div class="col-md-12">
+                  <!-- <div class="form-group">
                                         <label for="dateOfBirth">Land Measurement Name</label>
                                         <input type="text" placeholder="">
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark"
-                            (click)="modal.close('Save click')">Submit</button>
-                    </div>
-                </ng-template>
+                                    </div> -->
+                  <mat-form-field class="flex-auto">
+                    <mat-label>Land Measurement Name</mat-label>
+                    <input
+                      matInput
+                      type="text"
+                      [(ngModel)]="landMeasurementName"
+                      name="landMeasurementName"
+                      required
+                    />
+                    <mat-icon matSuffix [svgIcon]="'account_circle'"></mat-icon>
+                  </mat-form-field>
+                </div>
+              </div>
 
-                
-                <ng-template #editone let-modal>
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="modal-basic-title">Update Land Measurement Name</h4>
-                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Land Measurement Name</label>
-                                        <input type="text" placeholder="ACRE">
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark"
-                            (click)="modal.close('Save click')">Update</button>
-                    </div>
-                </ng-template>
-             
-                <ng-template #edittwo let-modal>
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="modal-basic-title">Update Land Measurement Name</h4>
-                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Land Measurement Name</label>
-                                        <input type="text" placeholder="Hectare">
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark"
-                            (click)="modal.close('Save click')">Update</button>
-                    </div>
-                </ng-template>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-outline-dark">
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+        </ng-template>
 
-                <ng-template #editthree let-modal>
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="modal-basic-title">Update Land Measurement Name</h4>
-                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Land Measurement Name</label>
-                                        <input type="text" placeholder="Per 15 ltr Pump">
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark"
-                            (click)="modal.close('Save click')">Update</button>
-                    </div>
-                </ng-template>
+        <ng-template #editone let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">
+              Update Land Measurement Name
+            </h4>
+            <button
+              type="button"
+              class="close"
+              aria-label="Close"
+              (click)="modal.dismiss('Cross click')"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form #updateLandMeasurement = "ngForm" (ngSubmit)="onUpdateLandMeasurement(updateLandMeasurement)">
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="flex-auto">
+                    <mat-label>Land Measurement Name</mat-label>
+                    <input
+                      matInput
+                      type="text"
+                      [(ngModel)]="landMeasurementName"
+                      name="landMeasurementName"
+                      required
+                    />
+                    <!-- <mat-icon matSuffix [svgIcon]="'account_circle'"></mat-icon> -->
+                  </mat-form-field>
+                  <!-- <div class="form-group">
+                    <label for="dateOfBirth">Land Measurement Name</label>
+                    <input type="text" placeholder="ACRE" [(ngModel)]="landMeasurementName" name="landMeasurementName" />
+                  </div> -->
+                </div>
+              </div>
 
-                <ng-template #editfour let-modal>
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="modal-basic-title">Update Land Measurement Name</h4>
-                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Land Measurement Name</label>
-                                        <input type="text" placeholder="Per 25 ltr pump">
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark"
-                            (click)="modal.close('Save click')">Update</button>
-                    </div>
-                </ng-template>
+              <div class="modal-footer">
+                <button
+                  type="submit"
+                  class="btn btn-outline-dark"
+                >
+                  Update
+                </button>
+              </div>
+            </form>
+          </div>
+        </ng-template>
 
-                <ng-template #editfive let-modal>
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="modal-basic-title">Update Land Measurement Name</h4>
-                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Land Measurement Name</label>
-                                        <input type="text" placeholder="Square Centimeters">
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark"
-                            (click)="modal.close('Save click')">Update</button>
-                    </div>
-                </ng-template>
+        <!-- <ng-template #edittwo let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">
+              Update Land Measurement Name
+            </h4>
+            <button
+              type="button"
+              class="close"
+              aria-label="Close"
+              (click)="modal.dismiss('Cross click')"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="dateOfBirth">Land Measurement Name</label>
+                    <input type="text" placeholder="Hectare" />
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-dark"
+              (click)="modal.close('Save click')"
+            >
+              Update
+            </button>
+          </div>
+        </ng-template>
 
-                <ng-template #editsix let-modal>
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="modal-basic-title">Update Land Measurement Name</h4>
-                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Land Measurement Name</label>
-                                        <input type="text" placeholder="Square Feet (sq ft)">
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark"
-                            (click)="modal.close('Save click')">Update</button>
-                    </div>
-                </ng-template>
+        <ng-template #editthree let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">
+              Update Land Measurement Name
+            </h4>
+            <button
+              type="button"
+              class="close"
+              aria-label="Close"
+              (click)="modal.dismiss('Cross click')"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="dateOfBirth">Land Measurement Name</label>
+                    <input type="text" placeholder="Per 15 ltr Pump" />
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-dark"
+              (click)="modal.close('Save click')"
+            >
+              Update
+            </button>
+          </div>
+        </ng-template> -->
 
-                <ng-template #editseven let-modal>
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="modal-basic-title">Update Land Measurement Name</h4>
-                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Land Measurement Name</label>
-                                        <input type="text" placeholder="Square Inch">
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark"
-                            (click)="modal.close('Save click')">Update</button>
-                    </div>
-                </ng-template>
+        <!-- <ng-template #editfour let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">
+              Update Land Measurement Name
+            </h4>
+            <button
+              type="button"
+              class="close"
+              aria-label="Close"
+              (click)="modal.dismiss('Cross click')"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="dateOfBirth">Land Measurement Name</label>
+                    <input type="text" placeholder="Per 25 ltr pump" />
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-dark"
+              (click)="modal.close('Save click')"
+            >
+              Update
+            </button>
+          </div>
+        </ng-template>
 
-                <ng-template #editeight let-modal>
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="modal-basic-title">Update Land Measurement Name</h4>
-                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Land Measurement Name</label>
-                                        <input type="text" placeholder="Square Kilometer (sq km)">
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark"
-                            (click)="modal.close('Save click')">Update</button>
-                    </div>
-                </ng-template>
+        <ng-template #editfive let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">
+              Update Land Measurement Name
+            </h4>
+            <button
+              type="button"
+              class="close"
+              aria-label="Close"
+              (click)="modal.dismiss('Cross click')"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="dateOfBirth">Land Measurement Name</label>
+                    <input type="text" placeholder="Square Centimeters" />
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-dark"
+              (click)="modal.close('Save click')"
+            >
+              Update
+            </button>
+          </div>
+        </ng-template>
 
-             
-                <ng-template #editnine let-modal>
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="modal-basic-title">Update Land Measurement Name</h4>
-                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Land Measurement Name</label>
-                                        <input type="text" placeholder="Square Meter (sq m)">
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark"
-                            (click)="modal.close('Save click')">Update</button>
-                    </div>
-                </ng-template>
+        <ng-template #editsix let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">
+              Update Land Measurement Name
+            </h4>
+            <button
+              type="button"
+              class="close"
+              aria-label="Close"
+              (click)="modal.dismiss('Cross click')"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="dateOfBirth">Land Measurement Name</label>
+                    <input type="text" placeholder="Square Feet (sq ft)" />
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-dark"
+              (click)="modal.close('Save click')"
+            >
+              Update
+            </button>
+          </div>
+        </ng-template>
 
-                <ng-template #editten let-modal>
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="modal-basic-title">Update Land Measurement Name</h4>
-                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Land Measurement Name</label>
-                                        <input type="text" placeholder="Square Mile">
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark"
-                            (click)="modal.close('Save click')">Update</button>
-                    </div>
-                </ng-template>
+        <ng-template #editseven let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">
+              Update Land Measurement Name
+            </h4>
+            <button
+              type="button"
+              class="close"
+              aria-label="Close"
+              (click)="modal.dismiss('Cross click')"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="dateOfBirth">Land Measurement Name</label>
+                    <input type="text" placeholder="Square Inch" />
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-dark"
+              (click)="modal.close('Save click')"
+            >
+              Update
+            </button>
+          </div>
+        </ng-template>
 
-             
-             
-             
-                <ng-template #delete let-modal class="delete_modal">
-                    <div class="modal-header">
-                        Are you sure ?
-                    </div>
+        <ng-template #editeight let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">
+              Update Land Measurement Name
+            </h4>
+            <button
+              type="button"
+              class="close"
+              aria-label="Close"
+              (click)="modal.dismiss('Cross click')"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="dateOfBirth">Land Measurement Name</label>
+                    <input type="text" placeholder="Square Kilometer (sq km)" />
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-dark"
+              (click)="modal.close('Save click')"
+            >
+              Update
+            </button>
+          </div>
+        </ng-template> -->
+        <!-- 
+        <ng-template #editnine let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">
+              Update Land Measurement Name
+            </h4>
+            <button
+              type="button"
+              class="close"
+              aria-label="Close"
+              (click)="modal.dismiss('Cross click')"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="dateOfBirth">Land Measurement Name</label>
+                    <input type="text" placeholder="Square Meter (sq m)" />
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-dark"
+              (click)="modal.close('Save click')"
+            >
+              Update
+            </button>
+          </div>
+        </ng-template>
 
-                    <div class="modal-body">
-                        <button type="button" class="btn btn-outline-dark btn_delete"
-                            (click)="modal.close('Save click')">
-                            Delete
-                        </button>
-                        <button type="button" class=" btn btn-outline-dark close btn_close" aria-label="Close"
-                            (click)="modal.dismiss('Cross click')">
-                            cancel
-                        </button>
-                    </div>
+        <ng-template #editten let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">
+              Update Land Measurement Name
+            </h4>
+            <button
+              type="button"
+              class="close"
+              aria-label="Close"
+              (click)="modal.dismiss('Cross click')"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="dateOfBirth">Land Measurement Name</label>
+                    <input type="text" placeholder="Square Mile" />
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-dark"
+              (click)="modal.close('Save click')"
+            >
+              Update
+            </button>
+          </div>
+        </ng-template> -->
 
-                    <div class="modal-footer">
+        <ng-template #delete let-modal class="delete_modal">
+          <div class="modal-header">Are you sure ?</div>
 
-                    </div>
-                    <!-- <div class="modal-body">
+          <div class="modal-body">
+            <button
+              type="button"
+              class="btn btn-outline-dark btn_delete"
+              (click)="modal.close('Save click')"
+            >
+              Delete
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline-dark close btn_close"
+              aria-label="Close"
+              (click)="modal.dismiss('Cross click')"
+            >
+              cancel
+            </button>
+          </div>
+
+          <div class="modal-footer"></div>
+          <!-- <div class="modal-body">
                             <form>
                                 <div class="form-group">
                                     <label for="dateOfBirth">Date of birth</label>
@@ -456,19 +533,16 @@
                                 </div>
                             </form>
                         </div> -->
-                </ng-template>
-
-
-            </div>
-        </div>
+        </ng-template>
+      </div>
     </div>
+  </div>
 </div>
 
-  
-  <script>
+<script>
   // Add the following code if you want the name of the file appear on select
-  $(".custom-file-input").on("change", function() {
+  $(".custom-file-input").on("change", function () {
     var fileName = $(this).val().split("\\").pop();
     $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
   });
-  </script>
+</script>
