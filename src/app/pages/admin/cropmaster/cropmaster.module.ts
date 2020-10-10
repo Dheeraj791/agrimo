@@ -17,6 +17,9 @@ import { CropstagesmasterComponent } from '../cropmaster/cropstagesmaster/cropst
 import { DiseasemasterComponent } from '../cropmaster/diseasemaster/diseasemaster.component';
 import { CropactivitymasterComponent } from '../cropmaster/cropactivitymaster/cropactivitymaster.component';
 import { MatSelectModule } from '@angular/material/select';
+import { MasterRecordService } from '../masterrecords/master-record.service';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 @NgModule({
   declarations: [
     CropactivitymasterComponent,
@@ -26,19 +29,20 @@ import { MatSelectModule } from '@angular/material/select';
     CropmasterComponent,
     CropstagesmasterComponent,
     DiseasemasterComponent
-],
-imports     : [
+  ],
+  imports: [
     RouterModule.forChild(cropmasterRoute),
     SharedModule,
     DataTablesModule,
     MatButtonModule,
-        MatDividerModule,
-        MatFormFieldModule,
-        MatIconModule,
-        MatInputModule,
-        MatMenuModule,
-        CKEditorModule,
-        MatSelectModule
-]
+    MatDividerModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatMenuModule,
+    CKEditorModule,
+    MatSelectModule,
+    ToastrModule.forRoot(),
+  ], providers: [MasterRecordService, ToastrService, MatDatepickerModule]
 })
 export class CropmasterModule { }

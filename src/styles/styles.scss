@@ -62,8 +62,13 @@ app-selectview .container {
 }
 
 td.edit_icons mat-icon.mat-icon {
-	color: #5850ec !important;
+	color: #64748b !important;
+	text-align: center;
 }
+td.delete_icons  {
+	text-align: center;
+}
+
 
 .field_form_sec .header {
 	margin: 16px;
@@ -244,4 +249,43 @@ background-color: white;
     margin-left: 10px;
     margin-bottom: 15px;
     margin-top: 10px;
+}
+.cdk-global-overlay-wrapper, .cdk-overlay-container {
+    z-index: 99999 !important;
+ }
+ table.dataTable thead th, table.dataTable thead td {
+    padding: 6px 9px !important;
+    border-bottom: 1px solid #e8e8e8 !important; 
+}
+
+.modal {
+	text-align: center;
+	padding: 0!important;
+  }
+  .modal:before {
+	content: '';
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
+	margin-right: -4px;
+  }
+  .modal-dialog {
+	display: inline-block;
+	text-align: left;
+	vertical-align: middle;
+  }
+  .desc_line {
+    width: 202px;
+    height: 25px;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.modal-dialog.modal-lg {
+    min-width: 500px;
+}
+.modal-dialog.modal-sm{
+    min-width: 300px;
 }

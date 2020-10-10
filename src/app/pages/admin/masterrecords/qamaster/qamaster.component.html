@@ -7,14 +7,14 @@
                         <h1 class="master-heading-small">QA Master</h1>
                     </div>
                     <div class="col-md-6">
-                        <button class="addbtn" mat-flat-button [color]="'primary'" (click)="open(addnew)">Add New QA</button>
+                        <button class="addbtn" mat-flat-button [color]="'primary'" (click)="open(addnew,'')">Add New
+                            QA</button>
                     </div>
                 </div>
             </div>
             <div class="">
                 <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
                     <thead>
-                        <p>All Questions & Answer</p>
                         <tr>
                             <th>S.Id</th>
                             <th>Subject</th>
@@ -25,55 +25,127 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr *ngFor="let list of landMeasurementRecords; let i=index;">
+                            <td>{{i+1}}</td>
+                            <td><span class="desc_line">{{ list.subject }}</span></td>
+                            <td><span class="desc_line">{{ list.question }}</span></td>
+                            <td><span class="desc_line">{{ list.answer }}</span></td>
+                            <td class="delete_icons">
+                                <mat-icon [svgIcon]="'check_circle'" class="active" *ngIf="list.qa_status != 0"
+                                    (click)="statusModal(delete,0, list.qa_id)"></mat-icon>
+                                <mat-icon [svgIcon]="'highlight_off'" class="inactive" *ngIf="list.qa_status === 0"
+                                    (click)="statusModal(delete,1, list.qa_id)"></mat-icon>
+                            </td>
+                            <td class="edit_icons">
+                                <mat-icon [svgIcon]="'picture_in_picture_alt'" (click)="editModal(edit, list)">
+                                </mat-icon>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
 
                 <ng-template #addnew let-modal>
                     <div class="modal-header">
-                        <h4 class="modal-title" id="modal-basic-title">ADD QUESTION AND ANSWER FROM HERE..!!!</h4>
+                        <h4 class="modal-title" id="modal-basic-title">Add Question & Answer here</h4>
                         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        <form>
+                    <div class="modal-body" style="min-width: 650px;">
+                        <form #addActivity="ngForm" (ngSubmit)="onAddRecord(addActivity)">
                             <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">----CHOOSE SUBJECT----</label>
-                                            <select class="form-control" name="activity_type">
-                                                <option>----CHOOSE SUBJECT----</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">Inorganic Name</label>
-                                            <input type="text" placeholder="Insert Question From Here ">
-                                        </div>
-                                    </div>
+                                <div class="col-md-6">
+                                    <mat-label class="custom-label">Choose Subject</mat-label>
+                                    <mat-form-field class="flex-auto">
+                                        <mat-select [(ngModel)]="qaData.subject" name="subject">
+                                            <mat-option *ngFor="let type of qaSubjects" value="{{type.qas_subject}}">
+                                                {{type.qas_subject}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </div>
-                                <div class="form-group">
-                                    <ckeditor [editor]="Editor" data="<p></p>"></ckeditor>
+                                <div class="col-md-6">
+                                    <mat-label class="custom-label">Enter Question</mat-label>
+                                    <mat-form-field class="flex-auto">
+                                        <input matInput type="text" [(ngModel)]="qaData.question" name="question"
+                                            required />
+                                    </mat-form-field>
                                 </div>
+                                <div class="col-md-12 form-group">
+                                    <mat-label class="custom-label">Answer </mat-label>
+                                    <textarea class="form-control" [(ngModel)]="qaData.answer" name="answer"></textarea>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-outline-dark">Submit</button>
+                            </div>
                         </form>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark"
-                            (click)="modal.close('Save click')">Submit</button>
-                    </div>
+                   
                 </ng-template>
+
+                <ng-template #edit let-modal>
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Update Question & Answer here</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="min-width: 650px;">
+                        <form #editData="ngForm" (ngSubmit)="onUpdateRecord(editData)">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-label class="custom-label">Choose Subject</mat-label>
+                                    <mat-form-field class="flex-auto">
+                                        <mat-select [(ngModel)]="singleActivity.subject" name="subject">
+                                            <mat-option *ngFor="let type of qaSubjects" value="{{type.qas_subject}}">
+                                                {{type.qas_subject}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-label class="custom-label">Enter Question</mat-label>
+                                    <mat-form-field class="flex-auto">
+                                        <input matInput type="text" [(ngModel)]="singleActivity.question" name="question"
+                                            required />
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <mat-label class="custom-label">Answer </mat-label>
+                                    <textarea class="form-control" [(ngModel)]="singleActivity.answer" name="answer"></textarea>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-outline-dark">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                   
+                </ng-template>
+
+                <ng-template #delete let-modal class="delete_modal">
+                    <div class="modal-header">Do you really want to make changes ?</div>
+                    <div class="modal-body">
+
+                        <button type="button" class="btn btn-danger btn-cancel" aria-label="Close"
+                            (click)="modal.dismiss('Cross click')">
+                            Cancel
+                        </button>
+                        <button type="button" class="btn btn-primary btn-ok" (click)="onChangeStatus()">
+                            Ok
+                        </button>
+                    </div>
+                    <div class="modal-footer"></div>
+                </ng-template>
+
             </div>
         </div>
     </div>
 </div>
-  
-  <script>
-  // Add the following code if you want the name of the file appear on select
-  $(".custom-file-input").on("change", function() {
-    var fileName = $(this).val().split("\\").pop();
-    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-  });
-  </script>
+
+<script>
+    // Add the following code if you want the name of the file appear on select
+    $(".custom-file-input").on("change", function () {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+</script>

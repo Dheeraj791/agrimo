@@ -1,202 +1,134 @@
 <div class="box_main">
-    <div class="container" style="margin: 0px 0px !important;">
-        <div class="col-md-12 bg-card shadow rounded overflow-hidden" style="background-color: white;">
-            <div class="header_top_btn mb-5">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h1 class="master-heading-small">Mulch Master</h1>
-                    </div>
-                    <div class="col-md-6">
-                        <button class="addbtn" mat-flat-button [color]="'primary'" (click)="open(addnew)">Add New Mulch</button>
-                    </div>
-                </div>
+    <ngx-spinner bdColor="rgba(255,255,255,0.8)" size="default" color="#0f06bb" type="timer" [fullScreen]="false">
+      <p style="color: white"> Please wait..... </p>
+    </ngx-spinner>
+    <div class="container" style="margin: 0px 0px !important">
+      <div class="col-md-12 bg-card shadow rounded overflow-hidden" style="background-color: white">
+        <div class="header_top_btn mb-5">
+          <div class="row">
+            <div class="col-md-6">
+              <h1 class="master-heading-small">Mulch Master</h1>
             </div>
-            <div class="">
-                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
-                    <thead>
-                        <tr>
-                            <th>S.Id</th>
-                            <th>Mulch Name</th>
-                            <th>Delete</th>
-                            <th>Edit</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Bio Mulch</td>
-                            <td class="delete_icons" (click)="statusModal(delete)">
-                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
-                            </td>
-                            <td (click)="open(editone)" class="edit_icons">
-                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>No Mulch</td>
-                            <td class="delete_icons" (click)="statusModal(delete)">
-                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
-                            </td>
-                            <td (click)="open(edittwo)" class="edit_icons">
-                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Plastic Mulch</td>
-                            <td class="delete_icons" (click)="statusModal(delete)">
-                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
-                            </td>
-                            <td (click)="open(editthree)" class="edit_icons">
-                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                  <ng-template #addnew let-modal>
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="modal-basic-title">Add New Mulch</h4>
-                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Mulch Name</label>
-                                        <input type="text" placeholder="">
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark"
-                            (click)="modal.close('Save click')">Submit</button>
-                    </div>
-                </ng-template>
-
-                
-                <ng-template #editone let-modal>
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="modal-basic-title">Update Mulch Name</h4>
-                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Mulch Name</label>
-                                        <input type="text" placeholder="Bio Mulch">
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark"
-                            (click)="modal.close('Save click')">Update</button>
-                    </div>
-                </ng-template>
-             
-                <ng-template #edittwo let-modal>
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="modal-basic-title">Update Mulch Name</h4>
-                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Mulch Name</label>
-                                        <input type="text" placeholder="No Mulch">
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark"
-                            (click)="modal.close('Save click')">Update</button>
-                    </div>
-                </ng-template>
-
-                <ng-template #editthree let-modal>
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="modal-basic-title">Update Mulch Name</h4>
-                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Mulch Name</label>
-                                        <input type="text" placeholder="Plastic Mulch">
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark"
-                            (click)="modal.close('Save click')">Update</button>
-                    </div>
-                </ng-template>
-             
-                <ng-template #delete let-modal class="delete_modal">
-                    <div class="modal-header">
-                        Are you sure ?
-                    </div>
-
-                    <div class="modal-body">
-                        <button type="button" class="btn btn-outline-dark btn_delete"
-                            (click)="modal.close('Save click')">
-                            Delete
-                        </button>
-                        <button type="button" class=" btn btn-outline-dark close btn_close" aria-label="Close"
-                            (click)="modal.dismiss('Cross click')">
-                            cancel
-                        </button>
-                    </div>
-
-                    <div class="modal-footer">
-
-                    </div>
-                    <!-- <div class="modal-body">
-                            <form>
-                                <div class="form-group">
-                                    <label for="dateOfBirth">Date of birth</label>
-                                    <div class="input-group">
-    
-                                    </div>
-                                </div>
-                            </form>
-                        </div> -->
-                </ng-template>
-
-
+            <div class="col-md-6">
+              <button class="addbtn" mat-flat-button [color]="'primary'" (click)="open(addnew, '')">
+                Add New Mulch
+              </button>
             </div>
+          </div>
         </div>
+        <div class="">
+          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+            <thead>
+              <tr>
+                <th>S.Id</th>
+                <th>Mulch Name</th>
+                <th>Status</th>
+                <th>Edit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let list of landMeasurementRecords; let i=index;">
+                <td>{{i+1}}</td>
+                <td>{{ list.mr_com_name }}</td>
+                <td class="delete_icons">
+                  <mat-icon [svgIcon]="'check_circle'" class="active" *ngIf="list.mr_com_status != 0"
+                    (click)="statusModal(delete,0, list.mr_com_id)"></mat-icon>
+                  <mat-icon [svgIcon]="'highlight_off'" class="inactive" *ngIf="list.mr_com_status === 0"
+                    (click)="statusModal(delete,1, list.mr_com_id)"></mat-icon>
+                </td>
+                <td class="edit_icons">
+                  <mat-icon [svgIcon]="'picture_in_picture_alt'" (click)="editModal(edit, list)">
+                  </mat-icon>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+  
+  
+          <ng-template #addnew let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title">
+                Add New Mulch
+              </h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form #addLandMeasurement="ngForm" (ngSubmit)="onAddLandMeasurement(addLandMeasurement)">
+                <div class="row">
+                  <div class="col-md-12">
+  
+                    <mat-form-field class="flex-auto">
+                      <mat-label>Mulch Name</mat-label>
+                      <input matInput type="text" [(ngModel)]="landMeasurementName" name="landMeasurementName" required />
+  
+                    </mat-form-field>
+                  </div>
+                </div>
+  
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-outline-dark">
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          </ng-template>
+  
+          <ng-template #edit let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title">
+                Update Mulch Detail
+              </h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form #updateLandMeasurement="ngForm" (ngSubmit)="onUpdateLandMeasurement(updateLandMeasurement)">
+                <div class="row">
+                  <div class="col-md-12">
+                    <mat-form-field class="flex-auto">
+                      <mat-label>Mulch Name</mat-label>
+                      <input matInput type="text" [(ngModel)]="mr_com_name" name="mr_com_name" required />
+                    </mat-form-field>
+  
+                  </div>
+                </div>
+  
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-outline-dark">
+                    Update
+                  </button>
+                </div>
+              </form>
+            </div>
+          </ng-template>
+  
+          <ng-template #delete let-modal class="delete_modal">
+            <div class="modal-header">Do you really want to make changes ?</div>
+            <div class="modal-body">
+  
+                <button type="button" class="btn btn-danger btn-cancel" aria-label="Close"
+                    (click)="modal.dismiss('Cross click')">
+                    Cancel
+                </button>
+                <button type="button" class="btn btn-primary btn-ok" (click)="onChangeStatus()">
+                    Ok
+                </button>
+            </div>
+            <div class="modal-footer"></div>
+        </ng-template>
+        </div>
+      </div>
     </div>
-</div>
-
+  </div>
   
   <script>
-  // Add the following code if you want the name of the file appear on select
-  $(".custom-file-input").on("change", function() {
-    var fileName = $(this).val().split("\\").pop();
-    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-  });
+    // Add the following code if you want the name of the file appear on select
+    $(".custom-file-input").on("change", function () {
+      var fileName = $(this).val().split("\\").pop();
+      $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
   </script>

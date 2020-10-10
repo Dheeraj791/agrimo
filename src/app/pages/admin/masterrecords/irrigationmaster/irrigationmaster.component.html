@@ -1,4 +1,7 @@
 <div class="box_main">
+    <ngx-spinner bdColor="rgba(255,255,255,0.8)" size="default" color="#0f06bb" type="timer" [fullScreen]="false">
+        <p style="color: white"> Please wait..... </p>
+      </ngx-spinner>
     <div class="container" style="margin: 0px 0px !important;">
         <div class="col-md-12 bg-card shadow rounded overflow-hidden" style="background-color: white;">
             <div class="header_top_btn mb-5">
@@ -7,7 +10,8 @@
                         <h1 class="master-heading-small">Irrigation Master</h1>
                     </div>
                     <div class="col-md-6">
-                        <button class="addbtn" mat-flat-button [color]="'primary'" (click)="open(addnew)">Add Irrigation</button>
+                        <button class="addbtn" mat-flat-button [color]="'primary'" (click)="open(addnew)">Add
+                            Irrigation</button>
                     </div>
                 </div>
             </div>
@@ -17,458 +21,173 @@
                         <tr>
                             <th>S.Id</th>
                             <th>Irrigation Type Name</th>
+                            <th>Video URL</th>
                             <th>Delete</th>
                             <th>Edit</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Drip</td>
-                            <td class="delete_icons" (click)="statusModal(delete)">
-                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
+                        <tr *ngFor="let list of irrigationRecords; let i=index;">
+                            <td>{{i+1}}</td>
+                            <td>{{ list.mr_com_name }}</td>
+                            <td><span class="desc_line">{{ list.mr_com_video }}</span></td>
+                            <td class="delete_icons">
+                                <mat-icon [svgIcon]="'check_circle'" class="active" *ngIf="list.mr_com_status != 0"
+                                    (click)="statusModal(delete,0, list.mr_com_id)"></mat-icon>
+                                <mat-icon [svgIcon]="'highlight_off'" class="inactive" *ngIf="list.mr_com_status === 0"
+                                    (click)="statusModal(delete,1, list.mr_com_id)"></mat-icon>
                             </td>
-                            <td (click)="open(editone)" class="edit_icons">
-                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Flood</td>
-                            <td class="delete_icons" (click)="statusModal(delete)">
-                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
-                            </td>
-                            <td (click)="open(edittwo)" class="edit_icons">
-                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Large Sprinkler</td>
-                            <td class="delete_icons" (click)="statusModal(delete)">
-                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
-                            </td>
-                            <td (click)="open(editthree)" class="edit_icons">
-                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Mini Sprinkler</td>
-                            <td class="delete_icons" (click)="statusModal(delete)">
-                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
-                            </td>
-                            <td (click)="open(editfour)" class="edit_icons">
-                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
+                            <td class="edit_icons">
+                                <mat-icon [svgIcon]="'picture_in_picture_alt'" (click)="editModal(edit, list)">
+                                </mat-icon>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                <!-- <ng-template #add let-modal>
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
-                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="dateOfBirth">Date of birth</label>
-                                <div class="input-group">
-
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark"
-                            (click)="modal.close('Save click')">Save</button>
-                    </div>
-                </ng-template> -->
                 <ng-template #edit let-modal>
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="modal-basic-title">Update Activity Name</h4>
-                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
+                    <form #updateActivity="ngForm" (ngSubmit)="onUpdateActivity(updateActivity)">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="modal-basic-title">
+                                Update Irrigation Type
+                            </h4>
+                            <button type="button" class="close" aria-label="Close"
+                                (click)="modal.dismiss('Cross click')">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Activity Name</label>
-                                        <input type="text" placeholder="Blue Sticky Trap" name="Blue Sticky Trap">
+                                <div class="col-md-12">
+                                    <mat-label class="custom-label">Irrigation name</mat-label>
+                                    <mat-form-field class="flex-auto">
+                                        <input matInput type="text" [(ngModel)]="singleActivity.mr_com_name"
+                                            name="mr_com_name" required />
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <div class="imgdiv" *ngIf="singleActivity.mr_com_image!=''"> 
+                                        <img src="{{url+'image/'+singleActivity.mr_com_image}}" alt="">
+                                    </div>
+                                    <mat-label class="custom-label">Change/Update Image </mat-label>
+                                    <div class="button-wrap">
+                                        <label class="new-button" for="upload"> Upload CV {{selectedFlag}}</label>
+                                        <input id="upload" type="file" name="imageurl"
+                                            (change)="onFileChangedUp($event)">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Material Based Activity</label>
-                                        <select class="form-control" name="Material Based Activity">
-                                            <option value="mat">General Activity</option>
-                                        </select>
+                                    <div class="audiodiv" *ngIf="singleActivity.mr_com_audio!=''">
+                                        <audio controls>
+                                            <source src="{{url+'audio/'+singleActivity.mr_com_audio}}" type="audio/ogg">
+                                            <source src="{{url+'audio/'+singleActivity.mr_com_audio}}"
+                                                type="audio/mpeg">
+                                        </audio>
+                                    </div>
+                                    <mat-label class="custom-label">Change/Update Audio </mat-label>
+                                    <div class="button-wrap">
+                                        <label class="new-button" for="upload_audio"> Upload Audio
+                                            {{selectedAudioFlag}}</label>
+                                        <input id="upload_audio" type="file" name="audiourl"
+                                            (change)="onAudioFileChangedUp($event)">
                                     </div>
                                 </div>
+                                <div class="col-md-12">
+                                    <div class="videodiv" *ngIf="singleActivity.mr_com_video!=''">
+                                        <iframe width="420" height="345" src="https://www.youtube.com/embed/tgbNymZ7vqY?controls=0">
+                                        </iframe>
+                                    </div>
+                                    <mat-label class="custom-label">Video URL (Youtube Embed Video Link Only)</mat-label>
+                                    <mat-form-field class="flex-auto">
+                                        <input matInput type="text" [(ngModel)]="singleActivity.mr_com_video"
+                                            name="mr_com_video" required />
+                                    </mat-form-field>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="dateOfBirth">Description</label>
-                                <textarea name="" id="" cols="30" rows="6"></textarea>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark"
-                            (click)="modal.close('Save click')">Save</button>
-                    </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-outline-dark">
+                                Update
+                            </button>
+                        </div>
+                    </form>
                 </ng-template>
-                <ng-template #status let-modal>
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
-                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                            <span aria-hidden="true">&times;</span>
+                <ng-template #delete let-modal class="delete_modal">
+                    <div class="modal-header">Do you really want to make changes ?</div>
+                    <div class="modal-body">
+
+                        <button type="button" class="btn btn-danger btn-cancel" aria-label="Close"
+                            (click)="modal.dismiss('Cross click')">
+                            Cancel
+                        </button>
+                        <button type="button" class="btn btn-primary btn-ok" (click)="onChangeStatus()">
+                            Ok
                         </button>
                     </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="dateOfBirth">Date of birth</label>
-                                <div class="input-group">
-
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark"
-                            (click)="modal.close('Save click')">Save</button>
-                    </div>
+                    <div class="modal-footer"></div>
                 </ng-template>
 
                 <ng-template #addnew let-modal>
                     <div class="modal-header">
-                        <h4 class="modal-title" id="modal-basic-title">Add New Irrigation Type</h4>
+                        <h4 class="modal-title" id="modal-basic-title">Add Irrigation Type</h4>
                         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form #addActivity="ngForm" (ngSubmit)="onAddActivity(addActivity)">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Irrigation Type Name</label>
-                                        <input type="text" placeholder="">
-                                    </div>
+                                    <mat-label class="custom-label">Irrigation Type name</mat-label>
+                                    <mat-form-field class="flex-auto">
+                                        <input matInput type="text" [(ngModel)]="activityName" name="activityName"
+                                            required />
+                                    </mat-form-field>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Image</label>
-                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="customFile">
-                                            <label class="custom-file-label" for="customFile">Choose file</label>
-                                          </div>
+                                <div class="col-md-6 form-group">
+                                    <mat-label class="custom-label">Upload Image (If any) </mat-label>
+                                    <div class="button-wrap">
+                                        <label class="new-button" for="upload"> Upload Image {{selectedFlag}}</label>
+                                        <input id="upload" type="file" name="imageurl" (change)="onFileChanged($event)">
                                     </div>
                                 </div>
-                                
                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Audio</label>
-                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="customFile">
-                                            <label class="custom-file-label" for="customFile">Choose file</label>
-                                          </div>
+                                    <mat-label class="custom-label">Upload Audio (If any) </mat-label>
+                                    <div class="button-wrap">
+                                        <label class="new-button" for="upload_audio"> Upload Audio
+                                            {{selectedAudioFlag}}</label>
+                                        <input id="upload_audio" type="file" name="audiourl"
+                                            (change)="onAudioFileChanged($event)">
                                     </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <mat-label class="custom-label">Video URL (Youtube Embed Video Link Only)
+                                    </mat-label>
+                                    <mat-form-field class="flex-auto">
+                                        <input matInput type="text" [(ngModel)]="videourl" name="videourl" required />
+                                    </mat-form-field>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Video (Youtube Video Link Only)</label>
-                                        <input type="text" placeholder="">
-                                    </div>
-                                </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-outline-dark">
+                                    Submit
+                                </button>
                             </div>
                         </form>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark"
-                            (click)="modal.close('Save click')">Submit</button>
-                    </div>
                 </ng-template>
-
-                
-                <ng-template #editone let-modal>
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="modal-basic-title">Edit Irrigation Details</h4>
-                            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">Irrigation Type Name</label>
-                                            <input type="text" placeholder="Drip">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">Irrigation Image</label>
-                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="customFile">
-                                                <label class="custom-file-label" for="customFile">Choose file</label>
-                                              </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">Change Audio</label>
-                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="customFile">
-                                                <label class="custom-file-label" for="customFile">Choose file</label>
-                                              </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">Video Url (Youtube Embed Video Link Only)</label>
-                                            <input type="text" placeholder="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-dark"
-                                (click)="modal.close('Save click')">Submit</button>
-                        </div>
-                    </ng-template>
-
-
-
-                <ng-template #edittwo let-modal>
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="modal-basic-title">Edit Irrigation Details</h4>
-                            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">Irrigation Type Name</label>
-                                            <input type="text" placeholder="Flood">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">Change Image</label>
-                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="customFile">
-                                                <label class="custom-file-label" for="customFile">Choose file</label>
-                                              </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">Change Audio</label>
-                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="customFile">
-                                                <label class="custom-file-label" for="customFile">Choose file</label>
-                                              </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">Video Url (Youtube Embed Video Link Only)</label>
-                                            <input type="text" placeholder="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-dark"
-                                (click)="modal.close('Save click')">Submit</button>
-                        </div>
-                    </ng-template>
-    
-
-
-                <ng-template #editthree let-modal>
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="modal-basic-title">Edit Irrigation Details</h4>
-                            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">Irrigation Type Name</label>
-                                            <input type="text" placeholder="Large Sprinkler">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">Change Image</label>
-                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="customFile">
-                                                <label class="custom-file-label" for="customFile">Choose file</label>
-                                              </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">Change Audio</label>
-                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="customFile">
-                                                <label class="custom-file-label" for="customFile">Choose file</label>
-                                              </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">Video Url (Youtube Embed Video Link Only)</label>
-                                            <input type="text" placeholder="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-dark"
-                                (click)="modal.close('Save click')">Submit</button>
-                        </div>
-                    </ng-template>
-    
-
-
-
-                
-                <ng-template #editfour let-modal>
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="modal-basic-title">Edit Irrigation Details</h4>
-                            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">Irrigation Type Name</label>
-                                            <input type="text" placeholder="Mini Sprinkler">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">Change Image</label>
-                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="customFile">
-                                                <label class="custom-file-label" for="customFile">Choose file</label>
-                                              </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">Change Audio</label>
-                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="customFile">
-                                                <label class="custom-file-label" for="customFile">Choose file</label>
-                                              </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">Video Url (Youtube Embed Video Link Only)</label>
-                                            <input type="text" placeholder="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-dark"
-                                (click)="modal.close('Save click')">Submit</button>
-                        </div>
-                    </ng-template>
-
-
-
-
-
-
-                <ng-template #delete let-modal class="delete_modal">
-                    <div class="modal-header">
-                        Are you sure ?
-                    </div>
-
-                    <div class="modal-body">
-                        <button type="button" class="btn btn-outline-dark btn_delete"
-                            (click)="modal.close('Save click')">
-                            Delete
-                        </button>
-                        <button type="button" class=" btn btn-outline-dark close btn_close" aria-label="Close"
-                            (click)="modal.dismiss('Cross click')">
-                            cancel
-                        </button>
-                    </div>
-
-                    <div class="modal-footer">
-
-                    </div>
-                    <!-- <div class="modal-body">
-                            <form>
-                                <div class="form-group">
-                                    <label for="dateOfBirth">Date of birth</label>
-                                    <div class="input-group">
-    
-                                    </div>
-                                </div>
-                            </form>
-                        </div> -->
-                </ng-template>
-
 
             </div>
         </div>
     </div>
 </div>
-  <script>
-  // Add the following code if you want the name of the file appear on select
-  $(".custom-file-input").on("change", function() {
-    var fileName = $(this).val().split("\\").pop();
-    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-  });
-  </script>
+<script>
+    // Add the following code if you want the name of the file appear on select
+    $(".custom-file-input").on("change", function () {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+</script>
