@@ -23,23 +23,28 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Land Preparation</td>
-                            <td class="delete_icons" (click)="statusModal(delete)">
-                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
+                        <tr *ngFor="let list of plantationRecords;let index = index;">
+                            <td>{{index+1}}</td>
+                            <td>{{ list.prepration_name }}</td>
+                            <td class="delete_icons">
+                                <mat-icon [svgIcon]="'check_circle'" class="active" *ngIf="list.status != 0"
+                                    (click)="statusModal(delete,0, list.prepration_rec_id)"></mat-icon>
+                                <mat-icon [svgIcon]="'highlight_off'" class="inactive" *ngIf="list.status === 0"
+                                    (click)="statusModal(delete,1, list.prepration_rec_id)"></mat-icon>
                             </td>
-                            <td (click)="open(edit)" class="edit_icons">
-                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
+                            <td class="edit_icons">
+                                <mat-icon [svgIcon]="'picture_in_picture_alt'" (click)="editModal(edit, list)">
+                                </mat-icon>
                             </td>
                         </tr>
                     </tbody>
                 </table>
 
+
                 <ng-template #addnew let-modal>
                     <div class="modal-header">
                         <div class="row row-inline">
-                            <h4 class="modal-title" id="modal-basic-title">Add Preparation Design</h4>
+                            <h4 class="modal-title" id="modal-basic-title">Add Preparation Record</h4>
                             <button type="button" class="close" aria-label="Close"
                                 (click)="modal.dismiss('Cross click')">
                                 <span aria-hidden="true">&times;</span>
@@ -55,17 +60,17 @@
                                 <label [ngClass]="{'lbactive': showformvalue === 6}">Shed Prepration </label> >
                                 <label [ngClass]="{'lbactive': showformvalue === 7}">Tray Prepration </label>
                             </div>
-
                         </div>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form #addActivity="ngForm" (ngSubmit)="onAddActivity(addActivity)">
                             <div class="form-1" *ngIf="showformvalue===1">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <mat-label class="custom-label">Preparation type name</mat-label>
                                         <mat-form-field class="flex-auto">
-                                            <input matInput type="text" required />
+                                            <input matInput type="text" name="preparation_name"
+                                                [(ngModel)]="preparation_name" required />
                                         </mat-form-field>
                                     </div>
                                 </div>
@@ -75,57 +80,52 @@
                                     <div class="col-md-12">
                                         <mat-label class="custom-label">Inorganic to Organic</mat-label>
                                     </div>
-                                    <div class="col-md-12 btn_rows">
-                                        <a class="add_btn" (click)="addComponent('image')">Add Image</a>
-                                        <a class="add_btn" (click)="addComponent('video')">Add Video URL</a>
-                                        <a class="add_btn" (click)="addComponent('audio')">Add Audio URL</a>
-                                        <a class="add_btn" (click)="addComponent('desc')">Add Description</a>
-                                        <a class="add_btn" (click)="addComponent('rows')">Detail in points</a>
-                                    </div>
                                     <div class="col-md-6 form-group">
-                                        <mat-label class="custom-label">Upload Image <span class="remove"
-                                                (click)="remove('image')">Remove</span></mat-label>
+                                        <mat-label class="custom-label">Upload Image </mat-label>
                                         <div class="button-wrap">
-                                            <label class="new-button" for="upload"> Upload Image </label>
-                                            <input id="upload" type="file" name="imageurl">
+                                            <label class="new-button" for="upload"> Upload Image
+                                                {{inorganic_image_flag}}
+                                            </label>
+                                            <input id="upload" type="file" name="inorganic_image"
+                                                (change)="imageUpload($event,'inorganic')">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <mat-label class="custom-label">Upload Audio <span class="remove"
-                                                (click)="remove('audio')">Remove</span></mat-label>
+                                        <mat-label class="custom-label">Upload Audio </mat-label>
                                         <div class="button-wrap">
-                                            <label class="new-button" for="upload_audio"> Upload Audio </label>
-                                            <input id="upload_audio" type="file" name="audiourl">
+                                            <label class="new-button" for="upload_audio"> Upload Audio
+                                                {{inorganic_audio_flage}} </label>
+                                            <input id="upload_audio" type="file" name="inorganic_audio"
+                                                (change)="audioUpload($event,'inorganic')">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        <mat-label class="custom-label">Video URL <span class="remove"
-                                                (click)="remove('video')">Remove</span>
-                                        </mat-label>
+                                        <mat-label class="custom-label">Video URL </mat-label>
                                         <mat-form-field class="flex-auto">
-                                            <input matInput type="text" required />
+                                            <input matInput type="text" name="inorganic_video"
+                                                [(ngModel)]="inorganic_video" required />
                                         </mat-form-field>
                                     </div>
                                     <div class="col-md-12 form-group">
-                                        <mat-label class="custom-label">Description <span class="remove"
-                                                (click)="remove('desc')">Remove</span></mat-label>
-                                        <textarea class="form-control"></textarea>
+                                        <mat-label class="custom-label">Description </mat-label>
+                                        <textarea class="form-control" name="inorganic_desc"
+                                            [(ngModel)]="inorganic_desc"></textarea>
                                     </div>
                                     <div class="col-md-12">
-                                        <mat-label class="custom-label">Other Detail (if any) <span class="remove"
-                                                (click)="remove('details')">Remove</span></mat-label>
-                                        <div *ngFor="let rowData of detailsRow; let i = index;">
+                                        <mat-label class="custom-label">Other Detail (if any) </mat-label>
+                                        <div *ngFor="let rowData of inorganic_detailsRow; let i = index;">
                                             <mat-form-field class="flex-auto">
                                                 <input matInput type="text" [(ngModel)]="rowData.detail_name"
                                                     name="detail_name_+{{rowData.detail_id}}" required />
-                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="add(i)"
-                                                    *ngIf="i === 0 && detailsRowLen ===1">
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="inorg_add(i)"
+                                                    *ngIf="i === 0 && inorganic_detailsRowLen ===1">
                                                 </mat-icon>
                                                 <mat-icon matSuffix [svgIcon]="'indeterminate_check_box'"
-                                                    (click)="deleteRow(rowData,rowData.detail_id)"
-                                                    *ngIf="detailsRowLen > 1 && detailsRowLen != i+1"></mat-icon>
-                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="add(i)"
-                                                    *ngIf="i > 0 && detailsRowLen === i+1 "></mat-icon>
+                                                    (click)="inorg_deleteRow(rowData,rowData.detail_id)"
+                                                    *ngIf="inorganic_detailsRowLen > 1 && inorganic_detailsRowLen != i+1">
+                                                </mat-icon>
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="inorg_add(i)"
+                                                    *ngIf="i > 0 && inorganic_detailsRowLen === i+1 "></mat-icon>
                                             </mat-form-field>
                                         </div>
                                     </div>
@@ -137,57 +137,51 @@
                                     <div class="col-md-12">
                                         <mat-label class="custom-label">Bed Distrub</mat-label>
                                     </div>
-                                    <div class="col-md-12 btn_rows">
-                                        <a class="add_btn" (click)="addComponent('image')">Add Image</a>
-                                        <a class="add_btn" (click)="addComponent('video')">Add Video URL</a>
-                                        <a class="add_btn" (click)="addComponent('audio')">Add Audio URL</a>
-                                        <a class="add_btn" (click)="addComponent('desc')">Add Description</a>
-                                        <a class="add_btn" (click)="addComponent('rows')">Detail in points</a>
-                                    </div>
                                     <div class="col-md-6 form-group">
-                                        <mat-label class="custom-label">Upload Image <span class="remove"
-                                                (click)="remove('image')">Remove</span></mat-label>
+                                        <mat-label class="custom-label">Upload Image </mat-label>
                                         <div class="button-wrap">
-                                            <label class="new-button" for="upload"> Upload Image </label>
-                                            <input id="upload" type="file" name="imageurl">
+                                            <label class="new-button" for="upload"> Upload Image {{bed_image_flag}}
+                                            </label>
+                                            <input id="upload" type="file" name="bed_image"
+                                                (change)="imageUpload($event,'bed')">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <mat-label class="custom-label">Upload Audio <span class="remove"
-                                                (click)="remove('audio')">Remove</span></mat-label>
+                                        <mat-label class="custom-label">Upload Audio </mat-label>
                                         <div class="button-wrap">
-                                            <label class="new-button" for="upload_audio"> Upload Audio </label>
-                                            <input id="upload_audio" type="file" name="audiourl">
+                                            <label class="new-button" for="upload_audio"> Upload Audio
+                                                {{bed_audio_flage}} </label>
+                                            <input id="upload_audio" type="file" name="bed_audio"
+                                                (change)="audioUpload($event,'bed')">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        <mat-label class="custom-label">Video URL <span class="remove"
-                                                (click)="remove('video')">Remove</span>
-                                        </mat-label>
+                                        <mat-label class="custom-label">Video URL </mat-label>
                                         <mat-form-field class="flex-auto">
-                                            <input matInput type="text" required />
+                                            <input matInput type="text" name="bed_video" [(ngModel)]="bed_video"
+                                                required />
                                         </mat-form-field>
                                     </div>
                                     <div class="col-md-12 form-group">
-                                        <mat-label class="custom-label">Description <span class="remove"
-                                                (click)="remove('desc')">Remove</span></mat-label>
-                                        <textarea class="form-control"></textarea>
+                                        <mat-label class="custom-label">Description </mat-label>
+                                        <textarea class="form-control" name="bed_desc"
+                                            [(ngModel)]="bed_desc"></textarea>
                                     </div>
                                     <div class="col-md-12">
-                                        <mat-label class="custom-label">Other Detail (if any) <span class="remove"
-                                                (click)="remove('details')">Remove</span></mat-label>
-                                        <div *ngFor="let rowData of detailsRow; let i = index;">
+                                        <mat-label class="custom-label">Other Detail (if any) </mat-label>
+                                        <div *ngFor="let rowData of bed_detailsRow; let i = index;">
                                             <mat-form-field class="flex-auto">
                                                 <input matInput type="text" [(ngModel)]="rowData.detail_name"
                                                     name="detail_name_+{{rowData.detail_id}}" required />
-                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="add(i)"
-                                                    *ngIf="i === 0 && detailsRowLen ===1">
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="bed_add(i)"
+                                                    *ngIf="i === 0 && bed_detailsRowLen ===1">
                                                 </mat-icon>
                                                 <mat-icon matSuffix [svgIcon]="'indeterminate_check_box'"
-                                                    (click)="deleteRow(rowData,rowData.detail_id)"
-                                                    *ngIf="detailsRowLen > 1 && detailsRowLen != i+1"></mat-icon>
-                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="add(i)"
-                                                    *ngIf="i > 0 && detailsRowLen === i+1 "></mat-icon>
+                                                    (click)="bed_deleteRow(rowData,rowData.detail_id)"
+                                                    *ngIf="bed_detailsRowLen > 1 && bed_detailsRowLen != i+1">
+                                                </mat-icon>
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="bed_add(i)"
+                                                    *ngIf="i > 0 && bed_detailsRowLen === i+1 "></mat-icon>
                                             </mat-form-field>
                                         </div>
                                     </div>
@@ -199,57 +193,51 @@
                                     <div class="col-md-12">
                                         <mat-label class="custom-label">Arrangement Of Seed</mat-label>
                                     </div>
-                                    <div class="col-md-12 btn_rows">
-                                        <a class="add_btn" (click)="addComponent('image')">Add Image</a>
-                                        <a class="add_btn" (click)="addComponent('video')">Add Video URL</a>
-                                        <a class="add_btn" (click)="addComponent('audio')">Add Audio URL</a>
-                                        <a class="add_btn" (click)="addComponent('desc')">Add Description</a>
-                                        <a class="add_btn" (click)="addComponent('rows')">Detail in points</a>
-                                    </div>
                                     <div class="col-md-6 form-group">
-                                        <mat-label class="custom-label">Upload Image <span class="remove"
-                                                (click)="remove('image')">Remove</span></mat-label>
+                                        <mat-label class="custom-label">Upload Image </mat-label>
                                         <div class="button-wrap">
-                                            <label class="new-button" for="upload"> Upload Image </label>
-                                            <input id="upload" type="file" name="imageurl">
+                                            <label class="new-button" for="upload"> Upload Image {{arrg_image_flag}}
+                                            </label>
+                                            <input id="upload" type="file" name="arrg_image"
+                                                (change)="imageUpload($event,'arrg')">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <mat-label class="custom-label">Upload Audio <span class="remove"
-                                                (click)="remove('audio')">Remove</span></mat-label>
+                                        <mat-label class="custom-label">Upload Audio </mat-label>
                                         <div class="button-wrap">
-                                            <label class="new-button" for="upload_audio"> Upload Audio </label>
-                                            <input id="upload_audio" type="file" name="audiourl">
+                                            <label class="new-button" for="upload_audio"> Upload Audio
+                                                {{arrg_audio_flage}} </label>
+                                            <input id="upload_audio" type="file" name="arrg_audio"
+                                                (change)="audioUpload($event,'arrg')">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        <mat-label class="custom-label">Video URL <span class="remove"
-                                                (click)="remove('video')">Remove</span>
-                                        </mat-label>
+                                        <mat-label class="custom-label">Video URL </mat-label>
                                         <mat-form-field class="flex-auto">
-                                            <input matInput type="text" required />
+                                            <input matInput type="text" name="arrg_video" [(ngModel)]="arrg_video"
+                                                required />
                                         </mat-form-field>
                                     </div>
                                     <div class="col-md-12 form-group">
-                                        <mat-label class="custom-label">Description <span class="remove"
-                                                (click)="remove('desc')">Remove</span></mat-label>
-                                        <textarea class="form-control"></textarea>
+                                        <mat-label class="custom-label">Description </mat-label>
+                                        <textarea class="form-control" name="arrg_desc"
+                                            [(ngModel)]="arrg_desc"></textarea>
                                     </div>
                                     <div class="col-md-12">
-                                        <mat-label class="custom-label">Other Detail (if any) <span class="remove"
-                                                (click)="remove('details')">Remove</span></mat-label>
-                                        <div *ngFor="let rowData of detailsRow; let i = index;">
+                                        <mat-label class="custom-label">Other Detail (if any) </mat-label>
+                                        <div *ngFor="let rowData of arrg_detailsRow; let i = index;">
                                             <mat-form-field class="flex-auto">
                                                 <input matInput type="text" [(ngModel)]="rowData.detail_name"
                                                     name="detail_name_+{{rowData.detail_id}}" required />
-                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="add(i)"
-                                                    *ngIf="i === 0 && detailsRowLen ===1">
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="arrg_add(i)"
+                                                    *ngIf="i === 0 && arrg_detailsRowLen ===1">
                                                 </mat-icon>
                                                 <mat-icon matSuffix [svgIcon]="'indeterminate_check_box'"
-                                                    (click)="deleteRow(rowData,rowData.detail_id)"
-                                                    *ngIf="detailsRowLen > 1 && detailsRowLen != i+1"></mat-icon>
-                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="add(i)"
-                                                    *ngIf="i > 0 && detailsRowLen === i+1 "></mat-icon>
+                                                    (click)="arrg_deleteRow(rowData,rowData.detail_id)"
+                                                    *ngIf="arrg_detailsRowLen > 1 && arrg_detailsRowLen != i+1">
+                                                </mat-icon>
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="arrg_add(i)"
+                                                    *ngIf="i > 0 && arrg_detailsRowLen === i+1 "></mat-icon>
                                             </mat-form-field>
                                         </div>
                                     </div>
@@ -261,57 +249,51 @@
                                     <div class="col-md-12">
                                         <mat-label class="custom-label">Seed Treatment</mat-label>
                                     </div>
-                                    <div class="col-md-12 btn_rows">
-                                        <a class="add_btn" (click)="addComponent('image')">Add Image</a>
-                                        <a class="add_btn" (click)="addComponent('video')">Add Video URL</a>
-                                        <a class="add_btn" (click)="addComponent('audio')">Add Audio URL</a>
-                                        <a class="add_btn" (click)="addComponent('desc')">Add Description</a>
-                                        <a class="add_btn" (click)="addComponent('rows')">Detail in points</a>
-                                    </div>
                                     <div class="col-md-6 form-group">
-                                        <mat-label class="custom-label">Upload Image <span class="remove"
-                                                (click)="remove('image')">Remove</span></mat-label>
+                                        <mat-label class="custom-label">Upload Image </mat-label>
                                         <div class="button-wrap">
-                                            <label class="new-button" for="upload"> Upload Image </label>
-                                            <input id="upload" type="file" name="imageurl">
+                                            <label class="new-button" for="upload"> Upload Image {{seed_image_flag}}
+                                            </label>
+                                            <input id="upload" type="file" name="seed_image"
+                                                (change)="imageUpload($event,'seed')">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <mat-label class="custom-label">Upload Audio <span class="remove"
-                                                (click)="remove('audio')">Remove</span></mat-label>
+                                        <mat-label class="custom-label">Upload Audio </mat-label>
                                         <div class="button-wrap">
-                                            <label class="new-button" for="upload_audio"> Upload Audio </label>
-                                            <input id="upload_audio" type="file" name="audiourl">
+                                            <label class="new-button" for="upload_audio"> Upload Audio
+                                                {{seed_audio_flage}} </label>
+                                            <input id="upload_audio" type="file" name="seed_audio"
+                                                (change)="audioUpload($event,'seed')">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        <mat-label class="custom-label">Video URL <span class="remove"
-                                                (click)="remove('video')">Remove</span>
-                                        </mat-label>
+                                        <mat-label class="custom-label">Video URL </mat-label>
                                         <mat-form-field class="flex-auto">
-                                            <input matInput type="text" required />
+                                            <input matInput type="text" name="seed_video" [(ngModel)]="seed_video"
+                                                required />
                                         </mat-form-field>
                                     </div>
                                     <div class="col-md-12 form-group">
-                                        <mat-label class="custom-label">Description <span class="remove"
-                                                (click)="remove('desc')">Remove</span></mat-label>
-                                        <textarea class="form-control"></textarea>
+                                        <mat-label class="custom-label">Description </mat-label>
+                                        <textarea class="form-control" name="seed_desc"
+                                            [(ngModel)]="seed_desc"></textarea>
                                     </div>
                                     <div class="col-md-12">
-                                        <mat-label class="custom-label">Other Detail (if any) <span class="remove"
-                                                (click)="remove('details')">Remove</span></mat-label>
-                                        <div *ngFor="let rowData of detailsRow; let i = index;">
+                                        <mat-label class="custom-label">Other Detail (if any) </mat-label>
+                                        <div *ngFor="let rowData of seed_detailsRow; let i = index;">
                                             <mat-form-field class="flex-auto">
                                                 <input matInput type="text" [(ngModel)]="rowData.detail_name"
                                                     name="detail_name_+{{rowData.detail_id}}" required />
-                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="add(i)"
-                                                    *ngIf="i === 0 && detailsRowLen ===1">
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="seed_add(i)"
+                                                    *ngIf="i === 0 && seed_detailsRowLen ===1">
                                                 </mat-icon>
                                                 <mat-icon matSuffix [svgIcon]="'indeterminate_check_box'"
-                                                    (click)="deleteRow(rowData,rowData.detail_id)"
-                                                    *ngIf="detailsRowLen > 1 && detailsRowLen != i+1"></mat-icon>
-                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="add(i)"
-                                                    *ngIf="i > 0 && detailsRowLen === i+1 "></mat-icon>
+                                                    (click)="seed_deleteRow(rowData,rowData.detail_id)"
+                                                    *ngIf="seed_detailsRowLen > 1 && seed_detailsRowLen != i+1">
+                                                </mat-icon>
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="seed_add(i)"
+                                                    *ngIf="i > 0 && seed_detailsRowLen === i+1 "></mat-icon>
                                             </mat-form-field>
                                         </div>
                                     </div>
@@ -323,57 +305,51 @@
                                     <div class="col-md-12">
                                         <mat-label class="custom-label">Shed Prepration</mat-label>
                                     </div>
-                                    <div class="col-md-12 btn_rows">
-                                        <a class="add_btn" (click)="addComponent('image')">Add Image</a>
-                                        <a class="add_btn" (click)="addComponent('video')">Add Video URL</a>
-                                        <a class="add_btn" (click)="addComponent('audio')">Add Audio URL</a>
-                                        <a class="add_btn" (click)="addComponent('desc')">Add Description</a>
-                                        <a class="add_btn" (click)="addComponent('rows')">Detail in points</a>
-                                    </div>
                                     <div class="col-md-6 form-group">
-                                        <mat-label class="custom-label">Upload Image <span class="remove"
-                                                (click)="remove('image')">Remove</span></mat-label>
+                                        <mat-label class="custom-label">Upload Image </mat-label>
                                         <div class="button-wrap">
-                                            <label class="new-button" for="upload"> Upload Image </label>
-                                            <input id="upload" type="file" name="imageurl">
+                                            <label class="new-button" for="upload"> Upload Image {{shed_image_flag}}
+                                            </label>
+                                            <input id="upload" type="file" name="shed_image"
+                                                (change)="imageUpload($event,'shed')">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <mat-label class="custom-label">Upload Audio <span class="remove"
-                                                (click)="remove('audio')">Remove</span></mat-label>
+                                        <mat-label class="custom-label">Upload Audio </mat-label>
                                         <div class="button-wrap">
-                                            <label class="new-button" for="upload_audio"> Upload Audio </label>
-                                            <input id="upload_audio" type="file" name="audiourl">
+                                            <label class="new-button" for="upload_audio"> Upload Audio
+                                                {{shed_audio_flage}} </label>
+                                            <input id="upload_audio" type="file" name="shed_audio"
+                                                (change)="audioUpload($event,'shed')">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        <mat-label class="custom-label">Video URL <span class="remove"
-                                                (click)="remove('video')">Remove</span>
-                                        </mat-label>
+                                        <mat-label class="custom-label">Video URL </mat-label>
                                         <mat-form-field class="flex-auto">
-                                            <input matInput type="text" required />
+                                            <input matInput type="text" name="shed_video" [(ngModel)]="shed_video"
+                                                required />
                                         </mat-form-field>
                                     </div>
                                     <div class="col-md-12 form-group">
-                                        <mat-label class="custom-label">Description <span class="remove"
-                                                (click)="remove('desc')">Remove</span></mat-label>
-                                        <textarea class="form-control"></textarea>
+                                        <mat-label class="custom-label">Description </mat-label>
+                                        <textarea class="form-control" name="shed_desc"
+                                            [(ngModel)]="shed_desc"></textarea>
                                     </div>
                                     <div class="col-md-12">
-                                        <mat-label class="custom-label">Other Detail (if any) <span class="remove"
-                                                (click)="remove('details')">Remove</span></mat-label>
-                                        <div *ngFor="let rowData of detailsRow; let i = index;">
+                                        <mat-label class="custom-label">Other Detail (if any) </mat-label>
+                                        <div *ngFor="let rowData of shed_detailsRow; let i = index;">
                                             <mat-form-field class="flex-auto">
                                                 <input matInput type="text" [(ngModel)]="rowData.detail_name"
                                                     name="detail_name_+{{rowData.detail_id}}" required />
-                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="add(i)"
-                                                    *ngIf="i === 0 && detailsRowLen ===1">
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="shed_add(i)"
+                                                    *ngIf="i === 0 && shed_detailsRowLen ===1">
                                                 </mat-icon>
                                                 <mat-icon matSuffix [svgIcon]="'indeterminate_check_box'"
-                                                    (click)="deleteRow(rowData,rowData.detail_id)"
-                                                    *ngIf="detailsRowLen > 1 && detailsRowLen != i+1"></mat-icon>
-                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="add(i)"
-                                                    *ngIf="i > 0 && detailsRowLen === i+1 "></mat-icon>
+                                                    (click)="shed_deleteRow(rowData,rowData.detail_id)"
+                                                    *ngIf="shed_detailsRowLen > 1 && shed_detailsRowLen != i+1">
+                                                </mat-icon>
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="shed_add(i)"
+                                                    *ngIf="i > 0 && shed_detailsRowLen === i+1 "></mat-icon>
                                             </mat-form-field>
                                         </div>
                                     </div>
@@ -385,57 +361,51 @@
                                     <div class="col-md-12">
                                         <mat-label class="custom-label">Tray Prepration</mat-label>
                                     </div>
-                                    <div class="col-md-12 btn_rows">
-                                        <a class="add_btn" (click)="addComponent('image')">Add Image</a>
-                                        <a class="add_btn" (click)="addComponent('video')">Add Video URL</a>
-                                        <a class="add_btn" (click)="addComponent('audio')">Add Audio URL</a>
-                                        <a class="add_btn" (click)="addComponent('desc')">Add Description</a>
-                                        <a class="add_btn" (click)="addComponent('rows')">Detail in points</a>
-                                    </div>
                                     <div class="col-md-6 form-group">
-                                        <mat-label class="custom-label">Upload Image <span class="remove"
-                                                (click)="remove('image')">Remove</span></mat-label>
+                                        <mat-label class="custom-label">Upload Image </mat-label>
                                         <div class="button-wrap">
-                                            <label class="new-button" for="upload"> Upload Image </label>
-                                            <input id="upload" type="file" name="imageurl">
+                                            <label class="new-button" for="upload"> Upload Image {{tray_image_flag}}
+                                            </label>
+                                            <input id="upload" type="file" name="tray_image"
+                                                (change)="imageUpload($event,'tray')">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <mat-label class="custom-label">Upload Audio <span class="remove"
-                                                (click)="remove('audio')">Remove</span></mat-label>
+                                        <mat-label class="custom-label">Upload Audio </mat-label>
                                         <div class="button-wrap">
-                                            <label class="new-button" for="upload_audio"> Upload Audio </label>
-                                            <input id="upload_audio" type="file" name="audiourl">
+                                            <label class="new-button" for="upload_audio"> Upload Audio
+                                                {{tray_audio_flage}} </label>
+                                            <input id="upload_audio" type="file" name="tray_audio"
+                                                (change)="audioUpload($event,'tray')">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        <mat-label class="custom-label">Video URL <span class="remove"
-                                                (click)="remove('video')">Remove</span>
-                                        </mat-label>
+                                        <mat-label class="custom-label">Video URL </mat-label>
                                         <mat-form-field class="flex-auto">
-                                            <input matInput type="text" required />
+                                            <input matInput type="text" name="tray_video" [(ngModel)]="tray_video"
+                                                required />
                                         </mat-form-field>
                                     </div>
                                     <div class="col-md-12 form-group">
-                                        <mat-label class="custom-label">Description <span class="remove"
-                                                (click)="remove('desc')">Remove</span></mat-label>
-                                        <textarea class="form-control"></textarea>
+                                        <mat-label class="custom-label">Description </mat-label>
+                                        <textarea class="form-control" name="tray_desc"
+                                            [(ngModel)]="tray_desc"></textarea>
                                     </div>
                                     <div class="col-md-12">
-                                        <mat-label class="custom-label">Other Detail (if any) <span class="remove"
-                                                (click)="remove('details')">Remove</span></mat-label>
-                                        <div *ngFor="let rowData of detailsRow; let i = index;">
+                                        <mat-label class="custom-label">Other Detail (if any) </mat-label>
+                                        <div *ngFor="let rowData of tray_detailsRow; let i = index;">
                                             <mat-form-field class="flex-auto">
                                                 <input matInput type="text" [(ngModel)]="rowData.detail_name"
                                                     name="detail_name_+{{rowData.detail_id}}" required />
-                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="add(i)"
-                                                    *ngIf="i === 0 && detailsRowLen ===1">
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="tray_add(i)"
+                                                    *ngIf="i === 0 && tray_detailsRowLen ===1">
                                                 </mat-icon>
                                                 <mat-icon matSuffix [svgIcon]="'indeterminate_check_box'"
-                                                    (click)="deleteRow(rowData,rowData.detail_id)"
-                                                    *ngIf="detailsRowLen > 1 && detailsRowLen != i+1"></mat-icon>
-                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="add(i)"
-                                                    *ngIf="i > 0 && detailsRowLen === i+1 "></mat-icon>
+                                                    (click)="tray_deleteRow(rowData,rowData.detail_id)"
+                                                    *ngIf="tray_detailsRowLen > 1 && tray_detailsRowLen != i+1">
+                                                </mat-icon>
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="tray_add(i)"
+                                                    *ngIf="i > 0 && tray_detailsRowLen === i+1 "></mat-icon>
                                             </mat-form-field>
                                         </div>
                                     </div>
@@ -507,11 +477,10 @@
                     </div>
                 </ng-template>
 
-
                 <ng-template #edit let-modal>
                     <div class="modal-header">
                         <div class="row row-inline">
-                            <h4 class="modal-title" id="modal-basic-title">Edit Preparation Design</h4>
+                            <h4 class="modal-title" id="modal-basic-title">Add Preparation Record</h4>
                             <button type="button" class="close" aria-label="Close"
                                 (click)="modal.dismiss('Cross click')">
                                 <span aria-hidden="true">&times;</span>
@@ -527,17 +496,17 @@
                                 <label [ngClass]="{'lbactive': showformvalue === 6}">Shed Prepration </label> >
                                 <label [ngClass]="{'lbactive': showformvalue === 7}">Tray Prepration </label>
                             </div>
-
                         </div>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form #UpdateRecord="ngForm" (ngSubmit)="onUpdateRecord(UpdateRecord)">
                             <div class="form-1" *ngIf="showformvalue===1">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <mat-label class="custom-label">Preparation type name</mat-label>
                                         <mat-form-field class="flex-auto">
-                                            <input matInput type="text" required />
+                                            <input matInput type="text" name="preparation_name"
+                                                [(ngModel)]="preparation_name" required />
                                         </mat-form-field>
                                     </div>
                                 </div>
@@ -547,57 +516,61 @@
                                     <div class="col-md-12">
                                         <mat-label class="custom-label">Inorganic to Organic</mat-label>
                                     </div>
-                                    <div class="col-md-12 btn_rows">
-                                        <a class="add_btn" (click)="addComponent('image')">Add Image</a>
-                                        <a class="add_btn" (click)="addComponent('video')">Add Video URL</a>
-                                        <a class="add_btn" (click)="addComponent('audio')">Add Audio URL</a>
-                                        <a class="add_btn" (click)="addComponent('desc')">Add Description</a>
-                                        <a class="add_btn" (click)="addComponent('rows')">Detail in points</a>
-                                    </div>
                                     <div class="col-md-6 form-group">
-                                        <mat-label class="custom-label">Upload Image <span class="remove"
-                                                (click)="remove('image')">Remove</span></mat-label>
+                                        <mat-label class="custom-label">Upload Image </mat-label>
+                                        <div class="imgdiv" *ngIf="inorganic_image!=''">
+                                            <img src="{{url+'image/'+inorganic_image}}" alt="">
+                                        </div>
                                         <div class="button-wrap">
-                                            <label class="new-button" for="upload"> Upload Image </label>
-                                            <input id="upload" type="file" name="imageurl">
+                                            <label class="new-button" for="upload"> Upload Image
+                                                {{inorganic_image_flag}}
+                                            </label>
+                                            <input id="upload" type="file" name="inorganic_image"
+                                                (change)="imageUpload($event,'inorganic')">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <mat-label class="custom-label">Upload Audio <span class="remove"
-                                                (click)="remove('audio')">Remove</span></mat-label>
+                                        <mat-label class="custom-label">Upload Audio </mat-label>
+                                        <div class="audiodiv" *ngIf="inorganic_audio!=''">
+                                            <audio controls>
+                                                <source src="{{url+'audio/'+inorganic_audio}}" type="audio/ogg">
+                                                <source src="{{url+'audio/'+inorganic_audio}}" type="audio/mpeg">
+                                            </audio>
+                                        </div>
                                         <div class="button-wrap">
-                                            <label class="new-button" for="upload_audio"> Upload Audio </label>
-                                            <input id="upload_audio" type="file" name="audiourl">
+                                            <label class="new-button" for="upload_audio"> Upload Audio
+                                                {{inorganic_audio_flage}} </label>
+                                            <input id="upload_audio" type="file" name="inorganic_audio"
+                                                (change)="audioUpload($event,'inorganic')">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        <mat-label class="custom-label">Video URL <span class="remove"
-                                                (click)="remove('video')">Remove</span>
-                                        </mat-label>
+                                        <mat-label class="custom-label">Video URL </mat-label>
                                         <mat-form-field class="flex-auto">
-                                            <input matInput type="text" required />
+                                            <input matInput type="text" name="inorganic_video"
+                                                [(ngModel)]="inorganic_video" required />
                                         </mat-form-field>
                                     </div>
                                     <div class="col-md-12 form-group">
-                                        <mat-label class="custom-label">Description <span class="remove"
-                                                (click)="remove('desc')">Remove</span></mat-label>
-                                        <textarea class="form-control"></textarea>
+                                        <mat-label class="custom-label">Description </mat-label>
+                                        <textarea class="form-control" name="inorganic_desc"
+                                            [(ngModel)]="inorganic_desc"></textarea>
                                     </div>
                                     <div class="col-md-12">
-                                        <mat-label class="custom-label">Other Detail (if any) <span class="remove"
-                                                (click)="remove('details')">Remove</span></mat-label>
-                                        <div *ngFor="let rowData of detailsRow; let i = index;">
+                                        <mat-label class="custom-label">Other Detail (if any) </mat-label>
+                                        <div *ngFor="let rowData of inorganic_detailsRow; let i = index;">
                                             <mat-form-field class="flex-auto">
                                                 <input matInput type="text" [(ngModel)]="rowData.detail_name"
                                                     name="detail_name_+{{rowData.detail_id}}" required />
-                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="add(i)"
-                                                    *ngIf="i === 0 && detailsRowLen ===1">
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="inorg_add(i)"
+                                                    *ngIf="i === 0 && inorganic_detailsRowLen ===1">
                                                 </mat-icon>
                                                 <mat-icon matSuffix [svgIcon]="'indeterminate_check_box'"
-                                                    (click)="deleteRow(rowData,rowData.detail_id)"
-                                                    *ngIf="detailsRowLen > 1 && detailsRowLen != i+1"></mat-icon>
-                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="add(i)"
-                                                    *ngIf="i > 0 && detailsRowLen === i+1 "></mat-icon>
+                                                    (click)="inorg_deleteRow(rowData,rowData.detail_id)"
+                                                    *ngIf="inorganic_detailsRowLen > 1 && inorganic_detailsRowLen != i+1">
+                                                </mat-icon>
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="inorg_add(i)"
+                                                    *ngIf="i > 0 && inorganic_detailsRowLen === i+1 "></mat-icon>
                                             </mat-form-field>
                                         </div>
                                     </div>
@@ -609,57 +582,60 @@
                                     <div class="col-md-12">
                                         <mat-label class="custom-label">Bed Distrub</mat-label>
                                     </div>
-                                    <div class="col-md-12 btn_rows">
-                                        <a class="add_btn" (click)="addComponent('image')">Add Image</a>
-                                        <a class="add_btn" (click)="addComponent('video')">Add Video URL</a>
-                                        <a class="add_btn" (click)="addComponent('audio')">Add Audio URL</a>
-                                        <a class="add_btn" (click)="addComponent('desc')">Add Description</a>
-                                        <a class="add_btn" (click)="addComponent('rows')">Detail in points</a>
-                                    </div>
                                     <div class="col-md-6 form-group">
-                                        <mat-label class="custom-label">Upload Image <span class="remove"
-                                                (click)="remove('image')">Remove</span></mat-label>
+                                        <mat-label class="custom-label">Upload Image </mat-label>
+                                        <div class="imgdiv" *ngIf="bed_image!=''">
+                                            <img src="{{url+'image/'+bed_image}}" alt="">
+                                        </div>
                                         <div class="button-wrap">
-                                            <label class="new-button" for="upload"> Upload Image </label>
-                                            <input id="upload" type="file" name="imageurl">
+                                            <label class="new-button" for="upload"> Upload Image {{bed_image_flag}}
+                                            </label>
+                                            <input id="upload" type="file" name="bed_image"
+                                                (change)="imageUpload($event,'bed')">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <mat-label class="custom-label">Upload Audio <span class="remove"
-                                                (click)="remove('audio')">Remove</span></mat-label>
+                                        <mat-label class="custom-label">Upload Audio </mat-label>
+                                        <div class="audiodiv" *ngIf="bed_audio!=''">
+                                            <audio controls>
+                                                <source src="{{url+'audio/'+bed_audio}}" type="audio/ogg">
+                                                <source src="{{url+'audio/'+bed_audio}}" type="audio/mpeg">
+                                            </audio>
+                                        </div>
                                         <div class="button-wrap">
-                                            <label class="new-button" for="upload_audio"> Upload Audio </label>
-                                            <input id="upload_audio" type="file" name="audiourl">
+                                            <label class="new-button" for="upload_audio"> Upload Audio
+                                                {{bed_audio_flage}} </label>
+                                            <input id="upload_audio" type="file" name="bed_audio"
+                                                (change)="audioUpload($event,'bed')">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        <mat-label class="custom-label">Video URL <span class="remove"
-                                                (click)="remove('video')">Remove</span>
-                                        </mat-label>
+                                        <mat-label class="custom-label">Video URL </mat-label>
                                         <mat-form-field class="flex-auto">
-                                            <input matInput type="text" required />
+                                            <input matInput type="text" name="bed_video" [(ngModel)]="bed_video"
+                                                required />
                                         </mat-form-field>
                                     </div>
                                     <div class="col-md-12 form-group">
-                                        <mat-label class="custom-label">Description <span class="remove"
-                                                (click)="remove('desc')">Remove</span></mat-label>
-                                        <textarea class="form-control"></textarea>
+                                        <mat-label class="custom-label">Description </mat-label>
+                                        <textarea class="form-control" name="bed_desc"
+                                            [(ngModel)]="bed_desc"></textarea>
                                     </div>
                                     <div class="col-md-12">
-                                        <mat-label class="custom-label">Other Detail (if any) <span class="remove"
-                                                (click)="remove('details')">Remove</span></mat-label>
-                                        <div *ngFor="let rowData of detailsRow; let i = index;">
+                                        <mat-label class="custom-label">Other Detail (if any) </mat-label>
+                                        <div *ngFor="let rowData of bed_detailsRow; let i = index;">
                                             <mat-form-field class="flex-auto">
                                                 <input matInput type="text" [(ngModel)]="rowData.detail_name"
                                                     name="detail_name_+{{rowData.detail_id}}" required />
-                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="add(i)"
-                                                    *ngIf="i === 0 && detailsRowLen ===1">
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="bed_add(i)"
+                                                    *ngIf="i === 0 && bed_detailsRowLen ===1">
                                                 </mat-icon>
                                                 <mat-icon matSuffix [svgIcon]="'indeterminate_check_box'"
-                                                    (click)="deleteRow(rowData,rowData.detail_id)"
-                                                    *ngIf="detailsRowLen > 1 && detailsRowLen != i+1"></mat-icon>
-                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="add(i)"
-                                                    *ngIf="i > 0 && detailsRowLen === i+1 "></mat-icon>
+                                                    (click)="bed_deleteRow(rowData,rowData.detail_id)"
+                                                    *ngIf="bed_detailsRowLen > 1 && bed_detailsRowLen != i+1">
+                                                </mat-icon>
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="bed_add(i)"
+                                                    *ngIf="i > 0 && bed_detailsRowLen === i+1 "></mat-icon>
                                             </mat-form-field>
                                         </div>
                                     </div>
@@ -671,57 +647,60 @@
                                     <div class="col-md-12">
                                         <mat-label class="custom-label">Arrangement Of Seed</mat-label>
                                     </div>
-                                    <div class="col-md-12 btn_rows">
-                                        <a class="add_btn" (click)="addComponent('image')">Add Image</a>
-                                        <a class="add_btn" (click)="addComponent('video')">Add Video URL</a>
-                                        <a class="add_btn" (click)="addComponent('audio')">Add Audio URL</a>
-                                        <a class="add_btn" (click)="addComponent('desc')">Add Description</a>
-                                        <a class="add_btn" (click)="addComponent('rows')">Detail in points</a>
-                                    </div>
                                     <div class="col-md-6 form-group">
-                                        <mat-label class="custom-label">Upload Image <span class="remove"
-                                                (click)="remove('image')">Remove</span></mat-label>
+                                        <mat-label class="custom-label">Upload Image </mat-label>
+                                        <div class="imgdiv" *ngIf="arrg_image!=''">
+                                            <img src="{{url+'image/'+arrg_image}}" alt="">
+                                        </div>
                                         <div class="button-wrap">
-                                            <label class="new-button" for="upload"> Upload Image </label>
-                                            <input id="upload" type="file" name="imageurl">
+                                            <label class="new-button" for="upload"> Upload Image {{arrg_image_flag}}
+                                            </label>
+                                            <input id="upload" type="file" name="arrg_image"
+                                                (change)="imageUpload($event,'arrg')">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <mat-label class="custom-label">Upload Audio <span class="remove"
-                                                (click)="remove('audio')">Remove</span></mat-label>
+                                        <mat-label class="custom-label">Upload Audio </mat-label>
+                                        <div class="audiodiv" *ngIf="arrg_audio!=''">
+                                            <audio controls>
+                                                <source src="{{url+'audio/'+arrg_audio}}" type="audio/ogg">
+                                                <source src="{{url+'audio/'+arrg_audio}}" type="audio/mpeg">
+                                            </audio>
+                                        </div>
                                         <div class="button-wrap">
-                                            <label class="new-button" for="upload_audio"> Upload Audio </label>
-                                            <input id="upload_audio" type="file" name="audiourl">
+                                            <label class="new-button" for="upload_audio"> Upload Audio
+                                                {{arrg_audio_flage}} </label>
+                                            <input id="upload_audio" type="file" name="arrg_audio"
+                                                (change)="audioUpload($event,'arrg')">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        <mat-label class="custom-label">Video URL <span class="remove"
-                                                (click)="remove('video')">Remove</span>
-                                        </mat-label>
+                                        <mat-label class="custom-label">Video URL </mat-label>
                                         <mat-form-field class="flex-auto">
-                                            <input matInput type="text" required />
+                                            <input matInput type="text" name="arrg_video" [(ngModel)]="arrg_video"
+                                                required />
                                         </mat-form-field>
                                     </div>
                                     <div class="col-md-12 form-group">
-                                        <mat-label class="custom-label">Description <span class="remove"
-                                                (click)="remove('desc')">Remove</span></mat-label>
-                                        <textarea class="form-control"></textarea>
+                                        <mat-label class="custom-label">Description </mat-label>
+                                        <textarea class="form-control" name="arrg_desc"
+                                            [(ngModel)]="arrg_desc"></textarea>
                                     </div>
                                     <div class="col-md-12">
-                                        <mat-label class="custom-label">Other Detail (if any) <span class="remove"
-                                                (click)="remove('details')">Remove</span></mat-label>
-                                        <div *ngFor="let rowData of detailsRow; let i = index;">
+                                        <mat-label class="custom-label">Other Detail (if any) </mat-label>
+                                        <div *ngFor="let rowData of arrg_detailsRow; let i = index;">
                                             <mat-form-field class="flex-auto">
                                                 <input matInput type="text" [(ngModel)]="rowData.detail_name"
                                                     name="detail_name_+{{rowData.detail_id}}" required />
-                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="add(i)"
-                                                    *ngIf="i === 0 && detailsRowLen ===1">
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="arrg_add(i)"
+                                                    *ngIf="i === 0 && arrg_detailsRowLen ===1">
                                                 </mat-icon>
                                                 <mat-icon matSuffix [svgIcon]="'indeterminate_check_box'"
-                                                    (click)="deleteRow(rowData,rowData.detail_id)"
-                                                    *ngIf="detailsRowLen > 1 && detailsRowLen != i+1"></mat-icon>
-                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="add(i)"
-                                                    *ngIf="i > 0 && detailsRowLen === i+1 "></mat-icon>
+                                                    (click)="arrg_deleteRow(rowData,rowData.detail_id)"
+                                                    *ngIf="arrg_detailsRowLen > 1 && arrg_detailsRowLen != i+1">
+                                                </mat-icon>
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="arrg_add(i)"
+                                                    *ngIf="i > 0 && arrg_detailsRowLen === i+1 "></mat-icon>
                                             </mat-form-field>
                                         </div>
                                     </div>
@@ -733,57 +712,60 @@
                                     <div class="col-md-12">
                                         <mat-label class="custom-label">Seed Treatment</mat-label>
                                     </div>
-                                    <div class="col-md-12 btn_rows">
-                                        <a class="add_btn" (click)="addComponent('image')">Add Image</a>
-                                        <a class="add_btn" (click)="addComponent('video')">Add Video URL</a>
-                                        <a class="add_btn" (click)="addComponent('audio')">Add Audio URL</a>
-                                        <a class="add_btn" (click)="addComponent('desc')">Add Description</a>
-                                        <a class="add_btn" (click)="addComponent('rows')">Detail in points</a>
-                                    </div>
                                     <div class="col-md-6 form-group">
-                                        <mat-label class="custom-label">Upload Image <span class="remove"
-                                                (click)="remove('image')">Remove</span></mat-label>
+                                        <mat-label class="custom-label">Upload Image </mat-label>
+                                        <div class="imgdiv" *ngIf="seed_image!=''">
+                                            <img src="{{url+'image/'+seed_image}}" alt="">
+                                        </div>
                                         <div class="button-wrap">
-                                            <label class="new-button" for="upload"> Upload Image </label>
-                                            <input id="upload" type="file" name="imageurl">
+                                            <label class="new-button" for="upload"> Upload Image {{seed_image_flag}}
+                                            </label>
+                                            <input id="upload" type="file" name="seed_image"
+                                                (change)="imageUpload($event,'seed')">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <mat-label class="custom-label">Upload Audio <span class="remove"
-                                                (click)="remove('audio')">Remove</span></mat-label>
+                                        <mat-label class="custom-label">Upload Audio </mat-label>
+                                        <div class="audiodiv" *ngIf="seed_audio!=''">
+                                            <audio controls>
+                                                <source src="{{url+'audio/'+seed_audio}}" type="audio/ogg">
+                                                <source src="{{url+'audio/'+seed_audio}}" type="audio/mpeg">
+                                            </audio>
+                                        </div>
                                         <div class="button-wrap">
-                                            <label class="new-button" for="upload_audio"> Upload Audio </label>
-                                            <input id="upload_audio" type="file" name="audiourl">
+                                            <label class="new-button" for="upload_audio"> Upload Audio
+                                                {{seed_audio_flage}} </label>
+                                            <input id="upload_audio" type="file" name="seed_audio"
+                                                (change)="audioUpload($event,'seed')">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        <mat-label class="custom-label">Video URL <span class="remove"
-                                                (click)="remove('video')">Remove</span>
-                                        </mat-label>
+                                        <mat-label class="custom-label">Video URL </mat-label>
                                         <mat-form-field class="flex-auto">
-                                            <input matInput type="text" required />
+                                            <input matInput type="text" name="seed_video" [(ngModel)]="seed_video"
+                                                required />
                                         </mat-form-field>
                                     </div>
                                     <div class="col-md-12 form-group">
-                                        <mat-label class="custom-label">Description <span class="remove"
-                                                (click)="remove('desc')">Remove</span></mat-label>
-                                        <textarea class="form-control"></textarea>
+                                        <mat-label class="custom-label">Description </mat-label>
+                                        <textarea class="form-control" name="seed_desc"
+                                            [(ngModel)]="seed_desc"></textarea>
                                     </div>
                                     <div class="col-md-12">
-                                        <mat-label class="custom-label">Other Detail (if any) <span class="remove"
-                                                (click)="remove('details')">Remove</span></mat-label>
-                                        <div *ngFor="let rowData of detailsRow; let i = index;">
+                                        <mat-label class="custom-label">Other Detail (if any) </mat-label>
+                                        <div *ngFor="let rowData of seed_detailsRow; let i = index;">
                                             <mat-form-field class="flex-auto">
                                                 <input matInput type="text" [(ngModel)]="rowData.detail_name"
                                                     name="detail_name_+{{rowData.detail_id}}" required />
-                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="add(i)"
-                                                    *ngIf="i === 0 && detailsRowLen ===1">
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="seed_add(i)"
+                                                    *ngIf="i === 0 && seed_detailsRowLen ===1">
                                                 </mat-icon>
                                                 <mat-icon matSuffix [svgIcon]="'indeterminate_check_box'"
-                                                    (click)="deleteRow(rowData,rowData.detail_id)"
-                                                    *ngIf="detailsRowLen > 1 && detailsRowLen != i+1"></mat-icon>
-                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="add(i)"
-                                                    *ngIf="i > 0 && detailsRowLen === i+1 "></mat-icon>
+                                                    (click)="seed_deleteRow(rowData,rowData.detail_id)"
+                                                    *ngIf="seed_detailsRowLen > 1 && seed_detailsRowLen != i+1">
+                                                </mat-icon>
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="seed_add(i)"
+                                                    *ngIf="i > 0 && seed_detailsRowLen === i+1 "></mat-icon>
                                             </mat-form-field>
                                         </div>
                                     </div>
@@ -795,57 +777,60 @@
                                     <div class="col-md-12">
                                         <mat-label class="custom-label">Shed Prepration</mat-label>
                                     </div>
-                                    <div class="col-md-12 btn_rows">
-                                        <a class="add_btn" (click)="addComponent('image')">Add Image</a>
-                                        <a class="add_btn" (click)="addComponent('video')">Add Video URL</a>
-                                        <a class="add_btn" (click)="addComponent('audio')">Add Audio URL</a>
-                                        <a class="add_btn" (click)="addComponent('desc')">Add Description</a>
-                                        <a class="add_btn" (click)="addComponent('rows')">Detail in points</a>
-                                    </div>
                                     <div class="col-md-6 form-group">
-                                        <mat-label class="custom-label">Upload Image <span class="remove"
-                                                (click)="remove('image')">Remove</span></mat-label>
+                                        <mat-label class="custom-label">Upload Image </mat-label>
+                                        <div class="imgdiv" *ngIf="shed_image!=''">
+                                            <img src="{{url+'image/'+shed_image}}" alt="">
+                                        </div>
                                         <div class="button-wrap">
-                                            <label class="new-button" for="upload"> Upload Image </label>
-                                            <input id="upload" type="file" name="imageurl">
+                                            <label class="new-button" for="upload"> Upload Image {{shed_image_flag}}
+                                            </label>
+                                            <input id="upload" type="file" name="shed_image"
+                                                (change)="imageUpload($event,'shed')">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <mat-label class="custom-label">Upload Audio <span class="remove"
-                                                (click)="remove('audio')">Remove</span></mat-label>
+                                        <mat-label class="custom-label">Upload Audio </mat-label>
+                                        <div class="audiodiv" *ngIf="shed_audio!=''">
+                                            <audio controls>
+                                                <source src="{{url+'audio/'+shed_audio}}" type="audio/ogg">
+                                                <source src="{{url+'audio/'+shed_audio}}" type="audio/mpeg">
+                                            </audio>
+                                        </div>
                                         <div class="button-wrap">
-                                            <label class="new-button" for="upload_audio"> Upload Audio </label>
-                                            <input id="upload_audio" type="file" name="audiourl">
+                                            <label class="new-button" for="upload_audio"> Upload Audio
+                                                {{shed_audio_flage}} </label>
+                                            <input id="upload_audio" type="file" name="shed_audio"
+                                                (change)="audioUpload($event,'shed')">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        <mat-label class="custom-label">Video URL <span class="remove"
-                                                (click)="remove('video')">Remove</span>
-                                        </mat-label>
+                                        <mat-label class="custom-label">Video URL </mat-label>
                                         <mat-form-field class="flex-auto">
-                                            <input matInput type="text" required />
+                                            <input matInput type="text" name="shed_video" [(ngModel)]="shed_video"
+                                                required />
                                         </mat-form-field>
                                     </div>
                                     <div class="col-md-12 form-group">
-                                        <mat-label class="custom-label">Description <span class="remove"
-                                                (click)="remove('desc')">Remove</span></mat-label>
-                                        <textarea class="form-control"></textarea>
+                                        <mat-label class="custom-label">Description </mat-label>
+                                        <textarea class="form-control" name="shed_desc"
+                                            [(ngModel)]="shed_desc"></textarea>
                                     </div>
                                     <div class="col-md-12">
-                                        <mat-label class="custom-label">Other Detail (if any) <span class="remove"
-                                                (click)="remove('details')">Remove</span></mat-label>
-                                        <div *ngFor="let rowData of detailsRow; let i = index;">
+                                        <mat-label class="custom-label">Other Detail (if any) </mat-label>
+                                        <div *ngFor="let rowData of shed_detailsRow; let i = index;">
                                             <mat-form-field class="flex-auto">
                                                 <input matInput type="text" [(ngModel)]="rowData.detail_name"
                                                     name="detail_name_+{{rowData.detail_id}}" required />
-                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="add(i)"
-                                                    *ngIf="i === 0 && detailsRowLen ===1">
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="shed_add(i)"
+                                                    *ngIf="i === 0 && shed_detailsRowLen ===1">
                                                 </mat-icon>
                                                 <mat-icon matSuffix [svgIcon]="'indeterminate_check_box'"
-                                                    (click)="deleteRow(rowData,rowData.detail_id)"
-                                                    *ngIf="detailsRowLen > 1 && detailsRowLen != i+1"></mat-icon>
-                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="add(i)"
-                                                    *ngIf="i > 0 && detailsRowLen === i+1 "></mat-icon>
+                                                    (click)="shed_deleteRow(rowData,rowData.detail_id)"
+                                                    *ngIf="shed_detailsRowLen > 1 && shed_detailsRowLen != i+1">
+                                                </mat-icon>
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="shed_add(i)"
+                                                    *ngIf="i > 0 && shed_detailsRowLen === i+1 "></mat-icon>
                                             </mat-form-field>
                                         </div>
                                     </div>
@@ -857,57 +842,60 @@
                                     <div class="col-md-12">
                                         <mat-label class="custom-label">Tray Prepration</mat-label>
                                     </div>
-                                    <div class="col-md-12 btn_rows">
-                                        <a class="add_btn" (click)="addComponent('image')">Add Image</a>
-                                        <a class="add_btn" (click)="addComponent('video')">Add Video URL</a>
-                                        <a class="add_btn" (click)="addComponent('audio')">Add Audio URL</a>
-                                        <a class="add_btn" (click)="addComponent('desc')">Add Description</a>
-                                        <a class="add_btn" (click)="addComponent('rows')">Detail in points</a>
-                                    </div>
                                     <div class="col-md-6 form-group">
-                                        <mat-label class="custom-label">Upload Image <span class="remove"
-                                                (click)="remove('image')">Remove</span></mat-label>
+                                        <mat-label class="custom-label">Upload Image </mat-label>
+                                        <div class="imgdiv" *ngIf="tray_image!=''">
+                                            <img src="{{url+'image/'+tray_image}}" alt="">
+                                        </div>
                                         <div class="button-wrap">
-                                            <label class="new-button" for="upload"> Upload Image </label>
-                                            <input id="upload" type="file" name="imageurl">
+                                            <label class="new-button" for="upload"> Upload Image {{tray_image_flag}}
+                                            </label>
+                                            <input id="upload" type="file" name="tray_image"
+                                                (change)="imageUpload($event,'tray')">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <mat-label class="custom-label">Upload Audio <span class="remove"
-                                                (click)="remove('audio')">Remove</span></mat-label>
+                                        <mat-label class="custom-label">Upload Audio </mat-label>
+                                        <div class="audiodiv" *ngIf="tray_audio!=''">
+                                            <audio controls>
+                                                <source src="{{url+'audio/'+tray_audio}}" type="audio/ogg">
+                                                <source src="{{url+'audio/'+tray_audio}}" type="audio/mpeg">
+                                            </audio>
+                                        </div>
                                         <div class="button-wrap">
-                                            <label class="new-button" for="upload_audio"> Upload Audio </label>
-                                            <input id="upload_audio" type="file" name="audiourl">
+                                            <label class="new-button" for="upload_audio"> Upload Audio
+                                                {{tray_audio_flage}} </label>
+                                            <input id="upload_audio" type="file" name="tray_audio"
+                                                (change)="audioUpload($event,'tray')">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        <mat-label class="custom-label">Video URL <span class="remove"
-                                                (click)="remove('video')">Remove</span>
-                                        </mat-label>
+                                        <mat-label class="custom-label">Video URL </mat-label>
                                         <mat-form-field class="flex-auto">
-                                            <input matInput type="text" required />
+                                            <input matInput type="text" name="tray_video" [(ngModel)]="tray_video"
+                                                required />
                                         </mat-form-field>
                                     </div>
                                     <div class="col-md-12 form-group">
-                                        <mat-label class="custom-label">Description <span class="remove"
-                                                (click)="remove('desc')">Remove</span></mat-label>
-                                        <textarea class="form-control"></textarea>
+                                        <mat-label class="custom-label">Description </mat-label>
+                                        <textarea class="form-control" name="tray_desc"
+                                            [(ngModel)]="tray_desc"></textarea>
                                     </div>
                                     <div class="col-md-12">
-                                        <mat-label class="custom-label">Other Detail (if any) <span class="remove"
-                                                (click)="remove('details')">Remove</span></mat-label>
-                                        <div *ngFor="let rowData of detailsRow; let i = index;">
+                                        <mat-label class="custom-label">Other Detail (if any) </mat-label>
+                                        <div *ngFor="let rowData of tray_detailsRow; let i = index;">
                                             <mat-form-field class="flex-auto">
                                                 <input matInput type="text" [(ngModel)]="rowData.detail_name"
                                                     name="detail_name_+{{rowData.detail_id}}" required />
-                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="add(i)"
-                                                    *ngIf="i === 0 && detailsRowLen ===1">
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="tray_add(i)"
+                                                    *ngIf="i === 0 && tray_detailsRowLen ===1">
                                                 </mat-icon>
                                                 <mat-icon matSuffix [svgIcon]="'indeterminate_check_box'"
-                                                    (click)="deleteRow(rowData,rowData.detail_id)"
-                                                    *ngIf="detailsRowLen > 1 && detailsRowLen != i+1"></mat-icon>
-                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="add(i)"
-                                                    *ngIf="i > 0 && detailsRowLen === i+1 "></mat-icon>
+                                                    (click)="tray_deleteRow(rowData,rowData.detail_id)"
+                                                    *ngIf="tray_detailsRowLen > 1 && tray_detailsRowLen != i+1">
+                                                </mat-icon>
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="tray_add(i)"
+                                                    *ngIf="i > 0 && tray_detailsRowLen === i+1 "></mat-icon>
                                             </mat-form-field>
                                         </div>
                                     </div>

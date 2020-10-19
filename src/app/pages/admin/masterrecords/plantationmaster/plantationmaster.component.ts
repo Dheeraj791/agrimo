@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { MasterRecordService } from '../master-record.service';
 import { FormGroup, NgForm } from '@angular/forms';
 import { DataTableDirective } from 'angular-datatables';
@@ -227,7 +226,7 @@ export class PlantationmasterComponent implements OnInit {
 
         //bed starts here
         if (bedRecords.plantation_img != "") {
-          this.bed_image_status = "1";
+          this.bed_image_status = "0";
           this.bed_image = bedRecords.plantation_img;
         } else {
           this.bed_image_status = "0";
@@ -235,7 +234,7 @@ export class PlantationmasterComponent implements OnInit {
         }
 
         if (bedRecords.plantation_audio != "") {
-          this.bed_audio_status = "1";
+          this.bed_audio_status = "0";
           this.bed_audio = bedRecords.plantation_audio;
         } else {
           this.bed_audio_status = "0";
@@ -279,7 +278,7 @@ export class PlantationmasterComponent implements OnInit {
 
         //crop starts here
         if (cropRecords.plantation_img != "") {
-          this.crop_image_status = "1";
+          this.crop_image_status = "0";
           this.crop_image = cropRecords.plantation_img;
         } else {
           this.crop_image_status = "0";
@@ -287,7 +286,7 @@ export class PlantationmasterComponent implements OnInit {
         }
 
         if (cropRecords.plantation_audio != "") {
-          this.crop_audio_status = "1";
+          this.crop_audio_status = "0";
           this.crop_audio = cropRecords.plantation_audio;
         } else {
           this.crop_audio_status = "0";
@@ -331,7 +330,7 @@ export class PlantationmasterComponent implements OnInit {
 
         //irrigation records here 
         if (irrRecords.plantation_img != "") {
-          this.irr_image_status = "1";
+          this.irr_image_status = "0";
           this.irr_image = irrRecords.plantation_img;
         } else {
           this.irr_image_status = "0";
@@ -339,7 +338,7 @@ export class PlantationmasterComponent implements OnInit {
         }
 
         if (irrRecords.plantation_audio != "") {
-          this.irr_audio_status = "1";
+          this.irr_audio_status = "0";
           this.irr_audio = irrRecords.plantation_audio;
         } else {
           this.irr_audio_status = "0";

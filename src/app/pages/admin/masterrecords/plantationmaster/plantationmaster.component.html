@@ -314,7 +314,7 @@
                         </div>
                     </div>
                     <div class="modal-body">
-                        <form #editActivity="ngForm" (ngSubmit)="onUpdateRecord(editActivity)"> 
+                        <form #editActivity="ngForm" (ngSubmit)="onUpdateRecord(editActivity)">
                             <div class="form-1" *ngIf="showformvalue===1">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -332,9 +332,9 @@
                                         <mat-label class="custom-label">Bed Prepration Details</mat-label>
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <div class="imgdiv" *ngIf="bed_image!=''"> 
+                                        <div class="imgdiv" *ngIf="bed_image!=''">
                                             <img src="{{url+'image/'+bed_image}}" alt="">
-                                          </div>
+                                        </div>
                                         <mat-label class="custom-label">Upload Image </mat-label>
                                         <div class="button-wrap">
                                             <label class="new-button" for="upload"> Upload Image {{bed_image_flag}}
@@ -344,9 +344,12 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="imgdiv" *ngIf="bed_audio!=''"> 
-                                            <img src="{{url+'audio/'+bed_audio}}" alt="">
-                                          </div>
+                                        <div class="imgdiv" *ngIf="bed_audio!=''">
+                                            <audio controls>
+                                                <source src="{{url+'audio/'+bed_audio}}" type="audio/ogg">
+                                                <source src="{{url+'audio/'+bed_audio}}" type="audio/mpeg">
+                                            </audio>
+                                        </div>
                                         <mat-label class="custom-label">Upload Audio </mat-label>
                                         <div class="button-wrap">
                                             <label class="new-button" for="upload_audio"> Upload Audio
@@ -395,9 +398,9 @@
                                     </div>
 
                                     <div class="col-md-6 form-group">
-                                        <div class="imgdiv" *ngIf="crop_image!=''"> 
+                                        <div class="imgdiv" *ngIf="crop_image!=''">
                                             <img src="{{url+'image/'+crop_image}}" alt="">
-                                          </div>
+                                        </div>
                                         <mat-label class="custom-label">Upload Image </mat-label>
                                         <div class="button-wrap">
                                             <label class="new-button" for="upload"> Upload Image
@@ -407,9 +410,12 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="imgdiv" *ngIf="crop_audio!=''"> 
-                                            <img src="{{url+'audio/'+crop_audio}}" alt="">
-                                          </div>
+                                        <div class="imgdiv" *ngIf="crop_audio!=''">
+                                            <audio controls>
+                                                <source src="{{url+'audio/'+crop_audio}}" type="audio/ogg">
+                                                <source src="{{url+'audio/'+crop_audio}}" type="audio/mpeg">
+                                            </audio>
+                                        </div>
                                         <mat-label class="custom-label">Upload Audio</mat-label>
                                         <div class="button-wrap">
                                             <label class="new-button" for="upload_audio"> Upload Audio
@@ -458,9 +464,9 @@
                                     </div>
 
                                     <div class="col-md-6 form-group">
-                                        <div class="imgdiv" *ngIf="irr_image!=''"> 
+                                        <div class="imgdiv" *ngIf="irr_image!=''">
                                             <img src="{{url+'image/'+irr_image}}" alt="">
-                                          </div>
+                                        </div>
                                         <mat-label class="custom-label">Upload Image </mat-label>
                                         <div class="button-wrap">
                                             <label class="new-button" for="upload"> Upload Image
@@ -470,9 +476,12 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="imgdiv" *ngIf="irr_audio!=''"> 
-                                            <img src="{{url+'image/'+irr_audio}}" alt="">
-                                          </div>
+                                        <div class="imgdiv" *ngIf="irr_audio!=''">
+                                            <audio controls>
+                                                <source src="{{url+'audio/'+irr_audio}}" type="audio/ogg">
+                                                <source src="{{url+'audio/'+irr_audio}}" type="audio/mpeg">
+                                            </audio>
+                                        </div>
                                         <mat-label class="custom-label">Upload Audio </mat-label>
                                         <div class="button-wrap">
                                             <label class="new-button" for="upload_audio"> Upload Audio

@@ -391,3 +391,31 @@ a:hover{
   .modal-body::-webkit-scrollbar-thumb:hover {
     background: rgb(1, 17, 238); 
   }
+  .modal-header {
+    flex-direction: column;
+}
+.row-inline {
+    width: 100%;
+    display: flex;
+    padding-left: 15px;
+    padding-right: 15px;
+    flex-direction: row;
+}
+.singlerow {
+    min-width: 670px;
+    margin-top: 16px;
+}
+.singlerow label {
+    font-weight: 700;
+}
+.lbactive{
+    font-weight: 600;
+    color: #918cff;
+}
+.lbinactive{
+    font-weight: 500;
+    color: #adadad;
+}
+button.btn.btn-sm.pull-right {
+    float: right;
+}
