@@ -24,10 +24,12 @@ import { SoilmasterComponent } from '../masterrecords/soilmaster/soilmaster.comp
 import { UnitmeasurementmasterComponent } from '../masterrecords/unitmeasurementmaster/unitmeasurementmaster.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSelectModule } from '@angular/material/select';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MasterRecordService } from '../masterrecords/master-record.service';
 import { FormsModule } from '@angular/forms';
-
+import { NgxSpinnerModule } from "ngx-spinner";
+import { ToastrModule,ToastrService } from 'ngx-toastr';
+import { MatNativeDateModule } from '@angular/material/core';
 @NgModule({
   declarations: [
     ActivitymasterComponent,
@@ -57,7 +59,11 @@ import { FormsModule } from '@angular/forms';
     CKEditorModule,
     MatTabsModule,
     MatSelectModule,
+    NgxSpinnerModule,
+    ToastrModule.forRoot(),
+    MatDatepickerModule,
+    MatNativeDateModule 
   ],
-  providers: [MasterRecordService],
+  providers: [MasterRecordService,ToastrService, MatDatepickerModule ],
 })
 export class MasterrecordsModule {}

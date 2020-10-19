@@ -7,7 +7,8 @@
                         <h1 class="master-heading-small">Preparation Master</h1>
                     </div>
                     <div class="col-md-6">
-                        <button class="addbtn" mat-flat-button [color]="'primary'" (click)="open(addnew)">Add New Preparation</button>
+                        <button class="addbtn" mat-flat-button [color]="'primary'" (click)="open(addnew)">Add New
+                            Preparation</button>
                     </div>
                 </div>
             </div>
@@ -16,354 +17,981 @@
                     <thead>
                         <tr>
                             <th>S.Id</th>
-                            <th>Plantation Name</th>
+                            <th>Preparation Name</th>
                             <th>Delete</th>
                             <th>Edit</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Land Preparation</td>
-                            <td class="delete_icons" (click)="statusModal(delete)">
-                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
+                        <tr *ngFor="let list of plantationRecords;let index = index;">
+                            <td>{{index+1}}</td>
+                            <td>{{ list.prepration_name }}</td>
+                            <td class="delete_icons">
+                                <mat-icon [svgIcon]="'check_circle'" class="active" *ngIf="list.status != 0"
+                                    (click)="statusModal(delete,0, list.prepration_rec_id)"></mat-icon>
+                                <mat-icon [svgIcon]="'highlight_off'" class="inactive" *ngIf="list.status === 0"
+                                    (click)="statusModal(delete,1, list.prepration_rec_id)"></mat-icon>
                             </td>
-                            <td (click)="open(editone)" class="edit_icons">
-                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
+                            <td class="edit_icons">
+                                <mat-icon [svgIcon]="'picture_in_picture_alt'" (click)="editModal(edit, list)">
+                                </mat-icon>
                             </td>
                         </tr>
                     </tbody>
                 </table>
 
+
                 <ng-template #addnew let-modal>
                     <div class="modal-header">
-                        <h4 class="modal-title" id="modal-basic-title">Name Of Preparation Design</h4>
-                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                        <div class="row row-inline">
+                            <h4 class="modal-title" id="modal-basic-title">Add Preparation Record</h4>
+                            <button type="button" class="close" aria-label="Close"
+                                (click)="modal.dismiss('Cross click')">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="row row-inline">
+                            <div class="singlerow">
+                                <label [ngClass]="{'lbactive': showformvalue === 1}">Preparation Type </label> >
+                                <label [ngClass]="{'lbactive': showformvalue === 2}"> Inorganic to Organic</label> >
+                                <label [ngClass]="{'lbactive': showformvalue === 3}"> Bed Distrub</label> >
+                                <label [ngClass]="{'lbactive': showformvalue === 4}">Arrangement Of Seed</label> >
+                                <label [ngClass]="{'lbactive': showformvalue === 5}">Seed Treatment </label> >
+                                <label [ngClass]="{'lbactive': showformvalue === 6}">Shed Prepration </label> >
+                                <label [ngClass]="{'lbactive': showformvalue === 7}">Tray Prepration </label>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-body">
-                        <form>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Name Of Prepration Type</label>
-                                        <input type="text" placeholder="">
+                        <form #addActivity="ngForm" (ngSubmit)="onAddActivity(addActivity)">
+                            <div class="form-1" *ngIf="showformvalue===1">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <mat-label class="custom-label">Preparation type name</mat-label>
+                                        <mat-form-field class="flex-auto">
+                                            <input matInput type="text" name="preparation_name"
+                                                [(ngModel)]="preparation_name" required />
+                                        </mat-form-field>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="dateOfBirth">Inorganic to Organic</label>
-                                <ckeditor [editor]="Editor" data="<p></p>"></ckeditor>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Image</label>
-                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="customFile">
-                                            <label class="custom-file-label" for="customFile">Choose file</label>
-                                          </div>
+                            <div class="form-2" *ngIf="showformvalue===2">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <mat-label class="custom-label">Inorganic to Organic</mat-label>
                                     </div>
-                                </div>
-                                
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Audio</label>
-                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="customFile">
-                                            <label class="custom-file-label" for="customFile">Choose file</label>
-                                          </div>
+                                    <div class="col-md-6 form-group">
+                                        <mat-label class="custom-label">Upload Image </mat-label>
+                                        <div class="button-wrap">
+                                            <label class="new-button" for="upload"> Upload Image
+                                                {{inorganic_image_flag}}
+                                            </label>
+                                            <input id="upload" type="file" name="inorganic_image"
+                                                (change)="imageUpload($event,'inorganic')">
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Video (Youtube Video Link)</label>
-                                        <input type="text" placeholder="">
+                                    <div class="col-md-6">
+                                        <mat-label class="custom-label">Upload Audio </mat-label>
+                                        <div class="button-wrap">
+                                            <label class="new-button" for="upload_audio"> Upload Audio
+                                                {{inorganic_audio_flage}} </label>
+                                            <input id="upload_audio" type="file" name="inorganic_audio"
+                                                (change)="audioUpload($event,'inorganic')">
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="dateOfBirth">Bed Distrub</label>
-                                <ckeditor [editor]="Editor" data="<p></p>"></ckeditor>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Image</label>
-                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="customFile">
-                                            <label class="custom-file-label" for="customFile">Choose file</label>
-                                          </div>
+                                    <div class="col-md-12">
+                                        <mat-label class="custom-label">Video URL </mat-label>
+                                        <mat-form-field class="flex-auto">
+                                            <input matInput type="text" name="inorganic_video"
+                                                [(ngModel)]="inorganic_video" required />
+                                        </mat-form-field>
                                     </div>
-                                </div>
-                                
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Audio</label>
-                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="customFile">
-                                            <label class="custom-file-label" for="customFile">Choose file</label>
-                                          </div>
+                                    <div class="col-md-12 form-group">
+                                        <mat-label class="custom-label">Description </mat-label>
+                                        <textarea class="form-control" name="inorganic_desc"
+                                            [(ngModel)]="inorganic_desc"></textarea>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <mat-label class="custom-label">Other Detail (if any) </mat-label>
+                                        <div *ngFor="let rowData of inorganic_detailsRow; let i = index;">
+                                            <mat-form-field class="flex-auto">
+                                                <input matInput type="text" [(ngModel)]="rowData.detail_name"
+                                                    name="detail_name_+{{rowData.detail_id}}" required />
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="inorg_add(i)"
+                                                    *ngIf="i === 0 && inorganic_detailsRowLen ===1">
+                                                </mat-icon>
+                                                <mat-icon matSuffix [svgIcon]="'indeterminate_check_box'"
+                                                    (click)="inorg_deleteRow(rowData,rowData.detail_id)"
+                                                    *ngIf="inorganic_detailsRowLen > 1 && inorganic_detailsRowLen != i+1">
+                                                </mat-icon>
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="inorg_add(i)"
+                                                    *ngIf="i > 0 && inorganic_detailsRowLen === i+1 "></mat-icon>
+                                            </mat-form-field>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Video (Youtube Video Link)</label>
-                                        <input type="text" placeholder="">
+
+                            <div class="form-3" *ngIf="showformvalue===3">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <mat-label class="custom-label">Bed Distrub</mat-label>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <mat-label class="custom-label">Upload Image </mat-label>
+                                        <div class="button-wrap">
+                                            <label class="new-button" for="upload"> Upload Image {{bed_image_flag}}
+                                            </label>
+                                            <input id="upload" type="file" name="bed_image"
+                                                (change)="imageUpload($event,'bed')">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-label class="custom-label">Upload Audio </mat-label>
+                                        <div class="button-wrap">
+                                            <label class="new-button" for="upload_audio"> Upload Audio
+                                                {{bed_audio_flage}} </label>
+                                            <input id="upload_audio" type="file" name="bed_audio"
+                                                (change)="audioUpload($event,'bed')">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <mat-label class="custom-label">Video URL </mat-label>
+                                        <mat-form-field class="flex-auto">
+                                            <input matInput type="text" name="bed_video" [(ngModel)]="bed_video"
+                                                required />
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-12 form-group">
+                                        <mat-label class="custom-label">Description </mat-label>
+                                        <textarea class="form-control" name="bed_desc"
+                                            [(ngModel)]="bed_desc"></textarea>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <mat-label class="custom-label">Other Detail (if any) </mat-label>
+                                        <div *ngFor="let rowData of bed_detailsRow; let i = index;">
+                                            <mat-form-field class="flex-auto">
+                                                <input matInput type="text" [(ngModel)]="rowData.detail_name"
+                                                    name="detail_name_+{{rowData.detail_id}}" required />
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="bed_add(i)"
+                                                    *ngIf="i === 0 && bed_detailsRowLen ===1">
+                                                </mat-icon>
+                                                <mat-icon matSuffix [svgIcon]="'indeterminate_check_box'"
+                                                    (click)="bed_deleteRow(rowData,rowData.detail_id)"
+                                                    *ngIf="bed_detailsRowLen > 1 && bed_detailsRowLen != i+1">
+                                                </mat-icon>
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="bed_add(i)"
+                                                    *ngIf="i > 0 && bed_detailsRowLen === i+1 "></mat-icon>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-4" *ngIf="showformvalue===4">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <mat-label class="custom-label">Arrangement Of Seed</mat-label>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <mat-label class="custom-label">Upload Image </mat-label>
+                                        <div class="button-wrap">
+                                            <label class="new-button" for="upload"> Upload Image {{arrg_image_flag}}
+                                            </label>
+                                            <input id="upload" type="file" name="arrg_image"
+                                                (change)="imageUpload($event,'arrg')">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-label class="custom-label">Upload Audio </mat-label>
+                                        <div class="button-wrap">
+                                            <label class="new-button" for="upload_audio"> Upload Audio
+                                                {{arrg_audio_flage}} </label>
+                                            <input id="upload_audio" type="file" name="arrg_audio"
+                                                (change)="audioUpload($event,'arrg')">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <mat-label class="custom-label">Video URL </mat-label>
+                                        <mat-form-field class="flex-auto">
+                                            <input matInput type="text" name="arrg_video" [(ngModel)]="arrg_video"
+                                                required />
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-12 form-group">
+                                        <mat-label class="custom-label">Description </mat-label>
+                                        <textarea class="form-control" name="arrg_desc"
+                                            [(ngModel)]="arrg_desc"></textarea>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <mat-label class="custom-label">Other Detail (if any) </mat-label>
+                                        <div *ngFor="let rowData of arrg_detailsRow; let i = index;">
+                                            <mat-form-field class="flex-auto">
+                                                <input matInput type="text" [(ngModel)]="rowData.detail_name"
+                                                    name="detail_name_+{{rowData.detail_id}}" required />
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="arrg_add(i)"
+                                                    *ngIf="i === 0 && arrg_detailsRowLen ===1">
+                                                </mat-icon>
+                                                <mat-icon matSuffix [svgIcon]="'indeterminate_check_box'"
+                                                    (click)="arrg_deleteRow(rowData,rowData.detail_id)"
+                                                    *ngIf="arrg_detailsRowLen > 1 && arrg_detailsRowLen != i+1">
+                                                </mat-icon>
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="arrg_add(i)"
+                                                    *ngIf="i > 0 && arrg_detailsRowLen === i+1 "></mat-icon>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-5" *ngIf="showformvalue===5">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <mat-label class="custom-label">Seed Treatment</mat-label>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <mat-label class="custom-label">Upload Image </mat-label>
+                                        <div class="button-wrap">
+                                            <label class="new-button" for="upload"> Upload Image {{seed_image_flag}}
+                                            </label>
+                                            <input id="upload" type="file" name="seed_image"
+                                                (change)="imageUpload($event,'seed')">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-label class="custom-label">Upload Audio </mat-label>
+                                        <div class="button-wrap">
+                                            <label class="new-button" for="upload_audio"> Upload Audio
+                                                {{seed_audio_flage}} </label>
+                                            <input id="upload_audio" type="file" name="seed_audio"
+                                                (change)="audioUpload($event,'seed')">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <mat-label class="custom-label">Video URL </mat-label>
+                                        <mat-form-field class="flex-auto">
+                                            <input matInput type="text" name="seed_video" [(ngModel)]="seed_video"
+                                                required />
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-12 form-group">
+                                        <mat-label class="custom-label">Description </mat-label>
+                                        <textarea class="form-control" name="seed_desc"
+                                            [(ngModel)]="seed_desc"></textarea>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <mat-label class="custom-label">Other Detail (if any) </mat-label>
+                                        <div *ngFor="let rowData of seed_detailsRow; let i = index;">
+                                            <mat-form-field class="flex-auto">
+                                                <input matInput type="text" [(ngModel)]="rowData.detail_name"
+                                                    name="detail_name_+{{rowData.detail_id}}" required />
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="seed_add(i)"
+                                                    *ngIf="i === 0 && seed_detailsRowLen ===1">
+                                                </mat-icon>
+                                                <mat-icon matSuffix [svgIcon]="'indeterminate_check_box'"
+                                                    (click)="seed_deleteRow(rowData,rowData.detail_id)"
+                                                    *ngIf="seed_detailsRowLen > 1 && seed_detailsRowLen != i+1">
+                                                </mat-icon>
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="seed_add(i)"
+                                                    *ngIf="i > 0 && seed_detailsRowLen === i+1 "></mat-icon>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-6" *ngIf="showformvalue===6">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <mat-label class="custom-label">Shed Prepration</mat-label>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <mat-label class="custom-label">Upload Image </mat-label>
+                                        <div class="button-wrap">
+                                            <label class="new-button" for="upload"> Upload Image {{shed_image_flag}}
+                                            </label>
+                                            <input id="upload" type="file" name="shed_image"
+                                                (change)="imageUpload($event,'shed')">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-label class="custom-label">Upload Audio </mat-label>
+                                        <div class="button-wrap">
+                                            <label class="new-button" for="upload_audio"> Upload Audio
+                                                {{shed_audio_flage}} </label>
+                                            <input id="upload_audio" type="file" name="shed_audio"
+                                                (change)="audioUpload($event,'shed')">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <mat-label class="custom-label">Video URL </mat-label>
+                                        <mat-form-field class="flex-auto">
+                                            <input matInput type="text" name="shed_video" [(ngModel)]="shed_video"
+                                                required />
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-12 form-group">
+                                        <mat-label class="custom-label">Description </mat-label>
+                                        <textarea class="form-control" name="shed_desc"
+                                            [(ngModel)]="shed_desc"></textarea>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <mat-label class="custom-label">Other Detail (if any) </mat-label>
+                                        <div *ngFor="let rowData of shed_detailsRow; let i = index;">
+                                            <mat-form-field class="flex-auto">
+                                                <input matInput type="text" [(ngModel)]="rowData.detail_name"
+                                                    name="detail_name_+{{rowData.detail_id}}" required />
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="shed_add(i)"
+                                                    *ngIf="i === 0 && shed_detailsRowLen ===1">
+                                                </mat-icon>
+                                                <mat-icon matSuffix [svgIcon]="'indeterminate_check_box'"
+                                                    (click)="shed_deleteRow(rowData,rowData.detail_id)"
+                                                    *ngIf="shed_detailsRowLen > 1 && shed_detailsRowLen != i+1">
+                                                </mat-icon>
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="shed_add(i)"
+                                                    *ngIf="i > 0 && shed_detailsRowLen === i+1 "></mat-icon>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-7" *ngIf="showformvalue===7">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <mat-label class="custom-label">Tray Prepration</mat-label>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <mat-label class="custom-label">Upload Image </mat-label>
+                                        <div class="button-wrap">
+                                            <label class="new-button" for="upload"> Upload Image {{tray_image_flag}}
+                                            </label>
+                                            <input id="upload" type="file" name="tray_image"
+                                                (change)="imageUpload($event,'tray')">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-label class="custom-label">Upload Audio </mat-label>
+                                        <div class="button-wrap">
+                                            <label class="new-button" for="upload_audio"> Upload Audio
+                                                {{tray_audio_flage}} </label>
+                                            <input id="upload_audio" type="file" name="tray_audio"
+                                                (change)="audioUpload($event,'tray')">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <mat-label class="custom-label">Video URL </mat-label>
+                                        <mat-form-field class="flex-auto">
+                                            <input matInput type="text" name="tray_video" [(ngModel)]="tray_video"
+                                                required />
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-12 form-group">
+                                        <mat-label class="custom-label">Description </mat-label>
+                                        <textarea class="form-control" name="tray_desc"
+                                            [(ngModel)]="tray_desc"></textarea>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <mat-label class="custom-label">Other Detail (if any) </mat-label>
+                                        <div *ngFor="let rowData of tray_detailsRow; let i = index;">
+                                            <mat-form-field class="flex-auto">
+                                                <input matInput type="text" [(ngModel)]="rowData.detail_name"
+                                                    name="detail_name_+{{rowData.detail_id}}" required />
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="tray_add(i)"
+                                                    *ngIf="i === 0 && tray_detailsRowLen ===1">
+                                                </mat-icon>
+                                                <mat-icon matSuffix [svgIcon]="'indeterminate_check_box'"
+                                                    (click)="tray_deleteRow(rowData,rowData.detail_id)"
+                                                    *ngIf="tray_detailsRowLen > 1 && tray_detailsRowLen != i+1">
+                                                </mat-icon>
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="tray_add(i)"
+                                                    *ngIf="i > 0 && tray_detailsRowLen === i+1 "></mat-icon>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="modal-footer">
+                                <!-- <button type="button" class="btn btn-outline-dark"
+                                    (click)="modal.close('Save click')">Submit</button> -->
+                                <div class="row col-md-12" *ngIf="showformvalue===1" style="padding: 0;">
+                                    <div class="col-md-6" style="padding: 0;">
+
+                                    </div>
+                                    <div class="col-md-6" style="padding: 0;">
+                                        <button class="btn btn-sm pull-right" (click)="showForm(2)">Next</button>
+                                    </div>
+                                </div>
+                                <div class="row col-md-12" *ngIf="showformvalue===2" style="padding: 0;">
+                                    <div class="col-md-6" style="padding: 0;">
+                                        <button class="btn btn-sm pull-left" (click)="showForm(1)">Prev</button>
+                                    </div>
+                                    <div class="col-md-6" style="padding: 0;">
+                                        <button class="btn btn-sm pull-right" (click)="showForm(3)">Next</button>
+                                    </div>
+                                </div>
+                                <div class="row col-md-12" *ngIf="showformvalue===3" style="padding: 0;">
+                                    <div class="col-md-6" style="padding: 0;">
+                                        <button class="btn btn-sm pull-left" (click)="showForm(2)">Prev</button>
+                                    </div>
+                                    <div class="col-md-6" style="padding: 0;">
+                                        <button class="btn btn-sm pull-right" (click)="showForm(4)">Next</button>
+                                    </div>
+                                </div>
+                                <div class="row col-md-12" *ngIf="showformvalue===4" style="padding: 0;">
+                                    <div class="col-md-6" style="padding: 0;">
+                                        <button class="btn btn-sm pull-left" (click)="showForm(3)">Prev</button>
+                                    </div>
+                                    <div class="col-md-6" style="padding: 0;">
+                                        <button class="btn btn-sm pull-right" (click)="showForm(5)">Next</button>
+                                    </div>
+                                </div>
+                                <div class="row col-md-12" *ngIf="showformvalue===5" style="padding: 0;">
+                                    <div class="col-md-6" style="padding: 0;">
+                                        <button class="btn btn-sm pull-left" (click)="showForm(4)">Prev</button>
+                                    </div>
+                                    <div class="col-md-6" style="padding: 0;">
+                                        <button class="btn btn-sm pull-right" (click)="showForm(6)">Next</button>
+                                    </div>
+                                </div>
+                                <div class="row col-md-12" *ngIf="showformvalue===6" style="padding: 0;">
+                                    <div class="col-md-6" style="padding: 0;">
+                                        <button class="btn btn-sm pull-left" (click)="showForm(5)">Prev</button>
+                                    </div>
+                                    <div class="col-md-6" style="padding: 0;">
+                                        <button class="btn btn-sm pull-right" (click)="showForm(7)">Next</button>
+                                    </div>
+                                </div>
+                                <div class="row col-md-12" *ngIf="showformvalue===7" style="padding: 0;">
+                                    <div class="col-md-6" style="padding: 0;">
+                                        <button class="btn btn-sm pull-left" (click)="showForm(6)">Prev</button>
+                                    </div>
+                                    <div class="col-md-6" style="padding: 0;">
+                                        <button class="btn btn-sm pull-right">Submit</button>
                                     </div>
                                 </div>
                             </div>
                         </form>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark"
-                            (click)="modal.close('Save click')">Submit</button>
-                    </div>
                 </ng-template>
 
-                
-                <ng-template #editone let-modal>
+                <ng-template #edit let-modal>
                     <div class="modal-header">
-                        <h4 class="modal-title" id="modal-basic-title">Edit Preparation Design</h4>
-                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                        <div class="row row-inline">
+                            <h4 class="modal-title" id="modal-basic-title">Add Preparation Record</h4>
+                            <button type="button" class="close" aria-label="Close"
+                                (click)="modal.dismiss('Cross click')">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="row row-inline">
+                            <div class="singlerow">
+                                <label [ngClass]="{'lbactive': showformvalue === 1}">Preparation Type </label> >
+                                <label [ngClass]="{'lbactive': showformvalue === 2}"> Inorganic to Organic</label> >
+                                <label [ngClass]="{'lbactive': showformvalue === 3}"> Bed Distrub</label> >
+                                <label [ngClass]="{'lbactive': showformvalue === 4}">Arrangement Of Seed</label> >
+                                <label [ngClass]="{'lbactive': showformvalue === 5}">Seed Treatment </label> >
+                                <label [ngClass]="{'lbactive': showformvalue === 6}">Shed Prepration </label> >
+                                <label [ngClass]="{'lbactive': showformvalue === 7}">Tray Prepration </label>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-body">
-                        <form>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Prepration Name :</label>
-                                        <input type="text" placeholder="Land Preparation">
+                        <form #UpdateRecord="ngForm" (ngSubmit)="onUpdateRecord(UpdateRecord)">
+                            <div class="form-1" *ngIf="showformvalue===1">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <mat-label class="custom-label">Preparation type name</mat-label>
+                                        <mat-form-field class="flex-auto">
+                                            <input matInput type="text" name="preparation_name"
+                                                [(ngModel)]="preparation_name" required />
+                                        </mat-form-field>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="dateOfBirth">Inorganic to Organic</label>
-                                <ckeditor [editor]="Editor" data="<p></p>"></ckeditor>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Image</label>
-                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="customFile">
-                                            <label class="custom-file-label" for="customFile">Choose file</label>
-                                          </div>
+                            <div class="form-2" *ngIf="showformvalue===2">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <mat-label class="custom-label">Inorganic to Organic</mat-label>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <mat-label class="custom-label">Upload Image </mat-label>
+                                        <div class="imgdiv" *ngIf="inorganic_image!=''">
+                                            <img src="{{url+'image/'+inorganic_image}}" alt="">
+                                        </div>
+                                        <div class="button-wrap">
+                                            <label class="new-button" for="upload"> Upload Image
+                                                {{inorganic_image_flag}}
+                                            </label>
+                                            <input id="upload" type="file" name="inorganic_image"
+                                                (change)="imageUpload($event,'inorganic')">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-label class="custom-label">Upload Audio </mat-label>
+                                        <div class="audiodiv" *ngIf="inorganic_audio!=''">
+                                            <audio controls>
+                                                <source src="{{url+'audio/'+inorganic_audio}}" type="audio/ogg">
+                                                <source src="{{url+'audio/'+inorganic_audio}}" type="audio/mpeg">
+                                            </audio>
+                                        </div>
+                                        <div class="button-wrap">
+                                            <label class="new-button" for="upload_audio"> Upload Audio
+                                                {{inorganic_audio_flage}} </label>
+                                            <input id="upload_audio" type="file" name="inorganic_audio"
+                                                (change)="audioUpload($event,'inorganic')">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <mat-label class="custom-label">Video URL </mat-label>
+                                        <mat-form-field class="flex-auto">
+                                            <input matInput type="text" name="inorganic_video"
+                                                [(ngModel)]="inorganic_video" required />
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-12 form-group">
+                                        <mat-label class="custom-label">Description </mat-label>
+                                        <textarea class="form-control" name="inorganic_desc"
+                                            [(ngModel)]="inorganic_desc"></textarea>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <mat-label class="custom-label">Other Detail (if any) </mat-label>
+                                        <div *ngFor="let rowData of inorganic_detailsRow; let i = index;">
+                                            <mat-form-field class="flex-auto">
+                                                <input matInput type="text" [(ngModel)]="rowData.detail_name"
+                                                    name="detail_name_+{{rowData.detail_id}}" required />
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="inorg_add(i)"
+                                                    *ngIf="i === 0 && inorganic_detailsRowLen ===1">
+                                                </mat-icon>
+                                                <mat-icon matSuffix [svgIcon]="'indeterminate_check_box'"
+                                                    (click)="inorg_deleteRow(rowData,rowData.detail_id)"
+                                                    *ngIf="inorganic_detailsRowLen > 1 && inorganic_detailsRowLen != i+1">
+                                                </mat-icon>
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="inorg_add(i)"
+                                                    *ngIf="i > 0 && inorganic_detailsRowLen === i+1 "></mat-icon>
+                                            </mat-form-field>
+                                        </div>
                                     </div>
                                 </div>
-                                
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Audio</label>
-                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="customFile">
-                                            <label class="custom-file-label" for="customFile">Choose file</label>
-                                          </div>
+                            </div>
+
+                            <div class="form-3" *ngIf="showformvalue===3">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <mat-label class="custom-label">Bed Distrub</mat-label>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <mat-label class="custom-label">Upload Image </mat-label>
+                                        <div class="imgdiv" *ngIf="bed_image!=''">
+                                            <img src="{{url+'image/'+bed_image}}" alt="">
+                                        </div>
+                                        <div class="button-wrap">
+                                            <label class="new-button" for="upload"> Upload Image {{bed_image_flag}}
+                                            </label>
+                                            <input id="upload" type="file" name="bed_image"
+                                                (change)="imageUpload($event,'bed')">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-label class="custom-label">Upload Audio </mat-label>
+                                        <div class="audiodiv" *ngIf="bed_audio!=''">
+                                            <audio controls>
+                                                <source src="{{url+'audio/'+bed_audio}}" type="audio/ogg">
+                                                <source src="{{url+'audio/'+bed_audio}}" type="audio/mpeg">
+                                            </audio>
+                                        </div>
+                                        <div class="button-wrap">
+                                            <label class="new-button" for="upload_audio"> Upload Audio
+                                                {{bed_audio_flage}} </label>
+                                            <input id="upload_audio" type="file" name="bed_audio"
+                                                (change)="audioUpload($event,'bed')">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <mat-label class="custom-label">Video URL </mat-label>
+                                        <mat-form-field class="flex-auto">
+                                            <input matInput type="text" name="bed_video" [(ngModel)]="bed_video"
+                                                required />
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-12 form-group">
+                                        <mat-label class="custom-label">Description </mat-label>
+                                        <textarea class="form-control" name="bed_desc"
+                                            [(ngModel)]="bed_desc"></textarea>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <mat-label class="custom-label">Other Detail (if any) </mat-label>
+                                        <div *ngFor="let rowData of bed_detailsRow; let i = index;">
+                                            <mat-form-field class="flex-auto">
+                                                <input matInput type="text" [(ngModel)]="rowData.detail_name"
+                                                    name="detail_name_+{{rowData.detail_id}}" required />
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="bed_add(i)"
+                                                    *ngIf="i === 0 && bed_detailsRowLen ===1">
+                                                </mat-icon>
+                                                <mat-icon matSuffix [svgIcon]="'indeterminate_check_box'"
+                                                    (click)="bed_deleteRow(rowData,rowData.detail_id)"
+                                                    *ngIf="bed_detailsRowLen > 1 && bed_detailsRowLen != i+1">
+                                                </mat-icon>
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="bed_add(i)"
+                                                    *ngIf="i > 0 && bed_detailsRowLen === i+1 "></mat-icon>
+                                            </mat-form-field>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Video (Youtube Video Link)</label>
-                                        <input type="text" placeholder="">
+
+                            <div class="form-4" *ngIf="showformvalue===4">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <mat-label class="custom-label">Arrangement Of Seed</mat-label>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <mat-label class="custom-label">Upload Image </mat-label>
+                                        <div class="imgdiv" *ngIf="arrg_image!=''">
+                                            <img src="{{url+'image/'+arrg_image}}" alt="">
+                                        </div>
+                                        <div class="button-wrap">
+                                            <label class="new-button" for="upload"> Upload Image {{arrg_image_flag}}
+                                            </label>
+                                            <input id="upload" type="file" name="arrg_image"
+                                                (change)="imageUpload($event,'arrg')">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-label class="custom-label">Upload Audio </mat-label>
+                                        <div class="audiodiv" *ngIf="arrg_audio!=''">
+                                            <audio controls>
+                                                <source src="{{url+'audio/'+arrg_audio}}" type="audio/ogg">
+                                                <source src="{{url+'audio/'+arrg_audio}}" type="audio/mpeg">
+                                            </audio>
+                                        </div>
+                                        <div class="button-wrap">
+                                            <label class="new-button" for="upload_audio"> Upload Audio
+                                                {{arrg_audio_flage}} </label>
+                                            <input id="upload_audio" type="file" name="arrg_audio"
+                                                (change)="audioUpload($event,'arrg')">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <mat-label class="custom-label">Video URL </mat-label>
+                                        <mat-form-field class="flex-auto">
+                                            <input matInput type="text" name="arrg_video" [(ngModel)]="arrg_video"
+                                                required />
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-12 form-group">
+                                        <mat-label class="custom-label">Description </mat-label>
+                                        <textarea class="form-control" name="arrg_desc"
+                                            [(ngModel)]="arrg_desc"></textarea>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <mat-label class="custom-label">Other Detail (if any) </mat-label>
+                                        <div *ngFor="let rowData of arrg_detailsRow; let i = index;">
+                                            <mat-form-field class="flex-auto">
+                                                <input matInput type="text" [(ngModel)]="rowData.detail_name"
+                                                    name="detail_name_+{{rowData.detail_id}}" required />
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="arrg_add(i)"
+                                                    *ngIf="i === 0 && arrg_detailsRowLen ===1">
+                                                </mat-icon>
+                                                <mat-icon matSuffix [svgIcon]="'indeterminate_check_box'"
+                                                    (click)="arrg_deleteRow(rowData,rowData.detail_id)"
+                                                    *ngIf="arrg_detailsRowLen > 1 && arrg_detailsRowLen != i+1">
+                                                </mat-icon>
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="arrg_add(i)"
+                                                    *ngIf="i > 0 && arrg_detailsRowLen === i+1 "></mat-icon>
+                                            </mat-form-field>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="dateOfBirth">Arrangement Of Seed</label>
-                                <ckeditor [editor]="Editor" data="<p></p>"></ckeditor>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Image</label>
-                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="customFile">
-                                            <label class="custom-file-label" for="customFile">Choose file</label>
-                                          </div>
+
+                            <div class="form-5" *ngIf="showformvalue===5">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <mat-label class="custom-label">Seed Treatment</mat-label>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <mat-label class="custom-label">Upload Image </mat-label>
+                                        <div class="imgdiv" *ngIf="seed_image!=''">
+                                            <img src="{{url+'image/'+seed_image}}" alt="">
+                                        </div>
+                                        <div class="button-wrap">
+                                            <label class="new-button" for="upload"> Upload Image {{seed_image_flag}}
+                                            </label>
+                                            <input id="upload" type="file" name="seed_image"
+                                                (change)="imageUpload($event,'seed')">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-label class="custom-label">Upload Audio </mat-label>
+                                        <div class="audiodiv" *ngIf="seed_audio!=''">
+                                            <audio controls>
+                                                <source src="{{url+'audio/'+seed_audio}}" type="audio/ogg">
+                                                <source src="{{url+'audio/'+seed_audio}}" type="audio/mpeg">
+                                            </audio>
+                                        </div>
+                                        <div class="button-wrap">
+                                            <label class="new-button" for="upload_audio"> Upload Audio
+                                                {{seed_audio_flage}} </label>
+                                            <input id="upload_audio" type="file" name="seed_audio"
+                                                (change)="audioUpload($event,'seed')">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <mat-label class="custom-label">Video URL </mat-label>
+                                        <mat-form-field class="flex-auto">
+                                            <input matInput type="text" name="seed_video" [(ngModel)]="seed_video"
+                                                required />
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-12 form-group">
+                                        <mat-label class="custom-label">Description </mat-label>
+                                        <textarea class="form-control" name="seed_desc"
+                                            [(ngModel)]="seed_desc"></textarea>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <mat-label class="custom-label">Other Detail (if any) </mat-label>
+                                        <div *ngFor="let rowData of seed_detailsRow; let i = index;">
+                                            <mat-form-field class="flex-auto">
+                                                <input matInput type="text" [(ngModel)]="rowData.detail_name"
+                                                    name="detail_name_+{{rowData.detail_id}}" required />
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="seed_add(i)"
+                                                    *ngIf="i === 0 && seed_detailsRowLen ===1">
+                                                </mat-icon>
+                                                <mat-icon matSuffix [svgIcon]="'indeterminate_check_box'"
+                                                    (click)="seed_deleteRow(rowData,rowData.detail_id)"
+                                                    *ngIf="seed_detailsRowLen > 1 && seed_detailsRowLen != i+1">
+                                                </mat-icon>
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="seed_add(i)"
+                                                    *ngIf="i > 0 && seed_detailsRowLen === i+1 "></mat-icon>
+                                            </mat-form-field>
+                                        </div>
                                     </div>
                                 </div>
-                                
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Audio</label>
-                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="customFile">
-                                            <label class="custom-file-label" for="customFile">Choose file</label>
-                                          </div>
+                            </div>
+
+                            <div class="form-6" *ngIf="showformvalue===6">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <mat-label class="custom-label">Shed Prepration</mat-label>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <mat-label class="custom-label">Upload Image </mat-label>
+                                        <div class="imgdiv" *ngIf="shed_image!=''">
+                                            <img src="{{url+'image/'+shed_image}}" alt="">
+                                        </div>
+                                        <div class="button-wrap">
+                                            <label class="new-button" for="upload"> Upload Image {{shed_image_flag}}
+                                            </label>
+                                            <input id="upload" type="file" name="shed_image"
+                                                (change)="imageUpload($event,'shed')">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-label class="custom-label">Upload Audio </mat-label>
+                                        <div class="audiodiv" *ngIf="shed_audio!=''">
+                                            <audio controls>
+                                                <source src="{{url+'audio/'+shed_audio}}" type="audio/ogg">
+                                                <source src="{{url+'audio/'+shed_audio}}" type="audio/mpeg">
+                                            </audio>
+                                        </div>
+                                        <div class="button-wrap">
+                                            <label class="new-button" for="upload_audio"> Upload Audio
+                                                {{shed_audio_flage}} </label>
+                                            <input id="upload_audio" type="file" name="shed_audio"
+                                                (change)="audioUpload($event,'shed')">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <mat-label class="custom-label">Video URL </mat-label>
+                                        <mat-form-field class="flex-auto">
+                                            <input matInput type="text" name="shed_video" [(ngModel)]="shed_video"
+                                                required />
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-12 form-group">
+                                        <mat-label class="custom-label">Description </mat-label>
+                                        <textarea class="form-control" name="shed_desc"
+                                            [(ngModel)]="shed_desc"></textarea>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <mat-label class="custom-label">Other Detail (if any) </mat-label>
+                                        <div *ngFor="let rowData of shed_detailsRow; let i = index;">
+                                            <mat-form-field class="flex-auto">
+                                                <input matInput type="text" [(ngModel)]="rowData.detail_name"
+                                                    name="detail_name_+{{rowData.detail_id}}" required />
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="shed_add(i)"
+                                                    *ngIf="i === 0 && shed_detailsRowLen ===1">
+                                                </mat-icon>
+                                                <mat-icon matSuffix [svgIcon]="'indeterminate_check_box'"
+                                                    (click)="shed_deleteRow(rowData,rowData.detail_id)"
+                                                    *ngIf="shed_detailsRowLen > 1 && shed_detailsRowLen != i+1">
+                                                </mat-icon>
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="shed_add(i)"
+                                                    *ngIf="i > 0 && shed_detailsRowLen === i+1 "></mat-icon>
+                                            </mat-form-field>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Video (Youtube Video Link)</label>
-                                        <input type="text" placeholder="">
+
+                            <div class="form-7" *ngIf="showformvalue===7">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <mat-label class="custom-label">Tray Prepration</mat-label>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <mat-label class="custom-label">Upload Image </mat-label>
+                                        <div class="imgdiv" *ngIf="tray_image!=''">
+                                            <img src="{{url+'image/'+tray_image}}" alt="">
+                                        </div>
+                                        <div class="button-wrap">
+                                            <label class="new-button" for="upload"> Upload Image {{tray_image_flag}}
+                                            </label>
+                                            <input id="upload" type="file" name="tray_image"
+                                                (change)="imageUpload($event,'tray')">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-label class="custom-label">Upload Audio </mat-label>
+                                        <div class="audiodiv" *ngIf="tray_audio!=''">
+                                            <audio controls>
+                                                <source src="{{url+'audio/'+tray_audio}}" type="audio/ogg">
+                                                <source src="{{url+'audio/'+tray_audio}}" type="audio/mpeg">
+                                            </audio>
+                                        </div>
+                                        <div class="button-wrap">
+                                            <label class="new-button" for="upload_audio"> Upload Audio
+                                                {{tray_audio_flage}} </label>
+                                            <input id="upload_audio" type="file" name="tray_audio"
+                                                (change)="audioUpload($event,'tray')">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <mat-label class="custom-label">Video URL </mat-label>
+                                        <mat-form-field class="flex-auto">
+                                            <input matInput type="text" name="tray_video" [(ngModel)]="tray_video"
+                                                required />
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-12 form-group">
+                                        <mat-label class="custom-label">Description </mat-label>
+                                        <textarea class="form-control" name="tray_desc"
+                                            [(ngModel)]="tray_desc"></textarea>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <mat-label class="custom-label">Other Detail (if any) </mat-label>
+                                        <div *ngFor="let rowData of tray_detailsRow; let i = index;">
+                                            <mat-form-field class="flex-auto">
+                                                <input matInput type="text" [(ngModel)]="rowData.detail_name"
+                                                    name="detail_name_+{{rowData.detail_id}}" required />
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="tray_add(i)"
+                                                    *ngIf="i === 0 && tray_detailsRowLen ===1">
+                                                </mat-icon>
+                                                <mat-icon matSuffix [svgIcon]="'indeterminate_check_box'"
+                                                    (click)="tray_deleteRow(rowData,rowData.detail_id)"
+                                                    *ngIf="tray_detailsRowLen > 1 && tray_detailsRowLen != i+1">
+                                                </mat-icon>
+                                                <mat-icon matSuffix [svgIcon]="'add_box'" (click)="tray_add(i)"
+                                                    *ngIf="i > 0 && tray_detailsRowLen === i+1 "></mat-icon>
+                                            </mat-form-field>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
 
-                            <div class="form-group">
-                                <label for="dateOfBirth">Seed Treatment</label>
-                                <ckeditor [editor]="Editor" data="<p></p>"></ckeditor>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Image</label>
-                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="customFile">
-                                            <label class="custom-file-label" for="customFile">Choose file</label>
-                                          </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Audio</label>
-                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="customFile">
-                                            <label class="custom-file-label" for="customFile">Choose file</label>
-                                          </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Video (Youtube Video Link)</label>
-                                        <input type="text" placeholder="">
-                                    </div>
-                                </div>
-                            </div>
+                            <div class="modal-footer">
+                                <!-- <button type="button" class="btn btn-outline-dark"
+                                    (click)="modal.close('Save click')">Submit</button> -->
+                                <div class="row col-md-12" *ngIf="showformvalue===1" style="padding: 0;">
+                                    <div class="col-md-6" style="padding: 0;">
 
-                            
-                            <div class="form-group">
-                                <label for="dateOfBirth">Shed Prepration</label>
-                                <ckeditor [editor]="Editor" data="<p></p>"></ckeditor>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Image</label>
-                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="customFile">
-                                            <label class="custom-file-label" for="customFile">Choose file</label>
-                                          </div>
+                                    </div>
+                                    <div class="col-md-6" style="padding: 0;">
+                                        <button class="btn btn-sm pull-right" (click)="showForm(2)">Next</button>
                                     </div>
                                 </div>
-                                
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Audio</label>
-                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="customFile">
-                                            <label class="custom-file-label" for="customFile">Choose file</label>
-                                          </div>
+                                <div class="row col-md-12" *ngIf="showformvalue===2" style="padding: 0;">
+                                    <div class="col-md-6" style="padding: 0;">
+                                        <button class="btn btn-sm pull-left" (click)="showForm(1)">Prev</button>
+                                    </div>
+                                    <div class="col-md-6" style="padding: 0;">
+                                        <button class="btn btn-sm pull-right" (click)="showForm(3)">Next</button>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Video (Youtube Video Link)</label>
-                                        <input type="text" placeholder="">
+                                <div class="row col-md-12" *ngIf="showformvalue===3" style="padding: 0;">
+                                    <div class="col-md-6" style="padding: 0;">
+                                        <button class="btn btn-sm pull-left" (click)="showForm(2)">Prev</button>
+                                    </div>
+                                    <div class="col-md-6" style="padding: 0;">
+                                        <button class="btn btn-sm pull-right" (click)="showForm(4)">Next</button>
                                     </div>
                                 </div>
-                            </div>
-
-                            
-                            <div class="form-group">
-                                <label for="dateOfBirth">Tray Prepration</label>
-                                <ckeditor [editor]="Editor" data="<p></p>"></ckeditor>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Image</label>
-                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="customFile">
-                                            <label class="custom-file-label" for="customFile">Choose file</label>
-                                          </div>
+                                <div class="row col-md-12" *ngIf="showformvalue===4" style="padding: 0;">
+                                    <div class="col-md-6" style="padding: 0;">
+                                        <button class="btn btn-sm pull-left" (click)="showForm(3)">Prev</button>
+                                    </div>
+                                    <div class="col-md-6" style="padding: 0;">
+                                        <button class="btn btn-sm pull-right" (click)="showForm(5)">Next</button>
                                     </div>
                                 </div>
-                                
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Audio</label>
-                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="customFile">
-                                            <label class="custom-file-label" for="customFile">Choose file</label>
-                                          </div>
+                                <div class="row col-md-12" *ngIf="showformvalue===5" style="padding: 0;">
+                                    <div class="col-md-6" style="padding: 0;">
+                                        <button class="btn btn-sm pull-left" (click)="showForm(4)">Prev</button>
+                                    </div>
+                                    <div class="col-md-6" style="padding: 0;">
+                                        <button class="btn btn-sm pull-right" (click)="showForm(6)">Next</button>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Video (Youtube Video Link)</label>
-                                        <input type="text" placeholder="">
+                                <div class="row col-md-12" *ngIf="showformvalue===6" style="padding: 0;">
+                                    <div class="col-md-6" style="padding: 0;">
+                                        <button class="btn btn-sm pull-left" (click)="showForm(5)">Prev</button>
+                                    </div>
+                                    <div class="col-md-6" style="padding: 0;">
+                                        <button class="btn btn-sm pull-right" (click)="showForm(7)">Next</button>
+                                    </div>
+                                </div>
+                                <div class="row col-md-12" *ngIf="showformvalue===7" style="padding: 0;">
+                                    <div class="col-md-6" style="padding: 0;">
+                                        <button class="btn btn-sm pull-left" (click)="showForm(6)">Prev</button>
+                                    </div>
+                                    <div class="col-md-6" style="padding: 0;">
+                                        <button class="btn btn-sm pull-right">Submit</button>
                                     </div>
                                 </div>
                             </div>
                         </form>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark"
-                            (click)="modal.close('Save click')">Update</button>
-                    </div>
                 </ng-template>
 
-                
                 <ng-template #delete let-modal class="delete_modal">
-                    <div class="modal-header">
-                        Are you sure ?
-                    </div>
-
+                    <div class="modal-header">Do you really want to make changes ?</div>
                     <div class="modal-body">
-                        <button type="button" class="btn btn-outline-dark btn_delete"
-                            (click)="modal.close('Save click')">
-                            Delete
-                        </button>
-                        <button type="button" class=" btn btn-outline-dark close btn_close" aria-label="Close"
+
+                        <button type="button" class="btn btn-danger btn-cancel" aria-label="Close"
                             (click)="modal.dismiss('Cross click')">
-                            cancel
+                            Cancel
+                        </button>
+                        <button type="button" class="btn btn-primary btn-ok" (click)="onChangeStatus()">
+                            Ok
                         </button>
                     </div>
-
-                    <div class="modal-footer">
-
-                    </div>
-                    <!-- <div class="modal-body">
-                            <form>
-                                <div class="form-group">
-                                    <label for="dateOfBirth">Date of birth</label>
-                                    <div class="input-group">
-    
-                                    </div>
-                                </div>
-                            </form>
-                        </div> -->
+                    <div class="modal-footer"></div>
                 </ng-template>
+
             </div>
         </div>
     </div>
 </div>
 
-  
-  <script>
-  // Add the following code if you want the name of the file appear on select
-  $(".custom-file-input").on("change", function() {
-    var fileName = $(this).val().split("\\").pop();
-    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-  });
-  </script>
+
+<script>
+    // Add the following code if you want the name of the file appear on select
+    $(".custom-file-input").on("change", function () {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+</script>

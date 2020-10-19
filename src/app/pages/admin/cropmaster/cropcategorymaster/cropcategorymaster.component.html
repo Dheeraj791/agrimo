@@ -1,4 +1,7 @@
 <div class="box_main">
+    <ngx-spinner bdColor="rgba(255,255,255,0.8)" size="default" color="#0f06bb" type="timer" [fullScreen]="false">
+        <p style="color: white"> Please wait..... </p>
+      </ngx-spinner>
     <div class="container" style="margin: 0px 0px !important;">
         <div class="col-md-12 bg-card shadow rounded overflow-hidden" style="background-color: white;">
             <div class="header_top_btn mb-5">
@@ -23,114 +26,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Ballar-Sem</td>
-                            <td>Ballar-Sem</td>
-                            <td class="delete_icons" (click)="statusModal(delete)">
-                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
+                        <tr *ngFor="let list of cropCategoryRecord; let i=index;">
+                            <td>{{i+1}}</td>
+                            <td>{{ list.crop_category }}</td>
+                            <td>{{ list.crop_sub_category }}</td>
+                            <td class="delete_icons">
+                                <mat-icon [svgIcon]="'check_circle'" class="active" *ngIf="list.status != 0"
+                                    (click)="statusModal(delete,0, list.crop_category_id)"></mat-icon>
+                                <mat-icon [svgIcon]="'highlight_off'" class="inactive" *ngIf="list.status === 0"
+                                    (click)="statusModal(delete,1, list.crop_category_id)"></mat-icon>
                             </td>
-                            <td (click)="open(editone)" class="edit_icons">
-                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Beetroot/Chukander</td>
-                            <td>Beetroot/Chukander</td>
-                            <td class="delete_icons" (click)="statusModal(delete)">
-                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
-                            </td>
-                            <td (click)="open(edittwo)" class="edit_icons">
-                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Bhindi</td>
-                            <td>Bhindi</td>
-                            <td class="delete_icons" (click)="statusModal(delete)">
-                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
-                            </td>
-                            <td (click)="open(editthree)" class="edit_icons">
-                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Brinjal</td>
-                            <td>Long</td>
-                            <td class="delete_icons" (click)="statusModal(delete)">
-                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
-                            </td>
-                            <td (click)="open(editfour)" class="edit_icons">
-                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Brinjal</td>
-                            <td>Cut</td>
-                            <td class="delete_icons" (click)="statusModal(delete)">
-                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
-                            </td>
-                            <td (click)="open(editfive)" class="edit_icons">
-                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>Brinjal</td>
-                            <td>Bharwa</td>
-                            <td class="delete_icons" (click)="statusModal(delete)">
-                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
-                            </td>
-                            <td (click)="open(editsix)" class="edit_icons">
-                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>Brinjal</td>
-                            <td>Bharta</td>
-                            <td class="delete_icons" (click)="statusModal(delete)">
-                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
-                            </td>
-                            <td (click)="open(editseven)" class="edit_icons">
-                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>8</td>
-                            <td>Broccoli</td>
-                            <td>Broccoli</td>
-                            <td class="delete_icons" (click)="statusModal(delete)">
-                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
-                            </td>
-                            <td (click)="open(editeight)" class="edit_icons">
-                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>9</td>
-                            <td>Cabbage</td>
-                            <td>Cabbage</td>
-                            <td class="delete_icons" (click)="statusModal(delete)">
-                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
-                            </td>
-                            <td (click)="open(editnine)" class="edit_icons">
-                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td>Capsicum</td>
-                            <td>Green/Yellow/Red	</td>
-                            <td class="delete_icons" (click)="statusModal(delete)">
-                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
-                            </td>
-                            <td (click)="open(editten)" class="edit_icons">
-                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
+                            <td class="edit_icons">
+                                <mat-icon [svgIcon]="'picture_in_picture_alt'" (click)="editModal(edit, list)">
+                                </mat-icon>
                             </td>
                         </tr>
                     </tbody>
@@ -138,647 +46,140 @@
 
                 <ng-template #addnew let-modal>
                     <div class="modal-header">
-                        <h4 class="modal-title" id="modal-basic-title">Crop category Master</h4>
+                        <h4 class="modal-title" id="modal-basic-title">
+                            Add New Crop Category
+                        </h4>
                         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        
-                        <form>
+                        <form #addLandMeasurement="ngForm" (ngSubmit)="onAddLandMeasurement(addLandMeasurement)">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Choose Family</label>
-                                        <select class="form-control" name="Material Based Activity">
-                                            <option value="">CHOOSE FAMILY</option>
-                                            <option value="">Amaranthaceae</option>
-                                            <option value="">Araceae</option>
-                                            <option value="">Cole Crops (Brassicas)</option>
-                                            <option value="">Goosefoot (Chenopodiaceae)</option>
-                                            <option value="">Grasses (Poaceae)</option>
-                                            <option value="">Legumes (Fabaceae)</option>
-                                            <option value="">Lettuce (Compositae)</option>
-                                            <option value="">Mallows (Malvaceae)</option>
-                                            <option value="">Melon/Squash (Cucurbitaceae)</option>
-                                            <option value="">Morning Glory (Convolvulaceae)</option>
-                                            <option value="">Nightshade (Solanaceae)</option>
-                                            <option value="">Onion (Amaryllidaceae)</option>
-                                            <option value="">Parsley (Umbelliferae)</option>
-                                        </select>
-                                    </div>
+                                    <mat-label class="custom-label">Crop Family</mat-label>
+                                    <mat-form-field class="flex-auto">
+                                        <mat-select [(ngModel)]="family_id" name="family_id" (selectionChange)="familyOnChange('add')">
+                                            <mat-option value="0">Select Family</mat-option>
+                                            <mat-option *ngFor="let family of crop_family_master" value="{{family.cf_id}}">
+                                                {{family.cf_name}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Choose Crop Name</label>
-                                        <select class="form-control" name="Material Based Activity">
-                                            <option value="mat">----SELECT CROP----</option>
-                                            <option value="mat">Add New Crop</option>
-                                            <option value="mat">Beetroot/Chukander</option>
-                                            <option value="mat">Chenopodium/Bathua</option>
-                                            <option value="mat">Spinach/Palak</option>
-                                        </select>
-                                    </div>
+                                    <mat-label class="custom-label">Existing Category</mat-label>
+                                    <mat-form-field class="flex-auto">
+                                        <mat-select [(ngModel)]="crop_category_id" (selectionChange)="categoryOnChange()"  name="crop_category_id">
+                                            <mat-option value="0">Select Category</mat-option>
+                                            <mat-option value="add">Add New Category</mat-option>
+                                            <mat-option *ngFor="let category of filteredCropCategory" value="{{category.crop_category_id+'_'+category.crop_category}}">
+                                                {{category.crop_category}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6" *ngIf="show_category_name">
+                                    <mat-label>Crop category name</mat-label>
+                                    <mat-form-field class="flex-auto">                                        
+                                        <input matInput type="text" [disabled]="disable_name" [(ngModel)]="category_name" name="category_name" required />
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6" *ngIf="show_sub_category_name">
+                                    <mat-label>Crop sub category name</mat-label>
+                                    <mat-form-field class="flex-auto">                                        
+                                        <input matInput type="text" [(ngModel)]="sub_category_name" name="sub_category_name" required />
+                                    </mat-form-field>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">VARIETY</label>
-                                        <input type="text" placeholder="">
-                                    </div>
-                                </div>
+
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-outline-dark">
+                                    Submit
+                                </button>
                             </div>
                         </form>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark"
-                            (click)="modal.close('Save click')">ADD CROP</button>
                     </div>
                 </ng-template>
 
-                
-                <ng-template #editone let-modal>
+                <ng-template #edit let-modal>
                     <div class="modal-header">
-                        <h4 class="modal-title" id="modal-basic-title">Primary Cropcategory</h4>
+                        <h4 class="modal-title" id="modal-basic-title">
+                            Update Crop Category
+                        </h4>
                         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form #updateLandMeasurement="ngForm"
+                            (ngSubmit)="onUpdateLandMeasurement(updateLandMeasurement)">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Crop Category</label>
-                                        <input type="text" placeholder="Ballar-Sem">
-                                    </div>
+                                    <mat-label class="custom-label">Crop Family</mat-label>
+                                    <mat-form-field class="flex-auto">
+                                        <mat-select [(ngModel)]="family_id" name="family_id" (selectionChange)="familyOnChange('edit')">
+                                            <mat-option value="0">Select Family</mat-option>
+                                            <mat-option *ngFor="let family of crop_family_master" value="{{family.cf_id}}">
+                                                {{family.cf_name}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Crop Sub Category</label>
-                                        <input type="text" placeholder="Ballar-Sem">
-                                    </div>
+                                <!-- <div class="col-md-6">
+                                    <mat-label class="custom-label">Existing Category</mat-label>
+                                    <mat-form-field class="flex-auto">
+                                        <mat-select [(ngModel)]="crop_category_id"(selectionChange)="categoryOnChange()"  name="crop_category_id">
+                                            <mat-option value="0">Select Category</mat-option>
+                                            <mat-option value="add">Add New Category</mat-option>
+                                            <mat-option *ngFor="let category of filteredCropCategory" value="{{category.crop_category_id+'_'+category.crop_category}}">
+                                                {{category.crop_category}}</mat-option>
+                                        </mat-select>
+                                        
+                                    </mat-form-field>
+                                </div> -->
+                                <div class="col-md-6" >
+                                    <mat-label>Crop category name</mat-label>
+                                    <mat-form-field class="flex-auto">                                        
+                                        <input matInput type="text"  [(ngModel)]="category_name" name="category_name" required />
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-12" >
+                                    <mat-label>Crop sub category name</mat-label>
+                                    <mat-form-field class="flex-auto">                                        
+                                        <input matInput type="text" [(ngModel)]="sub_category_name" name="sub_category_name" required />
+                                    </mat-form-field>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Choose Family</label>
-                                        <select class="form-control" name="Material Based Activity">
-                                            <option value="">Parsley (Umbelliferae)</option> 
-                                            <option value="">Onion (Amaryllidaceae)</option> 
-                                            <option value="">Nightshade (Solanaceae)</option> 
-                                            <option value="">Morning Glory (Convolvulaceae)</option> 
-                                            <option value="">Melon/Squash (Cucurbitaceae)</option> 
-                                            <option value="">Lettuce (Compositae)</option> 
-                                            <option value="">Legumes (Fabaceae)</option> 
-                                            <option value="">Grasses (Poaceae)</option> 
-                                            <option value="">Goosefoot (Chenopodiaceae)</option> 
-                                            <option value="">Cole Crops (Brassicas)</option> 
-                                            <option value="">Mallows (Malvaceae)</option> 
-                                            <option value="">Amaranthaceae</option> 
-                                            <option value="">Araceae</option> 
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark"
-                            (click)="modal.close('Save click')">UPDATE CROP</button>
-                    </div>
-                </ng-template>
-    
-                <ng-template #edittwo let-modal>
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="modal-basic-title">Primary Cropcategory</h4>
-                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Crop Category</label>
-                                        <input type="text" placeholder="Beetroot/Chukander">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Crop Sub Category</label>
-                                        <input type="text" placeholder="Beetroot/Chukander">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Choose Family</label>
-                                        <select class="form-control" name="Material Based Activity">
-                                            <option value="">Parsley (Umbelliferae)</option> 
-                                            <option value="">Onion (Amaryllidaceae)</option> 
-                                            <option value="">Nightshade (Solanaceae)</option> 
-                                            <option value="">Morning Glory (Convolvulaceae)</option> 
-                                            <option value="">Melon/Squash (Cucurbitaceae)</option> 
-                                            <option value="">Lettuce (Compositae)</option> 
-                                            <option value="">Legumes (Fabaceae)</option> 
-                                            <option value="">Grasses (Poaceae)</option> 
-                                            <option value="">Goosefoot (Chenopodiaceae)</option> 
-                                            <option value="">Cole Crops (Brassicas)</option> 
-                                            <option value="">Mallows (Malvaceae)</option> 
-                                            <option value="">Amaranthaceae</option> 
-                                            <option value="">Araceae</option> 
-                                        </select>
-                                    </div>
-                                </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-outline-dark">
+                                    Update
+                                </button>
                             </div>
                         </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark"
-                            (click)="modal.close('Save click')">UPDATE CROP</button>
                     </div>
                 </ng-template>
 
-                <ng-template #editthree let-modal>
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="modal-basic-title">Primary Cropcategory</h4>
-                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Crop Category</label>
-                                        <input type="text" placeholder="Bhindi">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Crop Sub Category</label>
-                                        <input type="text" placeholder="Bhindi">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Choose Family</label>
-                                        <select class="form-control" name="Material Based Activity">
-                                            <option value="">Parsley (Umbelliferae)</option> 
-                                            <option value="">Onion (Amaryllidaceae)</option> 
-                                            <option value="">Nightshade (Solanaceae)</option> 
-                                            <option value="">Morning Glory (Convolvulaceae)</option> 
-                                            <option value="">Melon/Squash (Cucurbitaceae)</option> 
-                                            <option value="">Lettuce (Compositae)</option> 
-                                            <option value="">Legumes (Fabaceae)</option> 
-                                            <option value="">Grasses (Poaceae)</option> 
-                                            <option value="">Goosefoot (Chenopodiaceae)</option> 
-                                            <option value="">Cole Crops (Brassicas)</option> 
-                                            <option value="">Mallows (Malvaceae)</option> 
-                                            <option value="">Amaranthaceae</option> 
-                                            <option value="">Araceae</option> 
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark"
-                            (click)="modal.close('Save click')">UPDATE CROP</button>
-                    </div>
-                </ng-template>
-
-                
-                <ng-template #editfour let-modal>
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="modal-basic-title">Primary Cropcategory</h4>
-                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Crop Category</label>
-                                        <input type="text" placeholder="Brinjal">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Crop Sub Category</label>
-                                        <input type="text" placeholder="Long">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Choose Family</label>
-                                        <select class="form-control" name="Material Based Activity">
-                                            <option value="">Parsley (Umbelliferae)</option> 
-                                            <option value="">Onion (Amaryllidaceae)</option> 
-                                            <option value="">Nightshade (Solanaceae)</option> 
-                                            <option value="">Morning Glory (Convolvulaceae)</option> 
-                                            <option value="">Melon/Squash (Cucurbitaceae)</option> 
-                                            <option value="">Lettuce (Compositae)</option> 
-                                            <option value="">Legumes (Fabaceae)</option> 
-                                            <option value="">Grasses (Poaceae)</option> 
-                                            <option value="">Goosefoot (Chenopodiaceae)</option> 
-                                            <option value="">Cole Crops (Brassicas)</option> 
-                                            <option value="">Mallows (Malvaceae)</option> 
-                                            <option value="">Amaranthaceae</option> 
-                                            <option value="">Araceae</option> 
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark"
-                            (click)="modal.close('Save click')">UPDATE CROP</button>
-                    </div>
-                </ng-template>
-
-                <ng-template #editfive let-modal>
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="modal-basic-title">Primary Cropcategory</h4>
-                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Crop Category</label>
-                                        <input type="text" placeholder="Brinjal">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Crop Sub Category</label>
-                                        <input type="text" placeholder="Cut">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Choose Family</label>
-                                        <select class="form-control" name="Material Based Activity">
-                                            <option value="">Parsley (Umbelliferae)</option> 
-                                            <option value="">Onion (Amaryllidaceae)</option> 
-                                            <option value="">Nightshade (Solanaceae)</option> 
-                                            <option value="">Morning Glory (Convolvulaceae)</option> 
-                                            <option value="">Melon/Squash (Cucurbitaceae)</option> 
-                                            <option value="">Lettuce (Compositae)</option> 
-                                            <option value="">Legumes (Fabaceae)</option> 
-                                            <option value="">Grasses (Poaceae)</option> 
-                                            <option value="">Goosefoot (Chenopodiaceae)</option> 
-                                            <option value="">Cole Crops (Brassicas)</option> 
-                                            <option value="">Mallows (Malvaceae)</option> 
-                                            <option value="">Amaranthaceae</option> 
-                                            <option value="">Araceae</option> 
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark"
-                            (click)="modal.close('Save click')">UPDATE CROP</button>
-                    </div>
-                </ng-template>
-
-                
-                <ng-template #editsix let-modal>
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="modal-basic-title">Primary Cropcategory</h4>
-                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Crop Category</label>
-                                        <input type="text" placeholder="Brinjal">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Crop Sub Category</label>
-                                        <input type="text" placeholder="Bharwa">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Choose Family</label>
-                                        <select class="form-control" name="Material Based Activity">
-                                            <option value="">Parsley (Umbelliferae)</option> 
-                                            <option value="">Onion (Amaryllidaceae)</option> 
-                                            <option value="">Nightshade (Solanaceae)</option> 
-                                            <option value="">Morning Glory (Convolvulaceae)</option> 
-                                            <option value="">Melon/Squash (Cucurbitaceae)</option> 
-                                            <option value="">Lettuce (Compositae)</option> 
-                                            <option value="">Legumes (Fabaceae)</option> 
-                                            <option value="">Grasses (Poaceae)</option> 
-                                            <option value="">Goosefoot (Chenopodiaceae)</option> 
-                                            <option value="">Cole Crops (Brassicas)</option> 
-                                            <option value="">Mallows (Malvaceae)</option> 
-                                            <option value="">Amaranthaceae</option> 
-                                            <option value="">Araceae</option> 
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark"
-                            (click)="modal.close('Save click')">UPDATE CROP</button>
-                    </div>
-                </ng-template>
-
-                
-                <ng-template #editseven let-modal>
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="modal-basic-title">Primary Cropcategory</h4>
-                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Crop Category</label>
-                                        <input type="text" placeholder="Brinjal">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Crop Sub Category</label>
-                                        <input type="text" placeholder="Bharta">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Choose Family</label>
-                                        <select class="form-control" name="Material Based Activity">
-                                            <option value="">Parsley (Umbelliferae)</option> 
-                                            <option value="">Onion (Amaryllidaceae)</option> 
-                                            <option value="">Nightshade (Solanaceae)</option> 
-                                            <option value="">Morning Glory (Convolvulaceae)</option> 
-                                            <option value="">Melon/Squash (Cucurbitaceae)</option> 
-                                            <option value="">Lettuce (Compositae)</option> 
-                                            <option value="">Legumes (Fabaceae)</option> 
-                                            <option value="">Grasses (Poaceae)</option> 
-                                            <option value="">Goosefoot (Chenopodiaceae)</option> 
-                                            <option value="">Cole Crops (Brassicas)</option> 
-                                            <option value="">Mallows (Malvaceae)</option> 
-                                            <option value="">Amaranthaceae</option> 
-                                            <option value="">Araceae</option> 
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark"
-                            (click)="modal.close('Save click')">UPDATE CROP</button>
-                    </div>
-                </ng-template>
-
-                
-                <ng-template #editeight let-modal>
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="modal-basic-title">Primary Cropcategory</h4>
-                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Crop Category</label>
-                                        <input type="text" placeholder="Broccoli">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Crop Sub Category</label>
-                                        <input type="text" placeholder="Broccoli">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Choose Family</label>
-                                        <select class="form-control" name="Material Based Activity">
-                                            <option value="">Parsley (Umbelliferae)</option> 
-                                            <option value="">Onion (Amaryllidaceae)</option> 
-                                            <option value="">Nightshade (Solanaceae)</option> 
-                                            <option value="">Morning Glory (Convolvulaceae)</option> 
-                                            <option value="">Melon/Squash (Cucurbitaceae)</option> 
-                                            <option value="">Lettuce (Compositae)</option> 
-                                            <option value="">Legumes (Fabaceae)</option> 
-                                            <option value="">Grasses (Poaceae)</option> 
-                                            <option value="">Goosefoot (Chenopodiaceae)</option> 
-                                            <option value="">Cole Crops (Brassicas)</option> 
-                                            <option value="">Mallows (Malvaceae)</option> 
-                                            <option value="">Amaranthaceae</option> 
-                                            <option value="">Araceae</option> 
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark"
-                            (click)="modal.close('Save click')">UPDATE CROP</button>
-                    </div>
-                </ng-template>
-
-                
-                <ng-template #editnine let-modal>
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="modal-basic-title">Primary Cropcategory</h4>
-                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Crop Category</label>
-                                        <input type="text" placeholder="Cabbage">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Crop Sub Category</label>
-                                        <input type="text" placeholder="Cabbage">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Choose Family</label>
-                                        <select class="form-control" name="Material Based Activity">
-                                            <option value="">Parsley (Umbelliferae)</option> 
-                                            <option value="">Onion (Amaryllidaceae)</option> 
-                                            <option value="">Nightshade (Solanaceae)</option> 
-                                            <option value="">Morning Glory (Convolvulaceae)</option> 
-                                            <option value="">Melon/Squash (Cucurbitaceae)</option> 
-                                            <option value="">Lettuce (Compositae)</option> 
-                                            <option value="">Legumes (Fabaceae)</option> 
-                                            <option value="">Grasses (Poaceae)</option> 
-                                            <option value="">Goosefoot (Chenopodiaceae)</option> 
-                                            <option value="">Cole Crops (Brassicas)</option> 
-                                            <option value="">Mallows (Malvaceae)</option> 
-                                            <option value="">Amaranthaceae</option> 
-                                            <option value="">Araceae</option> 
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark"
-                            (click)="modal.close('Save click')">UPDATE CROP</button>
-                    </div>
-                </ng-template>
-
-                
-                <ng-template #editten let-modal>
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="modal-basic-title">Primary Cropcategory</h4>
-                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Crop Category</label>
-                                        <input type="text" placeholder="Capsicum">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Crop Sub Category</label>
-                                        <input type="text" placeholder="Green/Yellow/Red">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Choose Family</label>
-                                        <select class="form-control" name="Material Based Activity">
-                                            <option value="">Parsley (Umbelliferae)</option> 
-                                            <option value="">Onion (Amaryllidaceae)</option> 
-                                            <option value="">Nightshade (Solanaceae)</option> 
-                                            <option value="">Morning Glory (Convolvulaceae)</option> 
-                                            <option value="">Melon/Squash (Cucurbitaceae)</option> 
-                                            <option value="">Lettuce (Compositae)</option> 
-                                            <option value="">Legumes (Fabaceae)</option> 
-                                            <option value="">Grasses (Poaceae)</option> 
-                                            <option value="">Goosefoot (Chenopodiaceae)</option> 
-                                            <option value="">Cole Crops (Brassicas)</option> 
-                                            <option value="">Mallows (Malvaceae)</option> 
-                                            <option value="">Amaranthaceae</option> 
-                                            <option value="">Araceae</option> 
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark"
-                            (click)="modal.close('Save click')">UPDATE CROP</button>
-                    </div>
-                </ng-template>
-    
-    
-               
                 <ng-template #delete let-modal class="delete_modal">
-                    <div class="modal-header">
-                        Are you sure ?
-                    </div>
-
+                    <div class="modal-header">Do you really want to make changes ?</div>
                     <div class="modal-body">
-                        <button type="button" class="btn btn-outline-dark btn_delete"
-                            (click)="modal.close('Save click')">
-                            Delete
-                        </button>
-                        <button type="button" class=" btn btn-outline-dark close btn_close" aria-label="Close"
+
+                        <button type="button" class="btn btn-danger btn-cancel" aria-label="Close"
                             (click)="modal.dismiss('Cross click')">
-                            cancel
+                            Cancel
+                        </button>
+                        <button type="button" class="btn btn-primary btn-ok" (click)="onChangeStatus()">
+                            Ok
                         </button>
                     </div>
-
-                    <div class="modal-footer">
-
-                    </div>
-                    <!-- <div class="modal-body">
-                            <form>
-                                <div class="form-group">
-                                    <label for="dateOfBirth">Date of birth</label>
-                                    <div class="input-group">
-    
-                                    </div>
-                                </div>
-                            </form>
-                        </div> -->
+                    <div class="modal-footer"></div>
                 </ng-template>
-    
-    
             </div>
         </div>
     </div>
 </div>
-    
-  
-  <script>
+
+<script>
     // Add the following code if you want the name of the file appear on select
-    $(".custom-file-input").on("change", function() {
-      var fileName = $(this).val().split("\\").pop();
-      $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    $(".custom-file-input").on("change", function () {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
     });
-    </script>
+</script>
