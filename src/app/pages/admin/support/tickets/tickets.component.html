@@ -1,137 +1,483 @@
 <div class="box_main">
-    <div class="container">
-        <div class="col-md-12 bg-card shadow rounded overflow-hidden">
-            <div class="">
-                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Ticket Id</th>
-                            <th>User Name</th>
-                            <th>Massage</th>
-                            <th>Delete</th>
-                            <th>Edit</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>FP000004</td>
-                            <td>gng</td>
-                            <td>Greens And Grains</td>
-                            <td class="delete_icons" (click)="statusModal(delete)">
-                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
-                            </td>
-                            <td (click)="open(editone)" class="edit_icons">
-                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                  <ng-template #addnew let-modal>
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="modal-basic-title">Ticket confirm</h4>
-                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+    <div class="container" style="margin: 0px 0px !important">
+      <div class="col-md-12 bg-card shadow rounded overflow-hidden">
+        <div class="header_top_btn_new mb-5">
+          <div class="row">
+            <div class="col-md-8 custom-col-8">
+              <div class="breadcrumb">
+                <span class="path">Tickets</span
+                ><span class="separator">/</span>
+                <span class="path">Tickets</span>
+              </div>
+              <h1 class="master-heading">Tickets</h1>
+            </div>
+          </div>
+        </div>
+        <div
+          class="col-md-12 bg-card shadow rounded overflow-hidden"
+          style="background-color: white"
+        >
+          <div class="header_top_btn mb-5">
+            <div class="row">
+              <div class="col-md-6">
+                <h1 class="master-heading-small">
+                  All Generated Tickets
+                </h1>
+              </div>
+              <div class="col-md-6">
+                <button
+                  class="addbtn"
+                  mat-flat-button
+                  [color]="'primary'"
+                  (click)="open(addnew)"
+                >
+                  Generate Ticket
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="">
+            <table
+              datatable
+              [dtOptions]="dtOptions"
+              [dtTrigger]="dtTrigger"
+              class="row-border hover"
+            >
+              <thead>
+                <tr>
+                  <th>S.Id</th>
+                  <th>Ticket No.</th>
+                  <th>Ticket Type</th>
+                  <th>Ticket Description</th>
+                  <!-- <th>Status</th> -->
+                  <th>View Ticket</th>
+                  <!-- <th>Settings</th> -->
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let list of notificationRecords; let i = index">
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ list.ticket_no }}</td>
+                  <td>{{ list.heading }}</td>
+                  <td>
+                    <span class="desc_line">{{ list.description }}</span>
+                  </td>
+                  <td class="edit_icons">
+                    <mat-icon
+                      [svgIcon]="'picture_in_picture_alt'"
+                      (click)="onViewTicketsClick(list)"
+                    ></mat-icon>
+                  </td>
+                  <!-- <td class="edit_icons">
+                    <mat-icon
+                      [svgIcon]="'picture_in_picture_alt'"
+                      (click)="editModal(edit, list)"
+                    ></mat-icon>
+                  </td> -->
+                  <!-- <td class="edit_icons">
+                    <mat-icon
+                      [svgIcon]="'settings'"
+                      (click)="settingModal(setting, 'list')"
+                    ></mat-icon>
+                  </td> -->
+                </tr>
+              </tbody>
+            </table>
+  
+            <ng-template #addnew let-modal>
+              <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">
+                  Generate Ticket
+                </h4>
+                <button
+                  type="button"
+                  class="close"
+                  aria-label="Close"
+                  (click)="modal.dismiss('Cross click')"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form #addActivity="ngForm" (ngSubmit)="onAddRecord(addActivity)">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <mat-label class="custom-label">Ticket Type</mat-label>
+                      <mat-form-field class="flex-auto">
+                        <mat-select
+                          [(ngModel)]="selectedTicketType"
+                          name="selectedTicketType"
+                          (selectionChange)="onTicketTypeChange($event)"
+                        >
+                          <mat-option
+                            *ngFor="let type of notificationTo"
+                            value="{{ type.id }}"
+                            >{{ type.name }}</mat-option
+                          >
+                        </mat-select>
+                      </mat-form-field>
                     </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Ticket Type</label>
-                                        <select class="form-control" name="activity_type">
-                                            <option value="employee">Pending</option>
-                                            <option value="fpo">resolve</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </form>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <mat-label class="custom-label">Description *</mat-label>
+                      <mat-form-field class="flex-auto">
+                        <textarea
+                          matInput
+                          type="text"
+                          name="description"
+                          [(ngModel)]="description"
+                          required
+                        ></textarea>
+                      </mat-form-field>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark"
-                            (click)="modal.close('Save click')">SIGNUP</button>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4 form-group">
+                      <mat-label class="custom-label"
+                        >Upload Image (If any)
+                      </mat-label>
+                      <div class="button-wrap">
+                        <label class="new-button" for="upload">
+                          Upload Image {{ selectedFlag }}</label
+                        >
+                        <input
+                          id="upload"
+                          type="file"
+                          name="imageurl"
+                          (change)="onFileChanged($event)"
+                        />
+                      </div>
                     </div>
-                </ng-template>
-
-                
-                <ng-template #editone let-modal>
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="modal-basic-title"></h4>
-                            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">Ticket Type</label>
-                                            <select class="form-control" name="activity_type">
-                                                <option value="employee">Pending</option>
-                                                <option value="fpo">resolve</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-dark"
-                                (click)="modal.close('Save click')">Generate Notification</button>
-                        </div>
-                    </ng-template>
-
-                
-                 <ng-template #delete let-modal class="delete_modal">
-                    <div class="modal-header">
-                        Are you sure ?
+                    <div class="col-md-4">
+                      <mat-label class="custom-label"
+                        >Upload Audio (If any)
+                      </mat-label>
+                      <div class="button-wrap">
+                        <label class="new-button" for="upload_audio">
+                          Upload Audio {{ selectedAudioFlag }}</label
+                        >
+                        <input
+                          id="upload_audio"
+                          type="file"
+                          name="audiourl"
+                          (change)="onAudioFileChanged($event)"
+                        />
+                      </div>
                     </div>
-
-                    <div class="modal-body">
-                        <button type="button" class="btn btn-outline-dark btn_delete"
-                            (click)="modal.close('Save click')">
-                            Delete
-                        </button>
-                        <button type="button" class=" btn btn-outline-dark close btn_close" aria-label="Close"
-                            (click)="modal.dismiss('Cross click')">
-                            cancel
-                        </button>
+                    <div class="col-md-4">
+                      <mat-label class="custom-label"
+                        >Video URL (Youtube Embed Video Link Only)
+                      </mat-label>
+                      <mat-form-field class="flex-auto">
+                        <input
+                          matInput
+                          type="text"
+                          [(ngModel)]="videourl"
+                          name="videourl"
+                          required
+                        />
+                      </mat-form-field>
                     </div>
-
-                    <div class="modal-footer">
-
+                  </div>
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-outline-dark">
+                      Submit
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </ng-template>
+  
+            <!-- <ng-template #edit let-modal>
+              <form
+                #updateActivity="ngForm"
+                (ngSubmit)="onUpdateActivity(updateActivity)"
+              >
+                <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title">
+                    Update Notification
+                  </h4>
+                  <button
+                    type="button"
+                    class="close"
+                    aria-label="Close"
+                    (click)="modal.dismiss('Cross click')"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <mat-label class="custom-label">Heading</mat-label>
+                      <mat-form-field class="flex-auto">
+                        <input
+                          matInput
+                          type="text"
+                          [(ngModel)]="singleActivity.heading"
+                          name="description"
+                          required
+                        />
+                      </mat-form-field>
                     </div>
-                </ng-template>
-
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <mat-label class="custom-label">Description</mat-label>
+                      <mat-form-field class="flex-auto">
+                        <input
+                          matInput
+                          type="text"
+                          [(ngModel)]="singleActivity.description"
+                          name="description"
+                          required
+                        />
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 form-group">
+                      <div
+                        class="imgdiv"
+                        *ngIf="singleActivity.mr_com_image != ''"
+                      >
+                        <img
+                          src="{{ url + 'image/' + singleActivity.mr_com_image }}"
+                          alt=""
+                        />
+                      </div>
+                      <mat-label class="custom-label"
+                        >Change/Update Image
+                      </mat-label>
+                      <div class="button-wrap">
+                        <label class="new-button" for="upload">
+                          Upload CV {{ selectedFlag }}</label
+                        >
+                        <input
+                          id="upload"
+                          type="file"
+                          name="imageurl"
+                          (change)="onFileChangedUp($event)"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div
+                        class="audiodiv"
+                        *ngIf="singleActivity.mr_com_audio != ''"
+                      >
+                        <audio controls>
+                          <source
+                            src="{{
+                              url + 'audio/' + singleActivity.mr_com_audio
+                            }}"
+                            type="audio/ogg"
+                          />
+                          <source
+                            src="{{
+                              url + 'audio/' + singleActivity.mr_com_audio
+                            }}"
+                            type="audio/mpeg"
+                          />
+                        </audio>
+                      </div>
+                      <mat-label class="custom-label"
+                        >Change/Update Audio
+                      </mat-label>
+                      <div class="button-wrap">
+                        <label class="new-button" for="upload_audio">
+                          Upload Audio {{ selectedAudioFlag }}</label
+                        >
+                        <input
+                          id="upload_audio"
+                          type="file"
+                          name="audiourl"
+                          (change)="onAudioFileChangedUp($event)"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div
+                        class="videodiv"
+                        *ngIf="singleActivity.mr_com_video != ''"
+                      >
+                        <iframe
+                          width="420"
+                          height="345"
+                          src="https://www.youtube.com/embed/tgbNymZ7vqY?controls=0"
+                        >
+                        </iframe>
+                      </div>
+                      <mat-label class="custom-label"
+                        >Video URL (Youtube Embed Video Link Only)</mat-label
+                      >
+                      <mat-form-field class="flex-auto">
+                        <input
+                          matInput
+                          type="text"
+                          [(ngModel)]="singleActivity.mr_com_video"
+                          name="mr_com_video"
+                          required
+                        />
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-outline-dark">
+                    Update
+                  </button>
+                </div>
+              </form>
+            </ng-template> -->
             
-            </div>
+            <!-- <ng-template #setting let-modal>
+              <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">
+                  Notification Settings
+                </h4>
+                <button
+                  type="button"
+                  class="close"
+                  aria-label="Close"
+                  (click)="modal.dismiss('Cross click')"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form #settings="ngForm" (ngSubmit)="onUpdateSettings(settings)">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <mat-label class="custom-label"
+                        >Notification Type</mat-label
+                      >
+                      <mat-form-field class="flex-auto">
+                        <mat-select
+                          [(ngModel)]="selectedNotificationType"
+                          name="selectedNotificationType"
+                        >
+                          <mat-option
+                            *ngFor="let type of notificationType"
+                            value="{{ type.id }}"
+                            >{{ type.name }}</mat-option
+                          >
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                      <mat-label class="custom-label">Notification To</mat-label>
+                      <mat-form-field class="flex-auto">
+                        <mat-select
+                          [(ngModel)]="selectedNotificationTo"
+                          name="selectedNotificationTo"
+                          (selectionChange)="onNotificationToChange($event)"
+                        >
+                          <mat-option
+                            *ngFor="let type of notificationTo"
+                            value="{{ type.id }}"
+                            >{{ type.name }}</mat-option
+                          >
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-md-12">
+                      <mat-label class="custom-label">Select</mat-label>
+                      <ng-select
+                        [(ngModel)]="selectedUser"
+                        name="selectedUser"
+                        (change)="onSelectUserChange($event)"
+                      >
+                        <ng-option
+                          *ngFor="let select of selectDropDown"
+                          [value]="select.id"
+                          >{{ select.name }}</ng-option
+                        >
+                      </ng-select>
+                      <mat-form-field class="flex-auto">
+                        <mat-select [(ngModel)]="selectedNotificationTo" name="selectedNotificationTo">
+                          <mat-option *ngFor="let type of notificationTo" value="{{type.id}}">{{type.name}}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                      <div class="col-md-6" *ngIf="selectedNotificationType == 1">
+                        <mat-label class="custom-label"
+                          >Notification Sent On</mat-label
+                        >
+                        <mat-form-field class="flex-auto">
+                          <mat-select
+                            [(ngModel)]="selectedNotificationSentOn"
+                            name="selectedNotificationSentOn"
+                            (selectionChange)="onNotificationToChange($event)"
+                          >
+                            <mat-option
+                              *ngFor="let notification of notificationSentOn"
+                              value="{{ notification }}"
+                              >{{ notification }}</mat-option
+                            >
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-6" *ngIf="selectedNotificationType == 1">
+                        <mat-label class="custom-label">Start Date</mat-label>
+                        <mat-form-field class="flex-auto" appearance="fill">
+                          <input
+                            matInput
+                            [matDatepicker]="picker"
+                            [(ngModel)]="selectedDate"
+                            name="start_date"
+                            required
+                          />
+                          <mat-datepicker-toggle
+                            matSuffix
+                            [for]="picker"
+                          ></mat-datepicker-toggle>
+                          <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                      </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-outline-dark">
+                      Update
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </ng-template> -->
+  
+            <!-- <ng-template #delete let-modal class="delete_modal">
+              <div class="modal-header">Do you really want to make changes ?</div>
+              <div class="modal-body">
+                <button
+                  type="button"
+                  class="btn btn-danger btn-cancel"
+                  aria-label="Close"
+                  (click)="modal.dismiss('Cross click')"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-primary btn-ok"
+                  (click)="onChangeStatus()"
+                >
+                  Ok
+                </button>
+              </div>
+              <div class="modal-footer"></div>
+            </ng-template> -->
+          </div>
         </div>
+      </div>
     </div>
-</div>
-<br>
-<!-- <div class="content-layout fullwidth-standard-normal-scroll field_form_sec">
-    <div class="main">
-        <div class="max-w-3xl">
-            <div class="rich-text">
-                <p>
-                    All Rights Reserved by Cyber Tatva. Designed and Developed by. <a href="#"> Cyber Tatva.</a>
-                </p>
-            </div>
-
-        </div>
-    </div>
-</div> -->
-
+  </div>
   
   <script>
-  // Add the following code if you want the name of the file appear on select
-  $(".custom-file-input").on("change", function() {
-    var fileName = $(this).val().split("\\").pop();
-    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-  });
+    // Add the following code if you want the name of the file appear on select
+    $(".custom-file-input").on("change", function () {
+      var fileName = $(this).val().split("\\").pop();
+      $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
   </script>
+  
