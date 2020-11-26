@@ -45,7 +45,7 @@
               "src/styles/styles.scss",
               "src/styles/tailwind.scss",
               "node_modules/datatables.net-dt/css/jquery.dataTables.css",
-              "node_modules/ngx-toastr/toastr.css" 
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.js",

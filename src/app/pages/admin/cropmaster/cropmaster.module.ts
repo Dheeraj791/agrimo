@@ -21,7 +21,7 @@ import { MasterRecordService } from '../masterrecords/master-record.service';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { NgxSpinnerModule } from "ngx-spinner";
-
+import { NgSelectModule } from '@ng-select/ng-select';
 @NgModule({
   declarations: [
     CropactivitymasterComponent,
@@ -45,7 +45,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
     CKEditorModule,
     MatSelectModule,
     ToastrModule.forRoot(),
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    NgSelectModule
   ], providers: [MasterRecordService, ToastrService, MatDatepickerModule]
 })
 export class CropmasterModule { }
