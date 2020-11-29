@@ -70,9 +70,9 @@
                         *ngFor="let list of notificationRecords; let i = index"
                       >
                         <td>{{ i + 1 }}</td>
-                        <td>{{ list.heading }}</td>
+                        <td>{{ list.notification_heading }}</td>
                         <td>
-                          <span class="desc_line">{{ list.description }}</span>
+                          <span class="desc_line">{{ list.notification_desc }}</span>
                         </td>
                         <!-- <td class="delete_icons">
                         <mat-icon [svgIcon]="'check_circle'" class="active" *ngIf="list.mr_com_status != 0"
@@ -89,7 +89,7 @@
                         <td class="edit_icons">
                           <mat-icon
                             [svgIcon]="'settings'"
-                            (click)="settingModal(setting, 'list')"
+                            (click)="settingModal(setting, list)"
                           ></mat-icon>
                         </td>
                       </tr>
@@ -230,7 +230,7 @@
                               <input
                                 matInput
                                 type="text"
-                                [(ngModel)]="singleActivity.heading"
+                                [(ngModel)]="single_notification.notification_heading"
                                 name="description"
                                 required
                               />
@@ -246,7 +246,7 @@
                               <input
                                 matInput
                                 type="text"
-                                [(ngModel)]="singleActivity.description"
+                                [(ngModel)]="single_notification.notification_desc"
                                 name="description"
                                 required
                               />
@@ -257,11 +257,11 @@
                           <div class="col-md-6 form-group">
                             <div
                               class="imgdiv"
-                              *ngIf="singleActivity.mr_com_image != ''"
+                              *ngIf="single_notification.notification_image != ''"
                             >
                               <img
                                 src="{{
-                                  url + 'image/' + singleActivity.mr_com_image
+                                  url + 'image/' + single_notification.notification_image
                                 }}"
                                 alt=""
                               />
@@ -284,18 +284,18 @@
                           <div class="col-md-6">
                             <div
                               class="audiodiv"
-                              *ngIf="singleActivity.mr_com_audio != ''"
+                              *ngIf="single_notification.notification_audio != ''"
                             >
                               <audio controls>
                                 <source
                                   src="{{
-                                    url + 'audio/' + singleActivity.mr_com_audio
+                                    url + 'audio/' + single_notification.notification_audio
                                   }}"
                                   type="audio/ogg"
                                 />
                                 <source
                                   src="{{
-                                    url + 'audio/' + singleActivity.mr_com_audio
+                                    url + 'audio/' + single_notification.notification_audio
                                   }}"
                                   type="audio/mpeg"
                                 />
@@ -319,7 +319,7 @@
                           <div class="col-md-12">
                             <div
                               class="videodiv"
-                              *ngIf="singleActivity.mr_com_video != ''"
+                              *ngIf="single_notification.notification_video != ''"
                             >
                               <iframe
                                 width="420"
@@ -336,7 +336,7 @@
                               <input
                                 matInput
                                 type="text"
-                                [(ngModel)]="singleActivity.mr_com_video"
+                                [(ngModel)]="single_notification.notification_video"
                                 name="mr_com_video"
                                 required
                               />

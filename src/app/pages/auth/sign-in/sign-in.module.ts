@@ -11,6 +11,7 @@ import { TreoMessageModule } from '@treo/components/message';
 import { SharedModule } from 'app/shared/shared.module';
 import { SignInComponent } from '../sign-in/sign-in.component';
 import { authSignInRoutes } from '../sign-in/sign-in.routing';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
     declarations: [
@@ -26,7 +27,8 @@ import { authSignInRoutes } from '../sign-in/sign-in.routing';
         MatProgressSpinnerModule,
         TreoCardModule,
         TreoMessageModule,
-        SharedModule
+        SharedModule,
+        CommonModule
     ]
 })
 export class SignInModule { }
