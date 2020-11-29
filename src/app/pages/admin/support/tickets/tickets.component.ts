@@ -22,13 +22,7 @@ export class TicketsComponent implements OnInit {
   dtTrigger: Subject<any> = new Subject();
   persons: [];
   closeResult = '';
-  notificationRecords: any = [
-    {
-      ticket_no: '12345',
-      heading: 'abc',
-      description: 'xyz',
-    },
-  ];
+  ticketRecords: any = [];
   singleActivity: any;
   activityName: any;
   selectedActivityType: any = 'General Activity';
@@ -143,13 +137,14 @@ export class TicketsComponent implements OnInit {
     });
   }
   fetchData() {
-    const data = {
-      record_type: 'irrigation',
-      admin_id: '1',
-    };
-    this.backendService.fetchNotifications(data).subscribe((res) => {
+    // const data = {
+    //   record_type: 'irrigation',
+    //   admin_id: '1',
+    // };
+    this.backendService.fetchTickets().subscribe((res) => {
       if (res.status === true) {
-        this.notificationRecords = res.result;
+        this.ticketRecords = res.result;
+        console.log(this.ticketRecords);
         this.url = res.url;
         this.rerender();
         this.spinner.hide();
@@ -376,11 +371,11 @@ export class TicketsComponent implements OnInit {
     if (form.invalid) {
       return;
     }
-    var temp = [];
-    for (let index = 0; index < this.detailsRow.length; index++) {
-      temp.push(this.detailsRow[index]['detail_name']);
-    }
-    var pointers = temp.toString();
+    // var temp = [];
+    // for (let index = 0; index < this.detailsRow.length; index++) {
+    //   temp.push(this.detailsRow[index]['detail_name']);
+    // }
+    // var pointers = temp.toString();
     // console.log("this.activityName" + this.activityName)
     // console.log("this.selectedActivityTypeId" + this.selectedActivityTypeId)
     // console.log("this.imgaeurl" + this.imgaeurl)
@@ -390,25 +385,28 @@ export class TicketsComponent implements OnInit {
     // return false;
     const data = new FormData();
     if (this.imageUpStatusMain === '1') {
-      data.append('mr_com_image', this.selectedFile, this.selectedFile.name);
+      data.append('ticket_image', this.selectedFile, this.selectedFile.name);
     }
     if (this.audioUpStausMain === '1') {
-      data.append('mr_com_audio', this.selectedAudioFile);
+      data.append('ticket_audio', this.selectedAudioFile);
     }
-    data.append('mr_com_image_updated', this.imageUpStatusMain);
-    data.append('mr_com_audio_updated', this.audioUpStausMain);
-    // data.append('mr_com_type', 'irrigation');
+    let ticketCount = this.ticketRecords.length;
+    let ticketNo = ticketCount + 1;
+    data.append('ticket_no', 'tckt' + ticketNo);
+    data.append('ticlet_image_updated', this.imageUpStatusMain);
+    data.append('ticket_audio_updated', this.audioUpStausMain);
+    data.append('ticket_type', this.selectedTicketType);
     // data.append('mr_com_name', this.activityName);
     // data.append('com_record_type', this.selectedActivityTypeId);
-    data.append('mr_com_video', this.videourl);
-    data.append('mr_com_pointers', pointers);
-    data.append('mr_com_desc', this.description);
-    data.append('mr_com_heading', this.heading);
-    data.append('mr_com_status', '1');
-    data.append('mr_com_added_by', this.userData[0].user_id);
+    data.append('ticket_video', this.videourl);
+    // data.append('mr_com_pointers', pointers);
+    data.append('ticket_desc', this.description);
+    // data.append('mr_com_heading', this.heading);
+    data.append('ticket_status', '1');
+    data.append('ticket_added_by', this.userData[0].user_id);
     this.spinner.show();
     console.log(data);
-    this.backendService.addNotification(data).subscribe((res) => {
+    this.backendService.addTicket(data).subscribe((res) => {
       if (res.status === true) {
         this.modalService.dismissAll();
         this.imageShow = false;
@@ -611,7 +609,7 @@ export class TicketsComponent implements OnInit {
 
   onViewTicketsClick(data) {
     console.log(data);
-    this.router.navigate(['support', 'tickets', '2']);
+    this.router.navigate(['support', 'tickets', data.ticket_no]);
   }
   
   }

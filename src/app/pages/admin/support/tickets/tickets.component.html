@@ -55,12 +55,12 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let list of notificationRecords; let i = index">
+                <tr *ngFor="let list of ticketRecords; let i = index">
                   <td>{{ i + 1 }}</td>
                   <td>{{ list.ticket_no }}</td>
-                  <td>{{ list.heading }}</td>
+                  <td>{{ list.ticket_type }}</td>
                   <td>
-                    <span class="desc_line">{{ list.description }}</span>
+                    <span class="desc_line">{{ list.ticket_desc }}</span>
                   </td>
                   <td class="edit_icons">
                     <mat-icon

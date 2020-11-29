@@ -10,7 +10,8 @@ export class AuthService {
   private _authenticated: boolean;
 
   // API base url
-  private _baseUrl = "http://teczire.com:65530/api/v1/";
+  // private _baseUrl = "http://teczire.com:65530/api/v1/";
+  private _baseUrl = "http://localhost:3001/api/v1/";
 
   /**
    * Constructor

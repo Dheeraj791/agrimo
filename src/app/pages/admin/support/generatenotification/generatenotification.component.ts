@@ -27,7 +27,7 @@ export class GeneratenotificationComponent implements OnInit {
       description: 'xyz',
     },
   ];
-  singleActivity: any;
+  single_notification: any;
   activityName: any;
   selectedActivityType: any = 'General Activity';
   description: any = '';
@@ -117,6 +117,7 @@ export class GeneratenotificationComponent implements OnInit {
       parent_id: 2,
     },
   ];
+  singleNotificationSetting: any;
 
   constructor(
     private modalService: NgbModal,
@@ -154,6 +155,7 @@ export class GeneratenotificationComponent implements OnInit {
       }
     });
   }
+
   open(content) {
     this.modalService
       .open(content, {
@@ -172,31 +174,31 @@ export class GeneratenotificationComponent implements OnInit {
   }
 
   editModal(content, data) {
-    this.singleActivity = data;
+    this.single_notification = data;
 
-    if (this.singleActivity.mr_com_image != '') {
+    if (this.single_notification.notification_image != '') {
       this.upimageShow = true;
     } else {
       this.upimageShow = false;
     }
-    if (this.singleActivity.mr_com_video != '') {
+    if (this.single_notification.notification_audio != '') {
       this.upvdoUrlShow = true;
     } else {
       this.upvdoUrlShow = false;
     }
-    if (this.singleActivity.mr_com_audio != '') {
+    if (this.single_notification.notification_video != '') {
       this.upaudioUrl = true;
     } else {
       this.upaudioUrl = false;
     }
-    if (this.singleActivity.mr_com_desc != '') {
+    if (this.single_notification.notification_desc != '') {
       this.updescShow = true;
     } else {
       this.updescShow = false;
     }
-    // if (this.singleActivity.mr_com_pointers != '') {
+    // if (this.single_notification.mr_com_pointers != '') {
     //   this.uprowShow = true;
-    //   var temp = this.singleActivity.mr_com_pointers.split(',');
+    //   var temp = this.single_notification.mr_com_pointers.split(',');
     //   console.log(temp);
     //   this.detailsRowUpdate = [];
     //   for (let index = 0; index < temp.length; index++) {
@@ -228,7 +230,8 @@ export class GeneratenotificationComponent implements OnInit {
       );
   }
 
-  settingModal(content, data) {
+  settingModal(content, list) {
+    this.singleNotificationSetting = list;
     this.modalService
       .open(content, {
         ariaLabelledBy: 'modal-basic-title',
@@ -275,36 +278,35 @@ export class GeneratenotificationComponent implements OnInit {
     if (form.invalid) {
       return;
     }
-    var temp = [];
-    for (let index = 0; index < this.detailsRowUpdate.length; index++) {
-      temp.push(this.detailsRowUpdate[index]['detail_name']);
-    }
-    var pointers = temp.toString();
+    // var temp = [];
+    // for (let index = 0; index < this.detailsRowUpdate.length; index++) {
+    //   temp.push(this.detailsRowUpdate[index]['detail_name']);
+    // }
+    // var pointers = temp.toString();
     const data = new FormData();
+    console.log(this.single_notification);
     if (this.imageUpStatus === '1') {
-      data.append('mr_com_image', this.selectedFile, this.selectedFile.name);
+      data.append('notification_image', this.selectedFile, this.selectedFile.name);
     } else {
-      data.append('mr_com_image', this.singleActivity.mr_com_image);
+      data.append('notification_image', this.single_notification.notification_image);
     }
     if (this.audioUpStaus === '1') {
-      data.append('mr_com_audio', this.selectedAudioFile);
+      data.append('notification_audio', this.selectedAudioFile);
     } else {
-      data.append('mr_com_audio', this.singleActivity.mr_com_audio);
+      data.append('notification_audio', this.single_notification.notification_audio);
     }
-    data.append('mr_com_image_updated', this.imageUpStatus);
-    data.append('mr_com_audio_updated', this.audioUpStaus);
-    data.append('mr_com_id', this.singleActivity.mr_com_id);
-    data.append('mr_com_type', this.singleActivity.mr_com_type);
-    data.append('mr_com_name', this.singleActivity.mr_com_name);
-    data.append('com_record_type', this.singleActivity.com_record_type);
-    data.append('mr_com_video', this.singleActivity.mr_com_video);
+    data.append('notification_id', this.single_notification.id);
+    data.append('notification_image_status', this.imageUpStatus);
+    data.append('notification_audio_status', this.audioUpStaus);
+    // data.append('com_record_type', this.single_notification.com_record_type);
+    data.append('notification_video', this.single_notification.notification_video);
     // data.append('mr_com_pointers', pointers);
-    data.append('mr_com_desc', this.singleActivity.mr_com_desc);
-    data.append('mr_com_heading', this.singleActivity.mr_com_desc);
-    data.append('mr_com_status', this.singleActivity.mr_com_status);
-    data.append('mr_com_added_by', this.userData[0].user_id);
+    data.append('notification_desc', this.single_notification.notification_desc);
+    data.append('notification_heading', this.single_notification.notification_heading);
+    data.append('notification_status', this.single_notification.notification_status);
+    data.append('notification_added_by', this.userData[0].user_id);
     this.spinner.show();
-    this.backendService.updateCommonRecords(data).subscribe((res) => {
+    this.backendService.updateNotification(data).subscribe((res) => {
       console.log(res);
       if (res.status === true) {
         this.modalService.dismissAll();
@@ -332,21 +334,22 @@ export class GeneratenotificationComponent implements OnInit {
       return;
     }
     const data = new FormData();
-    data.append('mr_com_notification_type', this.selectedNotificationType);
-    data.append('mr_com_notification_to', this.selectedNotificationTo);
-    data.append('mr_com_selected_type', this.selectedUser);
-    data.append('mr_com_notification_sent_on', this.selectedNotificationSentOn);
-    data.append('start_date', moment(this.selectedDate).format('YYYY-MM-DD'));
-    // data.append('mr_com_name', this.singleActivity.mr_com_name);
-    // data.append('com_record_type', this.singleActivity.com_record_type);
-    // data.append('mr_com_video', this.singleActivity.mr_com_video);
+    data.append('notification_id', this.singleNotificationSetting.id);
+    data.append('notification_type', this.selectedNotificationType);
+    data.append('notification_to', this.selectedNotificationTo);
+    data.append('notification_selected_user', this.selectedUser);
+    data.append('notification_sent_on', this.selectedNotificationSentOn);
+    data.append('notification_start_date', moment(this.selectedDate).format('YYYY-MM-DD'));
+    // data.append('mr_com_name', this.single_notification.mr_com_name);
+    // data.append('com_record_type', this.single_notification.com_record_type);
+    // data.append('mr_com_video', this.single_notification.mr_com_video);
     // data.append('mr_com_pointers', pointers);
-    // data.append('mr_com_desc', this.singleActivity.mr_com_desc);
-    // data.append('mr_com_heading', this.singleActivity.mr_com_desc);
-    // data.append('mr_com_status', this.singleActivity.mr_com_status);
-    data.append('mr_com_added_by', this.userData[0].user_id);
+    // data.append('mr_com_desc', this.single_notification.mr_com_desc);
+    // data.append('mr_com_heading', this.single_notification.mr_com_desc);
+    // data.append('mr_com_status', this.single_notification.mr_com_status);
+    // data.append('mr_com_added_by', this.userData[0].user_id);
     this.spinner.show();
-    this.backendService.updateCommonRecords(data).subscribe((res) => {
+    this.backendService.updateNotificationSetting(data).subscribe((res) => {
       console.log(res);
       if (res.status === true) {
         this.modalService.dismissAll();
@@ -361,7 +364,7 @@ export class GeneratenotificationComponent implements OnInit {
         this.audioUpStaus = '0';
         this.selectedAudioFlag = 'No File Selected';
         this.toastr.success(res.message);
-        this.fetchData();
+        // this.fetchData();
       } else {
         this.toastr.error(res.message);
       }
@@ -372,11 +375,11 @@ export class GeneratenotificationComponent implements OnInit {
     if (form.invalid) {
       return;
     }
-    var temp = [];
-    for (let index = 0; index < this.detailsRow.length; index++) {
-      temp.push(this.detailsRow[index]['detail_name']);
-    }
-    var pointers = temp.toString();
+    // var temp = [];
+    // for (let index = 0; index < this.detailsRow.length; index++) {
+    //   temp.push(this.detailsRow[index]['detail_name']);
+    // }
+    // var pointers = temp.toString();
     // console.log("this.activityName" + this.activityName)
     // console.log("this.selectedActivityTypeId" + this.selectedActivityTypeId)
     // console.log("this.imgaeurl" + this.imgaeurl)
@@ -386,22 +389,22 @@ export class GeneratenotificationComponent implements OnInit {
     // return false;
     const data = new FormData();
     if (this.imageUpStatusMain === '1') {
-      data.append('mr_com_image', this.selectedFile, this.selectedFile.name);
+      data.append('notification_image', this.selectedFile, this.selectedFile.name);
     }
     if (this.audioUpStausMain === '1') {
-      data.append('mr_com_audio', this.selectedAudioFile);
+      data.append('notification_audio', this.selectedAudioFile);
     }
-    data.append('mr_com_image_updated', this.imageUpStatusMain);
-    data.append('mr_com_audio_updated', this.audioUpStausMain);
+    data.append('notification_image_status', this.imageUpStatusMain);
+    data.append('notification_audio_status', this.audioUpStausMain);
     // data.append('mr_com_type', 'irrigation');
     // data.append('mr_com_name', this.activityName);
     // data.append('com_record_type', this.selectedActivityTypeId);
-    data.append('mr_com_video', this.videourl);
-    data.append('mr_com_pointers', pointers);
-    data.append('mr_com_desc', this.description);
-    data.append('mr_com_heading', this.heading);
-    data.append('mr_com_status', '1');
-    data.append('mr_com_added_by', this.userData[0].user_id);
+    data.append('notification_video', this.videourl);
+    // data.append('mr_com_pointers', pointers);
+    data.append('notification_desc', this.description);
+    data.append('notification_heading', this.heading);
+    data.append('notification_status', '1');
+    data.append('notification_added_by', this.userData[0].user_id);
     this.spinner.show();
     console.log(data);
     this.backendService.addNotification(data).subscribe((res) => {
@@ -426,7 +429,7 @@ export class GeneratenotificationComponent implements OnInit {
   }
 
   onChangeStatus() {
-    const data = this.singleActivity;
+    const data = this.single_notification;
     var params = {
       mr_com_status: this.statusType,
       mr_com_id: this.statusId,
@@ -601,7 +604,7 @@ export class GeneratenotificationComponent implements OnInit {
     }
   }
 
-  onSelectUserChange(event) {
-    console.log(event);
+  onSelectUserChange(value) {
+    this.selectedUser = value;
   }
 }

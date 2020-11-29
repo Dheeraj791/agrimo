@@ -187,6 +187,37 @@ export class MasterRecordService {
     return this.http.post(this.baseUrl + 'fetch_crop_stage_records', data, this.httpOptions);
   }
 
+ addNotification(data): Observable<any> {
+    return this.http.post(this.baseUrl + 'add_notification', data, this.httpOptions);
+  }
+
+  fetchNotifications(data): Observable<any> {
+    return this.http.get(this.baseUrl + 'fetch_notification', this.httpOptions);
+  }
+
+  updateNotification(data): Observable<any> {
+    return this.http.put(this.baseUrl + 'update_notification', data, this.httpOptions);
+  }
+
+  updateNotificationSetting(data): Observable<any> {
+    return this.http.post(this.baseUrl + 'update_notification_setting', data, this.httpOptions);
+  }
+
+  fetchTickets(): Observable<any> {
+    return this.http.get(this.baseUrl + 'fetch_tickets', this.httpOptions);
+  }
+
+  addTicket(data): Observable<any> {
+    return this.http.post(this.baseUrl + 'add_ticket', data, this.httpOptions);
+  }
+
+  fetchTicketComments(data): Observable<any> {
+    return this.http.post(this.baseUrl + 'fetch_ticket_comments', data, this.httpOptions);
+  }
+
+  addUserComments(data): Observable<any> {
+    return this.http.post(this.baseUrl + 'add_user_comments', data, this.httpOptions);
+  }
   
 
 }
