@@ -391,31 +391,32 @@ a:hover{
   .modal-body::-webkit-scrollbar-thumb:hover {
     background: rgb(1, 17, 238); 
   }
-  .modal-header {
-    flex-direction: column;
+
+  .ng-select .ng-select-container {
+    color: #333;
+    background-color: #fff;
+    border: 1px solid #cfd8e3 !important;
+    align-items: center;
+    min-height: 48px !important;
+    border-radius: 6px !important;
+    padding: 0 0px !important;
 }
-.row-inline {
+
+.modal-dialog{
+    .modal-lg {
+        min-width: 850px !important;
+    }
+}
+
+
+
+.stage_col {
+    display: inline-flex;
     width: 100%;
-    display: flex;
-    padding-left: 15px;
-    padding-right: 15px;
     flex-direction: row;
 }
-.singlerow {
-    min-width: 670px;
-    margin-top: 16px;
-}
-.singlerow label {
-    font-weight: 700;
-}
-.lbactive{
-    font-weight: 600;
-    color: #918cff;
-}
-.lbinactive{
-    font-weight: 500;
-    color: #adadad;
-}
-button.btn.btn-sm.pull-right {
-    float: right;
+.sub_season_row {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }

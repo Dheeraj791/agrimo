@@ -166,4 +166,27 @@ export class MasterRecordService {
   fetch_for_crop_master(data): Observable<any> {
     return this.http.post(this.baseUrl + 'fetch_for_crop_master', data, this.httpOptions);
   }
+
+  addCropMaster(data): Observable<any> {
+    return this.http.post(this.baseUrl + 'add_crop_master', data, this.httpOptions);
+  }
+
+  updateCropMaster(data): Observable<any> {
+    return this.http.put(this.baseUrl + 'update_crop_master', data, this.httpOptions);
+  }
+
+  changeCropMasterStatus(data): Observable<any> {
+    return this.http.put(this.baseUrl + 'change_crop_master_status', data, this.httpOptions);
+  }
+
+  addCropMasterStage(data): Observable<any> {
+    return this.http.post(this.baseUrl + 'add_crop_master_stage', data, this.httpOptions);
+  }
+
+  fetchCropStageRecords(data): Observable<any> {
+    return this.http.post(this.baseUrl + 'fetch_crop_stage_records', data, this.httpOptions);
+  }
+
+  
+
 }

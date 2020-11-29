@@ -1,4 +1,7 @@
 <div class="box_main">
+    <ngx-spinner bdColor="rgba(255,255,255,0.8)" size="default" color="#0f06bb" type="timer" [fullScreen]="false">
+        <p style="color: white"> Please wait..... </p>
+    </ngx-spinner>
     <div class="container" style="margin: 0px 0px !important;">
         <div class="col-md-12 bg-card shadow rounded overflow-hidden" style="background-color: white;">
             <div class="header_top_btn mb-5">
@@ -7,7 +10,8 @@
                         <h1 class="master-heading-small">Crop Master</h1>
                     </div>
                     <div class="col-md-6">
-                        <button class="addbtn" mat-flat-button [color]="'primary'" (click)="open(addnew)">Add New Crop</button>
+                        <button class="addbtn" mat-flat-button [color]="'primary'" (click)="open(addnew)">Add New
+                            Crop</button>
                     </div>
                 </div>
             </div>
@@ -18,119 +22,29 @@
                             <th>S.Id</th>
                             <th>Vegetable</th>
                             <th>Sub Category</th>
-                            <th>Delete</th>
+                            <th>Status</th>
                             <th>Edit</th>
+                            <th>Stage Duration</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Chilli</td>
-                            <td>Green Long/Routine</td>
-                            <td class="delete_icons" (click)="statusModal(delete)">
-                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
+                        <tr *ngFor="let list of cropMasterRecord; let i=index;">
+                            <td>{{i+1}}</td>
+                            <td>{{ list.cf_name }}</td>
+                            <td>{{ list.crop_sub_category }} {{list.status}}</td>
+                            <td class="delete_icons">
+                                <mat-icon [svgIcon]="'check_circle'" class="active" *ngIf="list.status != 0"
+                                    (click)="statusModal(delete,0, list.crop_master_id)"></mat-icon>
+                                <mat-icon [svgIcon]="'highlight_off'" class="inactive" *ngIf="list.status == 0"
+                                    (click)="statusModal(delete,1, list.crop_master_id)"></mat-icon>
                             </td>
-                            <td (click)="open(editone)" class="edit_icons">
-                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
+                            <td class="edit_icons">
+                                <mat-icon [svgIcon]="'picture_in_picture_alt'" (click)="editModal(edit, list)">
+                                </mat-icon>
                             </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Gilki</td>
-                            <td>Gilki</td>
-                            <td class="delete_icons" (click)="statusModal(delete)">
-                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
-                            </td>
-                            <td (click)="open(edittwo)" class="edit_icons">
-                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Bhindi</td>
-                            <td>Bhindi</td>
-                            <td class="delete_icons" (click)="statusModal(delete)">
-                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
-                            </td>
-                            <td (click)="open(editthree)" class="edit_icons">
-                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Spinach/Palak</td>
-                            <td>Spinach/Palak</td>
-                            <td class="delete_icons" (click)="statusModal(delete)">
-                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
-                            </td>
-                            <td (click)="open(editfour)" class="edit_icons">
-                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Tomato</td>
-                            <td>Hybrid/Round</td>
-                            <td class="delete_icons" (click)="statusModal(delete)">
-                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
-                            </td>
-                            <td (click)="open(editfive)" class="edit_icons">
-                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>Tomato</td>
-                            <td>Hybrid/Round</td>
-                            <td class="delete_icons" (click)="statusModal(delete)">
-                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
-                            </td>
-                            <td (click)="open(editsix)" class="edit_icons">
-                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>Brinjal</td>
-                            <td>Long</td>
-                            <td class="delete_icons" (click)="statusModal(delete)">
-                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
-                            </td>
-                            <td (click)="open(editseven)" class="edit_icons">
-                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>8</td>
-                            <td>Beetroot/Chukander</td>
-                            <td>Beetroot/Chukander</td>
-                            <td class="delete_icons" (click)="statusModal(delete)">
-                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
-                            </td>
-                            <td (click)="open(editeight)" class="edit_icons">
-                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>9</td>
-                            <td>Beetroot/Chukander</td>
-                            <td>Beetroot/Chukander</td>
-                            <td class="delete_icons" (click)="statusModal(delete)">
-                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
-                            </td>
-                            <td (click)="open(editnine)" class="edit_icons">
-                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td>Chenopodium/Bathua</td>
-                            <td>Chenopodium/Bathua</td>
-                            <td class="delete_icons" (click)="statusModal(delete)">
-                                <mat-icon svgIcon="dripicons:trash"></mat-icon>
-                            </td>
-                            <td (click)="open(editten)" class="edit_icons">
-                                <mat-icon svgIcon="dripicons:pencil"></mat-icon>
+                            <td class="edit_icons">
+                                <mat-icon [svgIcon]="'picture_in_picture_alt'" (click)="stageModal(stages, list)">
+                                </mat-icon>
                             </td>
                         </tr>
                     </tbody>
@@ -138,1559 +52,260 @@
 
                 <ng-template #addnew let-modal>
                     <div class="modal-header">
-                        <div class="row row-inline">
-                            <h4 class="modal-title" id="modal-basic-title">Add New Crop</h4>
-                            <button type="button" class="close" aria-label="Close"
-                                (click)="modal.dismiss('Cross click')">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="modal-body">                        
-                        <form>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Select Family</label>
-                                        <select class="form-control" name="Material Based Activity">
-                                                <option value="">SELECT FAMILY</option>
-                                                <option value="">Amaranthaceae</option>
-                                                <option value="">Araceae</option>
-                                                <option value="">Cole Crops (Brassicas)</option>
-                                                <option value="">Goosefoot (Chenopodiaceae)</option>
-                                                <option value="">Grasses (Poaceae)</option>
-                                                <option value="">Legumes (Fabaceae)</option>
-                                                <option value="">Lettuce (Compositae)</option>
-                                                <option value="">Mallows (Malvaceae)</option>
-                                                <option value="">Melon/Squash (Cucurbitaceae)</option>
-                                                <option value="">Morning Glory (Convolvulaceae)</option>
-                                                <option value="">Nightshade (Solanaceae)</option>
-                                                <option value="">Onion (Amaryllidaceae)</option>
-                                                <option value="">Parsley (Umbelliferae)</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Select Crop Name</label>
-                                        <select class="form-control" name="Material Based Activity">
-                                            <option value="">SELECT CROP NAME</option> 
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Select Variety</label>
-                                        <select class="form-control" name="Material Based Activity">
-                                            <option value="">SELECT VARIETY</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Select Soil Type</label>
-                                        <select class="form-control" name="Material Based Activity">
-                                            <option value="">Black cotton soil</option>
-                                            <option value="">Murram</option>
-                                            <option value="">Red soil</option>
-                                            <option value="">Sandy loam</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Select Seasons</label>
-                                        <select class="form-control" name="Material Based Activity">
-                                            <option value="">Monsoon</option>
-                                            <option value="">Spring</option>
-                                            <option value="">Summer</option>
-                                            <option value="">Winter</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Select Irrigation Type</label>
-                                        <select class="form-control" name="Material Based Activity">
-                                            <option value="">Drip</option>
-                                            <option value="">Flood</option>
-                                            <option value="">Large Sprinkler</option>
-                                            <option value="">Mini Sprinkler</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Select Mulch Type</label>
-                                        <select class="form-control" name="Material Based Activity">
-                                            <option value="">Bio Mulch</option>
-                                            <option value="">No Mulch</option>
-                                            <option value="">Plastic Mulch</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Select Diseases</label>
-                                        <select class="form-control" name="Material Based Activity">
-                                            <option value="">Bacterial wilt</option>
-                                            <option value="">Downy mildew</option>
-                                            <option value="">Early blight</option>
-                                            <option value="">Late blight</option>
-                                            <option value="">Leaf miner</option>
-                                            <option value="">Powdery mildew</option>
-                                            <option value="">Root knot nematode</option>
-                                            <option value="">Shoot borer</option>
-                                            <option value="">Virus</option>
-                                            <option value="">White rot</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Select Plantation</label>
-                                        <select class="form-control" name="Material Based Activity">
-                                            <option value="">  Single Line/3 feet</option>
-                                            <option value=""> Single Line/1 feet 6 inches</option>
-                                            <option value="">Double Line/1'6"</option>
-                                            <option value="">Double Line/3'</option>
-                                            <option value="">Wide bed/Leafy Vegetables</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark"
-                            (click)="modal.close('Save click')">Submit</button>
-                    </div>
-                </ng-template>
-
-                
-                <ng-template #editone let-modal>
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="modal-basic-title">ADD CROP META DATA</h4>
+                        <h4 class="modal-title" id="modal-basic-title">Crop Master</h4>
                         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        
-                        <form>
+                        <form #addForm="ngForm" (ngSubmit)="onAddCropRecords(addForm)">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Select Family</label>
-                                        <select class="form-control" name="Material Based Activity">
-                                                <option value="">SELECT FAMILY</option>
-                                                <option value="">Amaranthaceae</option>
-                                                <option value="">Araceae</option>
-                                                <option value="">Cole Crops (Brassicas)</option>
-                                                <option value="">Goosefoot (Chenopodiaceae)</option>
-                                                <option value="">Grasses (Poaceae)</option>
-                                                <option value="">Legumes (Fabaceae)</option>
-                                                <option value="">Lettuce (Compositae)</option>
-                                                <option value="">Mallows (Malvaceae)</option>
-                                                <option value="">Melon/Squash (Cucurbitaceae)</option>
-                                                <option value="">Morning Glory (Convolvulaceae)</option>
-                                                <option value="">Nightshade (Solanaceae)</option>
-                                                <option value="">Onion (Amaryllidaceae)</option>
-                                                <option value="">Parsley (Umbelliferae)</option>
-                                        </select>
-                                    </div>
+                                    <mat-label class="custom-label">Select Family</mat-label>
+                                    <mat-form-field class="flex-auto">
+                                        <mat-select [(ngModel)]="family_id" name="family_id"
+                                            (selectionChange)="familyOnChange('add')">
+                                            <mat-option value="0">Select Family</mat-option>
+                                            <mat-option *ngFor="let family of crop_family_master"
+                                                value="{{family.cf_id}}">
+                                                {{family.cf_name}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Select Crop Name</label>
-                                        <select class="form-control" name="Material Based Activity">
-                                            <option value="">SELECT CROP NAME</option> 
-                                        </select>
-                                    </div>
+                                    <mat-label class="custom-label">Select Crop</mat-label>
+                                    <mat-form-field class="flex-auto">
+                                        <mat-select [(ngModel)]="crop_category_id"
+                                            (selectionChange)="categoryOnChange()" name="crop_category_id">
+                                            <mat-option value="0">Select Category</mat-option>
+                                            <mat-option *ngFor="let category of filteredBindCropCategory"
+                                                value="{{category.crop_category_id+'_'+category.crop_category}}">
+                                                {{category.crop_category}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Select Variety</label>
-                                        <select class="form-control" name="Material Based Activity">
-                                            <option value="">SELECT VARIETY</option>
-                                        </select>
-                                    </div>
+                                    <mat-label class="custom-label">Select Variety</mat-label>
+                                    <mat-form-field class="flex-auto">
+                                        <mat-select [(ngModel)]="crop_sub_category_name"
+                                            (selectionChange)="subcategoryOnChange()" name="crop_sub_category_name">
+                                            <mat-option value="0">Select Variety</mat-option>
+                                            <mat-option *ngFor="let subcategory of crop_sub_category"
+                                                value="{{subcategory.crop_category_id+'_'+subcategory.crop_sub_category}}">
+                                                {{subcategory.crop_sub_category}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Select Soil Type</label>
-                                        <select class="form-control" name="Material Based Activity">
-                                            <option value="">Black cotton soil</option>
-                                            <option value="">Murram</option>
-                                            <option value="">Red soil</option>
-                                            <option value="">Sandy loam</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Select Seasons</label>
-                                        <select class="form-control" name="Material Based Activity">
-                                            <option value="">Monsoon</option>
-                                            <option value="">Spring</option>
-                                            <option value="">Summer</option>
-                                            <option value="">Winter</option>
-                                        </select>
-                                    </div>
-                                </div>
+                            <div class="col-md-12" style="padding: 0px !important; margin-top: 7px;">
+                                <mat-label class="custom-label">Select Soil Type</mat-label>
+                                <ng-select [multiple]="true" [(ngModel)]="soilmaster_id" name="soilmaster_id">
+                                    <ng-option *ngFor="let soils of soilmaster" [value]="soils.mr_com_id">
+                                        {{soils.mr_com_name}}</ng-option>
+                                </ng-select>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Select Irrigation Type</label>
-                                        <select class="form-control" name="Material Based Activity">
-                                            <option value="">Drip</option>
-                                            <option value="">Flood</option>
-                                            <option value="">Large Sprinkler</option>
-                                            <option value="">Mini Sprinkler</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Select Mulch Type</label>
-                                        <select class="form-control" name="Material Based Activity">
-                                            <option value="">Bio Mulch</option>
-                                            <option value="">No Mulch</option>
-                                            <option value="">Plastic Mulch</option>
-                                        </select>
-                                    </div>
-                                </div>
+                            <div class="col-md-12" style="padding: 0px !important; margin-top: 7px;">
+                                <mat-label class="custom-label">Select Seasons</mat-label>
+                                <ng-select [multiple]="true" [(ngModel)]="season_master_id" name="season_master_id">
+                                    <ng-option *ngFor="let seasons of season_master" [value]="seasons.season_id">
+                                        {{seasons.season_name}}</ng-option>
+                                </ng-select>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Select Diseases</label>
-                                        <select class="form-control" name="Material Based Activity">
-                                            <option value="">Bacterial wilt</option>
-                                            <option value="">Downy mildew</option>
-                                            <option value="">Early blight</option>
-                                            <option value="">Late blight</option>
-                                            <option value="">Leaf miner</option>
-                                            <option value="">Powdery mildew</option>
-                                            <option value="">Root knot nematode</option>
-                                            <option value="">Shoot borer</option>
-                                            <option value="">Virus</option>
-                                            <option value="">White rot</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dateOfBirth">Select Plantation</label>
-                                        <select class="form-control" name="Material Based Activity">
-                                            <option value="">  Single Line/3 feet</option>
-                                            <option value=""> Single Line/1 feet 6 inches</option>
-                                            <option value="">Double Line/1'6"</option>
-                                            <option value="">Double Line/3'</option>
-                                            <option value="">Wide bed/Leafy Vegetables</option>
-                                        </select>
-                                    </div>
-                                </div>
+                            <div class="col-md-12" style="padding: 0px !important; margin-top: 7px;">
+                                <mat-label class="custom-label">Select Irrigation Type</mat-label>
+                                <ng-select [multiple]="true" [(ngModel)]="irrigation_id" name="irrigation_id">
+                                    <ng-option *ngFor="let irr of irrigation" [value]="irr.mr_com_id">
+                                        {{irr.mr_com_name}}</ng-option>
+                                </ng-select>
+                            </div>
+                            <div class="col-md-12" style="padding: 0px !important; margin-top: 7px;">
+                                <mat-label class="custom-label">Select Mulch Type</mat-label>
+                                <ng-select [multiple]="true" [(ngModel)]="mulchmaster_id" name="mulchmaster_id">
+                                    <ng-option *ngFor="let mulch of mulchmaster" [value]="mulch.mr_com_id">
+                                        {{mulch.mr_com_name}}</ng-option>
+                                </ng-select>
+                            </div>
+                            <div class="col-md-12" style="padding: 0px !important; margin-top: 7px;">
+                                <mat-label class="custom-label">Select Diseases</mat-label>
+                                <ng-select [multiple]="true" [(ngModel)]="disease_records_id" name="disease_records_id">
+                                    <ng-option *ngFor="let drecords of desices_master"
+                                        [value]="drecords.desices_master_id">
+                                        {{drecords.desices_name}}</ng-option>
+                                </ng-select>
+                            </div>
+                            <div class="col-md-12" style="padding: 0px !important; margin-top: 7px;">
+                                <mat-label class="custom-label">Select Plantation</mat-label>
+                                <ng-select [multiple]="true" [(ngModel)]="plantation_master_id"
+                                    name="plantation_master_id">
+                                    <ng-option *ngFor="let plantation of plantation_master"
+                                        [value]="plantation.plantation_id">
+                                        {{plantation.plantation_name}}</ng-option>
+                                </ng-select>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-outline-dark">Submit</button>
                             </div>
                         </form>
 
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark"
-                            (click)="modal.close('Save click')">Update</button>
-                    </div>
+
                 </ng-template>
-    
-                <ng-template #edittwo let-modal>
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="modal-basic-title">ADD CROP META DATA</h4>
-                            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            
-                            <form>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">Select Family</label>
-                                            <select class="form-control" name="Material Based Activity">
-                                                    <option value="">SELECT FAMILY</option>
-                                                    <option value="">Amaranthaceae</option>
-                                                    <option value="">Araceae</option>
-                                                    <option value="">Cole Crops (Brassicas)</option>
-                                                    <option value="">Goosefoot (Chenopodiaceae)</option>
-                                                    <option value="">Grasses (Poaceae)</option>
-                                                    <option value="">Legumes (Fabaceae)</option>
-                                                    <option value="">Lettuce (Compositae)</option>
-                                                    <option value="">Mallows (Malvaceae)</option>
-                                                    <option value="">Melon/Squash (Cucurbitaceae)</option>
-                                                    <option value="">Morning Glory (Convolvulaceae)</option>
-                                                    <option value="">Nightshade (Solanaceae)</option>
-                                                    <option value="">Onion (Amaryllidaceae)</option>
-                                                    <option value="">Parsley (Umbelliferae)</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">Select Crop Name</label>
-                                            <select class="form-control" name="Material Based Activity">
-                                                <option value="">SELECT CROP NAME</option> 
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">Select Variety</label>
-                                            <select class="form-control" name="Material Based Activity">
-                                                <option value="">SELECT VARIETY</option>
-                                            </select>
+
+
+                <ng-template #edit let-modal>
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Update Crop Master</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form #updaterecords="ngForm" (ngSubmit)="onUpdateRecord(updaterecords)">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <mat-label class="custom-label">Select Family</mat-label>
+                                    <mat-form-field class="flex-auto">
+                                        <mat-select [(ngModel)]="family_id" name="family_id"
+                                            (selectionChange)="familyOnChange('add')">
+                                            <mat-option value="0">Select Family</mat-option>
+                                            <mat-option *ngFor="let family of crop_family_master"
+                                                value="{{family.cf_id}}">
+                                                {{family.cf_name}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-label class="custom-label">Select Crop</mat-label>
+                                    <mat-form-field class="flex-auto">
+                                        <mat-select [(ngModel)]="crop_category_id"
+                                            (selectionChange)="categoryOnChange()" name="crop_category_id">
+                                            <mat-option value="0">Select Category</mat-option>
+                                            <mat-option *ngFor="let category of filteredBindCropCategory"
+                                                value="{{category.crop_category_id+'_'+category.crop_category}}">
+                                                {{category.crop_category}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-label class="custom-label">Select Variety</mat-label>
+                                    <mat-form-field class="flex-auto">
+                                        <mat-select [(ngModel)]="crop_sub_category_name"
+                                            (selectionChange)="subcategoryOnChange()" name="crop_sub_category_name">
+                                            <mat-option value="0">Select Variety</mat-option>
+                                            <mat-option *ngFor="let subcategory of crop_sub_category"
+                                                value="{{subcategory.crop_category_id+'_'+subcategory.crop_sub_category}}">
+                                                {{subcategory.crop_sub_category}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="padding: 0px !important; margin-top: 7px;">
+                                <mat-label class="custom-label">Select Soil Type</mat-label>
+                                <ng-select [multiple]="true" [(ngModel)]="soilmaster_id" name="soilmaster_id">
+                                    <ng-option *ngFor="let soils of soilmaster" [value]="soils.mr_com_id">
+                                        {{soils.mr_com_name}}</ng-option>
+                                </ng-select>
+                            </div>
+                            <div class="col-md-12" style="padding: 0px !important; margin-top: 7px;">
+                                <mat-label class="custom-label">Select Seasons</mat-label>
+                                <ng-select [multiple]="true" [(ngModel)]="season_master_id" name="season_master_id">
+                                    <ng-option *ngFor="let seasons of season_master" [value]="seasons.season_id">
+                                        {{seasons.season_name}}</ng-option>
+                                </ng-select>
+                            </div>
+                            <div class="col-md-12" style="padding: 0px !important; margin-top: 7px;">
+                                <mat-label class="custom-label">Select Irrigation Type</mat-label>
+                                <ng-select [multiple]="true" [(ngModel)]="irrigation_id" name="irrigation_id">
+                                    <ng-option *ngFor="let irr of irrigation" [value]="irr.mr_com_id">
+                                        {{irr.mr_com_name}}</ng-option>
+                                </ng-select>
+                            </div>
+                            <div class="col-md-12" style="padding: 0px !important; margin-top: 7px;">
+                                <mat-label class="custom-label">Select Mulch Type</mat-label>
+                                <ng-select [multiple]="true" [(ngModel)]="mulchmaster_id" name="mulchmaster_id">
+                                    <ng-option *ngFor="let mulch of mulchmaster" [value]="mulch.mr_com_id">
+                                        {{mulch.mr_com_name}}</ng-option>
+                                </ng-select>
+                            </div>
+                            <div class="col-md-12" style="padding: 0px !important; margin-top: 7px;">
+                                <mat-label class="custom-label">Select Diseases</mat-label>
+                                <ng-select [multiple]="true" [(ngModel)]="disease_records_id" name="disease_records_id">
+                                    <ng-option *ngFor="let drecords of desices_master"
+                                        [value]="drecords.desices_master_id">
+                                        {{drecords.desices_name}}</ng-option>
+                                </ng-select>
+                            </div>
+                            <div class="col-md-12" style="padding: 0px !important; margin-top: 7px;">
+                                <mat-label class="custom-label">Select Plantation</mat-label>
+                                <ng-select [multiple]="true" [(ngModel)]="plantation_master_id"
+                                    name="plantation_master_id">
+                                    <ng-option *ngFor="let plantation of plantation_master"
+                                        [value]="plantation.plantation_id">
+                                        {{plantation.plantation_name}}</ng-option>
+                                </ng-select>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-outline-dark">Update</button>
+                            </div>
+                        </form>
+
+                    </div>
+
+                </ng-template>
+
+                <ng-template #stages let-modal>
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Crop Stages</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="stage_full_width">
+                            <div class="stage_col" *ngFor="let stagesData of stageMaster">
+                                <h2 class="custom-label">{{stagesData.season_name}}</h2>
+                                <div class="sub_season_row" *ngFor="let subSeason of stagesData.sub_season_data">
+                                    <h2 class="custom-label">{{subSeason.sub_season_name}}</h2>
+                                    <div class="stage_types" *ngFor="let stagetypes of subSeason.stage_type">
+                                        <div class="col-md-12">
+                                            <mat-label class="custom-label">{{stagetypes.crop_stage_name}}</mat-label>
+                                            <mat-form-field class="flex-auto">
+                                                <input matInput type="number" [(ngModel)]="stagetypes.value" [name]="stagetypes.value_name"
+                                                     />
+                                            </mat-form-field>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">Select Soil Type</label>
-                                            <select class="form-control" name="Material Based Activity">
-                                                <option value="">Black cotton soil</option>
-                                                <option value="">Murram</option>
-                                                <option value="">Red soil</option>
-                                                <option value="">Sandy loam</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">Select Seasons</label>
-                                            <select class="form-control" name="Material Based Activity">
-                                                <option value="">Monsoon</option>
-                                                <option value="">Spring</option>
-                                                <option value="">Summer</option>
-                                                <option value="">Winter</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">Select Irrigation Type</label>
-                                            <select class="form-control" name="Material Based Activity">
-                                                <option value="">Drip</option>
-                                                <option value="">Flood</option>
-                                                <option value="">Large Sprinkler</option>
-                                                <option value="">Mini Sprinkler</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">Select Mulch Type</label>
-                                            <select class="form-control" name="Material Based Activity">
-                                                <option value="">Bio Mulch</option>
-                                                <option value="">No Mulch</option>
-                                                <option value="">Plastic Mulch</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">Select Diseases</label>
-                                            <select class="form-control" name="Material Based Activity">
-                                                <option value="">Bacterial wilt</option>
-                                                <option value="">Downy mildew</option>
-                                                <option value="">Early blight</option>
-                                                <option value="">Late blight</option>
-                                                <option value="">Leaf miner</option>
-                                                <option value="">Powdery mildew</option>
-                                                <option value="">Root knot nematode</option>
-                                                <option value="">Shoot borer</option>
-                                                <option value="">Virus</option>
-                                                <option value="">White rot</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="dateOfBirth">Select Plantation</label>
-                                            <select class="form-control" name="Material Based Activity">
-                                                <option value="">  Single Line/3 feet</option>
-                                                <option value=""> Single Line/1 feet 6 inches</option>
-                                                <option value="">Double Line/1'6"</option>
-                                                <option value="">Double Line/3'</option>
-                                                <option value="">Wide bed/Leafy Vegetables</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-    
+                            </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-dark"
-                                (click)="modal.close('Save click')">Update</button>
+                            <button type="button" (click)="onAddRecords()" class="btn btn-outline-dark">Update</button>
                         </div>
+                    </div>
                 </ng-template>
 
-                <ng-template #editthree let-modal>
-                    
-                        <div class="modal-header">
-                                <h4 class="modal-title" id="modal-basic-title">ADD CROP META DATA</h4>
-                                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                
-                                <form>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Family</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                        <option value="">SELECT FAMILY</option>
-                                                        <option value="">Amaranthaceae</option>
-                                                        <option value="">Araceae</option>
-                                                        <option value="">Cole Crops (Brassicas)</option>
-                                                        <option value="">Goosefoot (Chenopodiaceae)</option>
-                                                        <option value="">Grasses (Poaceae)</option>
-                                                        <option value="">Legumes (Fabaceae)</option>
-                                                        <option value="">Lettuce (Compositae)</option>
-                                                        <option value="">Mallows (Malvaceae)</option>
-                                                        <option value="">Melon/Squash (Cucurbitaceae)</option>
-                                                        <option value="">Morning Glory (Convolvulaceae)</option>
-                                                        <option value="">Nightshade (Solanaceae)</option>
-                                                        <option value="">Onion (Amaryllidaceae)</option>
-                                                        <option value="">Parsley (Umbelliferae)</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Crop Name</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">SELECT CROP NAME</option> 
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Variety</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">SELECT VARIETY</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Soil Type</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">Black cotton soil</option>
-                                                    <option value="">Murram</option>
-                                                    <option value="">Red soil</option>
-                                                    <option value="">Sandy loam</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Seasons</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">Monsoon</option>
-                                                    <option value="">Spring</option>
-                                                    <option value="">Summer</option>
-                                                    <option value="">Winter</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Irrigation Type</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">Drip</option>
-                                                    <option value="">Flood</option>
-                                                    <option value="">Large Sprinkler</option>
-                                                    <option value="">Mini Sprinkler</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Mulch Type</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">Bio Mulch</option>
-                                                    <option value="">No Mulch</option>
-                                                    <option value="">Plastic Mulch</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Diseases</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">Bacterial wilt</option>
-                                                    <option value="">Downy mildew</option>
-                                                    <option value="">Early blight</option>
-                                                    <option value="">Late blight</option>
-                                                    <option value="">Leaf miner</option>
-                                                    <option value="">Powdery mildew</option>
-                                                    <option value="">Root knot nematode</option>
-                                                    <option value="">Shoot borer</option>
-                                                    <option value="">Virus</option>
-                                                    <option value="">White rot</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Plantation</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">  Single Line/3 feet</option>
-                                                    <option value=""> Single Line/1 feet 6 inches</option>
-                                                    <option value="">Double Line/1'6"</option>
-                                                    <option value="">Double Line/3'</option>
-                                                    <option value="">Wide bed/Leafy Vegetables</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-        
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-dark"
-                                    (click)="modal.close('Save click')">Update</button>
-                            </div>
-                </ng-template>
-
-                
-                <ng-template #editfour let-modal>
-                    
-                        <div class="modal-header">
-                                <h4 class="modal-title" id="modal-basic-title">ADD CROP META DATA</h4>
-                                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                
-                                <form>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Family</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                        <option value="">SELECT FAMILY</option>
-                                                        <option value="">Amaranthaceae</option>
-                                                        <option value="">Araceae</option>
-                                                        <option value="">Cole Crops (Brassicas)</option>
-                                                        <option value="">Goosefoot (Chenopodiaceae)</option>
-                                                        <option value="">Grasses (Poaceae)</option>
-                                                        <option value="">Legumes (Fabaceae)</option>
-                                                        <option value="">Lettuce (Compositae)</option>
-                                                        <option value="">Mallows (Malvaceae)</option>
-                                                        <option value="">Melon/Squash (Cucurbitaceae)</option>
-                                                        <option value="">Morning Glory (Convolvulaceae)</option>
-                                                        <option value="">Nightshade (Solanaceae)</option>
-                                                        <option value="">Onion (Amaryllidaceae)</option>
-                                                        <option value="">Parsley (Umbelliferae)</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Crop Name</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">SELECT CROP NAME</option> 
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Variety</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">SELECT VARIETY</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Soil Type</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">Black cotton soil</option>
-                                                    <option value="">Murram</option>
-                                                    <option value="">Red soil</option>
-                                                    <option value="">Sandy loam</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Seasons</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">Monsoon</option>
-                                                    <option value="">Spring</option>
-                                                    <option value="">Summer</option>
-                                                    <option value="">Winter</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Irrigation Type</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">Drip</option>
-                                                    <option value="">Flood</option>
-                                                    <option value="">Large Sprinkler</option>
-                                                    <option value="">Mini Sprinkler</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Mulch Type</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">Bio Mulch</option>
-                                                    <option value="">No Mulch</option>
-                                                    <option value="">Plastic Mulch</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Diseases</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">Bacterial wilt</option>
-                                                    <option value="">Downy mildew</option>
-                                                    <option value="">Early blight</option>
-                                                    <option value="">Late blight</option>
-                                                    <option value="">Leaf miner</option>
-                                                    <option value="">Powdery mildew</option>
-                                                    <option value="">Root knot nematode</option>
-                                                    <option value="">Shoot borer</option>
-                                                    <option value="">Virus</option>
-                                                    <option value="">White rot</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Plantation</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">  Single Line/3 feet</option>
-                                                    <option value=""> Single Line/1 feet 6 inches</option>
-                                                    <option value="">Double Line/1'6"</option>
-                                                    <option value="">Double Line/3'</option>
-                                                    <option value="">Wide bed/Leafy Vegetables</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-        
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-dark"
-                                    (click)="modal.close('Save click')">Update</button>
-                            </div>
-                </ng-template>
-
-                <ng-template #editfive let-modal>
-                    
-                        <div class="modal-header">
-                                <h4 class="modal-title" id="modal-basic-title">ADD CROP META DATA</h4>
-                                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                
-                                <form>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Family</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                        <option value="">SELECT FAMILY</option>
-                                                        <option value="">Amaranthaceae</option>
-                                                        <option value="">Araceae</option>
-                                                        <option value="">Cole Crops (Brassicas)</option>
-                                                        <option value="">Goosefoot (Chenopodiaceae)</option>
-                                                        <option value="">Grasses (Poaceae)</option>
-                                                        <option value="">Legumes (Fabaceae)</option>
-                                                        <option value="">Lettuce (Compositae)</option>
-                                                        <option value="">Mallows (Malvaceae)</option>
-                                                        <option value="">Melon/Squash (Cucurbitaceae)</option>
-                                                        <option value="">Morning Glory (Convolvulaceae)</option>
-                                                        <option value="">Nightshade (Solanaceae)</option>
-                                                        <option value="">Onion (Amaryllidaceae)</option>
-                                                        <option value="">Parsley (Umbelliferae)</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Crop Name</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">SELECT CROP NAME</option> 
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Variety</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">SELECT VARIETY</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Soil Type</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">Black cotton soil</option>
-                                                    <option value="">Murram</option>
-                                                    <option value="">Red soil</option>
-                                                    <option value="">Sandy loam</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Seasons</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">Monsoon</option>
-                                                    <option value="">Spring</option>
-                                                    <option value="">Summer</option>
-                                                    <option value="">Winter</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Irrigation Type</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">Drip</option>
-                                                    <option value="">Flood</option>
-                                                    <option value="">Large Sprinkler</option>
-                                                    <option value="">Mini Sprinkler</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Mulch Type</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">Bio Mulch</option>
-                                                    <option value="">No Mulch</option>
-                                                    <option value="">Plastic Mulch</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Diseases</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">Bacterial wilt</option>
-                                                    <option value="">Downy mildew</option>
-                                                    <option value="">Early blight</option>
-                                                    <option value="">Late blight</option>
-                                                    <option value="">Leaf miner</option>
-                                                    <option value="">Powdery mildew</option>
-                                                    <option value="">Root knot nematode</option>
-                                                    <option value="">Shoot borer</option>
-                                                    <option value="">Virus</option>
-                                                    <option value="">White rot</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Plantation</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">  Single Line/3 feet</option>
-                                                    <option value=""> Single Line/1 feet 6 inches</option>
-                                                    <option value="">Double Line/1'6"</option>
-                                                    <option value="">Double Line/3'</option>
-                                                    <option value="">Wide bed/Leafy Vegetables</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-        
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-dark"
-                                    (click)="modal.close('Save click')">Update</button>
-                            </div>
-                </ng-template>
-
-                
-                <ng-template #editsix let-modal>
-                    
-                        <div class="modal-header">
-                                <h4 class="modal-title" id="modal-basic-title">ADD CROP META DATA</h4>
-                                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                
-                                <form>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Family</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                        <option value="">SELECT FAMILY</option>
-                                                        <option value="">Amaranthaceae</option>
-                                                        <option value="">Araceae</option>
-                                                        <option value="">Cole Crops (Brassicas)</option>
-                                                        <option value="">Goosefoot (Chenopodiaceae)</option>
-                                                        <option value="">Grasses (Poaceae)</option>
-                                                        <option value="">Legumes (Fabaceae)</option>
-                                                        <option value="">Lettuce (Compositae)</option>
-                                                        <option value="">Mallows (Malvaceae)</option>
-                                                        <option value="">Melon/Squash (Cucurbitaceae)</option>
-                                                        <option value="">Morning Glory (Convolvulaceae)</option>
-                                                        <option value="">Nightshade (Solanaceae)</option>
-                                                        <option value="">Onion (Amaryllidaceae)</option>
-                                                        <option value="">Parsley (Umbelliferae)</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Crop Name</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">SELECT CROP NAME</option> 
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Variety</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">SELECT VARIETY</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Soil Type</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">Black cotton soil</option>
-                                                    <option value="">Murram</option>
-                                                    <option value="">Red soil</option>
-                                                    <option value="">Sandy loam</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Seasons</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">Monsoon</option>
-                                                    <option value="">Spring</option>
-                                                    <option value="">Summer</option>
-                                                    <option value="">Winter</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Irrigation Type</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">Drip</option>
-                                                    <option value="">Flood</option>
-                                                    <option value="">Large Sprinkler</option>
-                                                    <option value="">Mini Sprinkler</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Mulch Type</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">Bio Mulch</option>
-                                                    <option value="">No Mulch</option>
-                                                    <option value="">Plastic Mulch</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Diseases</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">Bacterial wilt</option>
-                                                    <option value="">Downy mildew</option>
-                                                    <option value="">Early blight</option>
-                                                    <option value="">Late blight</option>
-                                                    <option value="">Leaf miner</option>
-                                                    <option value="">Powdery mildew</option>
-                                                    <option value="">Root knot nematode</option>
-                                                    <option value="">Shoot borer</option>
-                                                    <option value="">Virus</option>
-                                                    <option value="">White rot</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Plantation</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">  Single Line/3 feet</option>
-                                                    <option value=""> Single Line/1 feet 6 inches</option>
-                                                    <option value="">Double Line/1'6"</option>
-                                                    <option value="">Double Line/3'</option>
-                                                    <option value="">Wide bed/Leafy Vegetables</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-        
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-dark"
-                                    (click)="modal.close('Save click')">Update</button>
-                            </div>
-                </ng-template>
-
-                
-                <ng-template #editseven let-modal>
-                    
-                        <div class="modal-header">
-                                <h4 class="modal-title" id="modal-basic-title">ADD CROP META DATA</h4>
-                                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                
-                                <form>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Family</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                        <option value="">SELECT FAMILY</option>
-                                                        <option value="">Amaranthaceae</option>
-                                                        <option value="">Araceae</option>
-                                                        <option value="">Cole Crops (Brassicas)</option>
-                                                        <option value="">Goosefoot (Chenopodiaceae)</option>
-                                                        <option value="">Grasses (Poaceae)</option>
-                                                        <option value="">Legumes (Fabaceae)</option>
-                                                        <option value="">Lettuce (Compositae)</option>
-                                                        <option value="">Mallows (Malvaceae)</option>
-                                                        <option value="">Melon/Squash (Cucurbitaceae)</option>
-                                                        <option value="">Morning Glory (Convolvulaceae)</option>
-                                                        <option value="">Nightshade (Solanaceae)</option>
-                                                        <option value="">Onion (Amaryllidaceae)</option>
-                                                        <option value="">Parsley (Umbelliferae)</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Crop Name</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">SELECT CROP NAME</option> 
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Variety</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">SELECT VARIETY</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Soil Type</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">Black cotton soil</option>
-                                                    <option value="">Murram</option>
-                                                    <option value="">Red soil</option>
-                                                    <option value="">Sandy loam</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Seasons</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">Monsoon</option>
-                                                    <option value="">Spring</option>
-                                                    <option value="">Summer</option>
-                                                    <option value="">Winter</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Irrigation Type</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">Drip</option>
-                                                    <option value="">Flood</option>
-                                                    <option value="">Large Sprinkler</option>
-                                                    <option value="">Mini Sprinkler</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Mulch Type</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">Bio Mulch</option>
-                                                    <option value="">No Mulch</option>
-                                                    <option value="">Plastic Mulch</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Diseases</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">Bacterial wilt</option>
-                                                    <option value="">Downy mildew</option>
-                                                    <option value="">Early blight</option>
-                                                    <option value="">Late blight</option>
-                                                    <option value="">Leaf miner</option>
-                                                    <option value="">Powdery mildew</option>
-                                                    <option value="">Root knot nematode</option>
-                                                    <option value="">Shoot borer</option>
-                                                    <option value="">Virus</option>
-                                                    <option value="">White rot</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Plantation</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">  Single Line/3 feet</option>
-                                                    <option value=""> Single Line/1 feet 6 inches</option>
-                                                    <option value="">Double Line/1'6"</option>
-                                                    <option value="">Double Line/3'</option>
-                                                    <option value="">Wide bed/Leafy Vegetables</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-        
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-dark"
-                                    (click)="modal.close('Save click')">Update</button>
-                            </div>
-                </ng-template>
-
-                
-                <ng-template #editeight let-modal>
-                    
-                        <div class="modal-header">
-                                <h4 class="modal-title" id="modal-basic-title">ADD CROP META DATA</h4>
-                                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                
-                                <form>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Family</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                        <option value="">SELECT FAMILY</option>
-                                                        <option value="">Amaranthaceae</option>
-                                                        <option value="">Araceae</option>
-                                                        <option value="">Cole Crops (Brassicas)</option>
-                                                        <option value="">Goosefoot (Chenopodiaceae)</option>
-                                                        <option value="">Grasses (Poaceae)</option>
-                                                        <option value="">Legumes (Fabaceae)</option>
-                                                        <option value="">Lettuce (Compositae)</option>
-                                                        <option value="">Mallows (Malvaceae)</option>
-                                                        <option value="">Melon/Squash (Cucurbitaceae)</option>
-                                                        <option value="">Morning Glory (Convolvulaceae)</option>
-                                                        <option value="">Nightshade (Solanaceae)</option>
-                                                        <option value="">Onion (Amaryllidaceae)</option>
-                                                        <option value="">Parsley (Umbelliferae)</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Crop Name</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">SELECT CROP NAME</option> 
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Variety</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">SELECT VARIETY</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Soil Type</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">Black cotton soil</option>
-                                                    <option value="">Murram</option>
-                                                    <option value="">Red soil</option>
-                                                    <option value="">Sandy loam</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Seasons</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">Monsoon</option>
-                                                    <option value="">Spring</option>
-                                                    <option value="">Summer</option>
-                                                    <option value="">Winter</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Irrigation Type</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">Drip</option>
-                                                    <option value="">Flood</option>
-                                                    <option value="">Large Sprinkler</option>
-                                                    <option value="">Mini Sprinkler</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Mulch Type</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">Bio Mulch</option>
-                                                    <option value="">No Mulch</option>
-                                                    <option value="">Plastic Mulch</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Diseases</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">Bacterial wilt</option>
-                                                    <option value="">Downy mildew</option>
-                                                    <option value="">Early blight</option>
-                                                    <option value="">Late blight</option>
-                                                    <option value="">Leaf miner</option>
-                                                    <option value="">Powdery mildew</option>
-                                                    <option value="">Root knot nematode</option>
-                                                    <option value="">Shoot borer</option>
-                                                    <option value="">Virus</option>
-                                                    <option value="">White rot</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Plantation</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">  Single Line/3 feet</option>
-                                                    <option value=""> Single Line/1 feet 6 inches</option>
-                                                    <option value="">Double Line/1'6"</option>
-                                                    <option value="">Double Line/3'</option>
-                                                    <option value="">Wide bed/Leafy Vegetables</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-        
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-dark"
-                                    (click)="modal.close('Save click')">Update</button>
-                            </div>
-                </ng-template>
-
-                
-                <ng-template #editnine let-modal>
-                    
-                        <div class="modal-header">
-                                <h4 class="modal-title" id="modal-basic-title">ADD CROP META DATA</h4>
-                                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                
-                                <form>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Family</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                        <option value="">SELECT FAMILY</option>
-                                                        <option value="">Amaranthaceae</option>
-                                                        <option value="">Araceae</option>
-                                                        <option value="">Cole Crops (Brassicas)</option>
-                                                        <option value="">Goosefoot (Chenopodiaceae)</option>
-                                                        <option value="">Grasses (Poaceae)</option>
-                                                        <option value="">Legumes (Fabaceae)</option>
-                                                        <option value="">Lettuce (Compositae)</option>
-                                                        <option value="">Mallows (Malvaceae)</option>
-                                                        <option value="">Melon/Squash (Cucurbitaceae)</option>
-                                                        <option value="">Morning Glory (Convolvulaceae)</option>
-                                                        <option value="">Nightshade (Solanaceae)</option>
-                                                        <option value="">Onion (Amaryllidaceae)</option>
-                                                        <option value="">Parsley (Umbelliferae)</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Crop Name</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">SELECT CROP NAME</option> 
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Variety</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">SELECT VARIETY</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Soil Type</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">Black cotton soil</option>
-                                                    <option value="">Murram</option>
-                                                    <option value="">Red soil</option>
-                                                    <option value="">Sandy loam</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Seasons</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">Monsoon</option>
-                                                    <option value="">Spring</option>
-                                                    <option value="">Summer</option>
-                                                    <option value="">Winter</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Irrigation Type</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">Drip</option>
-                                                    <option value="">Flood</option>
-                                                    <option value="">Large Sprinkler</option>
-                                                    <option value="">Mini Sprinkler</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Mulch Type</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">Bio Mulch</option>
-                                                    <option value="">No Mulch</option>
-                                                    <option value="">Plastic Mulch</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Diseases</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">Bacterial wilt</option>
-                                                    <option value="">Downy mildew</option>
-                                                    <option value="">Early blight</option>
-                                                    <option value="">Late blight</option>
-                                                    <option value="">Leaf miner</option>
-                                                    <option value="">Powdery mildew</option>
-                                                    <option value="">Root knot nematode</option>
-                                                    <option value="">Shoot borer</option>
-                                                    <option value="">Virus</option>
-                                                    <option value="">White rot</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Plantation</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">  Single Line/3 feet</option>
-                                                    <option value=""> Single Line/1 feet 6 inches</option>
-                                                    <option value="">Double Line/1'6"</option>
-                                                    <option value="">Double Line/3'</option>
-                                                    <option value="">Wide bed/Leafy Vegetables</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-        
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-dark"
-                                    (click)="modal.close('Save click')">Update</button>
-                            </div>
-                </ng-template>
-
-                
-                <ng-template #editten let-modal>
-                    
-                        <div class="modal-header">
-                                <h4 class="modal-title" id="modal-basic-title">ADD CROP META DATA</h4>
-                                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                
-                                <form>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Family</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                        <option value="">SELECT FAMILY</option>
-                                                        <option value="">Amaranthaceae</option>
-                                                        <option value="">Araceae</option>
-                                                        <option value="">Cole Crops (Brassicas)</option>
-                                                        <option value="">Goosefoot (Chenopodiaceae)</option>
-                                                        <option value="">Grasses (Poaceae)</option>
-                                                        <option value="">Legumes (Fabaceae)</option>
-                                                        <option value="">Lettuce (Compositae)</option>
-                                                        <option value="">Mallows (Malvaceae)</option>
-                                                        <option value="">Melon/Squash (Cucurbitaceae)</option>
-                                                        <option value="">Morning Glory (Convolvulaceae)</option>
-                                                        <option value="">Nightshade (Solanaceae)</option>
-                                                        <option value="">Onion (Amaryllidaceae)</option>
-                                                        <option value="">Parsley (Umbelliferae)</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Crop Name</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">SELECT CROP NAME</option> 
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Variety</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">SELECT VARIETY</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Soil Type</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">Black cotton soil</option>
-                                                    <option value="">Murram</option>
-                                                    <option value="">Red soil</option>
-                                                    <option value="">Sandy loam</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Seasons</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">Monsoon</option>
-                                                    <option value="">Spring</option>
-                                                    <option value="">Summer</option>
-                                                    <option value="">Winter</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Irrigation Type</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">Drip</option>
-                                                    <option value="">Flood</option>
-                                                    <option value="">Large Sprinkler</option>
-                                                    <option value="">Mini Sprinkler</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Mulch Type</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">Bio Mulch</option>
-                                                    <option value="">No Mulch</option>
-                                                    <option value="">Plastic Mulch</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Diseases</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">Bacterial wilt</option>
-                                                    <option value="">Downy mildew</option>
-                                                    <option value="">Early blight</option>
-                                                    <option value="">Late blight</option>
-                                                    <option value="">Leaf miner</option>
-                                                    <option value="">Powdery mildew</option>
-                                                    <option value="">Root knot nematode</option>
-                                                    <option value="">Shoot borer</option>
-                                                    <option value="">Virus</option>
-                                                    <option value="">White rot</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dateOfBirth">Select Plantation</label>
-                                                <select class="form-control" name="Material Based Activity">
-                                                    <option value="">  Single Line/3 feet</option>
-                                                    <option value=""> Single Line/1 feet 6 inches</option>
-                                                    <option value="">Double Line/1'6"</option>
-                                                    <option value="">Double Line/3'</option>
-                                                    <option value="">Wide bed/Leafy Vegetables</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-        
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-dark"
-                                    (click)="modal.close('Save click')">Update</button>
-                            </div>
-                </ng-template>
-    
-    
-               
                 <ng-template #delete let-modal class="delete_modal">
-                    <div class="modal-header">
-                        Are you sure ?
-                    </div>
-
+                    <div class="modal-header">Do you really want to make changes ?</div>
                     <div class="modal-body">
-                        <button type="button" class="btn btn-outline-dark btn_delete"
-                            (click)="modal.close('Save click')">
-                            Delete
-                        </button>
-                        <button type="button" class=" btn btn-outline-dark close btn_close" aria-label="Close"
+
+                        <button type="button" class="btn btn-danger btn-cancel" aria-label="Close"
                             (click)="modal.dismiss('Cross click')">
-                            cancel
+                            Cancel
+                        </button>
+                        <button type="button" class="btn btn-primary btn-ok" (click)="onChangeStatus()">
+                            Ok
                         </button>
                     </div>
-
-                    <div class="modal-footer">
-
-                    </div>
-                    <!-- <div class="modal-body">
-                            <form>
-                                <div class="form-group">
-                                    <label for="dateOfBirth">Date of birth</label>
-                                    <div class="input-group">
-    
-                                    </div>
-                                </div>
-                            </form>
-                        </div> -->
+                    <div class="modal-footer"></div>
                 </ng-template>
-    
-    
             </div>
         </div>
     </div>
 </div>
-  <script>
+<script>
     // Add the following code if you want the name of the file appear on select
-    $(".custom-file-input").on("change", function() {
-      var fileName = $(this).val().split("\\").pop();
-      $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    $(".custom-file-input").on("change", function () {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
     });
-    </script>
+</script>
