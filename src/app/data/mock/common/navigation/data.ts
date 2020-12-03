@@ -69,6 +69,44 @@ export const defaultNavigation: TreoNavigationItem[] = [
     },
     {
         id: 'pages',
+        title: 'Farmer',
+        role: 'Super Admin',
+        type: 'group',
+        children: [
+            {
+                id: 'pages.dashboard',
+                title: 'Dashboard',
+                type: 'basic',
+                icon: 'apps',
+                link: '/farmer/dashboard'
+            },
+            // {
+            //     id: 'pages.addticket',
+            //     title: 'Add Ticket',
+            //     type: 'basic',
+            //     icon: 'playlist_add_check',
+            //     link: '/farmer/addticket'
+            // },
+            // {
+            //     id: 'pages.cropstatusupdate',
+            //     title: 'Crop Status Update',
+            //     type: 'basic',
+            //     icon: 'help_outline',
+            //     link: '/farmer/cropstatusupdate'
+            // },
+            {
+                id: 'pages.viewassignedcrop',
+                title: 'View Assigned Crop',
+                type: 'basic',
+                icon: 'apps',
+                link: '/farmer/viewassignedcrop'
+            },
+          
+           
+        ]
+    },
+    {
+        id: 'pages',
         role: 'Super Admin',
         title: 'Notification & Support',
         subtitle: 'Check queries, generate notification, update settings',

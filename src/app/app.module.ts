@@ -16,6 +16,19 @@ import { DataTablesModule } from 'angular-datatables';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { FormsModule } from '@angular/forms'; 
+import { FullCalendarModule} from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import listPlugin from '@fullcalendar/list';
+import interactionPlugin from '@fullcalendar/interaction';
+
+
+FullCalendarModule.registerPlugins([
+    dayGridPlugin,
+    timeGridPlugin,
+    listPlugin,
+    interactionPlugin
+  ])
 
 const routerConfig: ExtraOptions = {
     scrollPositionRestoration: 'enabled',
@@ -24,7 +37,8 @@ const routerConfig: ExtraOptions = {
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+    
     ],
     imports     : [
         DataTablesModule,
@@ -48,7 +62,8 @@ const routerConfig: ExtraOptions = {
         MarkdownModule.forRoot({}),
 
         NgbModule,
-        CKEditorModule
+        CKEditorModule,
+        FullCalendarModule
     ],
     bootstrap   : [
         AppComponent

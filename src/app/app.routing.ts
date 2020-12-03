@@ -28,7 +28,9 @@ export const appRoutes: Route[] = [
             { path: 'forgot-password', loadChildren: () => import('app/modules/auth/forgot-password/forgot-password.module').then(m => m.AuthForgotPasswordModule) },
             { path: 'reset-password', loadChildren: () => import('app/modules/auth/reset-password/reset-password.module').then(m => m.AuthResetPasswordModule) },
             { path: 'sign-in', loadChildren: () => import('app/pages/auth/sign-in/sign-in.module').then(m => m.SignInModule) },
-            { path: 'sign-up', loadChildren: () => import('app/modules/auth/sign-up/sign-up.module').then(m => m.AuthSignUpModule) }
+            { path: 'sign-up', loadChildren: () => import('app/modules/auth/sign-up/sign-up.module').then(m => m.AuthSignUpModule) },
+            { path: 'farmer-sign-up', loadChildren: () => import('app/modules/auth/farmer-sign-up/farmer-sign-up.module').then(m => m.AuthSignUpModule) }
+
         ]
     },
 
@@ -72,6 +74,7 @@ export const appRoutes: Route[] = [
             { path: 'dashboard', loadChildren: () => import('app/pages/dashboard/home/home.module').then(m => m.HomeModule) },
             { path: 'master', loadChildren: () => import('app/pages/admin/masterrecords/masterrecords.module').then(m => m.MasterrecordsModule) },
             { path : 'crop', loadChildren: () => import('app/pages/admin/cropmaster/cropmaster.module').then(m => m.CropmasterModule)},
+            { path : 'farmer', loadChildren: () => import('app/pages/admin/farmer/farmer.module').then(m => m.FarmerModule)},
             { path : 'setting', loadChildren: () => import('app/pages/auth/profile/profile.module').then(m => m.ProfileModule)},
             { path : 'session', loadChildren: () => import('app/pages/auth/session/session.module').then(m => m.SessionModule)},
             { path : 'users', loadChildren: () => import('app/pages/admin/registration/registration.module').then(m => m.RegistrationModule)},

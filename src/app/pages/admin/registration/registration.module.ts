@@ -13,6 +13,8 @@ import { registrationRouting } from '../registration/registration.routing';
 import { InstallfpoComponent } from '../registration/installfpo/installfpo.component';
 import { RegisteredusersComponent } from '../registration/registeredusers/registeredusers.component';
 import { MarketvendorsComponent } from '../registration/marketvendors/marketvendors.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+
 @NgModule({
   declarations: [
     InstallfpoComponent,
@@ -29,7 +31,8 @@ imports     : [
         MatIconModule,
         MatInputModule,
         MatMenuModule,
-        CKEditorModule
+        CKEditorModule,
+        MatSlideToggleModule
 ]
 })
 export class RegistrationModule { }

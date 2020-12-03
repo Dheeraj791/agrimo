@@ -1,0 +1,433 @@
+<div class="box_main">
+    <div class="col-md-12">
+      <div class="header_top_btn_new mb-5">
+        <div class="row">
+          <div class="col-md-8 custom-col-8">
+            <div class="breadcrumb">
+              <span class="path">Farmer</span
+              ><span class="separator">/</span>
+              <span class="path">View Assigned Crops</span>
+            </div>
+            <h1 class="master-heading">View Assigned Crops</h1>
+          </div>        
+        </div>
+      </div>
+    </div>
+      <div class="container" style="margin: 0px 0px !important;">
+        <div class= "col-md-12 bg-card shadow rounded overflow-hidden">
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Crop Name</th>
+                    <th>Crop Sub Category</th>
+                    <th>Assigned Land Area</th>
+                    <th>Assigned Date</th>
+                    <th>Sowing Date</th>
+                    <th>View Activity</th>
+                    <th>Update Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Chilli</td>
+                    <td>Chilli</td>
+                    <td>10 Acre</td>
+                    <td>27-09-2019</td>
+                    <td>27-09-2019</td>
+                  
+                    <td class="edit_icons">
+                        <button class="btn" mat-flat-button [color]="'accent'" (click)="open(editone)" style="
+                        background-color: #5850ec; " >View Activity</button>
+                    </td>
+                    <td class="edit_icons">
+                        <button class="btn" mat-flat-button [color]="'accent'" (click)="opens(addnew, '')" style="
+                        background-color: #5850ec; " >Crop Status Update</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Gilki</td>
+                    <td>Gilki</td>
+                    <td>10 Acre</td>
+                    <td>27-09-2019</td>
+                    <td>27-09-2019</td>
+                    <td class="edit_icons">
+                        <button class="btn" mat-flat-button [color]="'accent'" (click)="open(editone)" style="
+                        background-color: #5850ec; " >View Activity</button>
+                    </td>
+                    <td class="edit_icons">
+                        <button class="btn" mat-flat-button [color]="'accent'" (click)="opens(addnew, '')" style="
+                        background-color: #5850ec; " >Crop Status Update</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Bhindi</td>
+                    <td>Bhindi</td>
+                    <td>10 Acre</td>
+                    <td>27-09-2019</td>
+                    <td>27-09-2019</td>
+                    <td class="edit_icons">
+                        <button class="btn" mat-flat-button [color]="'accent'" (click)="open(editone)" style="
+                        background-color: #5850ec; " >View Activity</button>
+                    </td>
+                    <td class="edit_icons">
+                        <button class="btn" mat-flat-button [color]="'accent'" (click)="opens(addnew, '')" style="
+                        background-color: #5850ec; " >Crop Status Update</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Spinach/Palak</td>
+                    <td>Spinach/Palak</td>
+                    <td>10 Acre</td>
+                    <td>27-09-2019</td>
+                    <td>27-09-2019</td>
+                    <td class="edit_icons">
+                        <button class="btn" mat-flat-button [color]="'accent'" (click)="open(editone)" style="
+                        background-color: #5850ec; " >View Activity</button>
+                    </td>
+                    <td class="edit_icons">
+                        <button class="btn" mat-flat-button [color]="'accent'" (click)="opens(addnew, '')" style="
+                        background-color: #5850ec; " >Crop Status Update</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Tomato</td>
+                    <td>Hybrid/Round</td>
+                    <td>10 Acre</td>
+                    <td>27-09-2019</td>
+                    <td>27-09-2019</td>
+                    <td class="edit_icons">
+                        <button class="btn" mat-flat-button [color]="'accent'" (click)="open(editone)" style="
+                        background-color: #5850ec; " >View Activity</button>
+                    </td>
+                    <td class="edit_icons">
+                        <button class="btn" mat-flat-button [color]="'accent'" (click)="opens(addnew, '')" style="
+                        background-color: #5850ec; " >Crop Status Update</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Tomato</td>
+                    <td>Hybrid/Round</td>
+                    <td>10 Acre</td>
+                    <td>27-09-2019</td>
+                    <td>27-09-2019</td>
+                    <td class="edit_icons">
+                        <button class="btn" mat-flat-button [color]="'accent'" (click)="open(editone)" style="
+                        background-color: #5850ec; " >View Activity</button>
+                    </td>
+                    <td class="edit_icons">
+                        <button class="btn" mat-flat-button [color]="'accent'" (click)="opens(addnew, '')" style="
+                        background-color: #5850ec; " >Crop Status Update</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Brinjal</td>
+                    <td>Long</td>
+                    <td>10 Acre</td>
+                    <td>27-09-2019</td>
+                    <td>27-09-2019</td>
+                    <td class="edit_icons">
+                        <button class="btn" mat-flat-button [color]="'accent'" (click)="open(editone)" style="
+                        background-color: #5850ec; " >View Activity</button>
+                    </td>
+                    <td class="edit_icons">
+                        <button class="btn" mat-flat-button [color]="'accent'" (click)="opens(addnew, '')" style="
+                        background-color: #5850ec; " >Crop Status Update</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Beetroot/Chukander</td>
+                    <td>Beetroot/Chukander</td>
+                    <td>10 Acre</td>
+                    <td>27-09-2019</td>
+                    <td>27-09-2019</td>
+                    <td class="edit_icons">
+                        <button class="btn" mat-flat-button [color]="'accent'" (click)="open(editone)" style="
+                        background-color: #5850ec; " >View Activity</button>
+                    </td>
+                    <td class="edit_icons">
+                        <button class="btn" mat-flat-button [color]="'accent'" (click)="opens(addnew, '')" style="
+                        background-color: #5850ec; " >Crop Status Update</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Beetroot/Chukander</td>
+                    <td>Beetroot/Chukander</td>
+                    <td>10 Acre</td>
+                    <td>27-09-2019</td>
+                    <td>27-09-2019</td>
+                    <td class="edit_icons">
+                        <button class="btn" mat-flat-button [color]="'accent'" (click)="open(editone)" style="
+                        background-color: #5850ec; " >View Activity</button>
+                    </td>
+                    <td class="edit_icons">
+                        <button class="btn" mat-flat-button [color]="'accent'" (click)="opens(addnew, '')" style="
+                        background-color: #5850ec; " >Crop Status Update</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>Chenopodium/Bathua</td>
+                    <td>Chenopodium/Bathua</td>
+                    <td>10 Acre</td>
+                    <td>27-09-2019</td>
+                    <td>27-09-2019</td>
+                    <td class="edit_icons">
+                        <button class="btn" mat-flat-button [color]="'accent'" (click)="open(editone)" style="
+                        background-color: #5850ec; " >View Activity</button>
+                    </td>
+                    <td class="edit_icons">
+                        <button class="btn" mat-flat-button [color]="'accent'" (click)="opens(addnew, '')" style="
+                        background-color: #5850ec; " >Crop Status Update</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+      
+        <ng-template #addnew let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title">Crop Status Update</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form #addActivity="ngForm" (ngSubmit)="onAddActivity(addActivity)">
+                <div class="row">
+                  <div class="col-md-6">
+                    <mat-label class="custom-label">Crop </mat-label>
+                    <mat-form-field class="flex-auto">
+                      
+                      <input matInput type="text" [(ngModel)]="activityName" name="activityName" required />
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-label class="custom-label">Crop Sub-Category*</mat-label>
+                    <mat-form-field class="flex-auto">
+                      <mat-select [(ngModel)]="selectedActivityTypeId" name="selectedActivityTypeId">
+                        <mat-option *ngFor="let type of activityType" value="{{type.id}}">{{type.name}}</mat-option>
+                      </mat-select>
+                      <!-- <mat-icon matPrefix [svgIcon]="'arrow_right_alt'"></mat-icon> -->
+                    </mat-form-field>
+                  </div>
+                </div> 
+
+                <div>
+                  <mat-checkbox [color]="'primary'"
+                  >
+        <span>Task 1 Completed</span>
+    </mat-checkbox>
+                </div>
+                <div>
+                  <mat-checkbox [color]="'primary'"
+                  >
+        <span>Task 2 Completed</span>
+    </mat-checkbox>
+                </div>
+                <div>
+                  <mat-checkbox [color]="'primary'"
+                  >
+        <span>Task 3 Completed</span>
+    </mat-checkbox>
+                </div>
+               
+                <div class="row">
+                  <div class="col-md-12 btn_rows">
+                    <a class="add_btn" (click)="addImage()">Add Image</a>
+                    <a class="add_btn" (click)="addVdoUrl()">Add Video URL</a>
+                    <a class="add_btn" (click)="addAudioUrl()">Add Audio URL</a>
+                    <a class="add_btn" (click)="addDescBox()">Add Description</a>
+                    <a class="add_btn" (click)="addRows()">Add Rows</a>
+                  </div>
+                  <div class="col-md-6 form-group" *ngIf="imageShow===true">
+                    <mat-label class="custom-label">Upload Image <span class="remove"
+                        (click)="remove('image')">Remove</span></mat-label>
+                    <div class="button-wrap">
+                      <label class="new-button" for="upload"> Upload Image {{selectedFlag}}</label>
+                      <input id="upload" type="file" name="imageurl" (change)="onFileChanged($event)">
+                    </div>
+                  </div>
+                  <div class="col-md-6" *ngIf="vdoUrlShow===true">
+                    <mat-label class="custom-label">Video URL <span class="remove" (click)="remove('video')">Remove</span>
+                    </mat-label>
+                    <mat-form-field class="flex-auto">
+                      <input matInput type="text" [(ngModel)]="videourl" name="videourl" required />
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6" *ngIf="audioUrl===true">
+                    <mat-label class="custom-label">Upload Audio <span class="remove"
+                        (click)="remove('audio')">Remove</span></mat-label>
+                    <div class="button-wrap">
+                      <label class="new-button" for="upload_audio"> Upload Audio {{selectedAudioFlag}}</label>
+                      <input id="upload_audio" type="file" name="audiourl" (change)="onAudioFileChanged($event)">
+                    </div>
+                  </div>
+                  <div class="col-md-12 form-group" *ngIf="descShow===true">
+                    <mat-label class="custom-label">Description <span class="remove"
+                        (click)="remove('desc')">Remove</span></mat-label>
+                    <textarea class="form-control" [(ngModel)]="description" name="description"></textarea>
+                  </div>
+                  <div class="col-md-12" *ngIf="rowShow===true">
+                    <mat-label class="custom-label">Other Detail (if any) <span class="remove"
+                        (click)="remove('details')">Remove</span></mat-label>
+                    <div *ngFor="let rowData of detailsRow; let i = index;">
+                      <mat-form-field class="flex-auto">
+                        <input matInput type="text" [(ngModel)]="rowData.detail_name"
+                          name="detail_name_+{{rowData.detail_id}}" required />
+                        <mat-icon matSuffix [svgIcon]="'add_box'" (click)="add(i)" *ngIf="i === 0 && detailsRowLen ===1">
+                        </mat-icon>
+                        <mat-icon matSuffix [svgIcon]="'indeterminate_check_box'"
+                          (click)="deleteRow(rowData,rowData.detail_id)"
+                          *ngIf="detailsRowLen > 1 && detailsRowLen != i+1"></mat-icon>
+                        <mat-icon matSuffix [svgIcon]="'add_box'" (click)="add(i)"
+                          *ngIf="i > 0 && detailsRowLen === i+1 "></mat-icon>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-outline-dark">
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          </ng-template>
+  
+          <ng-template #delete let-modal class="delete_modal">
+            <div class="modal-header">Do you really want to make changes ?</div>
+            <div class="modal-body">
+  
+              <button type="button" class="btn btn-danger btn-cancel" aria-label="Close"
+                (click)="modal.dismiss('Cross click')">
+                Cancel
+              </button>
+              <button type="button" class="btn btn-primary btn-ok" (click)="onChangeStatus()">
+                Ok
+              </button>
+            </div>
+            <div class="modal-footer"></div>
+          </ng-template>
+  
+          <ng-template #edit let-modal>
+            <form #updateActivity="ngForm" (ngSubmit)="onUpdateActivity(updateActivity)">
+              <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">
+                  Update Activity
+                </h4>
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    <mat-label class="custom-label">Crop</mat-label>
+                    <mat-form-field class="flex-auto">
+                      <input matInput type="text" [(ngModel)]="singleActivity.mr_com_name" name="mr_com_name" required />
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-label class="custom-label">Crop Sub-Category *</mat-label>
+                    <mat-form-field class="flex-auto">
+                      <mat-select [(ngModel)]="singleActivity.com_record_type" name="com_record_type">
+                        <mat-option *ngFor="let type of activityType" value="{{type.id}}">{{type.name}}</mat-option>
+                      </mat-select>
+                      <!-- <mat-icon matPrefix [svgIcon]="'arrow_right_alt'"></mat-icon> -->
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 btn_rows">
+                    <a class="add_btn" (click)="upaddImage()">Add Image</a>
+                    <a class="add_btn" (click)="upaddVdoUrl()">Add Video URL</a>
+                    <a class="add_btn" (click)="upaddAudioUrl()">Add Audio URL</a>
+                    <a class="add_btn" (click)="upaddDescBox()">Add Description</a>
+                    <a class="add_btn" (click)="upaddRows()">Add Rows</a>
+                  </div>
+                  <div class="col-md-6 form-group" *ngIf="upimageShow===true">
+                    <div class="imgdiv">
+                      <img src="{{url+'image/'+singleActivity.mr_com_image}}" alt="">
+                    </div>
+                    <mat-label class="custom-label">Upload Image <span class="remove"
+                        (click)="upremove('image')">Remove</span></mat-label>
+                    <div class="button-wrap">
+                      <label class="new-button" for="upload"> Upload CV {{selectedFlag}}</label>
+                      <input id="upload" type="file" name="imageurl" (change)="onFileChangedUp($event)">
+                    </div>
+                  </div>
+  
+                  <div class="col-md-6" *ngIf="upaudioUrl===true">
+                    <div class="audiodiv">
+                      <audio controls>
+                        <source src="{{url+'audio/'+singleActivity.mr_com_audio}}" type="audio/ogg">
+                        <source src="{{url+'audio/'+singleActivity.mr_com_audio}}" type="audio/mpeg">
+                      </audio>
+                    </div>
+                    <mat-label class="custom-label">Upload Audio <span class="remove"
+                        (click)="upremove('audio')">Remove</span></mat-label>
+                    <div class="button-wrap">
+                      <label class="new-button" for="upload_audio"> Upload Audio {{selectedAudioFlag}}</label>
+                      <input id="upload_audio" type="file" name="audiourl" (change)="onAudioFileChangedUp($event)">
+                    </div>
+                  </div>
+                  <div class="col-md-6" *ngIf="upvdoUrlShow===true">
+                    <mat-label class="custom-label">Video URL <span class="remove"
+                        (click)="upremove('video')">Remove</span>
+                    </mat-label>
+                    <mat-form-field class="flex-auto">
+                      <input matInput type="text" [(ngModel)]="singleActivity.mr_com_video" name="mr_com_video"
+                        required />
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-12 form-group" *ngIf="updescShow===true">
+                    <mat-label class="custom-label">Description <span class="remove"
+                        (click)="upremove('desc')">Remove</span></mat-label>
+                    <textarea class="form-control" [(ngModel)]="singleActivity.mr_com_desc" name="mr_com_desc"></textarea>
+                  </div>
+                  <div class="col-md-12" *ngIf="uprowShow===true">
+                    <mat-label class="custom-label">Other Detail (if any) <span class="remove"
+                        (click)="upremove('details')">Remove</span></mat-label>
+                    <div *ngFor="let rowData of detailsRowUpdate; let i = index;">
+                      <mat-form-field class="flex-auto">
+                        <input matInput type="text" [(ngModel)]="rowData.detail_name"
+                          name="detail_name_+{{rowData.detail_id}}" required />
+                        <mat-icon matSuffix [svgIcon]="'add_box'" (click)="upadd(i)"
+                          *ngIf="i === 0 && detailsRowLenup ===1">
+                        </mat-icon>
+                        <mat-icon matSuffix [svgIcon]="'indeterminate_check_box'"
+                          (click)="updeleteRow(rowData,rowData.detail_id)"
+                          *ngIf="detailsRowLenup > 1 && detailsRowLenup != i+1"></mat-icon>
+                        <mat-icon matSuffix [svgIcon]="'add_box'" (click)="upadd(i)"
+                          *ngIf="i > 0 && detailsRowLenup === i+1 "></mat-icon>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-outline-dark">
+                  Update
+                </button>
+              </div>
+            </form>
+          </ng-template>
+        </div>
+      </div>
+<script>
+// Add the following code if you want the name of the file appear on select
+$(".custom-file-input").on("change", function() {
+var fileName = $(this).val().split("\\").pop();
+$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
+</script>

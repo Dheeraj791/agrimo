@@ -14,14 +14,7 @@
 
                 <!-- Title -->
                 <div class="title">Sign up</div>
-                
-                <div class="subtitle">
-                    <span>Already have an account?</span>
-                    <a class="link"
-                       [routerLink]="['/sign-in']">Sign in</a>
-                </div>
-                <div class="subtitle">  <span><a class="link"
-                    [routerLink]="['/farmer-sign-up']">Become a Farmer</a></span></div>
+              
 
                 <!-- Message -->
                 <treo-message *ngIf="message"
@@ -32,8 +25,11 @@
                     {{message.content}}
                 </treo-message>
 
+                
+
+           
                 <!-- Sign Up form -->
-                <form [formGroup]="signUpForm">
+                <form [formGroup]="FarmersignUpForm">
 
                     <!-- Name field -->
                     <mat-form-field>
@@ -41,10 +37,44 @@
                         <input id="name"
                                matInput
                                [formControlName]="'name'">
-                        <mat-error *ngIf="signUpForm.get('name').hasError('required')">
+                        <mat-error *ngIf="FarmersignUpForm.get('name').hasError('required')">
                             Full name is required
                         </mat-error>
                     </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Phone Number</mat-label>
+                        <input id="phone"
+                               matInput
+                               [formControlName]="'phone'">
+                        <mat-error *ngIf="FarmersignUpForm.get('phone').hasError('required')">
+                            Phone number is required
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-checkbox [color]="'primary'"
+                                      [formControlName]="'whatsapp'" (click)="toggleShow()">
+                        <div ng-show="myVar">Whatsapp Number Same?</div>                        
+                    </mat-checkbox>       
+                      
+                    <div *ngIf="isShown" class="row container-fluid"  id="divshow" >
+                            <mat-label>Whatsapp Number</mat-label>
+                            <mat-form-field>
+                                <input id="whatsappnumber"
+                                   matInput
+                                   [formControlName]="'whatsappnumber'" placeholder="Please provide your whatsapp Number" ></mat-form-field>
+                        </div>
+<!-- 
+                        <mat-form-field *ngIf = "whatsapp === 'false'">
+                            <mat-label>Whatsapp Number</mat-label>
+                            <input id="phone"
+                                   matInput
+                                   [formControlName]="'phone'">
+                            <mat-error *ngIf="FarmersignUpForm.get('phone').hasError('required')">
+                                Phone number is required
+                            </mat-error>
+                        </mat-form-field> -->
+
+                
 
                     <!-- Email field -->
                     <mat-form-field>
@@ -52,15 +82,15 @@
                         <input id="email"
                                matInput
                                [formControlName]="'email'">
-                        <mat-error *ngIf="signUpForm.get('email').hasError('required')">
+                        <mat-error *ngIf="FarmersignUpForm.get('email').hasError('required')">
                             Email address is required
                         </mat-error>
-                        <mat-error *ngIf="signUpForm.get('email').hasError('email')">
+                        <mat-error *ngIf="FarmersignUpForm.get('email').hasError('email')">
                             Please enter a valid email address
                         </mat-error>
                     </mat-form-field>
 
-                    <!-- Password field -->
+                    <!-- Password field
                     <mat-form-field>
                         <mat-label>Password</mat-label>
                         <input id="password"
@@ -80,17 +110,58 @@
                         <mat-error>
                             Password is required
                         </mat-error>
-                    </mat-form-field>
+                    </mat-form-field> -->
 
-                    <!-- Company field -->
-                    <mat-form-field>
-                        <mat-label>Company</mat-label>
-                        <input id="company-confirm"
+
+                    
+
+                   
+
+                     <!-- State field -->                   
+                     <mat-form-field>
+                        <mat-label>Select States</mat-label>
+                            <mat-select [(ngModel)]="selectedState" [ngModelOptions]="{standalone: true}" (selectionChange) = "onSelect($event)">
+                                <mat-option>None</mat-option>
+                                    <mat-option *ngFor = "let states of dropdownList" [value] = "states.value">
+                                        {{states.viewValue}} 
+                                </mat-option>
+                            </mat-select>
+                    </mat-form-field>
+   
+                       <mat-form-field>
+                        <mat-label>Select City</mat-label>
+                            <mat-select [(ngModel)] = "selectedCity" [ngModelOptions]="{standalone: true}">
+                                <mat-option>None</mat-option>
+                                    <mat-option *ngFor = "let city of cities" [value] = "city">
+                                        {{city}}
+                                </mat-option>
+                            </mat-select>
+                    </mat-form-field>                 
+                   
+
+                       <mat-form-field>
+                        <mat-label>Taluka/Tehsil</mat-label>
+                        <input id="tehsil"
                                matInput
-                               [formControlName]="'company'">
+                               [formControlName]="'tehsil'">
+                        <mat-error *ngIf="FarmersignUpForm.get('tehsil').hasError('required')">
+                            Tehsil is required
+                        </mat-error>
                     </mat-form-field>
+                   
 
-                    <!-- Field footer -->
+                    <mat-form-field>
+                        <mat-label>Village</mat-label>
+                        <input id="village"
+                               matInput
+                               [formControlName]="'village'">
+                        <mat-error *ngIf="FarmersignUpForm.get('tehsil').hasError('required')">
+                            Village is required
+                        </mat-error>
+                    </mat-form-field>
+                   
+
+                   
                     <div class="field-footer">
                         <mat-checkbox [color]="'primary'"
                                       [formControlName]="'agreements'">
@@ -108,12 +179,12 @@
                             mat-flat-button
                             type="button"
                             [color]="'primary'"
-                            [disabled]="signUpForm.disabled"
+                            [disabled]="FarmersignUpForm.disabled"
                             (click)="signUp()">
-                        <span *ngIf="!signUpForm.disabled">
+                        <span *ngIf="!FarmersignUpForm.disabled">
                             Create your free account
                         </span>
-                        <mat-progress-spinner *ngIf="signUpForm.disabled"
+                        <mat-progress-spinner *ngIf="FarmersignUpForm.disabled"
                                               [diameter]="24"
                                               [mode]="'indeterminate'"></mat-progress-spinner>
                     </button>
@@ -127,8 +198,8 @@
         <!-- Content container -->
         <div class="content-container">
 
-            <!-- Background - Inline SVG for easy customizations -->
-            <svg class="background"
+            <!-- Background - Inline SVG for easy customizations  -->
+           <svg class="background"
                  viewBox="0 0 1531 891"
                  preserveAspectRatio="xMidYMax slice"
                  xmlns="http://www.w3.org/2000/svg">

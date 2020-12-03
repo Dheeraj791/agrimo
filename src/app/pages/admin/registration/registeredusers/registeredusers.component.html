@@ -1,8 +1,21 @@
 <div class="box_main">
+    <div class="col-md-12">
+        <div class="header_top_btn_new mb-5">
+          <div class="row">
+            <div class="col-md-8 custom-col-8">
+              <div class="breadcrumb">
+                <span class="path">Farmers</span><span class="separator">/</span>
+                <span class="path">Registration</span>
+              </div>
+              <h1 class="master-heading">Registered Farmers</h1>
+            </div>
+          </div>
+        </div>
+      </div>
         <div class="container">
             <div class="col-md-12 bg-card shadow rounded overflow-hidden">
-                <div class="header_top_btn mb-5">
-                    <button class="btn" mat-flat-button [color]="'primary'" (click)="open(addnew)">Add New User</button>
+                <div>
+                    <button class="addbtn" mat-flat-button [color]="'primary'" (click)="open(addnew)">Add New Farmer</button>
                 </div>
                 <div class="">
                     <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
@@ -12,7 +25,7 @@
                                 <th>User Id</th>
                                 <th>User Name</th>
                                 <th>Full Name</th>
-                                <th>Delete</th>
+                                <th>Status</th>
                                 <th>Edit</th>
                             </tr>
                         </thead>
@@ -20,12 +33,10 @@
                             <tr>
                                 <td>1</td>
                                 <td>FP000004</td>
-                                <td>gng</td>
+                                <td>Test</td>
                                 <td>Greens And Grains</td>
-                                <td class="delete_icons" (click)="statusModal(delete)">
-                                    <mat-icon svgIcon="dripicons:trash"></mat-icon>
-                                </td>
-                                <td (click)="open(editone)" class="edit_icons">
+                                <td><mat-slide-toggle color="primary" class="mat-slide-toggle ng-tns-c164-5 mat-primary ng-untouched ng-pristine ng-valid" tabindex="-1"><label>Inactive/Active</label></mat-slide-toggle>
+                                </td><td (click)="open(editone)" class="edit_icons">
                                     <mat-icon svgIcon="dripicons:pencil"></mat-icon>
                                 </td>
                             </tr>
@@ -96,7 +107,6 @@
                                                 <option>----CHOOSE GENDER----</option>
                                                 <option value="male">Male</option>
                                                 <option value="female">Female</option>
-                                                <option value="unisex">Unisex</option>
                                             </select>
                                         </div>
                                     </div>

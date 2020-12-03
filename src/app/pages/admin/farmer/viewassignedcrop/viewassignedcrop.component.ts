@@ -1,48 +1,71 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { MasterRecordService } from '../master-record.service';
-import { FormGroup, NgForm } from '@angular/forms';
+import { NgForm } from '@angular/forms';
+import { MasterRecordService } from '../../masterrecords/master-record.service';
 import { DataTableDirective } from 'angular-datatables';
-import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { Router } from '@angular/router';
+import * as moment from 'moment';
+
 
 @Component({
-  selector: 'app-activitymaster',
-  templateUrl: './activitymaster.component.html',
-  styleUrls: ['./activitymaster.component.scss'],
+  selector: 'app-viewassignedcrop',
+  templateUrl: './viewassignedcrop.component.html',
+  styleUrls: ['./viewassignedcrop.component.scss']
 })
-export class ActivitymasterComponent implements OnInit {
+
+export class ViewassignedcropComponent implements OnInit {
   @ViewChild(DataTableDirective)
   dtElement: DataTableDirective;
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
   persons: [];
   closeResult = '';
-  public Editor = ClassicEditor;
-  public updateEditor = ClassicEditor;
-  activityMasterRecords: any = [];
-  singleActivity: any
-  activityName: any ;
-  selectedActivityType: any = 'General Activity';
+  start_date:any;
+  landMeasurementName: any;
+  landMeasurementRecords: any = [];
+  activityType: any = [
+    {
+      'name': 'Chilli',
+      'id': 1
+    },
+    {
+      'name': 'Gilki',
+      'id': 2
+    },
+    {
+      'name': 'Bhindi',
+      'id': 2
+    }
+    ,
+    {
+      'name': 'Spinach',
+      'id': 2
+    }
+    ,
+    {
+      'name': 'Hybrid-Round',
+      'id': 2
+    }
+  ];
+  singleActivity: any;
+  userData = JSON.parse(localStorage.getItem('user_data'));
+  statusType = 0;
+  statusId = 0;
+  cf_name = "";
+  cf_id = "0";
+  
+  activityName: any=['chilli'];
+  selectedActivityType: any = ['Chilli'];
   description: any = '';
   imgaeurl: any = '';
   audiourl: any = '';
   videourl: any = '';
   descdata: any = '';
   addDescription: any;
-  userData = JSON.parse(localStorage.getItem('user_data'));
-  activityType: any = [
-    {
-      'name': 'General Activity',
-      'id': 1
-    },
-    {
-      'name': 'Material Based Activity',
-      'id': 2
-    }
-  ];
+
   selectedActivityTypeId: any;
   imageShow: boolean = false;
   vdoUrlShow: boolean = false;
@@ -61,8 +84,7 @@ export class ActivitymasterComponent implements OnInit {
   ];
   detailsRowLenup = 0;
   detailsRowLen = 0;
-  statusType = 0;
-  statusId = 0;
+
 
   upimageShow: boolean = false;
   upvdoUrlShow: boolean = false;
@@ -79,17 +101,20 @@ export class ActivitymasterComponent implements OnInit {
 
   imageUpStatusMain = "0";
   audioUpStausMain = "0";
+
   constructor(
     private modalService: NgbModal,
     private backendService: MasterRecordService,
     public spinner: NgxSpinnerService,
-    private toastr: ToastrService
-  ) { }
+    private toastr: ToastrService,
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {
     this.spinner.show();
     this.fetchData();
   }
+
   ngAfterViewInit(): void { this.dtTrigger.next(); }
   rerender(): void {
     this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
@@ -99,13 +124,13 @@ export class ActivitymasterComponent implements OnInit {
   }
   fetchData() {
     const data = {
-      record_type: 'activities',
+      record_type: this.activityType,
       admin_id: '1',
     };
-    this.backendService.fetchActivityMasterRecord(data).subscribe((res) => {
+    
+    this.backendService.fetchRecords(data).subscribe((res) => {
       if (res.status === true) {
-        this.activityMasterRecords = res.result;
-        this.url = res.url;
+        this.landMeasurementRecords = res.result;
         this.rerender();
         this.spinner.hide();
       } else {
@@ -114,6 +139,22 @@ export class ActivitymasterComponent implements OnInit {
     });
   }
   open(content, data) {
+    
+    this.router.navigate(['/farmer/calendar'])
+      .then(success => console.log('navigation success?' , success))
+      .catch(console.error); 
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
+  opens(content, data) {
     this.singleActivity = data;
     this.modalService
       .open(content, {
@@ -132,6 +173,8 @@ export class ActivitymasterComponent implements OnInit {
   }
   editModal(content, data) {
     this.singleActivity = data;
+    
+    this.start_date =  moment(this.singleActivity.start_date).format('YYYY-MM-DD');
 
     if (this.singleActivity.mr_com_image != '') {
       this.upimageShow = true;
@@ -204,15 +247,6 @@ export class ActivitymasterComponent implements OnInit {
       );
   }
 
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
-  }
 
   onUpdateActivity(form: NgForm) {
     if (form.invalid) {
@@ -486,4 +520,5 @@ export class ActivitymasterComponent implements OnInit {
     this.detailsRowUpdate.splice(removeIndex, 1);
     this.detailsRowLenup = this.detailsRowUpdate.length;
   }
+  
 }
